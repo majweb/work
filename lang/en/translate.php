@@ -1988,10 +1988,6 @@ return [
     'Australia' => 'Australia',
     'ChooseSpecificMarkets' => 'or Choose specific markets',
     'MarketPopupTitle' => 'Which market are you looking for work in?',
-    'MarketPopupSuggested' => 'Suggested market based on your browser language settings:',
-    'MarketSuggestedShort' => 'Suggested market:',
-    'MarketRemember' => 'Remember, you can always change this!',
-    'MarketLabel' => 'Market',
     'continents' => [
         'africa' => 'Africa',
         'south_america' => 'South and Central America',
