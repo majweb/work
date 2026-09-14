@@ -131,6 +131,10 @@ const confirmCurrentCountry = () => {
     selectCountry(currentCountryCode.value);
 };
 
+const closeCountryModal = () => {
+    showCountryModal.value = false;
+};
+
 const addOfferRoute = computed(() => {
     if (typeof route === 'undefined') {
         return '#';
@@ -616,7 +620,7 @@ const socialLinks = [
         <main class="relative z-0 flex-grow pt-16 md:pt-28 overflow-x-hidden">
             <slot />
 
-            <Teleport to="body">
+            <Teleport to="body" v-if="isClient">
                 <div v-if="showCountryModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
                     <div class="bg-white dark:bg-gray-800 rounded-[2rem] shadow-2xl shadow-blue-900/10 w-full max-w-2xl mx-4 overflow-hidden border border-gray-100 dark:border-gray-700 relative">
                         <!-- Loading Overlay -->
