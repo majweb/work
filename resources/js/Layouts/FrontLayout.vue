@@ -757,7 +757,7 @@ const socialLinks = [
                                         </svg>
                                     </div>
                                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                        {{ __('translate.no_results') || 'Nie znaleziono krajów' }}
+                                        {{ __('translate.no_results', {}, page.props.detectedLanguage) || 'Nie znaleziono krajów' }}
                                     </p>
                                 </div>
                             </div>

@@ -18,8 +18,10 @@ class SetLanguage
     {
         if (session()->has('language')) {
             $locale = session()->get('language', config('app.locale'));
-        } else {
+        } elseif (getSelectedCountry()) {
             $locale = getSelectedCountry();
+        } else {
+            $locale = explode(',', request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'))[0];
         }
 
         if ($locale) {

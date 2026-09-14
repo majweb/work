@@ -47,6 +47,10 @@ export default function __ (key, replacements = {}) {
     }
 
     // Obsługa fallbacku dla starych powiadomień typu translate.keyID
+    if (translation === key && translationKey !== key) {
+        translation = translations[key] || key;
+    }
+
     if (translation === key && key.startsWith('translate.')) {
         const baseKey = key.split(/\d+/)[0]; // np. translate.newAplication
         const id = key.match(/\d+/)?.[0];    // np. 258
