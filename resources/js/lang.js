@@ -1,12 +1,18 @@
 import { usePage } from '@inertiajs/vue3'
 
-export default function __ (key, replacements = {}) {
+export default function __ (key, replacements = {}, locale = null) {
     if (!key) return '';
 
     const props = usePage()?.props || {}
     const translations = props.translations || {}
 
-    let translation = translations[key] || key
+    // Próba pobrania tłumaczenia dla konkretnego locale, jeśli przekazano
+    let translationKey = key;
+    if (locale) {
+        translationKey = `${locale}::${key}`;
+    }
+
+    let translation = translations[translationKey] || key
 
     if (translation === key) {
         // Spróbuj znaleźć jako obiekt/tablicę, jeśli klucz kończy się kropką lub jest bazą dla zagnieżdżonych kluczy

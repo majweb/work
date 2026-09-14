@@ -5,7 +5,6 @@ if (! function_exists('getLocalBrowserLang')) {
     {
         $lang = substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'), 0, 2);
         $map = [
-            'en' => 'gb',
             'uk' => 'ua', // Wyjątek: użytkownik chce 'uk' dla języka ukraińskiego
             'be' => 'by',
             'el' => 'gr',

@@ -628,7 +628,7 @@ const socialLinks = [
                             <div class="flex flex-col items-center gap-4">
                                 <div class="w-12 h-12 border-4 border-[#0A2C5C] border-t-transparent rounded-full animate-spin"></div>
                                 <p class="text-[10px] font-black text-[#0A2C5C] dark:text-white uppercase tracking-[0.2em] animate-pulse">
-                                    {{ __('translate.adjusting_portal') }}
+                                    {{ __('translate.adjusting_portal', {}, page.props.detectedLanguage) }}
                                 </p>
                             </div>
                         </div>
@@ -651,31 +651,31 @@ const socialLinks = [
                                 </div>
                             </div>
                             <h3 class="text-2xl font-black uppercase tracking-tighter mb-2 text-[#0A2C5C] dark:text-white">
-                                {{ __('translate.MarketPopupTitle') }}
+                                {{ __('translate.MarketPopupTitle', {}, page.props.detectedLanguage) }}
                             </h3>
                             <p class="text-[14px] font-bold text-[#00a0e3] mb-8 uppercase tracking-wider flex items-center justify-center flex-wrap gap-2">
-                                <span class="text-center w-full mb-1">{{ __('translate.MarketPopupSuggested') }}</span>
+                                <span class="text-center w-full mb-1">{{ __('translate.MarketPopupSuggested', {}, page.props.detectedLanguage) }}</span>
                                 <span class="bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800">
                                     {{ currentCountryName }}
                                 </span>
                             </p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                                 <button @click="confirmCurrentCountry" class="px-10 py-5 bg-[#0A2C5C] text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#00a0e3] transition-all shadow-xl shadow-blue-900/20 active:scale-95">
-                                    {{ __('translate.yes_apply') }}
+                                    {{ __('translate.yes_apply', {}, page.props.detectedLanguage) }}
                                 </button>
                                 <button @click="countrySelectionStep = 'list'" class="px-10 py-5 border-2 border-gray-100 dark:border-gray-700 text-[#0A2C5C] dark:text-gray-300 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all active:scale-95">
-                                    {{ __('translate.choose_other') }}
+                                    {{ __('translate.choose_other', {}, page.props.detectedLanguage) }}
                                 </button>
                             </div>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
-                                {{ __('translate.MarketRemember') }}
+                                {{ __('translate.MarketRemember', {}, page.props.detectedLanguage) }}
                             </p>
                         </div>
 
                         <!-- Step 2: Full List -->
                         <div v-if="countrySelectionStep === 'list'" class="flex flex-col h-[85vh] max-h-[750px]">
                             <div class="p-6 pb-4 flex justify-between items-center bg-white dark:bg-gray-800">
-                                <h3 class="text-[11px] font-black uppercase tracking-[0.2em] text-[#0A2C5C] dark:text-white">{{ __('translate.select_country') }}</h3>
+                                <h3 class="text-[11px] font-black uppercase tracking-[0.2em] text-[#0A2C5C] dark:text-white">{{ __('translate.select_country', {}, page.props.detectedLanguage) }}</h3>
                                 <div class="flex items-center gap-4">
                                     <button
                                         v-if="!isManualOpen"
@@ -685,7 +685,7 @@ const socialLinks = [
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                                         </svg>
-                                        {{ __('translate.back') }}
+                                        {{ __('translate.back', {}, page.props.detectedLanguage) }}
                                     </button>
 
                                     <!-- Close Button -->
@@ -707,7 +707,7 @@ const socialLinks = [
                                     <input
                                         v-model="countrySearch"
                                         type="text"
-                                        :placeholder="__('translate.search_country')"
+                                        :placeholder="__('translate.search_country', {}, page.props.detectedLanguage)"
                                         class="w-full pl-10 pr-4 py-3 border border-gray-100 rounded-xl dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-[#0A2C5C] outline-none transition-all shadow-sm text-[11px] font-bold"
                                     />
                                 </div>

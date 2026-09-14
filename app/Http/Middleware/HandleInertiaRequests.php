@@ -59,22 +59,43 @@ class HandleInertiaRequests extends Middleware
             'language' => app()->getLocale(),
             'currentCountry' => getSelectedCountry() ?: getLocalBrowserLang(),
             'currentLang' => getLocalBrowserLangWithout(),
-            'detectedLanguage' => explode(',', request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'))[0],
+            'detectedLanguage' => substr(explode(',', $request->server('HTTP_ACCEPT_LANGUAGE', 'pl'))[0], 0, 2),
             'countriesAllFlat' => fn () => Country::all()->keyBy(fn ($c) => strtoupper($c->countryCode)),
             'countriesAll' => fn () => Country::all()
                 ->groupBy(fn ($country) => $country->getTranslation('continent', app()->getLocale()) ?: 'Other')
                 ->sortBy(fn ($group, $key) => $key === __('translate.continents.europe') ? 0 : 1),
             'languages' => LanguageResource::collection(Lang::cases()),
-            'translations' => function () {
-                return cache()->rememberForever('translations.'.app()->getLocale(), function () {
-                    return collect(File::allFiles(base_path('lang/'.app()->getLocale())))
+            'translations' => function () use ($request) {
+                $currentLocale = app()->getLocale();
+                $detectedLocale = substr(explode(',', $request->server('HTTP_ACCEPT_LANGUAGE', 'pl'))[0], 0, 2);
+
+                $translations = cache()->rememberForever('translations.'.$currentLocale, function () use ($currentLocale) {
+                    return collect(File::allFiles(base_path('lang/'.$currentLocale)))
                         ->flatMap(function ($file) {
                             return Arr::dot(
                                 File::getRequire($file->getRealPath()),
                                 $file->getBasename('.'.$file->getExtension()).'.'
                             );
                         });
-                });
+                })->toArray();
+
+                if ($detectedLocale !== $currentLocale && File::exists(base_path('lang/'.$detectedLocale))) {
+                    $detectedTranslations = cache()->rememberForever('translations.'.$detectedLocale, function () use ($detectedLocale) {
+                        return collect(File::allFiles(base_path('lang/'.$detectedLocale)))
+                            ->flatMap(function ($file) {
+                                return Arr::dot(
+                                    File::getRequire($file->getRealPath()),
+                                    $file->getBasename('.'.$file->getExtension()).'.'
+                                );
+                            });
+                    });
+
+                    foreach ($detectedTranslations as $key => $value) {
+                        $translations[$detectedLocale.'::'.$key] = $value;
+                    }
+                }
+
+                return $translations;
             },
             'sender' => session()->pull('sender') ?? null,
             'csrf_token' => csrf_token(),
