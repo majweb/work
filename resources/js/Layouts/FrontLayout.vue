@@ -94,6 +94,9 @@ const filteredCountries = computed(() => {
 });
 
 const scrollToContinent = (continent) => {
+    if (typeof document === 'undefined') {
+        return;
+    }
     const el = document.getElementById('continent-' + continent);
     if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -147,20 +150,22 @@ const canAddOffer = computed(() => {
 
 onMounted(() => {
     isClient.value = true;
-    ogUrl.value = window.location.href;
+    if (typeof window !== 'undefined') {
+        ogUrl.value = window.location.href;
 
-    if (typeof window !== 'undefined' && window.localStorage && !window.localStorage.getItem('preferred_country')) {
-        const isClosedInSession = window.sessionStorage && window.sessionStorage.getItem('market_popup_closed');
-        if (!isClosedInSession) {
-            isManualOpen.value = false;
-            showCountryModal.value = true;
+        if (window.localStorage && !window.localStorage.getItem('preferred_country')) {
+            const isClosedInSession = window.sessionStorage && window.sessionStorage.getItem('market_popup_closed');
+            if (!isClosedInSession) {
+                isManualOpen.value = false;
+                showCountryModal.value = true;
+            }
         }
-    }
 
-    window.addEventListener('scroll', () => {
-        showScrollTop.value = window.scrollY > 400;
-        isScrolled.value = window.scrollY > 20;
-    });
+        window.addEventListener('scroll', () => {
+            showScrollTop.value = window.scrollY > 400;
+            isScrolled.value = window.scrollY > 20;
+        });
+    }
 });
 
 const form = useForm({
