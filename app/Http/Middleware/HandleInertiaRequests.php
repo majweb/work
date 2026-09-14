@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Http\Resources\LanguageResource;
 use App\Lang\Lang;
+use App\Models\Country;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -56,7 +57,13 @@ class HandleInertiaRequests extends Middleware
             'getPoints' => fn () => config('getPoints'),
             //            'permissionsRecruit' => fn () => request()->user() && request()->user()->hasRole('firm') ? Role::findByName('recruit','web')->permissions()->pluck('name'): NULL,
             'language' => app()->getLocale(),
-            'currentCountry' => getLocalBrowserLangWithout(),
+            'currentCountry' => getSelectedCountry() ?: getLocalBrowserLang(),
+            'currentLang' => getLocalBrowserLangWithout(),
+            'detectedLanguage' => explode(',', request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'))[0],
+            'countriesAllFlat' => fn () => Country::all()->keyBy(fn ($c) => strtoupper($c->countryCode)),
+            'countriesAll' => fn () => Country::all()
+                ->groupBy(fn ($country) => $country->getTranslation('continent', app()->getLocale()) ?: 'Other')
+                ->sortBy(fn ($group, $key) => $key === __('translate.continents.europe') ? 0 : 1),
             'languages' => LanguageResource::collection(Lang::cases()),
             'translations' => function () {
                 return cache()->rememberForever('translations.'.app()->getLocale(), function () {

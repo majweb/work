@@ -639,22 +639,16 @@ const getTranslation = (value) => {
                                         v-model="filters.company"
                                         :options="companies"
                                         :close-on-select="true"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Firmy"
                                         label="name"
                                         track-by="id"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <button
@@ -697,22 +691,16 @@ const getTranslation = (value) => {
                                         group-values="elements"
                                         group-label="group"
                                         :group-select="false"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Kraj"
                                         label="name"
                                         track-by="value"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <div>
@@ -725,22 +713,16 @@ const getTranslation = (value) => {
                                         group-values="elements"
                                         group-label="group"
                                         :group-select="false"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Kraj publikacji"
                                         label="name"
                                         track-by="value"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <div>
@@ -751,22 +733,16 @@ const getTranslation = (value) => {
                                         v-model="filters.city"
                                         :options="optionsCities"
                                         :disabled="!filters.country"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Miasto"
                                         label="name"
                                         track-by="value"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <div>
@@ -790,22 +766,16 @@ const getTranslation = (value) => {
                                         v-model="filters.language"
                                         :options="languages"
                                         :close-on-select="true"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Język"
                                         label="label"
                                         track-by="value"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <div>
@@ -816,22 +786,16 @@ const getTranslation = (value) => {
                                         v-model="filters.language_level"
                                         :options="langLevels"
                                         :close-on-select="true"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Poziom języka"
                                         label="name"
                                         track-by="id"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                             </div>
@@ -846,22 +810,16 @@ const getTranslation = (value) => {
                                         v-model="filters.recruiter"
                                         :options="optionsRecruiters"
                                         :close-on-select="true"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Rekruterzy"
                                         label="name"
                                         track-by="id"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <div>
@@ -869,12 +827,10 @@ const getTranslation = (value) => {
                                         class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Branża</label>
                                     <Multiselect
                                         class="custom-multiselect"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         v-model="filters.category"
                                         :options="categories"
                                         placeholder="Wybierz branżę"
@@ -882,12 +838,8 @@ const getTranslation = (value) => {
                                         track-by="value"
                                         @update:modelValue="updateFilters"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                             </div>
@@ -899,12 +851,10 @@ const getTranslation = (value) => {
                                         class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Podbranża</label>
                                     <Multiselect
                                         class="custom-multiselect"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         v-model="filters.categorySub"
                                         :options="optionsCategorySub"
                                         placeholder="Wybierz podbranżę"
@@ -912,12 +862,8 @@ const getTranslation = (value) => {
                                         track-by="value"
                                         @update:modelValue="updateFilters"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <div>
@@ -927,23 +873,17 @@ const getTranslation = (value) => {
                                         class="custom-multiselect"
                                         v-model="filters.profession"
                                         :options="optionsProfession"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        :noOptions="__('translate.noOptions')"
-                                        :noResult="__('translate.noResult')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         placeholder="Wybierz zawód"
                                         label="name"
                                         track-by="value"
                                         @update:modelValue="updateFilters"
                                     >
-                                        <template #noResult>
-                                            <span>{{ __('translate.noResult') }}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{ __('translate.noOptions') }}</span>
-                                        </template>
+                                        <template #noResult>Nie znaleziono elementów.</template>
+                                        <template #noOptions>Brak opcji.</template>
                                     </Multiselect>
                                 </div>
                                 <div class="flex gap-4 items-end">
@@ -954,23 +894,17 @@ const getTranslation = (value) => {
                                             class="custom-multiselect"
                                             v-model="filters.positionSelect"
                                             :options="optionsPosition"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
-                                            :noOptions="__('translate.noOptions')"
-                                            :noResult="__('translate.noResult')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             placeholder="Wybierz stanowisko"
                                             label="name"
                                             track-by="value"
                                             @update:modelValue="updateFilters"
                                         >
-                                            <template #noResult>
-                                                <span>{{ __('translate.noResult') }}</span>
-                                            </template>
-                                            <template #noOptions>
-                                                <span>{{ __('translate.noOptions') }}</span>
-                                            </template>
+                                            <template #noResult>Nie znaleziono elementów.</template>
+                                            <template #noOptions>Brak opcji.</template>
                                         </Multiselect>
                                     </div>
                                     <button

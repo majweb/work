@@ -30,6 +30,104 @@ const user = computed(() => auth?.user);
 const isClient = ref(false);
 const ogUrl = ref(page.props?.ziggy?.location || page.props?.pageUrl || '');
 
+const showCountryModal = ref(false);
+const isManualOpen = ref(false);
+const countrySelectionStep = ref('suggest');
+const countrySearch = ref('');
+const isProcessingCountrySelection = ref(false);
+
+watch(showCountryModal, (newVal) => {
+    if (!newVal) {
+        countrySearch.value = '';
+        isManualOpen.value = false;
+        if (typeof window !== 'undefined' && window.sessionStorage) {
+            window.sessionStorage.setItem('market_popup_closed', 'true');
+        }
+    }
+});
+
+const countries = computed(() => page.props.countriesAll || {});
+const currentCountryCode = computed(() => page.props.currentCountry || '');
+
+const currentCountryName = computed(() => {
+    if (!page.props.countriesAllFlat) return currentCountryCode.value.toUpperCase();
+    const code = currentCountryCode.value.toUpperCase();
+    const country = page.props.countriesAllFlat[code];
+    if (!country) return code;
+
+    const emoji = country.emoji || '';
+    let name = country.name;
+
+    if (typeof name === 'object') {
+        name = name[page.props.language] || name.en || name;
+    }
+
+    return (emoji + ' ' + (name || code)).trim().toUpperCase();
+});
+
+const headerCountryName = currentCountryName;
+
+const filteredCountries = computed(() => {
+    if (!countries.value) return {};
+
+    const search = countrySearch.value.toLowerCase();
+    const result = {};
+
+    Object.keys(countries.value).forEach(continent => {
+        const filtered = countries.value[continent].filter(country => {
+            const translatedName = typeof country.name === 'object'
+                ? (country.name[page.props.language] || country.name.en || '')
+                : (country.name || '');
+
+            const code = country.countryCode || '';
+
+            return translatedName.toLowerCase().includes(search) ||
+                code.toLowerCase().includes(search);
+        });
+
+        if (filtered.length > 0) {
+            result[continent] = filtered;
+        }
+    });
+
+    return result;
+});
+
+const scrollToContinent = (continent) => {
+    const el = document.getElementById('continent-' + continent);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+};
+
+const hasPreferredCountry = computed(() => {
+    if (!isClient.value || typeof window === 'undefined' || !window.localStorage) return false;
+    return !!window.localStorage.getItem('preferred_country');
+});
+
+const selectCountry = (code) => {
+    isProcessingCountrySelection.value = true;
+    if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem('preferred_country', code);
+    }
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+        window.sessionStorage.setItem('market_popup_closed', 'true');
+    }
+    router.post(route('front.country.store'), { country_code: code }, {
+        preserveScroll: true,
+        onSuccess: () => {
+            showCountryModal.value = false;
+        },
+        onFinish: () => {
+            isProcessingCountrySelection.value = false;
+        }
+    });
+};
+
+const confirmCurrentCountry = () => {
+    selectCountry(currentCountryCode.value);
+};
+
 const addOfferRoute = computed(() => {
     if (typeof route === 'undefined') {
         return '#';
@@ -50,6 +148,14 @@ const canAddOffer = computed(() => {
 onMounted(() => {
     isClient.value = true;
     ogUrl.value = window.location.href;
+
+    if (typeof window !== 'undefined' && window.localStorage && !window.localStorage.getItem('preferred_country')) {
+        const isClosedInSession = window.sessionStorage && window.sessionStorage.getItem('market_popup_closed');
+        if (!isClosedInSession) {
+            isManualOpen.value = false;
+            showCountryModal.value = true;
+        }
+    }
 
     window.addEventListener('scroll', () => {
         showScrollTop.value = window.scrollY > 400;
@@ -342,12 +448,11 @@ const socialLinks = [
                     ]"
                 >
                 <Link :href="route('front')" class="flex items-center shrink-0">
-                    <img v-if="route().current('front')" src="/images/logo-horizontal.png" class="h-4 w-auto" :alt="__('translate.logo')" />
-                    <ApplicationMark v-else class="h-10 md:h-12 w-auto" />
+                    <img src="/images/logo-header.png" class="h-8 md:h-12 w-auto" :alt="__('translate.logo')" />
                 </Link>
 
                 <!-- Desktop nav -->
-                <nav class="hidden lg:flex items-center space-x-1">
+                <nav class="hidden xl:flex items-center space-x-1">
                     <NavLink :href="route('front.articles')" :active="route().current('front.articles')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#00a0e3] active:!scale-95 !transition-all duration-200">
                         {{__('translate.articles')}}
                     </NavLink>
@@ -362,54 +467,125 @@ const socialLinks = [
                     </NavLink>
                 </nav>
 
-                <!-- Language selector and auth -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <div class="custom-multiselect w-52">
-                        <Multiselect
-                            v-model="lang"
-                            :options="sortLangs"
-                            label="searchString"
-                            track-by="value"
-                            @select="dispatchAction"
-                            :placeholder="__('translate.placeholder')"
-                            :selectLabel="''"
-                            :selectedLabel="''"
-                            :deselectLabel="''"
-                            class="languages-multiselect"
-                        >
-                            <template #singleLabel="{ option }">
-                                <div class="flex items-center gap-2">
-                                    <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                    <span>{{ option.allLabels[option.value] || option.label }}</span>
-                                </div>
-                            </template>
-                            <template #option="{ option }">
-                                <div class="flex items-center gap-2">
-                                    <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                    <span>{{ option.allLabels[option.value] || option.label }}</span>
-                                </div>
-                            </template>
-                            <template #noResult>
-                                <span>{{__('translate.noOptions')}}</span>
-                            </template>
-                            <template #noOptions>
-                                <span>{{__('translate.noResult')}}</span>
-                            </template>
-                        </Multiselect>
+                <!-- Country trigger and auth section -->
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <!-- Country trigger desktop -->
+                    <div class="hidden xl:flex items-center gap-3">
+                        <div class="relative w-40">
+                            <span class="absolute top-[7px] left-3 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 pointer-events-none">{{ __('translate.MarketLabel') }}</span>
+                            <button
+                                @click="isManualOpen = true; countrySelectionStep = 'list'; showCountryModal = true"
+                                class="w-full flex items-center gap-2 pl-2 pr-2 h-[45px] bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:bg-gray-100 transition-colors group shrink-0"
+                            >
+                                <span class="text-base inline-block mt-3">🌐</span>
+                                <span class="text-[10px] font-black text-[#0A2C5C] dark:text-white uppercase tracking-wider inline-flex items-center gap-1 mt-3 w-full text-left">
+                                    {{ headerCountryName }}
+                                </span>
+                            </button>
+                        </div>
                     </div>
-                    <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] hover:underline underline-offset-4">{{ page.props.currentCountry }}</button>
 
-                    <div v-if="auth?.user" class="flex items-center gap-3">
-                        <Link :href="route('dashboard')" class="px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5">
+                    <!-- Country trigger mobile/tablet -->
+                    <div class="hidden xl:hidden md:flex items-center shrink-0">
+                        <div class="relative w-32 md:w-40 scale-90 md:scale-100 origin-right">
+                            <span class="absolute top-2 left-3 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 pointer-events-none hidden md:block">{{ __('translate.MarketLabel') }}</span>
+                            <button
+                                @click="isManualOpen = true; countrySelectionStep = 'list'; showCountryModal = true"
+                                class="w-full flex items-center gap-2 pl-2 pr-2 h-[38px] bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:bg-gray-100 transition-colors group"
+                            >
+                                <span class="text-base md:text-lg inline-block mt-3">🌐</span>
+                                <span class="hidden md:inline-flex text-[10px] font-black text-[#0A2C5C] dark:text-white uppercase tracking-wider items-center gap-1 mt-3 w-full text-left">
+                                    {{ headerCountryName }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400 group-hover:text-[#0A2C5C] transition-colors ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                        <!-- Language selector desktop -->
+                        <div class="hidden xl:flex items-center gap-3">
+                            <div class="custom-multiselect w-48 relative">
+                                <span class="absolute top-2 left-3 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 pointer-events-none">{{ __('translate.language') }}</span>
+                                <Multiselect
+                                    v-model="lang"
+                                    :options="sortLangs"
+                                    label="searchString"
+                                    track-by="value"
+                                    @select="dispatchAction"
+                                    :placeholder="__('translate.placeholder')"
+                                    :selectLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
+                                    class="languages-multiselect"
+                                >
+                                    <template #singleLabel="{ option }">
+                                        <div class="flex items-center gap-2 mt-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis rounded-[2px]'"></span>
+                                            <span class="text-[10px] font-black text-[#0A2C5C] dark:text-white uppercase tracking-wider">{{ option.allLabels[option.value] || option.label }}</span>
+                                        </div>
+                                    </template>
+                                    <template #option="{ option }">
+                                        <div class="flex items-center gap-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis rounded-[2px]'"></span>
+                                            <span class="text-[10px] font-black uppercase tracking-wider">{{ option.allLabels[option.value] || option.label }}</span>
+                                        </div>
+                                    </template>
+                                    <template #noResult>
+                                        <span class="text-[10px] uppercase font-bold">{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span class="text-[10px] uppercase font-bold">{{__('translate.noResult')}}</span>
+                                    </template>
+                                </Multiselect>
+                            </div>
+                        </div>
+                        <!-- Language selector mobile/tablet -->
+                        <div class="hidden xl:hidden md:flex items-center shrink-0">
+                            <div class="custom-multiselect w-28 md:w-40 relative scale-90 md:scale-100 origin-right">
+                                <span class="absolute top-2 left-3 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 pointer-events-none">{{ __('translate.language') }}</span>
+                                <Multiselect
+                                    v-model="lang"
+                                    :options="sortLangs"
+                                    label="searchString"
+                                    track-by="value"
+                                    @select="dispatchAction"
+                                    :placeholder="__('translate.placeholder')"
+                                    :selectLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
+                                    class="languages-multiselect"
+                                >
+                                    <template #singleLabel="{ option }">
+                                        <div class="flex items-center gap-2 mt-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis rounded-[2px]'"></span>
+                                            <span class="text-[9px] md:text-[10px] font-black text-[#0A2C5C] dark:text-white uppercase tracking-wider">{{ option.allLabels[option.value] || option.label }}</span>
+                                        </div>
+                                    </template>
+                                    <template #option="{ option }">
+                                        <div class="flex items-center gap-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis rounded-[2px]'"></span>
+                                            <span class="text-[10px] font-black uppercase tracking-wider">{{ option.allLabels[option.value] || option.label }}</span>
+                                        </div>
+                                    </template>
+                                </Multiselect>
+                            </div>
+                        </div>
+
+                    <button v-if="page.props.currentLang != page.props.language" @click="resetLang(page.props.currentLang)" class="hidden xl:block text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] hover:underline underline-offset-4">{{ page.props.currentLang }}</button>
+
+                    <div v-if="auth?.user" class="hidden xl:flex md:flex items-center gap-2 md:gap-3">
+                        <Link :href="route('dashboard')" class="px-4 md:px-6 py-2 md:py-3 bg-[#0A2C5C] text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 shrink-0">
                             {{__('translate.dashboard')}}
                         </Link>
                     </div>
                     <template v-else>
-                        <div class="flex items-center gap-2">
-                            <Link :href="route('login')" class="px-6 py-3 bg-white border border-gray-100 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5">
+                        <div class="hidden xl:flex md:flex items-center gap-1 md:gap-2">
+                            <Link :href="route('login')" class="px-4 md:px-6 py-2 md:py-3 bg-white border border-gray-100 text-[#0A2C5C] text-[9px] md:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 shrink-0">
                                 {{__('translate.login')}}
                             </Link>
-                            <Link v-if="page.props.canRegister" :href="route('register')" class="px-6 py-3 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-red-700 shadow-lg shadow-red-900/20 transition-all hover:-translate-y-0.5">
+                            <Link v-if="page.props.canRegister" :href="route('register')" class="px-4 md:px-6 py-2 md:py-3 bg-red-600 text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-red-700 shadow-lg shadow-red-900/20 transition-all hover:-translate-y-0.5 shrink-0">
                                 {{__('translate.register')}}
                             </Link>
                         </div>
@@ -417,7 +593,7 @@ const socialLinks = [
                 </div>
 
                 <!-- Mobile menu button -->
-                <div class="lg:hidden flex items-center gap-4">
+                <div class="flex xl:hidden items-center shrink-0 ml-auto">
                     <button @click="toggleMenu" class="p-2 rounded-xl bg-gray-50 text-[#0A2C5C] hover:bg-gray-100 transition-colors border border-gray-100">
                         <svg v-if="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -434,6 +610,152 @@ const socialLinks = [
         <!-- Main content -->
         <main class="relative z-0 flex-grow pt-16 md:pt-28 overflow-x-hidden">
             <slot />
+
+            <Teleport to="body">
+                <div v-if="showCountryModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+                    <div class="bg-white dark:bg-gray-800 rounded-[2rem] shadow-2xl shadow-blue-900/10 w-full max-w-2xl mx-4 overflow-hidden border border-gray-100 dark:border-gray-700 relative">
+                        <!-- Loading Overlay -->
+                        <div v-if="isProcessingCountrySelection" class="absolute inset-0 z-[120] flex flex-col items-center justify-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm">
+                            <div class="flex flex-col items-center gap-4">
+                                <div class="w-12 h-12 border-4 border-[#0A2C5C] border-t-transparent rounded-full animate-spin"></div>
+                                <p class="text-[10px] font-black text-[#0A2C5C] dark:text-white uppercase tracking-[0.2em] animate-pulse">
+                                    {{ __('translate.adjusting_portal') }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Close button -->
+                        <button
+                            v-if="hasPreferredCountry || isManualOpen"
+                            @click="showCountryModal = false"
+                            class="absolute top-6 right-6 text-[#0A2C5C] hover:text-[#00a0e3] dark:hover:text-gray-200 z-[110] p-2 bg-gray-50/80 dark:bg-gray-800/80 rounded-xl backdrop-blur-sm shadow-sm transition-all hover:rotate-90 border border-gray-100 dark:border-gray-700"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <!-- Step 1: Suggestion -->
+                        <div v-if="countrySelectionStep === 'suggest'" class="p-10 text-center">
+                            <div class="mb-8 flex justify-center">
+                                <div class="w-24 h-24 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-700 shadow-xl">
+                                    <span :class="`fi fi-${getFlagCode((currentCountryCode || '').toLowerCase())} text-5xl shadow-sm rounded-lg`" style="width: 64px; height: 48px;"></span>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase tracking-tighter mb-2 text-[#0A2C5C] dark:text-white">
+                                {{ __('translate.MarketPopupTitle') }}
+                            </h3>
+                            <p class="text-[14px] font-bold text-[#00a0e3] mb-8 uppercase tracking-wider flex items-center justify-center flex-wrap gap-2">
+                                <span class="text-center w-full mb-1">{{ __('translate.MarketPopupSuggested') }}</span>
+                                <span class="bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800">
+                                    {{ currentCountryName }}
+                                </span>
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                                <button @click="confirmCurrentCountry" class="px-10 py-5 bg-[#0A2C5C] text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#00a0e3] transition-all shadow-xl shadow-blue-900/20 active:scale-95">
+                                    {{ __('translate.yes_apply') }}
+                                </button>
+                                <button @click="countrySelectionStep = 'list'" class="px-10 py-5 border-2 border-gray-100 dark:border-gray-700 text-[#0A2C5C] dark:text-gray-300 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all active:scale-95">
+                                    {{ __('translate.choose_other') }}
+                                </button>
+                            </div>
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                                {{ __('translate.MarketRemember') }}
+                            </p>
+                        </div>
+
+                        <!-- Step 2: Full List -->
+                        <div v-if="countrySelectionStep === 'list'" class="flex flex-col h-[85vh] max-h-[750px]">
+                            <div class="p-6 pb-4 flex justify-between items-center bg-white dark:bg-gray-800">
+                                <h3 class="text-[11px] font-black uppercase tracking-[0.2em] text-[#0A2C5C] dark:text-white">{{ __('translate.select_country') }}</h3>
+                                <div class="flex items-center gap-4">
+                                    <button
+                                        v-if="!isManualOpen"
+                                        @click="countrySelectionStep = 'suggest'"
+                                        class="text-[#0A2C5C] dark:text-gray-400 hover:text-[#00a0e3] dark:hover:text-white flex items-center gap-1.5 transition-colors text-[10px] font-black uppercase tracking-widest"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                        </svg>
+                                        {{ __('translate.back') }}
+                                    </button>
+
+                                    <!-- Close Button -->
+                                    <button @click="closeCountryModal" class="text-gray-400 hover:text-gray-500 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="px-6 pb-4 bg-white dark:bg-gray-800 border-b dark:border-gray-700">
+                                <div class="relative mb-4 mt-2">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    <input
+                                        v-model="countrySearch"
+                                        type="text"
+                                        :placeholder="__('translate.search_country')"
+                                        class="w-full pl-10 pr-4 py-3 border border-gray-100 rounded-xl dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-[#0A2C5C] outline-none transition-all shadow-sm text-[11px] font-bold"
+                                    />
+                                </div>
+
+                                <!-- Continent quick links -->
+                                <div class="flex flex-wrap gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
+                                    <button
+                                        v-for="(countries, continent) in filteredCountries"
+                                        :key="'jump-'+continent"
+                                        @click="scrollToContinent(continent)"
+                                        class="text-[9px] font-black uppercase tracking-wider px-3 py-2 bg-gray-50 dark:bg-gray-700/50 text-[#0A2C5C] dark:text-gray-400 rounded-xl hover:bg-[#0A2C5C] hover:text-white transition-all whitespace-nowrap border border-gray-100 dark:border-gray-600 shadow-sm"
+                                    >
+                                        {{ continent }}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 overflow-y-auto p-4 custom-scrollbar scroll-smooth">
+                                <div v-for="(continentCountries, continent) in filteredCountries" :key="continent" :id="'continent-'+continent" class="mb-10">
+                                    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0A2C5C] dark:text-blue-400 mb-6 px-2 flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-[#0A2C5C] rounded-full shadow-[0_0_8px_rgba(10,44,92,0.4)]"></span>
+                                        {{ continent }}
+                                    </h4>
+                                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+                                        <button
+                                            v-for="country in continentCountries"
+                                            :key="country.id"
+                                            @click="selectCountry(country.countryCode)"
+                                            class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all text-left group border border-transparent hover:border-gray-100 dark:hover:border-gray-600 shadow-none hover:shadow-sm"
+                                        >
+                                            <div class="w-7 h-7 rounded-full overflow-hidden flex-shrink-0 border dark:border-gray-600 shadow-sm transition-transform group-hover:scale-110">
+                                                <span :class="`fi fi-${getFlagCode((country.countryCode || '').toLowerCase())} scale-125`" style="width: 28px; height: 28px;"></span>
+                                            </div>
+                                            <div class="flex flex-col min-w-0">
+                                                <span class="text-[11px] font-bold text-gray-800 dark:text-gray-200 group-hover:text-[#00a0e3] dark:group-hover:text-blue-400 transition-colors truncate">
+                                                    {{ typeof country.name === 'object' ? (country.name[page.props.language] || country.name.en || country.name) : country.name }}
+                                                </span>
+                                                <span class="text-[9px] text-gray-400 dark:text-gray-500 font-medium uppercase tracking-tighter">{{ country.countryCode }}</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div v-if="Object.keys(filteredCountries).length === 0" class="text-center py-12">
+                                    <div class="w-16 h-16 bg-gray-50 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </div>
+                                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                        {{ __('translate.no_results') || 'Nie znaleziono krajów' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Teleport>
         </main>
 
         <!-- Mobile Menu -->
@@ -450,7 +772,7 @@ const socialLinks = [
                 <div class="relative w-full lg:max-w-sm ml-auto flex flex-col bg-white shadow-2xl overflow-y-auto overscroll-contain">
                     <div class="p-8 border-b border-gray-50 flex items-center justify-between sticky top-0 bg-white z-10">
                         <Link href="/" @click="closeMenu">
-                            <img src="/images/logo-horizontal.png" class="h-4 w-auto" :alt="__('translate.logo')" />
+                            <img src="/images/logo-header.png" class="h-8 md:h-12 w-auto" :alt="__('translate.logo')" />
                         </Link>
                         <button @click="closeMenu" class="p-2.5 rounded-2xl bg-gray-50 text-gray-400 hover:text-red-600 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -473,7 +795,21 @@ const socialLinks = [
                             {{__('translate.partners')}}
                         </Link>
                         <div class="pt-8 space-y-6">
-                            <div class="custom-multiselect">
+                            <!-- Country trigger mobile -->
+                            <div class="relative w-full">
+                                <span class="absolute top-[14px] left-3 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 pointer-events-none">{{ __('translate.MarketLabel') }}</span>
+                                <button
+                                    @click="isManualOpen = true; countrySelectionStep = 'list'; showCountryModal = true; closeMenu()"
+                                    class="flex items-center gap-3 w-full pl-2 pr-3 h-[60px] rounded-2xl bg-gray-50 hover:bg-gray-100 transition-colors group"
+                                >
+                                    <span class="text-xl inline-block mt-4">🌐</span>
+                                    <span class="text-[10px] font-black text-[#0A2C5C] group-hover:text-[#00a0e3] uppercase tracking-wider inline-flex items-center gap-1 mt-4 w-full text-left">
+                                        {{ currentCountryName }}
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="custom-multiselect relative pt-2">
+                                <span class="absolute top-4 left-4 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 pointer-events-none">{{ __('translate.language') }}</span>
                                 <Multiselect
                                     v-model="lang"
                                     :options="sortLangs"
@@ -487,22 +823,22 @@ const socialLinks = [
                                     class="languages-multiselect"
                                 >
                                     <template #singleLabel="{ option }">
-                                        <div class="flex items-center gap-2">
-                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                            <span>{{ option.allLabels[option.value] || option.label }}</span>
+                                        <div class="flex items-center gap-2 mt-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis rounded-[2px]'"></span>
+                                            <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-wider">{{ option.allLabels[option.value] || option.label }}</span>
                                         </div>
                                     </template>
                                     <template #option="{ option }">
                                         <div class="flex items-center gap-2">
-                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                            <span>{{ option.allLabels[option.value] || option.label }}</span>
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis rounded-[2px]'"></span>
+                                            <span class="text-[10px] font-black uppercase tracking-wider">{{ option.allLabels[option.value] || option.label }}</span>
                                         </div>
                                     </template>
                                     <template #noResult>
-                                        <span>{{__('translate.noOptions')}}</span>
+                                        <span class="text-[10px] uppercase font-bold">{{__('translate.noOptions')}}</span>
                                     </template>
                                     <template #noOptions>
-                                        <span>{{__('translate.noResult')}}</span>
+                                        <span class="text-[10px] uppercase font-bold">{{__('translate.noResult')}}</span>
                                     </template>
                                 </Multiselect>
                             </div>
@@ -790,10 +1126,10 @@ const socialLinks = [
     .multiselect__tags {
         border: 1px solid #f3f4f6; /* border-gray-100 */
         border-radius: 0.75rem; /* rounded-xl (12px) */
-        padding: 8px 30px 8px 16px; /* Adjusted to match py-3 (approx 12px) but multiselect needs inner padding adjustment */
+        padding: 6px 30px 4px 16px; /* Zmniejszony padding dla dopasowania */
         background: #f9fafb; /* bg-gray-50 */
         transition: all 0.3s ease;
-        min-height: 40px; /* To match button height roughly */
+        min-height: 38px; /* Dopasowanie do wysokości triggera rynku */
         display: flex;
         align-items: center;
     }
@@ -834,7 +1170,7 @@ const socialLinks = [
     }
 
     .multiselect__select {
-        height: 40px;
+        height: 38px;
         width: 30px;
     }
 

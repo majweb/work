@@ -42,13 +42,8 @@ class DetailProjectController extends Controller
 
     public function create(): Response
     {
-        $categories = Category::whereDoesntHave('children')->get()->map(fn ($c) => [
-            'id' => $c->id,
-            'title' => $c->getTranslations('title'),
-        ]);
-
         return Inertia::render('Admin/DetailProjects/Create', [
-            'categories' => $categories,
+            'categories' => [],
             'languages' => config('langsShorts'),
         ]);
     }
@@ -84,7 +79,7 @@ class DetailProjectController extends Controller
 
     public function edit(DetailProject $detailProject): Response
     {
-        $categories = Category::whereDoesntHave('children')->get()->map(fn ($c) => [
+        $categories = $detailProject->categories->map(fn ($c) => [
             'id' => $c->id,
             'title' => $c->getTranslations('title'),
         ]);
@@ -98,6 +93,28 @@ class DetailProjectController extends Controller
             'categories' => $categories,
             'languages' => config('langsShorts'),
         ]);
+    }
+
+    public function searchCategories(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $search = $request->query('query');
+        $locale = app()->getLocale();
+
+        $categories = Category::whereDoesntHave('children')
+            ->when($search, function ($query, $search) use ($locale) {
+                $query->where(function ($q) use ($search, $locale) {
+                    $q->whereRaw("LOWER(JSON_EXTRACT(title, '$.\"{$locale}\"')) like ?", ['%'.mb_strtolower($search).'%'])
+                        ->orWhereRaw("LOWER(JSON_EXTRACT(title, '$.pl')) like ?", ['%'.mb_strtolower($search).'%']);
+                });
+            })
+            ->limit(50)
+            ->get()
+            ->map(fn ($c) => [
+                'id' => $c->id,
+                'title' => $c->getTranslations('title'),
+            ]);
+
+        return response()->json($categories);
     }
 
     public function update(Request $request, DetailProject $detailProject, DictionaryService $dictionaryService): RedirectResponse

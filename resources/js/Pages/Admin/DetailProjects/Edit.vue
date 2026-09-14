@@ -1,7 +1,8 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { useForm, usePage, Link } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
+import axios from 'axios';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -20,6 +21,34 @@ const form = useForm({
 });
 
 const activeTab = ref('pl');
+const isLoading = ref(false);
+const options = ref(props.categories);
+
+const categoryMap = computed(() => {
+    return options.value.reduce((acc, cat) => {
+        acc[cat.id] = cat.title;
+        return acc;
+    }, {});
+});
+
+const fetchCategories = (query) => {
+    isLoading.value = true;
+    axios.get(route('admin.detail-projects.search-categories'), { params: { query } })
+        .then(response => {
+            // Merge results to not lose labels of already selected items
+            const newOptions = [...response.data];
+            props.categories.forEach(cat => {
+                if (!newOptions.find(o => o.id === cat.id)) {
+                    newOptions.push(cat);
+                }
+            });
+            options.value = newOptions;
+            isLoading.value = false;
+        })
+        .catch(() => {
+            isLoading.value = false;
+        });
+};
 
 const sortedLanguages = computed(() => {
     const langs = [...props.languages];
@@ -118,14 +147,17 @@ const submit = () => {
                                     <InputLabel for="categories" value="Kategorie" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-3 ml-1" />
                                     <Multiselect
                                         v-model="form.categories"
-                                        :options="categories.map(c => c.id)"
+                                        :options="options.map(c => c.id)"
                                         :multiple="true"
                                         :close-on-select="false"
                                         :clear-on-select="false"
                                         :preserve-search="true"
-                                        placeholder="Wybierz kategorie"
-                                        :custom-label="(id) => getTranslation(categories.find(c => c.id === id)?.title)"
+                                        placeholder="Wpisz aby wyszukać kategorie"
+                                        :custom-label="(id) => getTranslation(categoryMap[id])"
                                         :taggable="false"
+                                        :internal-search="false"
+                                        :loading="isLoading"
+                                        @search-change="fetchCategories"
                                         select-label=""
                                         deselect-label=""
                                         selected-label=""

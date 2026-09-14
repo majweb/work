@@ -217,7 +217,13 @@ const form = useForm({
     typeOfContract: [],
     paySystem: [],
     workingPlace: [],
-    country: [],
+    country: (function() {
+        const all = [];
+        props.countries.forEach(group => {
+            group.elements.forEach(c => all.push(c));
+        });
+        return all;
+    })(),
     days: [],
     offer: [],
     wait: [],
@@ -273,9 +279,149 @@ const onSearchChange = async (query) => {
     }
 };
 
-onMounted(() => {
-    // fetchPositions(); // Usunięto ładowanie wszystkich stanowisk
+const publicationReach = ref({
+    all: true,
+    eu: true,
+    europe: true,
+    asia: true,
+    africa: true,
+    north_america: true,
+    south_america: true,
+    australia: true
 });
+
+const showSpecificMarkets = ref(false);
+
+const CONTINENT_TRANSLATION_MAP = {
+    europe: 'europe',
+    asia: 'asia',
+    africa: 'africa',
+    north_america: 'north_america',
+    south_america: 'south_america',
+    australia: 'oceania'
+};
+
+const EU_ISO_CODES = ['at', 'be', 'bg', 'hr', 'cy', 'cs', 'cz', 'dk', 'ee', 'fi', 'fr', 'gr', 'es', 'nl', 'ie', 'is', 'li', 'lt', 'lu', 'lv', 'mt', 'de', 'no', 'pl', 'pt', 'ro', 'sk', 'si', 'ch', 'se', 'hu', 'it'];
+
+const updateCountriesFromReach = (reachKey) => {
+    const allAvailable = [];
+    optionsCountry.value.forEach(group => {
+        group.elements.forEach(c => allAvailable.push(c));
+    });
+
+    if (reachKey === 'all') {
+        const newState = publicationReach.value.all;
+        Object.keys(publicationReach.value).forEach(k => {
+            publicationReach.value[k] = newState;
+        });
+        form.country = newState ? [...allAvailable] : [];
+        return;
+    }
+
+    if (!publicationReach.value[reachKey]) {
+        publicationReach.value.all = false;
+    }
+
+    const euCodes = new Set(EU_ISO_CODES.map(c => c.toUpperCase()));
+
+    const getTargetCountries = (key) => {
+        if (key === 'eu') {
+            return allAvailable.filter(c => c.countryCode && euCodes.has(c.countryCode.toUpperCase()));
+        }
+        const continentTranslationKey = CONTINENT_TRANSLATION_MAP[key];
+        if (!continentTranslationKey) return [];
+
+        const localizedContinentName = __(`translate.continents.${continentTranslationKey}`);
+        return allAvailable.filter(c => c.continent === localizedContinentName);
+    };
+
+    let currentSelection = [...form.country];
+
+    if (publicationReach.value[reachKey]) {
+        const toAdd = getTargetCountries(reachKey);
+        toAdd.forEach(c => {
+            if (!currentSelection.find(item => item.value === c.value)) {
+                currentSelection.push(c);
+            }
+        });
+    } else {
+        const toRemove = getTargetCountries(reachKey);
+        const toRemoveIds = new Set(toRemove.map(c => c.value));
+
+        const otherCheckedRegions = Object.keys(publicationReach.value).filter(k => k !== 'all' && k !== reachKey && publicationReach.value[k]);
+        const countriesToKeepFromOthers = new Set();
+        otherCheckedRegions.forEach(rk => {
+            getTargetCountries(rk).forEach(c => countriesToKeepFromOthers.add(c.value));
+        });
+
+        currentSelection = currentSelection.filter(c => {
+            if (toRemoveIds.has(c.value)) {
+                return countriesToKeepFromOthers.has(c.value);
+            }
+            return true;
+        });
+    }
+
+    form.country = currentSelection;
+};
+
+const toggleReach = (reach) => {
+    updateCountriesFromReach(reach);
+};
+
+watch(() => form.country, (newVal) => {
+    if (!newVal || !optionsCountry.value) return;
+
+    const allAvailable = [];
+    optionsCountry.value.forEach(group => {
+        group.elements.forEach(c => allAvailable.push(c));
+    });
+
+    const selectedIds = new Set(newVal.map(c => c.value));
+    const selectedIsoCodes = new Set(newVal.map(c => c.countryCode?.toUpperCase()));
+
+    // Synchronizacja regionów kontynentalnych
+    Object.keys(CONTINENT_TRANSLATION_MAP).forEach(reachKey => {
+        const continentTranslationKey = CONTINENT_TRANSLATION_MAP[reachKey];
+        const localizedContinentName = __(`translate.continents.${continentTranslationKey}`);
+        const countriesInRegion = allAvailable.filter(c => c.continent === localizedContinentName);
+
+        if (countriesInRegion.length > 0) {
+            publicationReach.value[reachKey] = countriesInRegion.every(c => selectedIds.has(c.value));
+        } else {
+            publicationReach.value[reachKey] = false;
+        }
+    });
+
+    // Synchronizacja regionu EU
+    const euCodes = EU_ISO_CODES.map(c => c.toUpperCase());
+    const availableEu = allAvailable.filter(c => c.countryCode && euCodes.includes(c.countryCode.toUpperCase()));
+
+    if (availableEu.length > 0) {
+        publicationReach.value.eu = availableEu.every(c => selectedIds.has(c.value));
+    } else {
+        publicationReach.value.eu = false;
+    }
+
+    // Cały świat - zaznaczamy jeśli wszystkie kraje są wybrane
+    const allRegionsChecked = Object.keys(publicationReach.value).filter(k => k !== 'all').every(k => publicationReach.value[k]);
+    const isGlobal = selectedIds.size >= allAvailable.length && allAvailable.length > 0;
+
+    publicationReach.value.all = allRegionsChecked || isGlobal;
+}, { deep: true, immediate: true });
+
+onMounted(() => {
+    // Inicjalizacja "Cały świat" domyślnie
+    if (publicationReach.value.all && form.country.length === 0) {
+        updateCountriesFromReach('all');
+    }
+});
+
+watch(optionsCountry, (newVal) => {
+    if (newVal && newVal.length > 0 && publicationReach.value.all && form.country.length === 0) {
+        updateCountriesFromReach('all');
+    }
+}, { immediate: true });
 
 const isAutoFilling = ref(false);
 const isFetchingDetails = ref(false);
@@ -1290,19 +1436,65 @@ onMounted(() => {
                             </div>
                         </div>
 
-                        <!-- Kraj publikacji i firma zewnętrzna -->
-                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                        <!-- Zasięg publikacji i firma zewnętrzna -->
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8 text-[#0A2C5C]">
                             <div class="flex items-center gap-4 mb-8">
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.CountryPublish') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div>
-                                    <InputLabel :value="__('translate.CountryPublish')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                            <p class="text-[11px] font-bold text-gray-400 mb-8 leading-relaxed max-w-2xl italic">
+                                {{ __('translate.CountryPublishDesc') }}
+                            </p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div class="space-y-4">
+                                    <label class="flex items-center group cursor-pointer">
+                                        <div class="relative flex items-center justify-center">
+                                            <input type="checkbox" v-model="publicationReach.all" @change="toggleReach('all')" class="peer sr-only" />
+                                            <div class="h-6 w-6 rounded-lg border-2 border-gray-200 bg-white transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent flex items-center justify-center">
+                                                <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                                            </div>
+                                        </div>
+                                        <span class="ml-4 text-[12px] font-black uppercase tracking-widest">{{ __('translate.WholeWorld') }}</span>
+                                    </label>
+
+                                    <div class="pl-10 space-y-4 pt-2">
+                                        <label v-for="(label, key) in {
+                                            eu: 'EU_EOG_CH',
+                                            europe: 'Europe',
+                                            asia: 'Asia',
+                                            africa: 'Africa',
+                                            north_america: 'NorthAmerica',
+                                            south_america: 'SouthAmerica',
+                                            australia: 'Australia'
+                                        }" :key="key" class="flex items-center group cursor-pointer">
+                                            <div class="relative flex items-center justify-center">
+                                                <input type="checkbox" v-model="publicationReach[key]" @change="toggleReach(key)" class="peer sr-only" />
+                                                <div class="h-5 w-5 rounded-lg border-2 border-gray-200 bg-white transition-all peer-checked:bg-[#00a0e3] peer-checked:border-transparent flex items-center justify-center">
+                                                    <svg class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                                                </div>
+                                            </div>
+                                            <span class="ml-4 text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-[#0A2C5C] transition-colors">{{ __('translate.' + label) }}</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="pt-6">
+                                        <button
+                                            type="button"
+                                            @click="showSpecificMarkets = !showSpecificMarkets"
+                                            class="text-[10px] font-black text-[#00a0e3] hover:underline uppercase tracking-widest"
+                                        >
+                                            {{ __('translate.ChooseSpecificMarkets') }}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div v-if="showSpecificMarkets || form.country.length > 0">
+                                    <InputLabel :value="__('translate.MarketLabel')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                     <multiselect
                                         group-values="elements" group-label="group"
-                                        :group-select="false"
+                                        :group-select="true"
                                         :selectLabel="''"
                                         :selectGroupLabel="''"
                                         :selectedLabel="''"
@@ -1322,6 +1514,7 @@ onMounted(() => {
                                     </multiselect>
                                     <InputError :message="form.errors.country" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
+
                                 <div v-if="externalCompanies && externalCompanies.length > 0">
                                     <InputLabel :value="__('translate.externalCompany')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                     <multiselect
@@ -2503,6 +2696,8 @@ onMounted(() => {
         padding: 0.75rem 2.5rem 0.75rem 1.25rem;
         background: #f9fafb; /* bg-gray-50 */
         transition: all 0.3s ease;
+        max-height: 400px;
+        overflow-y: auto;
     }
 
     &.multiselect--active {

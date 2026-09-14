@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Lang\Lang;
 use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 class SetLanguage
 {
     /**
@@ -15,15 +16,13 @@ class SetLanguage
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(session()->has('language')){
+        if (session()->has('language')) {
             $locale = session()->get('language', config('app.locale'));
-        } else{
-//            $locale = getSelectedCountry();
-            $locale = getLocalBrowserLang();
-
+        } else {
+            $locale = getSelectedCountry();
         }
 
-        if($locale){
+        if ($locale) {
             $lang = Lang::tryFrom($locale)?->value ?? config('app.locale');
             app()->setLocale($lang);
         }

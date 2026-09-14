@@ -327,6 +327,7 @@ Route::middleware([
         Route::middleware(['can:super-admin-only'])->group(function () {
             Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
             Route::resource('industries', \App\Http\Controllers\Admin\IndustryController::class);
+            Route::get('detail-projects/search-categories', [\App\Http\Controllers\Admin\DetailProjectController::class, 'searchCategories'])->name('detail-projects.search-categories');
             Route::resource('detail-projects', \App\Http\Controllers\Admin\DetailProjectController::class);
             Route::delete('detail-projects-cleanup', [\App\Http\Controllers\Admin\DetailProjectController::class, 'cleanupUnassigned'])->name('detail-projects.cleanup');
             Route::resource('agreements', \App\Http\Controllers\Admin\AgreementController::class);

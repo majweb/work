@@ -151,8 +151,8 @@ const submit = () => {
                                             <InputLabel for="parent_id" value="Rodzic" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
                                             <Multiselect
                                                 v-model="form.parent_id"
-                                                :options="allCategories"
-                                                placeholder="Wybierz kategorię nadrzędną"
+                                                :options="allCategories" :custom-label="getCategoryLabel"
+                                                placeholder="Wybierz kategorię nadrzędną" select-label="" deselect-label="" selected-label=""
                                                 track-by="id"
                                                 class="custom-multiselect"
                                             >
@@ -162,9 +162,8 @@ const submit = () => {
                                                 <template #singleLabel="slotProps">
                                                     <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
                                                 </template>
-                                                <template #noResult>
-                                                    Brak wyników.
-                                                </template>
+                                                <template #noResult>Nie znaleziono elementów.</template>
+                                                <template #noOptions>Brak opcji.</template>
                                             </Multiselect>
                                             <div v-if="form.errors.parent_id" class="text-red-500 text-xs mt-1 font-bold uppercase tracking-widest">{{ form.errors.parent_id }}</div>
                                         </div>

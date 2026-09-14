@@ -34,7 +34,6 @@ class Banner extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-
     public function scopeWithActiveBanner($query)
     {
         return $query->active()
@@ -51,14 +50,16 @@ class Banner extends Model implements HasMedia
     {
         return $query->where('active', 1)->where('active_admin', 1);
     }
+
     public function scopeLang($query)
     {
 
-        $locale = getLocalBrowserLang();
+        $locale = getSelectedCountry() ?: getLocalBrowserLang();
+
         return $query->whereJsonContains('lang', ['countryCode' => $locale]);
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this
             ->addMediaConversion('preview')

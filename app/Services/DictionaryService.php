@@ -210,7 +210,7 @@ class DictionaryService
     public function searchPositions(?string $query = null, bool $activeOnly = false): mixed
     {
         $locale = app()->getLocale();
-        $browserLang = getLocalBrowserLang();
+        $browserLang = getSelectedCountry() ?: getLocalBrowserLang();
         $positions = Category::whereDoesntHave('children')
             ->when($query, function ($q) use ($query, $locale) {
                 $q->whereRaw("LOWER(title->'$.{$locale}') like ?", ['%'.mb_strtolower($query).'%']);
@@ -223,7 +223,7 @@ class DictionaryService
                     ->flatMap(function ($project) {
                         return [
                             data_get($project->position, 'id'),
-                            data_get($project->profession, 'id')
+                            data_get($project->profession, 'id'),
                         ];
                     })
                     ->filter()

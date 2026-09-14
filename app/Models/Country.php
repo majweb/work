@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use Detection\MobileDetect;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
-use Detection\MobileDetect;
 
 class Country extends Model implements HasMedia
 {
@@ -21,9 +20,10 @@ class Country extends Model implements HasMedia
         'name',
         'countryCode',
         'lang',
-        'default_image'
+        'default_image',
     ];
-    public array $translatable = ['name','continent'];
+
+    public array $translatable = ['name', 'continent'];
 
     protected $casts = [
         'name' => 'array',
@@ -32,18 +32,18 @@ class Country extends Model implements HasMedia
 
     public static function getRandomImageFromBrowserLocale()
     {
-        $detect = new MobileDetect();
+        $detect = new MobileDetect;
 
         // Sprawdzenie, czy użytkownik jest na urządzeniu mobilnym
         $isMobile = $detect->isMobile();
         $isTablet = $detect->isTablet();
 
-        $locale = getLocalBrowserLang(); // np. 'pl', 'en'
+        $locale = getSelectedCountry() ?: getLocalBrowserLang(); // np. 'pl', 'en'
 
         // Szukamy kraju po kodzie języka lub fallback na domyślny
         $country = self::where('lang', $locale)->first() ?? self::first();
 
-        if (!$country) {
+        if (! $country) {
             return null;
         }
 
@@ -52,7 +52,7 @@ class Country extends Model implements HasMedia
 
         $media = $country->getMedia($collectionName); // kolekcja media
 
-        if (!$media->isEmpty()) {
+        if (! $media->isEmpty()) {
             return $media->random()->getUrl(); // losowy obrazek z kolekcji
         }
 

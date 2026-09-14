@@ -606,7 +606,6 @@ return [
     'generateCv' => '이력서 생성',
     'viewCv' => '이력서 미리보기',
 
-
     'videoPreview' => '녹화 미리보기',
     'remainingTime' => '남은 시간',
     'nextQuestion' => '다음 질문',
@@ -958,7 +957,6 @@ return [
     'cert50HeaderDesc' => '50/50 인증서는 귀하의 실제 영향력에 대한 개인화된 확인서입니다 – 귀하의 회사 이름과 당사가 입금액의 50%를 기부한 선택한 재단이 함께 표시됩니다. 다운로드, 인쇄 및 소셜 미디어 게시가 가능합니다. CSR 커뮤니케이션, 고용주 브랜딩 및 이미지 구축 활동에 활용하여 귀하의 비즈니스 뒤에는 구체적인 가치와 실제 도움이 있음을 보여주세요.',
     'certGenerated' => '인증서가 생성되었습니다!',
     'noFundation50Pdf' => '50/50 인증서를 생성할 재단이 없습니다',
-
 
     'audio_cv' => [
         'title' => '오디오 이력서 생성 시작',
@@ -1823,4 +1821,35 @@ return [
     'meta_description_login' => 'WORK4YOU.GLOBAL에 로그인하여 이상적인 일자리 또는 직원을 찾아보세요. 프로필과 채용 공고에 빠르게 접근할 수 있습니다.',
     'meta_description_register' => 'WORK4YOU.GLOBAL 커뮤니티에 가입하세요. 구직자 또는 기업으로 등록하고 현대적인 채용 플랫폼을 이용해 보세요.',
     'meta_description_forgot' => 'WORK4YOU.GLOBAL 비밀번호를 잊으셨나요? 이메일 주소를 입력하면 비밀번호 재설정 링크를 받아 계정에 다시 액세스할 수 있습니다.',
+    'detected_language' => '현재 위치가 :language인 것으로 확인되었습니다. 국가를 추천 국가로 변경하시겠습니까?',
+    'yes_apply' => '예, 적용',
+    'choose_other' => '다른 국가 선택',
+    'search_country' => '국가 검색...',
+    'select_country' => '국가 선택',
+    'select_country_desc' => '이를 통해 귀하의 지역에 가장 적합한 일자리와 콘텐츠를 제공해 드릴 수 있습니다.',
+    'no_results' => '국가를 찾을 수 없습니다',
+    'adjusting_portal' => '포털을 조정하고 있습니다. 잠시만 기다려 주세요...',
+    'CountryPublishDesc' => '채용 공고를 어디에 게시하시겠습니까? 기본적으로 공고는 Work4You.Global의 모든 시장에서 이용할 수 있습니다. 지역 또는 특정 시장을 선택하여 게시 범위를 제한할 수 있습니다.',
+    'WholeWorld' => '전 세계 (기본값)',
+    'EU_EOG_CH' => '유럽연합 + EEA 및 스위스',
+    'Europe' => '유럽',
+    'Asia' => '아시아',
+    'Africa' => '아프리카',
+    'NorthAmerica' => '북아메리카',
+    'SouthAmerica' => '남아메리카',
+    'Australia' => '호주',
+    'ChooseSpecificMarkets' => '또는 특정 시장 선택',
+    'MarketPopupTitle' => '어느 시장에서 일자리를 찾고 계신가요?',
+    'MarketPopupSuggested' => '브라우저 언어 설정을 기반으로 추천된 시장:',
+    'MarketSuggestedShort' => '추천 시장:',
+    'MarketRemember' => '언제든지 변경할 수 있다는 점을 기억하세요!',
+    'MarketLabel' => '시장',
+    'continents' => [
+        'africa' => '아프리카',
+        'south_america' => '남아메리카 및 중앙아메리카',
+        'north_america' => '북아메리카 및 카리브해',
+        'asia' => '아시아',
+        'europe' => '유럽',
+        'oceania' => '오세아니아',
+    ],
 ];

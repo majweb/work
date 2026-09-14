@@ -17,12 +17,10 @@ use App\Models\User;
 use App\Notifications\SendRequestBannerAdminNotification;
 use App\Services\BuyHelper;
 use App\Services\DictionaryService;
-use App\Services\Helper;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
@@ -67,7 +65,7 @@ class BuyController extends Controller
         $cartItems = Cart::content();
         $total = Cart::subtotal();
         $countCart = Cart::count();
-        $countryCode = getLocalBrowserLang();
+        $countryCode = getSelectedCountry() ?: getLocalBrowserLang();
         $foundations = Foundation::where('country', $countryCode)
             ->where('active', true)
             ->get();
@@ -308,7 +306,6 @@ class BuyController extends Controller
                 'Expires' => '0',
             ]);
 
-
         } else {
             abort(404);
         }
@@ -327,9 +324,9 @@ class BuyController extends Controller
                 }
             }
         } catch (\Exception $e) {
-            Log::error('Błąd w addFoundation: ' . $e->getMessage(), [
+            Log::error('Błąd w addFoundation: '.$e->getMessage(), [
                 'foundation' => request()->foundation,
-                'trace' => $e->getTraceAsString()
+                'trace' => $e->getTraceAsString(),
             ]);
         }
     }
@@ -390,7 +387,7 @@ class BuyController extends Controller
         }
 
         try {
-            DB::transaction(function () use ($buyHelper, $cartItems, $pointService) {
+            DB::transaction(function () use ($cartItems, $pointService) {
                 $totalPoints = $cartItems->sum(function ($item) {
                     return $item->options->points ?? 0;
                 });
@@ -448,7 +445,7 @@ class BuyController extends Controller
 
         try {
             $checkoutSession = StripeSession::create([
-//                'payment_method_types' => ['card'],
+                //                'payment_method_types' => ['card'],
                 'line_items' => [[
                     'price_data' => [
                         'currency' => 'usd',
@@ -513,7 +510,7 @@ class BuyController extends Controller
             $transaction = Transaction::where('session_id', $session->id)->first();
 
             if ($transaction && $transaction->status === 'pending') {
-                DB::transaction(function () use ($transaction, $session, $pointService, $buyHelper) {
+                DB::transaction(function () use ($transaction, $session, $pointService) {
                     $transaction->update(['status' => 'paid']);
 
                     $user = User::find($session->metadata->user_id);

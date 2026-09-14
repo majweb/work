@@ -1,5 +1,6 @@
 <?php
-if (!function_exists('getLocalBrowserLang')) {
+
+if (! function_exists('getLocalBrowserLang')) {
     function getLocalBrowserLang()
     {
         $lang = substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'), 0, 2);
@@ -18,14 +19,21 @@ if (!function_exists('getLocalBrowserLang')) {
             'sv' => 'se',
             'sl' => 'si',
         ];
+
         return $map[$lang] ?? $lang;
     }
 }
 
-
-if (!function_exists('getLocalBrowserLangWithout')) {
+if (! function_exists('getLocalBrowserLangWithout')) {
     function getLocalBrowserLangWithout()
     {
         return substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'), 0, 2);
+    }
+}
+
+if (! function_exists('getSelectedCountry')) {
+    function getSelectedCountry()
+    {
+        return session('selected_country');
     }
 }

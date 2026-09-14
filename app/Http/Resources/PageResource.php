@@ -4,7 +4,6 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-
 use Illuminate\Support\Facades\Storage;
 
 class PageResource extends JsonResource
@@ -16,7 +15,8 @@ class PageResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $locale = getLocalBrowserLang();
+        $locale = getSelectedCountry() ?: getLocalBrowserLang();
+
         return [
             'id' => $this->id,
             'title' => $this->getTranslation('title', $locale),

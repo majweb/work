@@ -94,7 +94,7 @@ class NewsletterController extends Controller
             ]);
         }
 
-        $locale = getLocalBrowserLang();
+        $locale = getSelectedCountry() ?: getLocalBrowserLang();
 
         Newsletter::create([
             'email' => $request->email,

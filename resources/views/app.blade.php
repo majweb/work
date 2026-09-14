@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', getLocalBrowserLang()) }}">
+<html lang="{{ str_replace('_', '-', getSelectedCountry() ?: getLocalBrowserLang()) }}">
     <head>
         @if(isset($page['props']['integrations']['gtm_head']) && $page['props']['integrations']['gtm_head']['active'])
             {!! $page['props']['integrations']['gtm_head']['value'] !!}

@@ -238,12 +238,12 @@ const submit = () => {
                                 :options="optionsCategory"
                                 :placeholder="__('translate.selectCategory')"
                                 :selectLabel="''"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
+                                :selectGroupLabel="''"
                                 :selectedLabel="''"
                                 :deselectLabel="''"
                             >
-                                <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
-                                <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                <template #noResult>Nie znaleziono elementów.</template>
+                                <template #noOptions>Brak opcji.</template>
                             </multiselect>
                             <InputError :message="form.errors.category_id" class="mt-2" />
                         </div>
@@ -259,12 +259,12 @@ const submit = () => {
                                 :options="optionsSubCategory"
                                 :placeholder="__('translate.selectSubcategory')"
                                 :selectLabel="''"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
+                                :selectGroupLabel="''"
                                 :selectedLabel="''"
                                 :deselectLabel="''"
                             >
-                                <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
-                                <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                <template #noResult>Nie znaleziono elementów.</template>
+                                <template #noOptions>Brak opcji.</template>
                             </multiselect>
                             <InputError :message="form.errors.subcategory_id" class="mt-2" />
                         </div>
@@ -377,12 +377,12 @@ const submit = () => {
                                     label="name"
                                     :placeholder="__('translate.placeholderCountry')"
                                     :selectLabel="''"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                                    :selectGroupLabel="''"
                                     :selectedLabel="''"
                                     :deselectLabel="''"
                                 >
-                                    <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
-                                    <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                    <template #noResult>Nie znaleziono elementów.</template>
+                                    <template #noOptions>Brak opcji.</template>
                                 </multiselect>
                                 <InputError :message="form.errors.address_country" class="mt-2"/>
                             </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\AudioUploadController;
 use App\Http\Controllers\Firm\BuyController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Global\CategoryController;
+use App\Http\Controllers\Global\CountryStoreController;
 use App\Http\Controllers\Global\LanguageStoreController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('front.')->group(function () {
     Route::post('buy/webhook', [BuyController::class, 'webhook'])->name('buy.webhook');
     Route::post('language', LanguageStoreController::class)->name('language.store');
+    Route::post('country', CountryStoreController::class)->name('country.store');
     Route::get('articles', [FrontController::class, 'articles'])->name('articles');
     Route::get('articlesGroups/{category}', [FrontController::class, 'groupArticles'])->name('groupArticles');
     Route::get('projects', [FrontController::class, 'projects'])->name('projects');

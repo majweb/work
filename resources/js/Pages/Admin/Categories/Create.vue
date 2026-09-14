@@ -165,8 +165,8 @@ const submit = () => {
                                             <InputLabel for="industry" value="Branża" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
                                             <Multiselect
                                                 v-model="form.selectedIndustry"
-                                                :options="industries"
-                                                placeholder="Wybierz branżę"
+                                                :options="industries" :custom-label="getCategoryLabel"
+                                                placeholder="Wybierz branżę" select-label="" deselect-label="" selected-label=""
                                                 track-by="id"
                                                 class="custom-multiselect"
                                                 @select="form.selectedSubIndustry = null; form.selectedProfession = null"
@@ -177,6 +177,8 @@ const submit = () => {
                                                 <template #singleLabel="slotProps">
                                                     <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
                                                 </template>
+                                                <template #noResult>Nie znaleziono elementów.</template>
+                                                <template #noOptions>Brak opcji.</template>
                                             </Multiselect>
                                         </div>
 
@@ -184,9 +186,9 @@ const submit = () => {
                                             <InputLabel for="subindustry" value="Podbranża" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
                                             <Multiselect
                                                 v-model="form.selectedSubIndustry"
-                                                :options="subIndustries"
+                                                :options="subIndustries" :custom-label="getCategoryLabel"
                                                 :disabled="!form.selectedIndustry"
-                                                placeholder="Wybierz podbranżę"
+                                                placeholder="Wybierz podbranżę" select-label="" deselect-label="" selected-label=""
                                                 track-by="id"
                                                 class="custom-multiselect"
                                                 @select="form.selectedProfession = null"
@@ -197,6 +199,8 @@ const submit = () => {
                                                 <template #singleLabel="slotProps">
                                                     <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
                                                 </template>
+                                                <template #noResult>Nie znaleziono elementów.</template>
+                                                <template #noOptions>Brak opcji.</template>
                                             </Multiselect>
                                         </div>
 
@@ -204,9 +208,9 @@ const submit = () => {
                                             <InputLabel for="profession" value="Zawód" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
                                             <Multiselect
                                                 v-model="form.selectedProfession"
-                                                :options="professions"
+                                                :options="professions" :custom-label="getCategoryLabel"
                                                 :disabled="!form.selectedSubIndustry"
-                                                placeholder="Wybierz zawód"
+                                                placeholder="Wybierz zawód" select-label="" deselect-label="" selected-label=""
                                                 track-by="id"
                                                 class="custom-multiselect"
                                             >
@@ -216,6 +220,8 @@ const submit = () => {
                                                 <template #singleLabel="slotProps">
                                                     <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
                                                 </template>
+                                                <template #noResult>Nie znaleziono elementów.</template>
+                                                <template #noOptions>Brak opcji.</template>
                                             </Multiselect>
                                             <div v-if="form.errors.parent_id" class="text-red-500 text-xs mt-2 font-bold uppercase tracking-widest">{{ form.errors.parent_id }}</div>
                                         </div>

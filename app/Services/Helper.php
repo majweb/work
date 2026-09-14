@@ -5,32 +5,38 @@ namespace App\Services;
 use App\Lang\Lang;
 use App\Models\Country;
 use App\Models\Firm;
-use App\Models\Invoice;
 use App\Models\Project;
 
-class Helper{
-
+class Helper
+{
     public function makeCountriesToSelect()
     {
-//        $exists = collect(Lang::cases())->map(fn($case) => $case->label());
-        $countries = Country::get()->groupBy('continent')->toArray();
+        //        $exists = collect(Lang::cases())->map(fn($case) => $case->label());
+        $countries = Country::all()
+            ->groupBy(fn ($country) => $country->getTranslation('continent', app()->getLocale()) ?: 'Other')
+            ->toArray();
 
-        foreach ($countries as $key => $value){
+        foreach ($countries as $key => $value) {
             $data[] = [
-                'group'=>$key,
-                'elements' =>array_map(function($el){
+                'group' => $key,
+                'elements' => array_map(function ($el) {
+                    $loc = app()->getLocale();
+
                     return [
-                        'name' =>$el['name'][app()->getLocale()],
-                        'value'=>$el['id'],
-                        'countryCode'=>$el['countryCode'],
-                        'allTranslations'=>$el['name']
+                        'name' => $el['name'][$loc] ?? $el['name']['en'] ?? '',
+                        'value' => $el['id'],
+                        'countryCode' => $el['countryCode'],
+                        'continent' => $el['continent'][$loc] ?? $el['continent']['en'] ?? '',
+                        'allTranslations' => $el['name'],
                     ];
-                },$value)
+                }, $value),
             ];
         }
+
         return $data;
 
     }
+
     public function makeCountriesToSelectHasProjects()
     {
 
@@ -58,8 +64,7 @@ class Helper{
             ->unique()
             ->toArray();
 
-
-        if(!empty($countryCodes)){
+        if (! empty($countryCodes)) {
             // Pobierz kraje, które mają projekty
             $countries = Country::whereIn('countryCode', $countryCodes)
                 ->get()
@@ -68,16 +73,17 @@ class Helper{
             foreach ($countries as $key => $value) {
                 $data[] = [
                     'group' => $key,
-                    'elements' =>array_map(function($el){
+                    'elements' => array_map(function ($el) {
                         return [
-                            'name' =>$el['name'][app()->getLocale()],
-                            'value'=>$el['id'],
-                            'countryCode'=>$el['countryCode'],
-                            'allTranslations'=>$el['name']
+                            'name' => $el['name'][app()->getLocale()],
+                            'value' => $el['id'],
+                            'countryCode' => $el['countryCode'],
+                            'allTranslations' => $el['name'],
                         ];
-                    },$value)
+                    }, $value),
                 ];
             }
+
             return $data;
         } else {
             return [];
@@ -109,7 +115,7 @@ class Helper{
             ->unique()
             ->toArray();
 
-        if (!empty($countryCodes)) {
+        if (! empty($countryCodes)) {
             $countries = Country::whereIn('countryCode', $countryCodes)
                 ->get()
                 ->groupBy('continent')->toArray();
@@ -128,6 +134,7 @@ class Helper{
                     }, $value),
                 ];
             }
+
             return $data;
         } else {
             return [];

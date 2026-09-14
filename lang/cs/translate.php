@@ -1,2402 +1,2368 @@
 <?php
 
-
-
 return [
 
-        'failed' => 'Nesprávné přihlašovací jméno nebo heslo.',
+    'failed' => 'Nesprávné přihlašovací jméno nebo heslo.',
 
-        'onlySocial' => 'Uživatel si nenastavil heslo, proto se musí přihlásit pomocí poskytovatele OAuth.',
+    'onlySocial' => 'Uživatel si nenastavil heslo, proto se musí přihlásit pomocí poskytovatele OAuth.',
 
-        'throttle' => 'Příliš mnoho pokusů o přihlášení. Zkuste to prosím znovu za :seconds sekund.',
+    'throttle' => 'Příliš mnoho pokusů o přihlášení. Zkuste to prosím znovu za :seconds sekund.',
 
-        'type' => 'Typ uživatele',
+    'type' => 'Typ uživatele',
 
-        'firm' => 'Firma',
+    'firm' => 'Firma',
 
-        'firmrecruit' => 'Firma/Náborář',
+    'firmrecruit' => 'Firma/Náborář',
 
-        'data' => 'údaje',
+    'data' => 'údaje',
 
-        'email' => 'E-mail',
+    'email' => 'E-mail',
 
-        'password' => 'Heslo',
+    'password' => 'Heslo',
 
-        'remember' => 'Zapamatovat si mě',
+    'remember' => 'Zapamatovat si mě',
 
-        'forgot' => 'Zapomněli jste heslo?',
+    'forgot' => 'Zapomněli jste heslo?',
 
-        'login' => 'Přihlásit se',
+    'login' => 'Přihlásit se',
 
-        'linkGenerator' => 'Generátor odkazů',
+    'linkGenerator' => 'Generátor odkazů',
 
-        'selectImage' => 'Vybrat grafiku',
+    'selectImage' => 'Vybrat grafiku',
 
-        'availableGraphics' => 'Dostupná grafika',
+    'availableGraphics' => 'Dostupná grafika',
 
-        'select' => 'Vybrat',
+    'select' => 'Vybrat',
 
-        'back' => 'Zpět',
+    'back' => 'Zpět',
 
-        'name' => 'Název',
+    'name' => 'Název',
 
-        'passwordconfirm' => 'Potvrdit heslo',
+    'passwordconfirm' => 'Potvrdit heslo',
 
-        'terms' => 'Podmínky služby',
+    'terms' => 'Podmínky služby',
 
-        'and' => 'a',
+    'and' => 'a',
 
-        'policy' => 'Zásady ochrany osobních údajů',
+    'policy' => 'Zásady ochrany osobních údajů',
 
-        'already' => 'Už mám účet',
+    'already' => 'Už mám účet',
 
-        'register' => 'Registrace',
+    'register' => 'Registrace',
 
-        'verify' => 'Než budete pokračovat, můžete prosím ověřit svou e-mailovou adresu kliknutím na odkaz, který jsme vám právě poslali e-mailem? Pokud jste e-mail neobdrželi, rádi vám pošleme další.',
+    'verify' => 'Než budete pokračovat, můžete prosím ověřit svou e-mailovou adresu kliknutím na odkaz, který jsme vám právě poslali e-mailem? Pokud jste e-mail neobdrželi, rádi vám pošleme další.',
 
-        'verifylink' => 'Na e-mailovou adresu uvedenou v nastavení profilu byl odeslán nový ověřovací odkaz.',
+    'verifylink' => 'Na e-mailovou adresu uvedenou v nastavení profilu byl odeslán nový ověřovací odkaz.',
 
-        'resend' => 'Znovu odeslat ověřovací e-mail',
+    'resend' => 'Znovu odeslat ověřovací e-mail',
 
-        'editProfile' => 'Upravit profil',
+    'editProfile' => 'Upravit profil',
 
-        'logout' => 'Odhlásit se',
+    'logout' => 'Odhlásit se',
 
-        'forgottext' => 'Zapomněli jste heslo? Žádný problém. Stačí nám sdělit svou e-mailovou adresu a my vám pošleme odkaz pro obnovení hesla, který vám umožní vybrat si nové.',
+    'forgottext' => 'Zapomněli jste heslo? Žádný problém. Stačí nám sdělit svou e-mailovou adresu a my vám pošleme odkaz pro obnovení hesla, který vám umožní vybrat si nové.',
 
-        'emailresetlink' => 'Odkaz pro obnovení hesla na e-mail',
+    'emailresetlink' => 'Odkaz pro obnovení hesla na e-mail',
 
-        'confirm' => 'Toto je zabezpečená oblast aplikace. Před pokračováním potvrďte své heslo.',
+    'confirm' => 'Toto je zabezpečená oblast aplikace. Před pokračováním potvrďte své heslo.',
 
-        'recognition' => 'Ocenění',
+    'recognition' => 'Ocenění',
 
-        'firmDashboardDescription' => 'Spravujte svou firmu a nábory',
+    'firmDashboardDescription' => 'Spravujte svou firmu a nábory',
 
-        'completeProfileTitle' => 'Vyplňte profil firmy',
+    'completeProfileTitle' => 'Vyplňte profil firmy',
 
-        'completeProfileDescription' => 'Váš profil firmy není kompletní. Vyplňte chybějící údaje, abyste mohli portál plně využívat.',
+    'completeProfileDescription' => 'Váš profil firmy není kompletní. Vyplňte chybějící údaje, abyste mohli portál plně využívat.',
 
-        'completeProfileLink' => 'Přejít do profilu',
+    'completeProfileLink' => 'Přejít do profilu',
 
-        'confirmbtn' => 'Potvrdit',
+    'confirmbtn' => 'Potvrdit',
 
-        'close' => 'Zavřít',
+    'close' => 'Zavřít',
 
-        'resetBtn' => 'Obnovit heslo',
+    'resetBtn' => 'Obnovit heslo',
 
-        'generatorDescription' => 'Vyberte grafiku, která nejlépe odpovídá vaší nabídce. Vybraná grafika se zobrazí na stránce inzerátu.',
+    'generatorDescription' => 'Vyberte grafiku, která nejlépe odpovídá vaší nabídce. Vybraná grafika se zobrazí na stránce inzerátu.',
 
-        'access' => 'Potvrďte přístup ke svému účtu zadáním autentizačního kódu poskytnutého autentizační aplikací.',
+    'access' => 'Potvrďte přístup ke svému účtu zadáním autentizačního kódu poskytnutého autentizační aplikací.',
 
-        'accesselse' => 'Potvrďte přístup ke svému účtu zadáním jednoho z nouzových kódů pro obnovení.',
+    'accesselse' => 'Potvrďte přístup ke svému účtu zadáním jednoho z nouzových kódů pro obnovení.',
 
-        'code' => 'Kód',
+    'code' => 'Kód',
 
-        'recovery' => 'Kód pro obnovení',
+    'recovery' => 'Kód pro obnovení',
 
-        'usecode' => 'Použít kód pro obnovení',
+    'usecode' => 'Použít kód pro obnovení',
 
-        'authenticationCode' => 'Použít autentizační kód',
+    'authenticationCode' => 'Použít autentizační kód',
 
-        'dashboard' => 'Nástěnka',
+    'dashboard' => 'Nástěnka',
 
-        'agree' => 'Souhlasím s',
+    'agree' => 'Souhlasím s',
 
-        'agree_to' => 'Souhlasím s',
+    'agree_to' => 'Souhlasím s',
 
-        'blocked_message' => 'Vaše nahlášení bylo z bezpečnostních důvodů zablokováno.',
+    'blocked_message' => 'Vaše nahlášení bylo z bezpečnostních důvodů zablokováno.',
 
-        'success_foundation_report' => 'Nadace byla nahlášena a čeká na schválení.',
+    'success_foundation_report' => 'Nadace byla nahlášena a čeká na schválení.',
 
-        'reportFoundation' => 'Nahlásit nadaci',
+    'reportFoundation' => 'Nahlásit nadaci',
 
-        'foundationWebsite' => 'Webové stránky nadace',
+    'foundationWebsite' => 'Webové stránky nadace',
 
-        'application_blocked_message' => 'Vaše aplikace byla z bezpečnostních důvodů zablokována.',
+    'application_blocked_message' => 'Vaše aplikace byla z bezpečnostních důvodů zablokována.',
 
-        'emailVerifySubject' => 'Ověřit e-mailovou adresu',
+    'emailVerifySubject' => 'Ověřit e-mailovou adresu',
 
-        'emailVerifyLine' => 'Kliknutím na níže uvedené tlačítko ověříte svou e-mailovou adresu.',
+    'emailVerifyLine' => 'Kliknutím na níže uvedené tlačítko ověříte svou e-mailovou adresu.',
 
-        'emailVerifyExtra' => 'Pokud máte problémy s kliknutím na tlačítko „:actionText“, zkopírujte a vložte níže uvedenou adresu do svého webového prohlížeče.',
+    'emailVerifyExtra' => 'Pokud máte problémy s kliknutím na tlačítko „:actionText“, zkopírujte a vložte níže uvedenou adresu do svého webového prohlížeče.',
 
-        'regards' => 'S pozdravem',
+    'regards' => 'S pozdravem',
 
-        'hello' => 'Dobrý den!',
+    'hello' => 'Dobrý den!',
 
-        'rights' => 'Všechna práva vyhrazena.',
+    'rights' => 'Všechna práva vyhrazena.',
 
-        'resetTitle' => 'Obnovit heslo',
+    'resetTitle' => 'Obnovit heslo',
 
-        'resetContent' => 'Tento e-mail jste obdrželi, protože jsme obdrželi žádost o obnovení hesla k vašemu účtu.',
+    'resetContent' => 'Tento e-mail jste obdrželi, protože jsme obdrželi žádost o obnovení hesla k vašemu účtu.',
 
-        'resetQuestion' => 'Pokud jste o obnovení hesla nežádali, nejsou vyžadovány žádné další kroky.',
+    'resetQuestion' => 'Pokud jste o obnovení hesla nežádali, nejsou vyžadovány žádné další kroky.',
 
-        'resetEmailText' => 'Tento e-mail jste obdrželi, protože jsme obdrželi žádost o obnovení hesla k vašemu účtu.',
+    'resetEmailText' => 'Tento e-mail jste obdrželi, protože jsme obdrželi žádost o obnovení hesla k vašemu účtu.',
 
-        'resetEmailExpire' => 'Tento odkaz pro obnovení hesla vyprší za :count minut.',
+    'resetEmailExpire' => 'Tento odkaz pro obnovení hesla vyprší za :count minut.',
 
-        'resetEmailRequest' => 'Pokud jste o obnovení hesla nežádali, nejsou vyžadovány žádné další kroky.',
+    'resetEmailRequest' => 'Pokud jste o obnovení hesla nežádali, nejsou vyžadovány žádné další kroky.',
 
-        'resetEmailBeen' => 'Vaše heslo bylo obnoveno.',
+    'resetEmailBeen' => 'Vaše heslo bylo obnoveno.',
 
-        'permissions' => 'oprávnění',
+    'permissions' => 'oprávnění',
 
-        'phone' => 'Telefon',
+    'phone' => 'Telefon',
 
-        'user_blocked' => 'Uživatel zablokován administrátorem',
+    'user_blocked' => 'Uživatel zablokován administrátorem',
 
-        'recruits' => 'Náboráři',
+    'recruits' => 'Náboráři',
 
-        'createRecruit' => 'Vytvořit náboráře',
+    'createRecruit' => 'Vytvořit náboráře',
 
-        'editRecruit' => 'Upravit náboráře',
+    'editRecruit' => 'Upravit náboráře',
 
-        'actions' => 'Akce',
+    'actions' => 'Akce',
 
-        'notFoundRecruit' => 'Nenalezeni žádní náboráři',
+    'notFoundRecruit' => 'Nenalezeni žádní náboráři',
 
-        'delete' => 'Smazat',
+    'delete' => 'Smazat',
 
-        'edit' => 'Upravit',
+    'edit' => 'Upravit',
 
-        'update' => 'Aktualizovat',
+    'update' => 'Aktualizovat',
 
-        'recruit' => 'Náborář',
+    'recruit' => 'Náborář',
 
-        'recruitInfo' => 'Přidat informace o náboráři',
+    'recruitInfo' => 'Přidat informace o náboráři',
 
-        'noDetailProjects' => 'Pro tuto pozici nejsou definovány žádné povinnosti',
+    'noDetailProjects' => 'Pro tuto pozici nejsou definovány žádné povinnosti',
 
-        'noPosition' => 'Žádná pozice',
+    'noPosition' => 'Žádná pozice',
 
-        'lastInvoices' => 'Poslední faktury',
+    'lastInvoices' => 'Poslední faktury',
 
-        'lastInvoicesDescription' => 'Seznam naposledy vygenerovaných faktur za služby',
+    'lastInvoicesDescription' => 'Seznam naposledy vygenerovaných faktur za služby',
 
-        'invoiceStatus' => 'Stav',
+    'invoiceStatus' => 'Stav',
 
-        'notOpened' => 'Neotevřená',
+    'notOpened' => 'Neotevřená',
 
-        'statisticsDescription' => 'Přehled statistik a analýz aktivity',
+    'statisticsDescription' => 'Přehled statistik a analýz aktivity',
 
-        'activityTrend' => 'Trend aktivity',
+    'activityTrend' => 'Trend aktivity',
 
-        'contentDistribution' => 'Distribuce obsahu',
+    'contentDistribution' => 'Distribuce obsahu',
 
-        'addedRecruit' => 'Náborář byl přidán',
+    'addedRecruit' => 'Náborář byl přidán',
 
-        'addedProject' => 'Nabídka byla přidána',
+    'addedProject' => 'Nabídka byla přidána',
 
-        'updatedProject' => 'Nabídka byla aktualizována',
+    'updatedProject' => 'Nabídka byla aktualizována',
 
-        'deleteRecruit' => 'Náborář byl smazán',
+    'deleteRecruit' => 'Náborář byl smazán',
 
-        'updateRecruit' => 'Náborář byl aktualizován',
+    'updateRecruit' => 'Náborář byl aktualizován',
 
-        'add' => 'Přidat',
+    'add' => 'Přidat',
 
-        'questions' => 'Otázky',
+    'questions' => 'Otázky',
 
-        'cancel' => 'Zrušit',
+    'cancel' => 'Zrušit',
 
-        'right' => 'Oprávnění',
+    'right' => 'Oprávnění',
 
-        'questionDelete' => 'Smazání',
+    'questionDelete' => 'Smazání',
 
-        'questionDeleteConfirm' => 'Opravdu chcete smazat?',
+    'questionDeleteConfirm' => 'Opravdu chcete smazat?',
 
-        'connectedAccounts' => 'Propojené účty',
+    'connectedAccounts' => 'Propojené účty',
 
-        'connectedAccountsText' => 'Propojte své účty na sociálních sítích a povolte přihlašování pomocí protokolu OAuth.',
+    'connectedAccountsText' => 'Propojte své účty na sociálních sítích a povolte přihlašování pomocí protokolu OAuth.',
 
-        'connectedAccountsTextLong' => 'Pokud se domníváte, že byl některý z vašich propojených účtů ohrožen, měli byste jej okamžitě odpojit a změnit si heslo.',
+    'connectedAccountsTextLong' => 'Pokud se domníváte, že byl některý z vašich propojených účtů ohrožen, měli byste jej okamžitě odpojit a změnit si heslo.',
 
-        'connectedAccountsAvatar' => 'Použít avatar jako profilovou fotografii',
+    'connectedAccountsAvatar' => 'Použít avatar jako profilovou fotografii',
 
-        'connect' => 'Propojit',
+    'connect' => 'Propojit',
 
-        'connected' => 'Propojeno',
+    'connected' => 'Propojeno',
 
-        'notConnected' => 'Nepropojeno',
+    'notConnected' => 'Nepropojeno',
 
-        'connectedAccountsRemove' => 'Opravdu chcete tento účet odebrat?',
+    'connectedAccountsRemove' => 'Opravdu chcete tento účet odebrat?',
 
-        'connectedAccountsRemoveConfirm' => 'Zadejte své heslo pro potvrzení, že chcete tento účet odebrat.',
+    'connectedAccountsRemoveConfirm' => 'Zadejte své heslo pro potvrzení, že chcete tento účet odebrat.',
 
-        'removeAccount' => 'Smazat účet',
+    'removeAccount' => 'Smazat účet',
 
-        'removeAccountPermanently' => 'Trvale smazat váš účet.',
+    'removeAccountPermanently' => 'Trvale smazat váš účet.',
 
-        'removeAccountPermanentlyText' => 'Po smazání vašeho účtu budou všechny jeho prostředky a data trvale odstraněny. Před smazáním účtu si stáhněte všechna data nebo informace, které si chcete uchovat.',
+    'removeAccountPermanentlyText' => 'Po smazání vašeho účtu budou všechny jeho prostředky a data trvale odstraněny. Před smazáním účtu si stáhněte všechna data nebo informace, které si chcete uchovat.',
 
-        'deleteAccountConfirm' => 'Opravdu chcete smazat svůj účet? Po smazání vašeho účtu budou všechny jeho prostředky a data trvale odstraněny. Zadejte své heslo pro potvrzení, že chcete svůj účet trvale smazat.',
+    'deleteAccountConfirm' => 'Opravdu chcete smazat svůj účet? Po smazání vašeho účtu budou všechny jeho prostředky a data trvale odstraněny. Zadejte své heslo pro potvrzení, že chcete svůj účet trvale smazat.',
 
-        'browserSessions' => 'Relace prohlížeče',
+    'browserSessions' => 'Relace prohlížeče',
 
-        'browserSessionsDescription' => 'Spravujte a odhlašujte své aktivní relace v jiných prohlížečích a zařízeních.',
+    'browserSessionsDescription' => 'Spravujte a odhlašujte své aktivní relace v jiných prohlížečích a zařízeních.',
 
-        'support_tickets' => 'Nahlášení',
+    'support_tickets' => 'Nahlášení',
 
-        'how_can_we_help' => 'S čím vám můžeme pomoci?',
+    'how_can_we_help' => 'S čím vám můžeme pomoci?',
 
-        'support_type' => 'Téma nahlášení',
+    'support_type' => 'Téma nahlášení',
 
-        'support_subject' => 'Titulek',
+    'support_subject' => 'Titulek',
 
-        'support_content' => 'Obsah nahlášení',
+    'support_content' => 'Obsah nahlášení',
 
-        'support_captcha' => 'Bezpečnostní kód',
+    'support_captcha' => 'Bezpečnostní kód',
 
-        'support_captcha_placeholder' => 'KÓD',
+    'support_captcha_placeholder' => 'KÓD',
 
-        'support_send' => 'Odeslat nahlášení',
+    'support_send' => 'Odeslat nahlášení',
 
-        'support_question' => 'Otázka',
+    'support_question' => 'Otázka',
 
-        'support_tech_problem' => 'Technické problémy',
+    'support_tech_problem' => 'Technické problémy',
 
-        'support_new_feature' => 'Nové funkce',
+    'support_new_feature' => 'Nové funkce',
 
-        'invalid_captcha' => 'Neplatný kód captcha.',
+    'invalid_captcha' => 'Neplatný kód captcha.',
 
-        'ticket_sent_success' => 'Nahlášení bylo úspěšně odesláno.',
+    'ticket_sent_success' => 'Nahlášení bylo úspěšně odesláno.',
 
-        'too_many_requests' => 'Příliš mnoho požadavků. Zkuste to prosím později.',
+    'too_many_requests' => 'Příliš mnoho požadavků. Zkuste to prosím později.',
 
-        'browserSessionsContent' => 'V případě potřeby se můžete odhlásit ze všech ostatních relací prohlížeče na všech svých zařízeních. Níže jsou uvedeny některé z vašich nedávných relací; tento seznam však nemusí být úplný. Pokud se domníváte, že byl váš účet ohrožen, měli byste si také aktualizovat heslo.',
+    'browserSessionsContent' => 'V případě potřeby se můžete odhlásit ze všech ostatních relací prohlížeče na všech svých zařízeních. Níže jsou uvedeny některé z vašich nedávných relací; tento seznam však nemusí být úplný. Pokud se domníváte, že byl váš účet ohrožen, měli byste si také aktualizovat heslo.',
 
-        'browserSessionsLogout' => 'Odhlásit se z ostatních relací prohlížeče',
+    'browserSessionsLogout' => 'Odhlásit se z ostatních relací prohlížeče',
 
-        'browserSessionsDone' => 'Hotovo',
+    'browserSessionsDone' => 'Hotovo',
 
-        'browserSessionsLogoutPassword' => 'Zadejte své heslo pro potvrzení, že se chcete odhlásit z ostatních relací prohlížeče na všech svých zařízeních.',
+    'browserSessionsLogoutPassword' => 'Zadejte své heslo pro potvrzení, že se chcete odhlásit z ostatních relací prohlížeče na všech svých zařízeních.',
 
-        'setPassword' => 'Nastavit heslo',
+    'setPassword' => 'Nastavit heslo',
 
-        'setPasswordDescription' => 'Pro zajištění bezpečnosti se ujistěte, že váš účet používá dlouhé, náhodné heslo.',
+    'setPasswordDescription' => 'Pro zajištění bezpečnosti se ujistěte, že váš účet používá dlouhé, náhodné heslo.',
 
-        'newPassword' => 'Nové heslo',
+    'newPassword' => 'Nové heslo',
 
-        'Saved' => 'Uloženo',
+    'Saved' => 'Uloženo',
 
-        'revertToDefault' => 'Obnovit výchozí grafiku',
+    'revertToDefault' => 'Obnovit výchozí grafiku',
 
-        'confirmEmail' => 'Potvrdit e-mail',
+    'confirmEmail' => 'Potvrdit e-mail',
 
-        'partners' => 'Partneři',
+    'partners' => 'Partneři',
 
-        'foundations' => 'Nadace',
+    'foundations' => 'Nadace',
 
-        'current_count' => 'Aktuálně podporujeme',
+    'current_count' => 'Aktuálně podporujeme',
 
-        'fundacji' => 'nadací',
+    'fundacji' => 'nadací',
 
-        'search_foundation' => 'Najít nadaci',
+    'search_foundation' => 'Najít nadaci',
 
-        'backToLogin' => 'Zpět na přihlášení',
+    'backToLogin' => 'Zpět na přihlášení',
 
-        'secureAccess' => 'Zabezpečený přístup',
+    'secureAccess' => 'Zabezpečený přístup',
 
-        'newSecurity' => 'Nové zabezpečení',
+    'newSecurity' => 'Nové zabezpečení',
 
-        'resetAccess' => 'Resetovat přístup',
+    'resetAccess' => 'Resetovat přístup',
 
-        'emailVerification' => 'Ověření e-mailu',
+    'emailVerification' => 'Ověření e-mailu',
 
-        'Save' => 'Uložit',
+    'Save' => 'Uložit',
 
-        'offers_count' => 'NABÍDEK',
+    'offers_count' => 'NABÍDEK',
 
-        'applications_count' => 'APLIKACÍ',
+    'applications_count' => 'APLIKACÍ',
 
-        'active_count' => 'AKTIVNÍCH',
+    'active_count' => 'AKTIVNÍCH',
 
-        'finished_count' => 'UKONČENÝCH',
+    'finished_count' => 'UKONČENÝCH',
 
-        'Enable' => 'Zapnout',
+    'Enable' => 'Zapnout',
 
-        'Disable' => 'Vypnout',
+    'Disable' => 'Vypnout',
 
-        '2factorAuth' => 'Dvoufázové ověření',
+    '2factorAuth' => 'Dvoufázové ověření',
 
-        '2factorAuthDescription' => 'Přidejte ke svému účtu dodatečné zabezpečení pomocí dvoufázového ověření.',
+    '2factorAuthDescription' => 'Přidejte ke svému účtu dodatečné zabezpečení pomocí dvoufázového ověření.',
 
-        '2factorAuthDescriptionEnabled' => 'Zapnuli jste dvoufázové ověření.',
+    '2factorAuthDescriptionEnabled' => 'Zapnuli jste dvoufázové ověření.',
 
-        '2factorAuthDescriptionFinish' => 'Dokončete zapnutí dvoufázového ověření.',
+    '2factorAuthDescriptionFinish' => 'Dokončete zapnutí dvoufázového ověření.',
 
-        '2factorAuthDescriptionHave' => 'Nemáte zapnuté dvoufázové ověření.',
+    '2factorAuthDescriptionHave' => 'Nemáte zapnuté dvoufázové ověření.',
 
-        '2factorAuthDescriptionWhen' => 'Pokud je dvoufázové ověření zapnuté, budete během ověřování požádáni o zadání bezpečného, náhodného tokenu. Tento token můžete získat z aplikace Google Authenticator ve svém telefonu.',
+    '2factorAuthDescriptionWhen' => 'Pokud je dvoufázové ověření zapnuté, budete během ověřování požádáni o zadání bezpečného, náhodného tokenu. Tento token můžete získat z aplikace Google Authenticator ve svém telefonu.',
 
-        '2factorAuthDescriptionToFinish' => 'Pro dokončení zapnutí dvoufázového ověření naskenujte následující QR kód pomocí autentizační aplikace v telefonu nebo zadejte konfigurační klíč a zadejte vygenerovaný OTP kód.',
+    '2factorAuthDescriptionToFinish' => 'Pro dokončení zapnutí dvoufázového ověření naskenujte následující QR kód pomocí autentizační aplikace v telefonu nebo zadejte konfigurační klíč a zadejte vygenerovaný OTP kód.',
 
-        '2factorAuthDescriptionToFinishElse' => 'Dvoufázové ověření je nyní zapnuté. Naskenujte níže uvedený QR kód pomocí autentizační aplikace v telefonu nebo zadejte konfigurační klíč.',
+    '2factorAuthDescriptionToFinishElse' => 'Dvoufázové ověření je nyní zapnuté. Naskenujte níže uvedený QR kód pomocí autentizační aplikace v telefonu nebo zadejte konfigurační klíč.',
 
-        '2factorAuthDescriptionSetup' => 'Konfigurační klíč',
+    '2factorAuthDescriptionSetup' => 'Konfigurační klíč',
 
-        '2factorAuthDescriptionStore' => 'Tyto kódy pro obnovení si uložte do bezpečného správce hesel. Lze je použít k obnovení přístupu k účtu v případě ztráty zařízení pro dvoufázové ověření.',
+    '2factorAuthDescriptionStore' => 'Tyto kódy pro obnovení si uložte do bezpečného správce hesel. Lze je použít k obnovení přístupu k účtu v případě ztráty zařízení pro dvoufázové ověření.',
 
-        '2factorAuthDescriptionRegenerate' => 'Znovu vygenerovat kódy pro obnovení',
+    '2factorAuthDescriptionRegenerate' => 'Znovu vygenerovat kódy pro obnovení',
 
-        '2factorAuthDescriptionShowRecovery' => 'Zobrazit kódy pro obnovení',
+    '2factorAuthDescriptionShowRecovery' => 'Zobrazit kódy pro obnovení',
 
-        'UpdatePassword' => 'Aktualizovat heslo',
+    'UpdatePassword' => 'Aktualizovat heslo',
 
-        'UpdatePasswordDescription' => 'Ujistěte se, že váš účet používá dlouhé, náhodné heslo, abyste zůstali v bezpečí.',
+    'UpdatePasswordDescription' => 'Ujistěte se, že váš účet používá dlouhé, náhodné heslo, abyste zůstali v bezpečí.',
 
-        'UpdatePasswordCurrent' => 'Aktualne heslo',
+    'UpdatePasswordCurrent' => 'Aktualne heslo',
 
-        'ProfileInformation' => 'Informace o profilu',
+    'ProfileInformation' => 'Informace o profilu',
 
-        'ProfileInformationDescription' => 'Aktualizujte informace o profilu a e-mailovou adresu svého účtu.',
+    'ProfileInformationDescription' => 'Aktualizujte informace o profilu a e-mailovou adresu svého účtu.',
 
-        'ProfileInformationPhoto' => 'Vybrat novou fotografii',
+    'ProfileInformationPhoto' => 'Vybrat novou fotografii',
 
-        'ProfileInformationPhotoRemove' => 'Odebrat fotografii',
+    'ProfileInformationPhotoRemove' => 'Odebrat fotografii',
 
-        'mainData' => 'Základní údaje',
+    'mainData' => 'Základní údaje',
 
-        'mainDataInfo' => 'Základní informace o náboráři',
+    'mainDataInfo' => 'Základní informace o náboráři',
 
-        'personalization' => 'Personalizace',
+    'personalization' => 'Personalizace',
 
-        'personalizationInfo' => 'Upravte vzhled profilu náboráře',
+    'personalizationInfo' => 'Upravte vzhled profilu náboráře',
 
-        'Photo' => 'Fotografie',
+    'Photo' => 'Fotografie',
 
-        'ProfileInformationUnverified' => 'Vaše e-mailová adresa není ověřená.',
+    'ProfileInformationUnverified' => 'Vaše e-mailová adresa není ověřená.',
 
-        'ProfileInformationVerification' => 'Kliknutím sem znovu odešlete ověřovací e-mail.',
+    'ProfileInformationVerification' => 'Kliknutím sem znovu odešlete ověřovací e-mail.',
 
-        'ProfileInformationVerificationNew' => 'Na vaši e-mailovou adresu byl odeslán nový ověřovací odkaz.',
+    'ProfileInformationVerificationNew' => 'Na vaši e-mailovou adresu byl odeslán nový ověřovací odkaz.',
 
-        'Profile' => 'Profil',
+    'Profile' => 'Profil',
 
-        'ManageAccount' => 'Spravovat účet',
+    'ManageAccount' => 'Spravovat účet',
 
-        'nip' => 'DIČ',
+    'nip' => 'DIČ',
 
-        'regon' => 'IČO',
+    'regon' => 'IČO',
 
-        'Firm' => 'Firma',
+    'Firm' => 'Firma',
 
-        'FirmDescription' => 'Popis firmy',
+    'FirmDescription' => 'Popis firmy',
 
-        'Street' => 'Ulice',
+    'Street' => 'Ulice',
 
-        'Number' => 'Číslo',
+    'Number' => 'Číslo',
 
-        'City' => 'Město',
+    'City' => 'Město',
 
-        'Postal' => 'PSČ',
+    'Postal' => 'PSČ',
 
-        'Country' => 'Země',
+    'Country' => 'Země',
 
-        'invoiceData' => 'Jsou fakturační údaje stejné',
+    'invoiceData' => 'Jsou fakturační údaje stejné',
 
-        'Invoice' => 'Faktura',
+    'Invoice' => 'Faktura',
 
-        'Invoices' => 'Faktury',
+    'Invoices' => 'Faktury',
 
-        'Orders' => 'Objednávky',
+    'Orders' => 'Objednávky',
 
-        'dataUpdated' => 'Údaje aktualizovány',
+    'dataUpdated' => 'Údaje aktualizovány',
 
-        'www' => 'Webové stránky',
+    'www' => 'Webové stránky',
 
-        'opinion_google' => 'Google',
+    'opinion_google' => 'Google',
 
-        'opinion_trust' => 'TrustPilot',
+    'opinion_trust' => 'TrustPilot',
 
-        'opinion_facebook' => 'Facebook',
+    'opinion_facebook' => 'Facebook',
 
-        'social_facebook' => 'Facebook',
+    'social_facebook' => 'Facebook',
 
-        'social_google' => 'Google',
+    'social_google' => 'Google',
 
-        'social_x' => 'X',
+    'social_x' => 'X',
 
-        'social_instagram' => 'Instagram',
+    'social_instagram' => 'Instagram',
 
-        'social_linkedin' => 'Linkedin',
+    'social_linkedin' => 'Linkedin',
 
-        'social_tiktok' => 'Tiktok',
+    'social_tiktok' => 'Tiktok',
 
-        'count_workers' => 'Počet zaměstnanců',
+    'count_workers' => 'Počet zaměstnanců',
 
-        'annual_turnover' => 'Roční obrat',
+    'annual_turnover' => 'Roční obrat',
 
-        'video' => 'Video',
+    'video' => 'Video',
 
-        'rest' => 'Ostatní',
+    'rest' => 'Ostatní',
 
-        'restDescription' => 'Popis ostatního',
+    'restDescription' => 'Popis ostatního',
 
-        'opinions' => 'Recenze',
+    'opinions' => 'Recenze',
 
-        'socials' => 'Sociální sítě',
+    'socials' => 'Sociální sítě',
 
-        'loadingMovie' => 'Načítání videa',
+    'loadingMovie' => 'Načítání videa',
 
-        'phoneLimit' => 'Počet vytvořených telefonů:',
+    'phoneLimit' => 'Počet vytvořených telefonů:',
 
-        'phoneDesc' => 'Popis telefonu:',
+    'phoneDesc' => 'Popis telefonu:',
 
-        'phoneDescHelper' => 'Ke které pozici se číslo vztahuje',
+    'phoneDescHelper' => 'Ke které pozici se číslo vztahuje',
 
-        'phoneDelete' => 'Smazat telefon',
+    'phoneDelete' => 'Smazat telefon',
 
-        'orders' => 'Objednávky',
+    'orders' => 'Objednávky',
 
-        'aplications' => 'Aplikace',
+    'aplications' => 'Aplikace',
 
-        'aplication' => 'Aplikace',
+    'aplication' => 'Aplikace',
 
-        'projects' => 'Nabídky',
+    'projects' => 'Nabídky',
 
-        'project' => 'Nabídka',
+    'project' => 'Nabídka',
 
-        'announcements' => 'Inzeráty',
+    'announcements' => 'Inzeráty',
 
-        'statistics' => 'Statistiky',
+    'statistics' => 'Statistiky',
 
-        'activeRecruits' => 'Aktivní náboráři',
+    'activeRecruits' => 'Aktivní náboráři',
 
-        'notActiveRecruits' => 'Neaktivní náboráři',
+    'notActiveRecruits' => 'Neaktivní náboráři',
 
-        'invoices' => 'Faktury',
+    'invoices' => 'Faktury',
 
-        'invoicesDescription' => 'Spravujte své faktury a stahujte dokumenty ve formátu PDF.',
+    'invoicesDescription' => 'Spravujte své faktury a stahujte dokumenty ve formátu PDF.',
 
-        'dateInvoice' => 'Datum na faktuře',
+    'dateInvoice' => 'Datum na faktuře',
 
-        'day' => 'Den',
+    'day' => 'Den',
 
-        'month' => 'Měsíc',
+    'month' => 'Měsíc',
 
-        'year' => 'Rok',
+    'year' => 'Rok',
 
-        'correcting' => 'Opravit',
+    'correcting' => 'Opravit',
 
-        'correctAlert' => 'Pozor!',
+    'correctAlert' => 'Pozor!',
 
-        'correctAlertDesc' => 'Při opravě faktury se aktualizují níže uvedené údaje uživatele, které lze následně změnit v profilu.',
+    'correctAlertDesc' => 'Při opravě faktury se aktualizují níže uvedené údaje uživatele, které lze následně změnit v profilu.',
 
-        'correctInvoice' => 'Faktura byla opravena',
+    'correctInvoice' => 'Faktura byla opravena',
 
-        'notFoundOrders' => 'Nenalezeny žádné objednávky',
+    'notFoundOrders' => 'Nenalezeny žádné objednávky',
 
-        'buy' => 'Ceník',
+    'buy' => 'Ceník',
 
-        'payStatus' => 'Stav platby',
+    'payStatus' => 'Stav platby',
 
-        'applications' => 'Aplikace',
+    'applications' => 'Aplikace',
 
-        'transfer' => 'Převod',
+    'transfer' => 'Převod',
 
-        'paid' => 'Zaplaceno',
+    'paid' => 'Zaplaceno',
 
-        'unpaid' => 'Nezaplaceno',
+    'unpaid' => 'Nezaplaceno',
 
-        'payType' => 'Typ platby',
+    'payType' => 'Typ platby',
 
-        'paidDate' => 'Datum platby',
+    'paidDate' => 'Datum platby',
 
-        'orderProductCount' => 'Množství produktů',
+    'orderProductCount' => 'Množství produktů',
 
-        'getPdf' => 'Stáhnout PDF',
+    'getPdf' => 'Stáhnout PDF',
 
-        'getCv' => 'Stáhnout CV',
+    'getCv' => 'Stáhnout CV',
 
-        'getFiles' => 'Stáhnout soubory',
+    'getFiles' => 'Stáhnout soubory',
 
-        'filters' => 'Filtry',
+    'filters' => 'Filtry',
 
-        'contact_us' => 'Kontakt',
+    'contact_us' => 'Kontakt',
 
-        'write_to_us' => 'Napište nám',
+    'write_to_us' => 'Napište nám',
 
-        'our_office' => 'Naše kancelář',
+    'our_office' => 'Naše kancelář',
 
-        'advertising' => 'Reklama',
+    'advertising' => 'Reklama',
 
-        'rewrite_code' => 'Přepište kód',
+    'rewrite_code' => 'Přepište kód',
 
-        'reload_captcha' => 'Obnovit kód',
+    'reload_captcha' => 'Obnovit kód',
 
-        'send_message' => 'Odeslat zprávu',
+    'send_message' => 'Odeslat zprávu',
 
-        'contact_success' => 'Zpráva byla úspěšně odeslána!',
+    'contact_success' => 'Zpráva byla úspěšně odeslána!',
 
-        'points' => 'Body',
+    'points' => 'Body',
 
-        'ourValues' => 'Naše hodnoty',
+    'ourValues' => 'Naše hodnoty',
 
-        'moreAboutUs' => 'Zjistěte o nás více',
+    'moreAboutUs' => 'Zjistěte o nás více',
 
-        'charitySupport' => 'Podporujeme potřebné',
+    'charitySupport' => 'Podporujeme potřebné',
 
-        'charityImpact' => 'Věnujeme 50 % zisku na charitativní účely',
+    'charityImpact' => 'Věnujeme 50 % zisku na charitativní účely',
 
-        'joinMission' => 'Přidejte se k naší misi',
+    'joinMission' => 'Přidejte se k naší misi',
 
-        'pkt' => 'Bodů',
+    'pkt' => 'Bodů',
 
-        'extra' => 'Dodatečné',
+    'extra' => 'Dodatečné',
 
-        'invoiceAmount' => 'Částka faktury',
+    'invoiceAmount' => 'Částka faktury',
 
-        'orderNumber' => 'Číslo objednávky',
+    'orderNumber' => 'Číslo objednávky',
 
-        'search' => 'Hledat',
+    'search' => 'Hledat',
 
-        'opened' => 'Otevřená',
+    'opened' => 'Otevřená',
 
-        'notFoundInvoices' => 'Žádné faktury',
+    'notFoundInvoices' => 'Žádné faktury',
 
-        'notFoundProducts' => 'Žádné produkty',
+    'notFoundProducts' => 'Žádné produkty',
 
-        'addToCart' => 'Pridat do košíku',
+    'addToCart' => 'Pridat do košíku',
 
-        'addedToCart' => 'Přidáno do košíku',
+    'addedToCart' => 'Přidáno do košíku',
 
-        'clearFilters' => 'Vynulovat filtry a řazení',
+    'clearFilters' => 'Vynulovat filtry a řazení',
 
-        'clearFiltersOnly' => 'Vynulovat filtry',
+    'clearFiltersOnly' => 'Vynulovat filtry',
 
-        'typeProduct' => 'Typ produktu',
+    'typeProduct' => 'Typ produktu',
 
-        'frontPage' => 'Hlavní stránka',
+    'frontPage' => 'Hlavní stránka',
 
-        'cart' => 'Košík',
+    'cart' => 'Košík',
 
-        'changePoints' => 'Vyměnit za body',
+    'changePoints' => 'Vyměnit za body',
 
-        'give' => 'Máte k dispozici',
+    'give' => 'Máte k dispozici',
 
-        'incart' => 'V košíku:',
+    'incart' => 'V košíku:',
 
-        'service' => 'služba/y',
+    'service' => 'služba/y',
 
-        'emptyCart' => 'prázdný košík',
+    'emptyCart' => 'prázdný košík',
 
-        'summary' => 'Shrnutí',
+    'summary' => 'Shrnutí',
 
-        'sum' => 'Celkem',
+    'sum' => 'Celkem',
 
-        'continueBuy' => 'Pokračovat v nákupu',
+    'continueBuy' => 'Pokračovat v nákupu',
 
-        'pay' => 'Zaplatit',
+    'pay' => 'Zaplatit',
 
-        'or' => 'Nebo',
+    'or' => 'Nebo',
 
-        'currency' => 'Měna',
+    'currency' => 'Měna',
 
-        'BuyInformation' => 'Používaná měna',
+    'BuyInformation' => 'Používaná měna',
 
-        'BuyInformationDescription' => 'Používaná měna ve fakturách a objednávkách',
+    'BuyInformationDescription' => 'Používaná měna ve fakturách a objednávkách',
 
-        'orderPay' => 'Objednávka zaplacena',
+    'orderPay' => 'Objednávka zaplacena',
 
-        'congratulations' => 'Gratulujeme',
+    'congratulations' => 'Gratulujeme',
 
-        'transactionSuccess' => 'Vaše transakce proběhla úspěšně.',
+    'transactionSuccess' => 'Vaše transakce proběhla úspěšně.',
 
-        'thanksForTrust' => 'Děkujeme za důvěru',
+    'thanksForTrust' => 'Děkujeme za důvěru',
 
-        'secureCheckout' => 'Bezpečná platba',
+    'secureCheckout' => 'Bezpečná platba',
 
-        'deleteProject' => 'Nabídka byla smazána',
+    'deleteProject' => 'Nabídka byla smazána',
 
-        'recruiter' => 'Náborář',
+    'recruiter' => 'Náborář',
 
-        'show' => 'Zobrazit',
+    'show' => 'Zobrazit',
 
-        'articles' => 'Články',
+    'articles' => 'Články',
 
-        'createArticles' => 'Vytvořit článek',
+    'createArticles' => 'Vytvořit článek',
 
-        'title' => 'Název',
+    'title' => 'Název',
 
-        'content' => 'Obsah',
+    'content' => 'Obsah',
 
-        'addedArticle' => 'Článek byl přidán',
+    'addedArticle' => 'Článek byl přidán',
 
-        'createArticle' => 'Vytvořit článek',
+    'createArticle' => 'Vytvořit článek',
 
-        'article' => 'Článek',
+    'article' => 'Článek',
 
-        'articleSlogan' => 'Vaše znalosti, které budují značku a důvěru.',
+    'articleSlogan' => 'Vaše znalosti, které budují značku a důvěru.',
 
-        'articleDescription' => 'Odborný článek je prostor pro prezentaci znalostí, zkušeností a perspektivy vaší firmy – ve vámi zvolených jazycích. Jedná se o profesionální formu komunikace, která buduje důvěryhodnost a pozici experta v oboru. Využijte jej v aktivitách employer brandingu, marketingové komunikaci a vztazích s obchodními partnery, abyste ukázali, že vaše značka nejen funguje, ale také inspiruje a určuje směr.',
+    'articleDescription' => 'Odborný článek je prostor pro prezentaci znalostí, zkušeností a perspektivy vaší firmy – ve vámi zvolených jazycích. Jedná se o profesionální formu komunikace, která buduje důvěryhodnost a pozici experta v oboru. Využijte jej v aktivitách employer brandingu, marketingové komunikaci a vztazích s obchodními partnery, abyste ukázali, že vaše značka nejen funguje, ale také inspiruje a určuje směr.',
 
-        'whatIsArticleService' => 'Co je to za službu?',
+    'whatIsArticleService' => 'Co je to za službu?',
 
-        'whatIsArticleServiceDescription' => 'Reklamní článek představuje možnost publikace obsahu připraveného vaší firmou v sekci článků na portálu WORK4YOU.GLOBAL – ve vámi zvolených jazycích.',
+    'whatIsArticleServiceDescription' => 'Reklamní článek představuje možnost publikace obsahu připraveného vaší firmou v sekci článků na portálu WORK4YOU.GLOBAL – ve vámi zvolených jazycích.',
 
-        'whatIncludeArticle' => 'Co služba obsahuje?',
+    'whatIncludeArticle' => 'Co služba obsahuje?',
 
-        'articleInclude1' => 'Publikaci článku na portálu',
+    'articleInclude1' => 'Publikaci článku na portálu',
 
-        'articleInclude2' => 'obsah dodaný firmou,',
+    'articleInclude2' => 'obsah dodaný firmou,',
 
-        'articleInclude3' => 'možnost volby jazyka publikace,',
+    'articleInclude3' => 'možnost volby jazyka publikace,',
 
-        'articleInclude4' => 'prezentaci firmy jako autora materiálu',
+    'articleInclude4' => 'prezentaci firmy jako autora materiálu',
 
-        'articleInclude5' => 'zobrazení v sekci článků WORK4YOU.GLOBAL.',
+    'articleInclude5' => 'zobrazení v sekci článků WORK4YOU.GLOBAL.',
 
-        'articleUnlimitedTime' => 'Časově neomezená služba.',
+    'articleUnlimitedTime' => 'Časově neomezená služba.',
 
-        'howUseArticle' => 'Jak ji můžete využít?',
+    'howUseArticle' => 'Jak ji můžete využít?',
 
-        'articleUse1' => 'k budování image experta v oboru,',
+    'articleUse1' => 'k budování image experta v oboru,',
 
-        'articleUse2' => 'v aktivitách employer brandingu,',
+    'articleUse2' => 'v aktivitách employer brandingu,',
 
-        'articleUse3' => 'v marketingové komunikaci a PR,',
+    'articleUse3' => 'v marketingové komunikaci a PR,',
 
-        'articleUse4' => 'ke zvýšení povědomí mezi kandidáty a obchodními partnery.',
+    'articleUse4' => 'ke zvýšení povědomí mezi kandidáty a obchodními partnery.',
 
-        'articleCallToAction' => 'Přidejte se k firmám, které sdílejí své znalosti',
+    'articleCallToAction' => 'Přidejte se k firmám, které sdílejí své znalosti',
 
-        'availableArticlesCount' => 'Dostupný počet článků:',
+    'availableArticlesCount' => 'Dostupný počet článků:',
 
-        'exchangePointsArticle' => 'VYMĚNIT BODY ZA ČLÁNEK',
+    'exchangePointsArticle' => 'VYMĚNIT BODY ZA ČLÁNEK',
 
-        'addArticle' => 'PŘIDAT ČLÁNEK',
+    'addArticle' => 'PŘIDAT ČLÁNEK',
 
-        'publishedArticles' => 'Publikované články',
+    'publishedArticles' => 'Publikované články',
 
-        'articleInfo' => 'Zadejte údaje pro vytvoření článku',
+    'articleInfo' => 'Zadejte údaje pro vytvoření článku',
 
-        'deleteArticle' => 'Článek byl smazán',
+    'deleteArticle' => 'Článek byl smazán',
 
-        'updateArticle' => 'Článek byl aktualizován',
+    'updateArticle' => 'Článek byl aktualizován',
 
-        'editArticle' => 'Úprava článku',
+    'editArticle' => 'Úprava článku',
 
-        'active' => 'Aktivita',
+    'active' => 'Aktivita',
 
-        'notFoundArticle' => 'Nenalezeny žádné články',
+    'notFoundArticle' => 'Nenalezeny žádné články',
 
-        'addSection' => 'Přidat sekci',
+    'addSection' => 'Přidat sekci',
 
-        'addSectionTitle' => 'Zadejte název sekce',
+    'addSectionTitle' => 'Zadejte název sekce',
 
-        'addSectionTitleDistinct' => 'Opakující se název',
+    'addSectionTitleDistinct' => 'Opakující se název',
 
-        'addSectionTitleMax' => 'Zadejte maximálně 200 znaků',
+    'addSectionTitleMax' => 'Zadejte maximálně 200 znaků',
 
-        'addSectionDescription' => 'Zadejte obsah sekce',
+    'addSectionDescription' => 'Zadejte obsah sekce',
 
-        'addSectionDescriptionMax' => 'Zadejte maximálně 1000 znaků',
+    'addSectionDescriptionMax' => 'Zadejte maximálně 1000 znaků',
 
-        'notFoundArticles' => 'Nenalezeny žádné články',
+    'notFoundArticles' => 'Nenalezeny žádné články',
 
-        'notFoundProjects' => 'Nenalezeny žádné nabídky',
+    'notFoundProjects' => 'Nenalezeny žádné nabídky',
 
-        'backToList' => 'Zpět na seznam',
+    'backToList' => 'Zpět na seznam',
 
-        'backToProject' => 'Zpět na nabídku',
+    'backToProject' => 'Zpět na nabídku',
 
-        'description' => 'Popis',
+    'description' => 'Popis',
 
-        'language' => 'Jazyk',
+    'language' => 'Jazyk',
 
-        'baner' => 'Banner',
+    'baner' => 'Banner',
 
-        'orLogin' => 'Nebo prostřednictvím',
+    'orLogin' => 'Nebo prostřednictvím',
 
-        'createProject' => 'Vytvořit nabídku',
+    'createProject' => 'Vytvořit nabídku',
 
-        'updateProject' => 'Aktualizovat nabídku',
+    'updateProject' => 'Aktualizovat nabídku',
 
-        'projectInfo' => 'Popis pro vytvoření nabídky',
+    'projectInfo' => 'Popis pro vytvoření nabídky',
 
-        'quantity' => 'Množství',
+    'quantity' => 'Množství',
 
-        'create' => 'Vytvořit',
+    'create' => 'Vytvořit',
 
-        'selectLabel' => 'Stiskněte Enter pro výběr',
+    'selectLabel' => 'Stiskněte Enter pro výběr',
 
-        'selectGroupLabel' => 'Stiskněte Enter pro výběr skupiny',
+    'selectGroupLabel' => 'Stiskněte Enter pro výběr skupiny',
 
-        'selectedLabel' => 'Vybráno',
+    'selectedLabel' => 'Vybráno',
 
-        'deselectLabel' => 'Stiskněte Enter pro odebrání',
+    'deselectLabel' => 'Stiskněte Enter pro odebrání',
 
-        'placeholder' => 'Vyberte možnost',
+    'placeholder' => 'Vyberte možnost',
 
-        'placeholderCountry' => 'Vyberte zemi',
+    'placeholderCountry' => 'Vyberte zemi',
 
-        'placeholderCity' => 'Vyberte město',
+    'placeholderCity' => 'Vyberte město',
 
-        'distance' => 'Vzdálenost (km)',
+    'distance' => 'Vzdálenost (km)',
 
-        'placeholderDistance' => 'Vyberte vzdálenost',
+    'placeholderDistance' => 'Vyberte vzdálenost',
 
-        'placeholderCategory' => 'Vyberte obor',
+    'placeholderCategory' => 'Vyberte obor',
 
-        'noOptions' => 'Seznam je prázdný',
+    'noOptions' => 'Seznam je prázdný',
 
-        'noResult' => 'Nenalezeny žádné prvky',
+    'noResult' => 'Nenalezeny žádné prvky',
 
-        'moreFilters' => 'Více filtrů',
+    'moreFilters' => 'Více filtrů',
 
-        'lessFilters' => 'Méně filtrů',
+    'lessFilters' => 'Méně filtrů',
 
-        'category' => 'Obor',
+    'category' => 'Obor',
 
-        'subcategory' => 'Podobor',
+    'subcategory' => 'Podobor',
 
-        'profession' => 'Profese',
+    'profession' => 'Profese',
 
-        'position' => 'Pozice',
+    'position' => 'Pozice',
 
-        'selectCountry' => 'Vyberte zemi',
+    'selectCountry' => 'Vyberte zemi',
 
-        'selectCity' => 'Vyberte město',
+    'selectCity' => 'Vyberte město',
 
-        'selectCategorySub' => 'Vyberte podobor',
+    'selectCategorySub' => 'Vyberte podobor',
 
-        'selectProfession' => 'Vyberte profesi',
+    'selectProfession' => 'Vyberte profesi',
 
-        'workingMode' => 'Pracovní režimy',
+    'workingMode' => 'Pracovní režimy',
 
-        'workingPlace' => 'Místo výkonu práce',
+    'workingPlace' => 'Místo výkonu práce',
 
-        'basicSalaryFrom' => 'Základní mzda od',
+    'basicSalaryFrom' => 'Základní mzda od',
 
-        'basicSalaryTo' => 'Základní mzda do',
+    'basicSalaryTo' => 'Základní mzda do',
 
-        'typesOfContract' => 'Druh smlouvy',
+    'typesOfContract' => 'Druh smlouvy',
 
-        'workLoads' => 'Rozsah práce',
+    'workLoads' => 'Rozsah práce',
 
-        'payoutModes' => 'Režim výplaty',
+    'payoutModes' => 'Režim výplaty',
 
-        'paySystem' => 'Systém odměňování',
+    'paySystem' => 'Systém odměňování',
 
-        'bonusSalaryFrom' => 'Prémie od',
+    'bonusSalaryFrom' => 'Prémie od',
 
-        'bonusSalaryTo' => 'Prémie do',
+    'bonusSalaryTo' => 'Prémie do',
 
-        'dayWork' => 'Pracovní dny',
+    'dayWork' => 'Pracovní dny',
 
-        'shiftWorks' => 'Směnný provoz',
+    'shiftWorks' => 'Směnný provoz',
 
-        'hoursFrom' => 'Hodiny od',
+    'hoursFrom' => 'Hodiny od',
 
-        'hoursTo' => 'Hodiny do',
+    'hoursTo' => 'Hodiny do',
 
-        'workNight' => 'Noční práce',
+    'workNight' => 'Noční práce',
 
-        'yes' => 'Ano',
+    'yes' => 'Ano',
 
-        'no' => 'Ne',
+    'no' => 'Ne',
 
-        'offer' => 'Nabízíme',
+    'offer' => 'Nabízíme',
 
-        'wait' => 'Požadujeme',
+    'wait' => 'Požadujeme',
 
-        'experience' => 'Praxe',
+    'experience' => 'Praxe',
 
-        'welcome' => 'Vítáno',
+    'welcome' => 'Vítáno',
 
-        'education' => 'Vzdělání',
+    'education' => 'Vzdělání',
 
-        'prompt1string' => 'Vygenerujte 5 různých názvů pracovních inzerátů s použitím následujících slov:',
+    'prompt1string' => 'Vygenerujte 5 různých názvů pracovních inzerátů s použitím následujících slov:',
 
-        'prompt2string' => '. Poté přeložte název do jazyků ',
+    'prompt2string' => '. Poté přeložte název do jazyků ',
 
-        'prompt3string' => ' a uložte jej ve formátu json. Použijte zkratky jazykových označení.',
+    'prompt3string' => ' a uložte jej ve formátu json. Použijte zkratky jazykových označení.',
 
-        'address' => 'Ulice a číslo domu/bytu',
+    'address' => 'Ulice a číslo domu/bytu',
 
-        'detailProjects' => 'Povinnosti',
+    'detailProjects' => 'Povinnosti',
 
-        'CountryPublish' => 'Země publikace',
+    'CountryPublish' => 'Země publikace',
 
-        'fundations' => 'Nadace',
+    'fundations' => 'Nadace',
 
-        'fundationsInfo' => 'Vyberte nadaci, které věnujeme 50 % ze zaplacené částky.',
+    'fundationsInfo' => 'Vyberte nadaci, které věnujeme 50 % ze zaplacené částky.',
 
-        'othersRecruits' => 'Ostatní náboráři',
+    'othersRecruits' => 'Ostatní náboráři',
 
-        'othersRecruitsInfo' => 'Možnost přiřadit k nabídkám další náboráře.',
+    'othersRecruitsInfo' => 'Možnost přiřadit k nabídkám další náboráře.',
 
-        'otherRecruitsChange' => 'Ostatní náboráři byli změněni.',
+    'otherRecruitsChange' => 'Ostatní náboráři byli změněni.',
 
-        'otherRecruitsChangeMain' => 'Hlavní náborář byl změněn.',
+    'otherRecruitsChangeMain' => 'Hlavní náborář byl změněn.',
 
-        'adress' => 'Místo výkonu povolání',
+    'adress' => 'Místo výkonu povolání',
 
-        'accessDenied' => 'Přístup zablokován',
+    'accessDenied' => 'Přístup zablokován',
 
-        'exchangeSuccess' => 'Výměna proběhla úspěšně',
+    'exchangeSuccess' => 'Výměna proběhla úspěšně',
 
-        'capchaError' => 'Chyba ověření Captcha. Opravte text',
+    'capchaError' => 'Chyba ověření Captcha. Opravte text',
 
-        'surname' => 'Příjmení',
+    'surname' => 'Příjmení',
 
-        'nameUser' => 'Jméno',
+    'nameUser' => 'Jméno',
 
-        'changeStatusAplication' => 'Stav aplikace byl změněn',
+    'changeStatusAplication' => 'Stav aplikace byl změněn',
 
-        'fileTypeNotAllowed' => 'Musíte odeslat soubor typu',
+    'fileTypeNotAllowed' => 'Musíte odeslat soubor typu',
 
-        'tooLarge' => 'Soubor je příliš velký, maximální velikost je',
+    'tooLarge' => 'Soubor je příliš velký, maximální velikost je',
 
-        'tooSmall' => 'Soubor je příliš malý, minimální velikost je',
+    'tooSmall' => 'Soubor je příliš malý, minimální velikost je',
 
-        'tryAgain' => 'Zkuste prosím tento soubor odeslat znovu',
+    'tryAgain' => 'Zkuste prosím tento soubor odeslat znovu',
 
-        'somethingWentWrong' => 'Při odesílání souboru došlo k chybě',
+    'somethingWentWrong' => 'Při odesílání souboru došlo k chybě',
 
-        'selectOrDrag' => 'Vyberte nebo přetáhněte soubory',
+    'selectOrDrag' => 'Vyberte nebo přetáhněte soubory',
 
-        'selectOrDragMax' => 'Vyberte nebo přetáhněte maximálně {maxItems} {file}',
+    'selectOrDragMax' => 'Vyberte nebo přetáhněte maximálně {maxItems} {file}',
 
-        'filterApplications' => 'Filtrovat aplikace',
+    'filterApplications' => 'Filtrovat aplikace',
 
-        'filterByCV' => 'Filtrovat aplikace podle CV',
+    'filterByCV' => 'Filtrovat aplikace podle CV',
 
-        'filtersAppliedAutomatically' => 'Filtry se aplikují automaticky po změně hodnoty',
+    'filtersAppliedAutomatically' => 'Filtry se aplikují automaticky po změně hodnoty',
 
-        'applicationWithCV' => 'Aplikace s CV',
+    'applicationWithCV' => 'Aplikace s CV',
 
-        'all' => 'Všechny',
+    'all' => 'Všechny',
 
-        'onlyWithCV' => 'Klasické CV',
+    'onlyWithCV' => 'Klasické CV',
 
-        'onlyWithoutCV' => 'Video, Audio',
+    'onlyWithoutCV' => 'Video, Audio',
 
-        'projectID' => 'ID nabídky',
+    'projectID' => 'ID nabídky',
 
-        'enterProjectID' => 'Zadejte ID nabídky',
+    'enterProjectID' => 'Zadejte ID nabídky',
 
-        'applicationStatus' => 'Stav aplikace',
+    'applicationStatus' => 'Stav aplikace',
 
-        'cv' => 'CV',
+    'cv' => 'CV',
 
-        'createCandidate' => 'Vytvořit kandidáta',
+    'createCandidate' => 'Vytvořit kandidáta',
 
-        'candidateExists' => 'Kandidát již v systému existuje',
+    'candidateExists' => 'Kandidát již v systému existuje',
 
-        'viewCandidateDetails' => 'Zobrazit podrobnosti o kandidátovi',
+    'viewCandidateDetails' => 'Zobrazit podrobnosti o kandidátovi',
 
-        'candidateCreateInfo' => 'Vytvořit kandidáta na základě této aplikace (cena 5 bodů)',
+    'candidateCreateInfo' => 'Vytvořit kandidáta na základě této aplikace (cena 5 bodů)',
 
-        'projectCategory' => 'Kategorie nabídky',
+    'projectCategory' => 'Kategorie nabídky',
 
-        'enterProjectCategory' => 'Zadejte kategorii nabídky',
+    'enterProjectCategory' => 'Zadejte kategorii nabídky',
 
-        'cvFiltersUnavailable' => 'Byly vybrány pouze aplikace bez CV – filtry údajů CV nejsou dostupné',
+    'cvFiltersUnavailable' => 'Byly vybrány pouze aplikace bez CV – filtry údajů CV nejsou dostupné',
 
-        'resetFilters' => 'Resetovat filtry',
+    'resetFilters' => 'Resetovat filtry',
 
-        'enterExperience' => 'Zadejte hledanou praxi',
+    'enterExperience' => 'Zadejte hledanou praxi',
 
-        'enterEducation' => 'Zadejte hledané vzdělání',
+    'enterEducation' => 'Zadejte hledané vzdělání',
 
-        'enterCourse' => 'Zadejte hledaný kurz',
+    'enterCourse' => 'Zadejte hledaný kurz',
 
-        'enterLanguage' => 'Zadejte hledaný jazyk',
+    'enterLanguage' => 'Zadejte hledaný jazyk',
 
-        'enterSkill' => 'Zadejte hledanou dovednost',
+    'enterSkill' => 'Zadejte hledanou dovednost',
 
-        'applicationsList' => 'Seznam aplikací',
+    'applicationsList' => 'Seznam aplikací',
 
-        'noApplicationsAvailable' => 'Nejsou dostupné žádné aplikace',
+    'noApplicationsAvailable' => 'Nejsou dostupné žádné aplikace',
 
-        'applicationDetails' => 'Podrobnosti o aplikaci',
+    'applicationDetails' => 'Podrobnosti o aplikaci',
 
-        'hasCv' => 'Má CV',
+    'hasCv' => 'Má CV',
 
-        'noCv' => 'Video nebo Audio',
+    'noCv' => 'Video nebo Audio',
 
-        'statusYes' => 'Přijato',
+    'statusYes' => 'Přijato',
 
-        'statusPotentialUsers' => 'Potenciální zaměstnanci',
+    'statusPotentialUsers' => 'Potenciální zaměstnanci',
 
-        'statusNo' => 'Zamítnuto',
+    'statusNo' => 'Zamítnuto',
 
-        'statusMaybe' => 'V řešení',
+    'statusMaybe' => 'V řešení',
 
-        'noProject' => 'Žádná nabídka',
+    'noProject' => 'Žádná nabídka',
 
-        'file' => [
+    'file' => [
 
-            'singular' => 'soubor',
+        'singular' => 'soubor',
 
-            'plural' => 'soubory',
+        'plural' => 'soubory',
 
-        ],
+    ],
 
-        'anyImage' => 'jakýkoli obrázek',
+    'anyImage' => 'jakýkoli obrázek',
 
-        'anyVideo' => 'jakékoli video',
+    'anyVideo' => 'jakékoli video',
 
-        'goBack' => 'Zpět',
+    'goBack' => 'Zpět',
 
-        'dropFile' => 'Přetáhněte soubor sem pro odeslání',
+    'dropFile' => 'Přetáhněte soubor sem pro odeslání',
 
-        'dragHere' => 'Přetáhněte soubor sem',
+    'dragHere' => 'Přetáhněte soubor sem',
 
-        'remove' => 'Odebrat',
+    'remove' => 'Odebrat',
 
-        'download' => 'Stáhnout',
+    'download' => 'Stáhnout',
 
-        'files' => 'Soubory',
+    'files' => 'Soubory',
 
-        'verification' => 'Ověření',
+    'verification' => 'Ověření',
 
-        'captcha' => 'Pole ověření',
+    'captcha' => 'Pole ověření',
 
-        'aplicationWithoutRegister' => 'Aplikace bez registrace',
+    'aplicationWithoutRegister' => 'Aplikace bez registrace',
 
-        'apply' => 'Aplikovat',
+    'apply' => 'Aplikovat',
 
-        'applyWithoutLogin' => 'Aplikovat bez přihlášení',
+    'applyWithoutLogin' => 'Aplikovat bez přihlášení',
 
-        'applyWithoutLoginDesc' => 'Pro možnost aplikovat na inzeráty je nutné se nejprve přihlásit.',
+    'applyWithoutLoginDesc' => 'Pro možnost aplikovat na inzeráty je nutné se nejprve přihlásit.',
 
-        'refreshCapcha' => 'Obnovit CAPTCHA',
+    'refreshCapcha' => 'Obnovit CAPTCHA',
 
-        'agreements' => 'Souhlasy',
+    'agreements' => 'Souhlasy',
 
-        'agreementsRequired' => 'Označte všechny souhlasy',
+    'agreementsRequired' => 'Označte všechny souhlasy',
 
-        'agreementsSize' => 'Všechny souhlasy musí být označeny',
+    'agreementsSize' => 'Všechny souhlasy musí být označeny',
 
-        'makeAplication' => 'Aplikováno na nabídku',
+    'makeAplication' => 'Aplikováno na nabídku',
 
-        'youLoginAs' => 'Jste přihlášen(a) jako',
+    'youLoginAs' => 'Jste přihlášen(a) jako',
 
-        'aplicationsType' => 'Typ aplikace',
+    'aplicationsType' => 'Typ aplikace',
 
-        'aplicationsWorker' => 'Aplikace zaměstnance',
+    'aplicationsWorker' => 'Aplikace zaměstnance',
 
-        'deleteAplication' => 'Aplikace byla smazána',
+    'deleteAplication' => 'Aplikace byla smazána',
 
-        'recruitment' => 'Nábor',
+    'recruitment' => 'Nábor',
 
-        'applyViewBlocked' => 'Chybí oprávnění pro aplikaci na nabídku',
+    'applyViewBlocked' => 'Chybí oprávnění pro aplikaci na nabídku',
 
-        'cvTypeReset' => 'Vynulovat typ CV',
+    'cvTypeReset' => 'Vynulovat typ CV',
 
-        'cvTypeSelect' => 'Vyberte typ CV',
+    'cvTypeSelect' => 'Vyberte typ CV',
 
-        'generateCvVideo' => 'Nahrát Video CV',
+    'generateCvVideo' => 'Nahrát Video CV',
 
-        'videoRecording' => 'Nahrávání Video CV',
+    'videoRecording' => 'Nahrávání Video CV',
 
-        'recording' => 'Nahrávání',
+    'recording' => 'Nahrávání',
 
-        'paused' => 'Pozastaveno',
+    'paused' => 'Pozastaveno',
 
-        'noQuestionsFound' => 'Žádné otázky k nahrávání',
+    'noQuestionsFound' => 'Žádné otázky k nahrávání',
 
-        'noQuestionsDescription' => 'Pro tuto nabídku nebyly nalezeny žádné otázky. Kontaktujte náboráře.',
+    'noQuestionsDescription' => 'Pro tuto nabídku nebyly nalezeny žádné otázky. Kontaktujte náboráře.',
 
-        'uploading' => 'Odesílání',
+    'uploading' => 'Odesílání',
 
-        'recordingCompleted' => 'Nahrávání dokončeno',
+    'recordingCompleted' => 'Nahrávání dokončeno',
 
-        'recordingCompletedDescription' => 'Všechny otázky byly nahrány. Můžete přejít k dalšímu kroku.',
+    'recordingCompletedDescription' => 'Všechny otázky byly nahrány. Můžete přejít k dalšímu kroku.',
 
-        'cameraAccessError' => 'Chyba přístupu ke kameře. Ujistěte se, že jste udělili oprávnění k používání kamery a mikrofonu.',
+    'cameraAccessError' => 'Chyba přístupu ke kameře. Ujistěte se, že jste udělili oprávnění k používání kamery a mikrofonu.',
 
-        'generateCvAudio' => 'Nahrát Audio CV',
+    'generateCvAudio' => 'Nahrát Audio CV',
 
-        'testRecruitment' => 'Náborový test',
+    'testRecruitment' => 'Náborový test',
 
-        'aplyValidationNameRegex' => 'Pole může obsahovat pouze písmena, mezery, pomlčky, apostrofy a uvozovky.',
+    'aplyValidationNameRegex' => 'Pole může obsahovat pouze písmena, mezery, pomlčky, apostrofy a uvozovky.',
 
-        'birthdayDate' => 'Datum narození',
+    'birthdayDate' => 'Datum narození',
 
-        'inertiaDateApply' => 'Pole datum narození je povinné.',
+    'inertiaDateApply' => 'Pole datum narození je povinné.',
 
-        'inertiaDateFormatApply' => 'Formát data musí být dd-MM-yyyy',
+    'inertiaDateFormatApply' => 'Formát data musí být dd-MM-yyyy',
 
-        'inertiaDateFormatApply120' => 'Datum narození nesmí být starší než před 120 lety.',
+    'inertiaDateFormatApply120' => 'Datum narození nesmí být starší než před 120 lety.',
 
-        'inertiaCityRequired' => 'Pole město je povinné.',
+    'inertiaCityRequired' => 'Pole město je povinné.',
 
-        'inertiaCityLetters' => 'Město může obsahovat pouze písmena a mezery.',
+    'inertiaCityLetters' => 'Město může obsahovat pouze písmena a mezery.',
 
-        'applyPhone' => 'Telefonní číslo může obsahovat pouze číslice, mezery a volitelně znak plus na začátku.',
+    'applyPhone' => 'Telefonní číslo může obsahovat pouze číslice, mezery a volitelně znak plus na začátku.',
 
-        'inertiaPostalCodeRequired' => 'Pole poštovní směrovací číslo je povinné.',
+    'inertiaPostalCodeRequired' => 'Pole poštovní směrovací číslo je povinné.',
 
-        'inertiaPostalCodeFormat' => 'Poštovní směrovací číslo musí být v mezinárodním formátu, např. 90210 (USA) nebo AB12 3CD (EU).',
+    'inertiaPostalCodeFormat' => 'Poštovní směrovací číslo musí být v mezinárodním formátu, např. 90210 (USA) nebo AB12 3CD (EU).',
 
-        'inertiaCvStandardType' => 'Vyberte typ CV',
+    'inertiaCvStandardType' => 'Vyberte typ CV',
 
-        'inertiaInvalidValue' => 'Neodpovídající hodnoty',
+    'inertiaInvalidValue' => 'Neodpovídající hodnoty',
 
-        'fileCv' => 'Soubor CV',
+    'fileCv' => 'Soubor CV',
 
-        'fileCvRequired' => 'Soubor CV je povinný',
+    'fileCvRequired' => 'Soubor CV je povinný',
 
-        'experiencesRequired' => 'Praxe je povinná',
+    'experiencesRequired' => 'Praxe je povinná',
 
-        'educationsRequired' => 'Vzdělání je povinné',
+    'educationsRequired' => 'Vzdělání je povinné',
 
-        'coursesRequired' => 'Kurzy jsou povinné',
+    'coursesRequired' => 'Kurzy jsou povinné',
 
-        'courses' => 'Kurzy',
+    'courses' => 'Kurzy',
 
-        'experiencesEmployerChars' => 'Pole může obsahovat písmena, číslice, mezery, pomlčky, apostrofy a uvozovky.',
+    'experiencesEmployerChars' => 'Pole může obsahovat písmena, číslice, mezery, pomlčky, apostrofy a uvozovky.',
 
-        'experiencesEmployerRequired' => 'Pole název zaměstnavatele je povinné.',
+    'experiencesEmployerRequired' => 'Pole název zaměstnavatele je povinné.',
 
-        'coursesOrganizatorRequired' => 'Pole organizátor je povinné.',
+    'coursesOrganizatorRequired' => 'Pole organizátor je povinné.',
 
-        'employer' => 'Zaměstnavatel',
+    'employer' => 'Zaměstnavatel',
 
-        'experiencesDateRequired' => 'Datum je povinné',
+    'experiencesDateRequired' => 'Datum je povinné',
 
-        'experiencesPositionRequired' => 'Pole pozice je povinné.',
+    'experiencesPositionRequired' => 'Pole pozice je povinné.',
 
-        'coursesNameRequired' => 'Pole název je povinné.',
+    'coursesNameRequired' => 'Pole název je povinné.',
 
-        'experienceStart' => 'Doba trvání od',
+    'experienceStart' => 'Doba trvání od',
 
-        'experienceEnd' => 'Doba trvání do',
+    'experienceEnd' => 'Doba trvání do',
 
-        'currently' => 'Současně',
+    'currently' => 'Současně',
 
-        'dateAfterStartRequired' => 'Datum musí být pozdější než v poli doba trvání od',
+    'dateAfterStartRequired' => 'Datum musí být pozdější než v poli doba trvání od',
 
-        'school' => 'Škola',
+    'school' => 'Škola',
 
-        'experienceSchoolEnd' => 'Rok ukončení školy',
+    'experienceSchoolEnd' => 'Rok ukončení školy',
 
-        'specialization' => 'Specializace',
+    'specialization' => 'Specializace',
 
-        'levelEducation' => 'Úroveň vzdělání',
+    'levelEducation' => 'Úroveň vzdělání',
 
-        'levelLang' => 'Úroveň jazyka',
+    'levelLang' => 'Úroveň jazyka',
 
-        'educationsSchoolRequired' => 'Název školy je povinný',
+    'educationsSchoolRequired' => 'Název školy je povinný',
 
-        'educationsSchoolLevelRequired' => 'Úroveň vzdělání je povinná',
+    'educationsSchoolLevelRequired' => 'Úroveň vzdělání je povinná',
 
-        'deleteEducation' => 'Smazat vzdělání',
+    'deleteEducation' => 'Smazat vzdělání',
 
-        'deleteExperience' => 'Smazat praxi',
+    'deleteExperience' => 'Smazat praxi',
 
-        'deleteCourse' => 'Smazat kurz',
+    'deleteCourse' => 'Smazat kurz',
 
-        'deleteLang' => 'Smazat jazyk',
+    'deleteLang' => 'Smazat jazyk',
 
-        'addExperience' => 'Přidat praxi',
+    'addExperience' => 'Přidat praxi',
 
-        'addEducation' => 'Přidat vzdělání',
+    'addEducation' => 'Přidat vzdělání',
 
-        'addCourse' => 'Přidat kurz',
+    'addCourse' => 'Přidat kurz',
 
-        'experiencesSpecializationRequired' => 'Pole specializace je povinné',
+    'experiencesSpecializationRequired' => 'Pole specializace je povinné',
 
-        'organizator' => 'Organizátor kurzu',
+    'organizator' => 'Organizátor kurzu',
 
-        'date' => 'Datum',
+    'date' => 'Datum',
 
-        'addLang' => 'Přidat jazyk',
+    'addLang' => 'Přidat jazyk',
 
-        'langsRequired' => 'Jazyky jsou povinné',
+    'langsRequired' => 'Jazyky jsou povinné',
 
-        'langsNameRequired' => 'Název jazyka je povinný',
+    'langsNameRequired' => 'Název jazyka je povinný',
 
-        'levelUnique' => 'Tento jazyk již byl přidán',
+    'levelUnique' => 'Tento jazyk již byl přidán',
 
-        'langsLevelRequired' => 'Úroveň jazyka je povinná',
+    'langsLevelRequired' => 'Úroveň jazyka je povinná',
 
-        'tagdeselectLabel' => 'Přidat jako dovednost',
+    'tagdeselectLabel' => 'Přidat jako dovednost',
 
-        'tagselectLabel' => 'Klikněte pro výběr',
+    'tagselectLabel' => 'Klikněte pro výběr',
 
-        'tagselectedLabel' => 'Vybráno',
+    'tagselectedLabel' => 'Vybráno',
 
-        'tagPlaceholder' => 'Stiskněte Enter pro vytvoření',
+    'tagPlaceholder' => 'Stiskněte Enter pro vytvoření',
 
-        'tagplaceholder' => 'Hledejte nebo přidejte dovednost',
+    'tagplaceholder' => 'Hledejte nebo přidejte dovednost',
 
-        'tagmaxElements' => 'Je vybráno maximálně :max možností. Pro výběr jiné možnosti jednu odstraňte.',
+    'tagmaxElements' => 'Je vybráno maximálně :max možností. Pro výběr jiné možnosti jednu odstraňte.',
 
-        'skills' => 'Dovednosti',
+    'skills' => 'Dovednosti',
 
-        'previousStep' => 'Předchozí krok',
+    'previousStep' => 'Předchozí krok',
 
-        'label-idle' => 'PŘETÁHNĚTE SOUBORY SEM NEBO <span class=\'filepond--label-action\'>Procházet</span>',
+    'label-idle' => 'PŘETÁHNĚTE SOUBORY SEM NEBO <span class=\'filepond--label-action\'>Procházet</span>',
 
-        'labelFileProcessing' => 'Odesílání',
+    'labelFileProcessing' => 'Odesílání',
 
-        'labelInvalidField' => 'Pole obsahuje neplatné soubory',
+    'labelInvalidField' => 'Pole obsahuje neplatné soubory',
 
-        'labelFileWaitingForSize' => 'Čekání na velikost',
+    'labelFileWaitingForSize' => 'Čekání na velikost',
 
-        'labelFileSizeNotAvailable' => 'Velikost není k dispozici',
+    'labelFileSizeNotAvailable' => 'Velikost není k dispozici',
 
-        'labelFileLoading' => 'Načítání',
+    'labelFileLoading' => 'Načítání',
 
-        'labelFileLoadError' => 'Chyba při načítání',
+    'labelFileLoadError' => 'Chyba při načítání',
 
-        'labelFileProcessingComplete' => 'Úspěšně odesláno',
+    'labelFileProcessingComplete' => 'Úspěšně odesláno',
 
-        'labelFileProcessingAborted' => 'Odesílání zrušeno',
+    'labelFileProcessingAborted' => 'Odesílání zrušeno',
 
-        'labelFileProcessingError' => 'Chyba při odesílání',
+    'labelFileProcessingError' => 'Chyba při odesílání',
 
-        'labelFileProcessingRevertError' => 'Chyba při rušení',
+    'labelFileProcessingRevertError' => 'Chyba při rušení',
 
-        'labelFileRemoveError' => 'Chyba při mazání',
+    'labelFileRemoveError' => 'Chyba při mazání',
 
-        'labelTapToCancel' => 'Klikněte pro zrušení',
+    'labelTapToCancel' => 'Klikněte pro zrušení',
 
-        'labelTapToRetry' => 'Klikněte pro nový pokus',
+    'labelTapToRetry' => 'Klikněte pro nový pokus',
 
-        'labelTapToUndo' => 'Klikněte pro zpět',
+    'labelTapToUndo' => 'Klikněte pro zpět',
 
-        'labelButtonRemoveItem' => 'Smazat',
+    'labelButtonRemoveItem' => 'Smazat',
 
-        'labelButtonAbortItemLoad' => 'Zrušit',
+    'labelButtonAbortItemLoad' => 'Zrušit',
 
-        'labelButtonRetryItemLoad' => 'Zkusit znovu',
+    'labelButtonRetryItemLoad' => 'Zkusit znovu',
 
-        'labelButtonAbortItemProcessing' => 'Zrušit',
+    'labelButtonAbortItemProcessing' => 'Zrušit',
 
-        'labelButtonUndoItemProcessing' => 'Zpět',
+    'labelButtonUndoItemProcessing' => 'Zpět',
 
-        'labelButtonRetryItemProcessing' => 'Zkusit znovu',
+    'labelButtonRetryItemProcessing' => 'Zkusit znovu',
 
-        'labelButtonProcessItem' => 'Odeslat',
+    'labelButtonProcessItem' => 'Odeslat',
 
-        'labelMaxFileSizeExceeded' => 'Soubor je příliš velký',
+    'labelMaxFileSizeExceeded' => 'Soubor je příliš velký',
 
-        'labelMaxFileSize' => 'Maximální velikost souboru je {filesize}',
+    'labelMaxFileSize' => 'Maximální velikost souboru je {filesize}',
 
-        'labelMaxTotalFileSizeExceeded' => 'Maximální celková velikost souborů byla překročena',
+    'labelMaxTotalFileSizeExceeded' => 'Maximální celková velikost souborů byla překročena',
 
-        'labelMaxTotalFileSize' => 'Maximální celková velikost souborů je {filesize}',
+    'labelMaxTotalFileSize' => 'Maximální celková velikost souborů je {filesize}',
 
-        'fileValidateTypeLabelExpectedTypes' => 'Očekává se {allButLastType} nebo {lastType}',
+    'fileValidateTypeLabelExpectedTypes' => 'Očekává se {allButLastType} nebo {lastType}',
 
-        'photo' => 'fotografie',
+    'photo' => 'fotografie',
 
-        'photoDimensions' => 'Minimální velikost fotografie je 300x300px',
+    'photoDimensions' => 'Minimální velikost fotografie je 300x300px',
 
-        'chosetemplate' => 'Vyberte šablonu',
+    'chosetemplate' => 'Vyberte šablonu',
 
-        'toMuchElements' => 'Příliš mnoho prvků',
+    'toMuchElements' => 'Příliš mnoho prvků',
 
-        'limitComplete' => 'Limitu bylo dosaženo',
+    'limitComplete' => 'Limitu bylo dosaženo',
 
-        'form_error' => 'Formulář obsahuje chyby. Zkontrolujte označená pole.',
+    'form_error' => 'Formulář obsahuje chyby. Zkontrolujte označená pole.',
 
-        'experience_error' => 'Vyplňte chybějící údaje v sekci praxe',
+    'experience_error' => 'Vyplňte chybějící údaje v sekci praxe',
 
-        'education_error' => 'Vyplňte chybějící údaje v sekci vzdělání',
+    'education_error' => 'Vyplňte chybějící údaje v sekci vzdělání',
 
-        'course_error' => 'Vyplňte chybějící údaje v sekci kurzy',
+    'course_error' => 'Vyplňte chybějící údaje v sekci kurzy',
 
-        'lang_error' => 'Vyplňte chybějící údaje v sekci jazyky',
+    'lang_error' => 'Vyplňte chybějící údaje v sekci jazyky',
 
-        'inertiatemplateCvRequired' => 'Vyberte šablonu CV',
+    'inertiatemplateCvRequired' => 'Vyberte šablonu CV',
 
-        'generateCv' => 'Generovat CV',
+    'generateCv' => 'Generovat CV',
 
-        'viewCv' => 'Náhled CV',
+    'viewCv' => 'Náhled CV',
 
+    // Tłumaczenia dla VideoRecorder
 
+    'videoPreview' => 'Náhled nahrávky',
 
-        // Tłumaczenia dla VideoRecorder
+    'remainingTime' => 'Zbývající čas',
 
-        'videoPreview' => 'Náhled nahrávky',
+    'nextQuestion' => 'Následující otázka',
 
-        'remainingTime' => 'Zbývající čas',
+    'startRecording' => 'Spustit nahrávání',
 
-        'nextQuestion' => 'Následující otázka',
+    'stopRecording' => 'Zastavit nahrávání',
 
-        'startRecording' => 'Spustit nahrávání',
+    'uploadingVideo' => 'Odesílání videa',
 
-        'stopRecording' => 'Zastavit nahrávání',
+    'uploadError' => 'Chyba při nahrávání',
 
-        'uploadingVideo' => 'Odesílání videa',
+    'recordingSaved' => 'Nahrávka byla úspěšně uložena!',
 
-        'uploadError' => 'Chyba při nahrávání',
+    'audioPreview' => 'Přehrát nahrávku',
 
-        'recordingSaved' => 'Nahrávka byla úspěšně uložena!',
+    'uploadingAudio' => 'Odesílání audia',
 
-        'audioPreview' => 'Přehrát nahrávku',
+    'audioRecording' => 'Nahrávání Audio CV',
 
-        'uploadingAudio' => 'Odesílání audia',
+    'audioRecordingSaved' => 'Audio nahrávka byla úspěšně uložena!',
 
-        'audioRecording' => 'Nahrávání Audio CV',
+    'audioError' => 'Chyba při nahrávání audia',
 
-        'audioRecordingSaved' => 'Audio nahrávka byla úspěšně uložena!',
+    'audioRecorded' => 'Audio bylo úspěšně nahráno',
 
-        'audioError' => 'Chyba při nahrávání audia',
+    'continueRecording' => 'Pokračovat v nahrávání',
 
-        'audioRecorded' => 'Audio bylo úspěšně nahráno',
+    'audioPaused' => 'Nahrávání pozastaveno',
 
-        'continueRecording' => 'Pokračovat v nahrávání',
+    'resumeRecording' => 'Obnovit nahrávání',
 
-        'audioPaused' => 'Nahrávání pozastaveno',
+    'pauseRecording' => 'Pozastavit nahrávání',
 
-        'resumeRecording' => 'Obnovit nahrávání',
+    'audioPermissionError' => 'Chyba přístupu k mikrofonu',
 
-        'pauseRecording' => 'Pozastavit nahrávání',
+    'microphoneAccess' => 'Udělit přístup k mikrofonu',
 
-        'audioPermissionError' => 'Chyba přístupu k mikrofonu',
+    'microphoneRequired' => 'Je vyžadován přístup k mikrofonu',
 
-        'microphoneAccess' => 'Udělit přístup k mikrofonu',
+    'finish' => 'Ukončit',
 
-        'microphoneRequired' => 'Je vyžadován přístup k mikrofonu',
+    'playback' => 'Přehrávání',
 
-        'finish' => 'Ukončit',
+    'restartRecording' => 'Spustit nahrávání znovu',
 
-        'playback' => 'Přehrávání',
+    'skipQuestion' => 'Přeskočit otázku',
 
-        'restartRecording' => 'Spustit nahrávání znovu',
+    'listeningPreview' => 'Poslech nahrávky',
 
-        'skipQuestion' => 'Přeskočit otázku',
+    'retryAudio' => 'Zkusit znovu',
 
-        'listeningPreview' => 'Poslech nahrávky',
+    'saveAudio' => 'Uložit nahrávku',
 
-        'retryAudio' => 'Zkusit znovu',
+    'recordingComplete' => 'Nahrávání dokončeno',
 
-        'saveAudio' => 'Uložit nahrávku',
+    'timeLeft' => 'Zbývající čas',
 
-        'recordingComplete' => 'Nahrávání dokončeno',
+    'processingAudio' => 'Zpracování nahrávky',
 
-        'timeLeft' => 'Zbývající čas',
+    'pleaseWait' => 'Prosím čekejte',
 
-        'processingAudio' => 'Zpracování nahrávky',
+    'anonymousRecording' => 'Anonymní nahrávání',
 
-        'pleaseWait' => 'Prosím čekejte',
+    'audioIntro' => 'Nahrajte své hlasové odpovědi',
 
-        'anonymousRecording' => 'Anonymní nahrávání',
+    'audioInstructions' => 'Odpovězte na otázky nahráním svého hlasu',
 
-        'audioIntro' => 'Nahrajte své hlasové odpovědi',
+    'cancelRecording' => 'Zrušit nahrávání',
 
-        'audioInstructions' => 'Odpovězte na otázky nahráním svého hlasu',
+    'readyRecording' => 'Připraveno k nahrávání',
 
-        'cancelRecording' => 'Zrušit nahrávání',
+    'preparingRecording' => 'Příprava nahrávání',
 
-        'readyRecording' => 'Připraveno k nahrávání',
+    'recordingInstructions' => 'Mluvte hlasitě a přímo do mikrofonu',
 
-        'preparingRecording' => 'Příprava nahrávání',
+    'audioNotSupported' => 'Váš prohlížeč nepodporuje nahrávání zvuku',
 
-        'recordingInstructions' => 'Mluvte hlasitě a přímo do mikrofonu',
+    'deviceError' => 'Došlo k chybě audio zařízení',
 
-        'audioNotSupported' => 'Váš prohlížeč nepodporuje nahrávání zvuku',
+    'checkMicrophoneAccess' => 'Zkontrolujte oprávnění k mikrofonu v nastavení prohlížeče',
 
-        'deviceError' => 'Došlo k chybě audio zařízení',
+    'speakLoudly' => 'Mluvte hlasitě a zřetelně',
 
-        'checkMicrophoneAccess' => 'Zkontrolujte oprávnění k mikrofonu v nastavení prohlížeče',
+    'submittingRecording' => 'Odesílání nahrávky',
 
-        'speakLoudly' => 'Mluvte hlasitě a zřetelně',
+    'processingSubmission' => 'Zpracování odeslání',
 
-        'submittingRecording' => 'Odesílání nahrávky',
+    'reconnecting' => 'Opětovné připojování...',
 
-        'processingSubmission' => 'Zpracování odeslání',
+    'networkError' => 'Chyba sítě',
 
-        'reconnecting' => 'Opětovné připojování...',
+    'connectionLost' => 'Připojení bylo ztraceno',
 
-        'networkError' => 'Chyba sítě',
+    'retryConnection' => 'Opakovat připojení',
 
-        'connectionLost' => 'Připojení bylo ztraceno',
+    'invalidFile' => 'Neplatný formát audio souboru',
 
-        'retryConnection' => 'Opakovat připojení',
+    'fileTooLarge' => 'Audio soubor je příliš velký',
 
-        'invalidFile' => 'Neplatný formát audio souboru',
+    'audioProcessingError' => 'Chyba při zpracování nahrávky',
 
-        'fileTooLarge' => 'Audio soubor je příliš velký',
+    'deleteRecording' => 'Smazat nahrávku',
 
-        'audioProcessingError' => 'Chyba při zpracování nahrávky',
+    'audioWarning' => 'Upozornění k nahrávce',
 
-        'deleteRecording' => 'Smazat nahrávku',
+    'confirmDeleteAudio' => 'Opravdu chcete smazat tuto nahrávku?',
 
-        'audioWarning' => 'Upozornění k nahrávce',
+    'recordingDeleted' => 'Nahrávka byla smazána',
 
-        'confirmDeleteAudio' => 'Opravdu chcete smazat tuto nahrávku?',
+    'recordingInProgress' => 'Probíhá nahrávání',
 
-        'recordingDeleted' => 'Nahrávka byla smazána',
+    'confirmStopRecording' => 'Opravdu chcete zastavit nahrávání?',
 
-        'recordingInProgress' => 'Probíhá nahrávání',
+    'audioSavedAs' => 'Nahrávka uložena jako',
 
-        'confirmStopRecording' => 'Opravdu chcete zastavit nahrávání?',
+    'editAudioTitle' => 'Upravit název nahrávky',
 
-        'audioSavedAs' => 'Nahrávka uložena jako',
+    'audioFiles' => 'Audio soubory',
 
-        'editAudioTitle' => 'Upravit název nahrávky',
+    'audioSettings' => 'Nastavení audia',
 
-        'audioFiles' => 'Audio soubory',
+    'audioQuality' => 'Kvalita nahrávky',
 
-        'audioSettings' => 'Nastavení audia',
+    'audioFormat' => 'Formát audia',
 
-        'audioQuality' => 'Kvalita nahrávky',
+    'noAudioRecorded' => 'Dosud nebyl nahrán žádný zvuk',
 
-        'audioFormat' => 'Formát audia',
+    'audioUploadProgress' => 'Průběh odesílání',
 
-        'noAudioRecorded' => 'Dosud nebyl nahrán žádný zvuk',
+    'audioUploadComplete' => 'Odesílání dokončeno',
 
-        'audioUploadProgress' => 'Průběh odesílání',
+    'selectAudioDevice' => 'Vyberte audio zařízení',
 
-        'audioUploadComplete' => 'Odesílání dokončeno',
+    'audioDevices' => 'Audio zařízení',
 
-        'selectAudioDevice' => 'Vyberte audio zařízení',
+    'defaultDevice' => 'Výchozí zařízení',
 
-        'audioDevices' => 'Audio zařízení',
+    'noAudioDevicesFound' => 'Nebyla nalezena žádná audio zařízení',
 
-        'defaultDevice' => 'Výchozí zařízení',
+    'checkMicrophone' => 'Zkontrolovat mikrofon',
 
-        'noAudioDevicesFound' => 'Nebyla nalezena žádná audio zařízení',
+    'testRecording' => 'Test nahrávání',
 
-        'checkMicrophone' => 'Zkontrolovat mikrofon',
+    'speakNow' => 'Mluvte nyní',
 
-        'testRecording' => 'Test nahrávání',
+    'testComplete' => 'Test dokončen',
 
-        'speakNow' => 'Mluvte nyní',
+    'audioTooShort' => 'Nahrávka je příliš krátká',
 
-        'testComplete' => 'Test dokončen',
+    'minimumRecordingTime' => 'Minimální doba nahrávání je',
 
-        'audioTooShort' => 'Nahrávka je příliš krátká',
+    'seconds' => 'sekund',
 
-        'minimumRecordingTime' => 'Minimální doba nahrávání je',
+    'recordingFinished' => 'Nahrávání bylo ukončeno',
 
-        'seconds' => 'sekund',
+    'reviewRecording' => 'Zkontrolovat nahrávku',
 
-        'recordingFinished' => 'Nahrávání bylo ukončeno',
+    'submitRecording' => 'Odeslat nahrávku',
 
-        'reviewRecording' => 'Zkontrolovat nahrávku',
+    // Tłumaczenia dla pytań oferty
 
-        'submitRecording' => 'Odeslat nahrávku',
+    'projectQuestions' => 'Otázky k nabídce',
 
+    'questionContent' => 'Obsah otázky',
 
+    'answerTime' => 'Čas na odpověď (sekundy)',
 
-        // Tłumaczenia dla pytań oferty
+    'addQuestion' => 'Přidat otázku',
 
-        'projectQuestions' => 'Otázky k nabídce',
+    'noQuestionsAdded' => 'Dosud nebyly přidány žádné otázky',
 
-        'questionContent' => 'Obsah otázky',
+    'questionsInfo' => 'Informace o otázkách',
 
-        'answerTime' => 'Čas na odpověď (sekundy)',
+    'questionsDescription' => 'Přidejte otázky, které budou kladeny kandidátům. Můžete přidat maximálně 10 otázek. U každé otázky určete čas na odpověď.',
 
-        'addQuestion' => 'Přidat otázku',
+    'select_appropriate_value' => 'Vyberte odpovídající hodnotu',
 
-        'noQuestionsAdded' => 'Dosud nebyly přidány žádné otázky',
+    'enter_question_content' => 'Přidejte obsah otázky',
 
-        'questionsInfo' => 'Informace o otázkách',
+    'questions_required' => 'Přidat otázku',
 
-        'questionsDescription' => 'Přidejte otázky, které budou kladeny kandidátům. Můžete přidat maximálně 10 otázek. U každé otázky určete čas na odpověď.',
+    'addedFiles' => 'Přiložené soubory',
 
-        'select_appropriate_value' => 'Vyberte odpovídající hodnotu',
+    'New' => 'Možná',
 
-        'enter_question_content' => 'Přidejte obsah otázky',
+    'No' => 'Koš',
 
-        'questions_required' => 'Přidat otázku',
+    // Dodane tłumaczenia dla notatek
 
-        'addedFiles' => 'Přiložené soubory',
+    'noteCannotBeEmpty' => 'Poznámka nesmí být prázdná',
 
-        'New' => 'Možná',
+    'noteTooLong' => 'Poznámka je příliš dlouhá (maximálně 500 znaků)',
 
-        'No' => 'Koš',
+    'confirmDeleteNote' => 'Opravdu chcete tuto poznámku smazat?',
 
-        // Dodane tłumaczenia dla notatek
+    'editNote' => 'Upravit poznámku',
 
-        'noteCannotBeEmpty' => 'Poznámka nesmí být prázdná',
+    'addNote' => 'Přidat poznámku',
 
-        'noteTooLong' => 'Poznámka je příliš dlouhá (maximálně 500 znaků)',
+    'deleteNote' => 'Smazat poznámku',
 
-        'confirmDeleteNote' => 'Opravdu chcete tuto poznámku smazat?',
+    'noteContent' => 'Obsah poznámky',
 
-        'editNote' => 'Upravit poznámku',
+    'enterNoteContent' => 'Zadejte obsah poznámky',
 
-        'addNote' => 'Přidat poznámku',
+    'save' => 'Uložit',
 
-        'deleteNote' => 'Smazat poznámku',
+    'notes' => 'Poznámky',
 
-        'noteContent' => 'Obsah poznámky',
+    'addAnotherNote' => 'Přidat další poznámku',
 
-        'enterNoteContent' => 'Zadejte obsah poznámky',
+    'aplicationDetails' => 'Podrobnosti o aplikaci',
 
-        'save' => 'Uložit',
+    'noteUpdated' => 'Poznámka byla aktualizována',
 
-        'notes' => 'Poznámky',
+    'noteDeleted' => 'Poznámka byla smazána',
 
-        'addAnotherNote' => 'Přidat další poznámku',
+    'noteAdded' => 'Poznámka byla přidána',
 
-        'aplicationDetails' => 'Podrobnosti o aplikaci',
+    'noNotes' => 'Žádné poznámky',
 
-        'noteUpdated' => 'Poznámka byla aktualizována',
+    'welcomeWork' => 'Vítejte ve Work4global',
 
-        'noteDeleted' => 'Poznámka byla smazána',
+    'admin-questions' => 'Schválení otázek',
 
-        'noteAdded' => 'Poznámka byla přidána',
+    'user' => 'Uživatel',
 
-        'noNotes' => 'Žádné poznámky',
+    'accepted' => 'Schváleno',
 
-        'welcomeWork' => 'Vítejte ve Work4global',
+    'id_project' => 'Id nabídky',
 
-        'admin-questions' => 'Schválení otázek',
+    'questionAccepted' => 'Otázka byla schválena',
 
-        'user' => 'Uživatel',
+    'questionRejected' => 'Otázka byla zamítnuta',
 
-        'accepted' => 'Schváleno',
+    'bannerAccepted' => 'Banner byl schválen',
 
-        'id_project' => 'Id nabídky',
+    'bannerRejected' => 'Banner byl zamítnut',
 
-        'questionAccepted' => 'Otázka byla schválena',
+    'articleAccepted' => 'Článek byl schválen',
 
-        'questionRejected' => 'Otázka byla zamítnuta',
+    'articleRejected' => 'Článek byl zamítnut',
 
-        'bannerAccepted' => 'Banner byl schválen',
+    'question' => 'Otázka',
 
-        'bannerRejected' => 'Banner byl zamítnut',
+    'panelAdmin' => 'Administrátorský panel',
 
-        'articleAccepted' => 'Článek byl schválen',
+    'panelAdminGoTo' => 'Přejít na otázky',
 
-        'articleRejected' => 'Článek byl zamítnut',
+    'panelAdminQuestions' => 'Otázky čekající na schválení',
 
-        'question' => 'Otázka',
+    'duplicate' => 'Duplikovat',
 
-        'panelAdmin' => 'Administrátorský panel',
+    'projectDuplicated' => 'Nabídka byla úspěšně duplikována',
 
-        'panelAdminGoTo' => 'Přejít na otázky',
+    'driveLicense' => 'Řidičský průkaz sk. B',
 
-        'panelAdminQuestions' => 'Otázky čekající na schválení',
+    'exporting' => 'Exportování...',
 
-        'duplicate' => 'Duplikovat',
+    'exportToCsv' => 'Exportovat do tabulkového procesoru',
 
-        'projectDuplicated' => 'Nabídka byla úspěšně duplikována',
+    'applys' => 'aplikací',
 
-        'driveLicense' => 'Řidičský průkaz sk. B',
+    'color' => 'Barva profilu',
 
-        'exporting' => 'Exportování...',
+    'colorHelper' => 'Vyberte barvu, která bude použita v profilu náboráře',
 
-        'exportToCsv' => 'Exportovat do tabulkového procesoru',
+    'colorOptional' => 'Toto pole je volitelné',
 
-        'applys' => 'aplikací',
+    'whoOpened' => 'Kdo otevřel',
 
-        'color' => 'Barva profilu',
+    'whoChangedStatus' => 'Kdo změnil stav',
 
-        'colorHelper' => 'Vyberte barvu, která bude použita v profilu náboráře',
+    'notViewed' => 'Nezobrazeno',
 
-        'colorOptional' => 'Toto pole je volitelné',
+    'cvAudio' => 'CV v audio formě',
 
-        'whoOpened' => 'Kdo otevřel',
+    'cvVideo' => 'CV ve video formě',
 
-        'whoChangedStatus' => 'Kdo změnil stav',
+    'noPoints' => 'NEDOSTATEK BODŮ. Pro provedení akce si zakupte body',
 
-        'notViewed' => 'Nezobrazeno',
+    'noPointsTitle' => 'NEDOSTATEK BODŮ',
 
-        'cvAudio' => 'CV v audio formě',
+    'ok' => 'OK',
 
-        'cvVideo' => 'CV ve video formě',
+    'error' => 'Chyba',
 
-        'noPoints' => 'NEDOSTATEK BODŮ. Pro provedení akce si zakupte body',
+    'exportError' => 'Při exportu došlo k chybě.',
 
-        'noPointsTitle' => 'NEDOSTATEK BODŮ',
+    'candidateQuestions' => 'Přidání a otázky pro kandidáty',
 
-        'ok' => 'OK',
+    'questionsList' => 'Seznam otázek',
 
-        'error' => 'Chyba',
+    'editQuestion' => 'Upravit otázku',
 
-        'exportError' => 'Při exportu došlo k chybě.',
+    'questionAdded' => 'Otázka byla přidána',
 
-        'candidateQuestions' => 'Přidání a otázky pro kandidáty',
+    'questionUpdated' => 'Otázka byla aktualizována',
 
-        'questionsList' => 'Seznam otázek',
+    'questionDeleted' => 'Otázka byla smazána',
 
-        'editQuestion' => 'Upravit otázku',
+    'questionStatusChanged' => 'Stav otázky byl změněn',
 
-        'questionAdded' => 'Otázka byla přidána',
+    'answerType' => 'Typ odpovědi',
 
-        'questionUpdated' => 'Otázka byla aktualizována',
+    'text' => 'Text',
 
-        'questionDeleted' => 'Otázka byla smazána',
+    'yesNo' => 'Ano/Ne',
 
-        'questionStatusChanged' => 'Stav otázky byl změněn',
+    'inactive' => 'Neaktivní',
 
-        'answerType' => 'Typ odpovědi',
+    'status' => 'Stav',
 
-        'text' => 'Text',
+    'noQuestionsAvailable' => 'Nejsou dostupné žádné otázky',
 
-        'yesNo' => 'Ano/Ne',
+    'saveAnswers' => 'Uložit odpovědi',
 
-        'inactive' => 'Neaktivní',
+    'deleteQuestion' => 'Smazání otázky',
 
-        'status' => 'Stav',
+    'confirmDeleteQuestion' => 'Potvrzení smazání otázky',
 
-        'noQuestionsAvailable' => 'Nejsou dostupné žádné otázky',
+    'answersUpdated' => 'Odpovědi byly aktualizovány',
 
-        'saveAnswers' => 'Uložit odpovědi',
+    'unlockQuestions' => 'Odblokovat otázky',
 
-        'deleteQuestion' => 'Smazání otázky',
+    'unlockQuestionsInfo' => 'Chcete-li zobrazit otázky a odpovědi kandidáta, musíte tuto sekci odblokovat.',
 
-        'confirmDeleteQuestion' => 'Potvrzení smazání otázky',
+    'questionsUnlocked' => 'Otázky byly odblokovány',
 
-        'answersUpdated' => 'Odpovědi byly aktualizovány',
+    'questionsAlreadyUnlocked' => 'Otázky jsou již odblokovány',
 
-        'unlockQuestions' => 'Odblokovat otázky',
+    'questionsNotUnlocked' => 'Nejprve musíte odblokovat otázky',
 
-        'unlockQuestionsInfo' => 'Chcete-li zobrazit otázky a odpovědi kandidáta, musíte tuto sekci odblokovat.',
+    'confirmUnlockQuestions' => 'Opravdu chcete odblokovat otázky? Z vašeho účtu bude odečteno 200 bodů.',
 
-        'questionsUnlocked' => 'Otázky byly odblokovány',
+    'additionalQuestionsToCandidate' => 'Dodatečné otázky pro kandidáta',
 
-        'questionsAlreadyUnlocked' => 'Otázky jsou již odblokovány',
+    'unlockQuestionsDate' => 'Odblokování otázek:',
 
-        'questionsNotUnlocked' => 'Nejprve musíte odblokovat otázky',
+    'answersRequired' => 'Odpovědi jsou povinné.',
 
-        'confirmUnlockQuestions' => 'Opravdu chcete odblokovat otázky? Z vašeho účtu bude odečteno 200 bodů.',
+    'allAnswersRequired' => 'Odpovězte prosím na všechny otázky.',
 
-        'additionalQuestionsToCandidate' => 'Dodatečné otázky pro kandidáta',
+    'validationError' => 'Chyba validace',
 
-        'unlockQuestionsDate' => 'Odblokování otázek:',
+    'listQuestions' => 'Seznam otázek',
 
-        'answersRequired' => 'Odpovědi jsou povinné.',
+    'addNewQuestion' => 'Přidat novou otázku',
 
-        'allAnswersRequired' => 'Odpovězte prosím na všechny otázky.',
+    'candidateQuestionsUnlockedDate' => 'Otázky odblokovány dne:',
 
-        'validationError' => 'Chyba validace',
+    'noAnswers' => 'Žádné odpovědi kandidáta',
 
-        'listQuestions' => 'Seznam otázek',
+    'textAnswerRequired' => 'Textová odpověď je povinná.',
 
-        'addNewQuestion' => 'Přidat novou otázku',
+    'booleanAnswerRequired' => 'Odpověď ano/ne je povinná.',
 
-        'candidateQuestionsUnlockedDate' => 'Otázky odblokovány dne:',
+    'textAnswerTooLong' => 'Textová odpověď je příliš dlouhá. Maximální délka je 1000 znaků.',
 
-        'noAnswers' => 'Žádné odpovědi kandidáta',
+    'booleanAnswerInvalid' => 'Neplatná odpověď ano/ne.',
 
-        'textAnswerRequired' => 'Textová odpověď je povinná.',
+    'externalCompanies' => 'Externí firmy',
 
-        'booleanAnswerRequired' => 'Odpověď ano/ne je povinná.',
+    'externalCompany' => 'Externí firma',
 
-        'textAnswerTooLong' => 'Textová odpověď je příliš dlouhá. Maximální délka je 1000 znaků.',
+    'abbreviation' => 'zkratka',
 
-        'booleanAnswerInvalid' => 'Neplatná odpověď ano/ne.',
+    'createExternalCompany' => 'Vytvořit externí firmu',
 
-        'externalCompanies' => 'Externí firmy',
+    'editExternalCompany' => 'Upravit externí firmu',
 
-        'externalCompany' => 'Externí firma',
+    'externalCompanyInfo' => 'Informace o externí firmě',
 
-        'abbreviation' => 'zkratka',
+    'externalCompanyEditDescription' => 'Upravit informace o externí firmě.',
 
-        'createExternalCompany' => 'Vytvořit externí firmu',
+    'noExternalCompanies' => 'Žádné externí firmy',
 
-        'editExternalCompany' => 'Upravit externí firmu',
+    'addedExternalCompany' => 'Externí firma byla přidána',
 
-        'externalCompanyInfo' => 'Informace o externí firmě',
+    'updatedExternalCompany' => 'Externí firma byla aktualizována',
 
-        'externalCompanyEditDescription' => 'Upravit informace o externí firmě.',
+    'deleteExternalCompany' => 'Externí firma byla smazána',
 
-        'noExternalCompanies' => 'Žádné externí firmy',
+    'confirmDeleteExternalCompany' => 'Opravdu chcete smazat tuto externí firmu?',
 
-        'addedExternalCompany' => 'Externí firma byla přidána',
+    'abbreviationHelper' => 'Zkratka by měla obsahovat pouze velká písmena',
 
-        'updatedExternalCompany' => 'Externí firma byla aktualizována',
+    'candidates' => 'Kandidáti',
 
-        'deleteExternalCompany' => 'Externí firma byla smazána',
+    'candidatesList' => 'Najít kandidáta',
 
-        'confirmDeleteExternalCompany' => 'Opravdu chcete smazat tuto externí firmu?',
+    'candidatesListP' => 'Umožní zařadit kandidáta do konkrétní skupiny, kterou si sami vytvoříte',
 
-        'abbreviationHelper' => 'Zkratka by měla obsahovat pouze velká písmena',
+    'filterCandidates' => 'Filtrovat kandidáty',
 
-        'candidates' => 'Kandidáti',
+    'noCandidatesAvailable' => 'Nejsou dostupní žádní kandidáti',
 
-        'candidatesList' => 'Najít kandidáta',
+    'candidateDetails' => 'Podrobnosti o kandidátovi',
 
-        'candidatesListP' => 'Umožní zařadit kandidáta do konkrétní skupiny, kterou si sami vytvoříte',
+    'workerDetails' => 'Podrobnosti o zaměstnanci',
 
-        'filterCandidates' => 'Filtrovat kandidáty',
+    'editWorker' => 'Upravit zaměstnance',
 
-        'noCandidatesAvailable' => 'Nejsou dostupní žádní kandidáti',
+    'entries' => 'záznamů',
 
-        'candidateDetails' => 'Podrobnosti o kandidátovi',
+    'backToCandidates' => 'Zpět na seznam kandidátů',
 
-        'workerDetails' => 'Podrobnosti o zaměstnanci',
+    'candidateInfo' => 'Informace o kandidátovi',
 
-        'editWorker' => 'Upravit zaměstnance',
+    'candidateCV' => 'CV kandidáta',
 
-        'entries' => 'záznamů',
+    'downloadCV' => 'Stáhnout CV',
 
-        'backToCandidates' => 'Zpět na seznam kandidátů',
+    'noCVAvailable' => 'Žádné CV k dispozici',
 
-        'candidateInfo' => 'Informace o kandidátovi',
+    'noNotesAvailable' => 'Žádné poznámky k dispozici',
 
-        'candidateCV' => 'CV kandidáta',
+    'noProjectInfo' => 'Žádné informace o projektu',
 
-        'downloadCV' => 'Stáhnout CV',
+    'enterName' => 'Zadejte jméno',
 
-        'noCVAvailable' => 'Žádné CV k dispozici',
+    'enterSurname' => 'Zadejte příjmení',
 
-        'noNotesAvailable' => 'Žádné poznámky k dispozici',
+    'enterEmail' => 'Zadejte e-mail',
 
-        'noProjectInfo' => 'Žádné informace o projektu',
+    'enterPhone' => 'Zadejte telefon',
 
-        'enterName' => 'Zadejte jméno',
+    'nrPhone' => 'Zadejte telefon',
 
-        'enterSurname' => 'Zadejte příjmení',
+    'allProjects' => 'Všechny nabídky',
 
-        'enterEmail' => 'Zadejte e-mail',
+    'statusPending' => 'Čekající',
 
-        'enterPhone' => 'Zadejte telefon',
+    'candidateProjects' => 'Nabídky kandidáta',
 
-        'nrPhone' => 'Zadejte telefon',
+    'allCandidateProjects' => 'Všechny nabídky kandidáta',
 
-        'allProjects' => 'Všechny nabídky',
+    'noProjectsAvailable' => 'Nejsou dostupné žádné nabídky',
 
-        'statusPending' => 'Čekající',
+    'createdAt' => 'Datum vytvoření',
 
-        'candidateProjects' => 'Nabídky kandidáta',
+    'applicationDate' => 'Datum aplikace',
 
-        'allCandidateProjects' => 'Všechny nabídky kandidáta',
+    'tags' => 'Tagy',
 
-        'noProjectsAvailable' => 'Nejsou dostupné žádné nabídky',
+    'createTag' => 'Vytvořit tag',
 
-        'createdAt' => 'Datum vytvoření',
+    'tagInfo' => 'Informace pro vytvoření tagu',
 
-        'applicationDate' => 'Datum aplikace',
+    'tagDescription' => 'Popis pro vytvoření tagu',
 
-        'tags' => 'Tagy',
+    'tagEditDescription' => 'úprava popisu tagu',
 
-        'createTag' => 'Vytvořit tag',
+    'addedTag' => 'Tag byl přidán',
 
-        'tagInfo' => 'Informace pro vytvoření tagu',
+    'editTag' => 'Úprava tagu',
 
-        'tagDescription' => 'Popis pro vytvoření tagu',
+    'updatedTag' => 'Tag byl aktualizován',
 
-        'tagEditDescription' => 'úprava popisu tagu',
+    'deleteTag' => 'Tag byl smazán',
 
-        'addedTag' => 'Tag byl přidán',
+    'noTags' => 'Žádné tagy',
 
-        'editTag' => 'Úprava tagu',
+    'confirmDeleteTag' => 'Chcete smazat tag',
 
-        'updatedTag' => 'Tag byl aktualizován',
+    'projectDetails' => 'Podrobnosti nabídek',
 
-        'deleteTag' => 'Tag byl smazán',
+    'projectWithoutTitle' => 'Nabídka bez názvu',
 
-        'noTags' => 'Žádné tagy',
+    'country' => 'Země',
 
-        'confirmDeleteTag' => 'Chcete smazat tag',
+    'viewApplication' => 'Zobrazit aplikaci',
 
-        'projectDetails' => 'Podrobnosti nabídek',
+    'professionCategories' => 'Profesní kategorie',
 
-        'projectWithoutTitle' => 'Nabídka bez názvu',
+    'customTags' => 'Vlastní tagy',
 
-        'country' => 'Země',
+    'selectedTags' => 'Vybrané tagy',
 
-        'viewApplication' => 'Zobrazit aplikaci',
+    'noCategoriesAvailable' => 'Nejsou dostupné žádné kategorie',
 
-        'professionCategories' => 'Profesní kategorie',
+    'noTagsAvailable' => 'Nejsou dostupné žádné tagy',
 
-        'customTags' => 'Vlastní tagy',
+    'noTagsSelected' => 'Nebyly vybrány žádné tagy',
 
-        'selectedTags' => 'Vybrané tagy',
+    'saveTags' => 'Uložit tagy',
 
-        'noCategoriesAvailable' => 'Nejsou dostupné žádné kategorie',
+    'saving' => 'Ukládání',
 
-        'noTagsAvailable' => 'Nejsou dostupné žádné tagy',
+    'previous' => 'Předchozí',
 
-        'noTagsSelected' => 'Nebyly vybrány žádné tagy',
+    'next' => 'Následující',
 
-        'saveTags' => 'Uložit tagy',
+    'page' => 'Strana',
 
-        'saving' => 'Ukládání',
+    'updateTags' => 'Aktualizace tagů',
 
-        'previous' => 'Předchozí',
+    'searchCategories' => 'Hledat kategorie',
 
-        'next' => 'Následující',
+    'searchCustomTags' => 'Hledat tagy',
 
-        'page' => 'Strana',
+    'clearSearch' => 'Vymazat hledání',
 
-        'updateTags' => 'Aktualizace tagů',
+    'noMatchingTags' => 'Nenalezeny žádné odpovídající tagy',
 
-        'searchCategories' => 'Hledat kategorie',
+    'noMatchingCategories' => 'Nenalezeny žádné odpovídající kategorie',
 
-        'searchCustomTags' => 'Hledat tagy',
+    'errorUpdatingTags' => 'Chyba při aktualizaci tagů',
 
-        'clearSearch' => 'Vymazat hledání',
+    'notifications' => 'Upozornění',
 
-        'noMatchingTags' => 'Nenalezeny žádné odpovídající tagy',
+    'yourNotifications' => 'Vaše upozornění',
 
-        'noMatchingCategories' => 'Nenalezeny žádné odpovídající kategorie',
+    'noNotificationsYet' => 'Zatím nemáte žádná upozornění',
 
-        'errorUpdatingTags' => 'Chyba při aktualizaci tagů',
+    'viewAllNotifications' => 'Zobrazit všechna upozornění',
 
-        'notifications' => 'Upozornění',
+    'markAllAsRead' => 'Označit vše jako přečtené',
 
-        'yourNotifications' => 'Vaše upozornění',
+    'markAsRead' => 'Označit jako přečtené',
 
-        'noNotificationsYet' => 'Zatím nemáte žádná upozornění',
+    'read' => 'Přečtené',
 
-        'viewAllNotifications' => 'Zobrazit všechna upozornění',
+    'youHaveNotifications' => 'Máte :count nepřečtených upozornění',
 
-        'markAllAsRead' => 'Označit vše jako přečtené',
+    'noNewNotifications' => 'Žádná nová upozornění',
 
-        'markAsRead' => 'Označit jako přečtené',
+    'notification' => 'Upozornění',
 
-        'read' => 'Přečtené',
+    'unknownNotification' => 'Neznámé upozornění',
 
-        'youHaveNotifications' => 'Máte :count nepřečtených upozornění',
+    'viewDetails' => 'Zobrazit podrobnosti',
 
-        'noNewNotifications' => 'Žádná nová upozornění',
+    // Typy powiadomień
 
-        'notification' => 'Upozornění',
+    'applicationSubmitted' => 'Odeslání aplikace',
 
-        'unknownNotification' => 'Neznámé upozornění',
+    'projectCreated' => 'Vytvoření nabídky',
 
-        'viewDetails' => 'Zobrazit podrobnosti',
+    'applicationStatusChanged' => 'Změna stavu aplikace',
 
+    'newRecruitAssigned' => 'Přiřazení nového náboráře',
 
+    'orderCompleted' => 'Dokončení objednávky',
 
-        // Typy powiadomień
+    'invoiceGenerated' => 'Vygenerování faktury',
 
-        'applicationSubmitted' => 'Odeslání aplikace',
+    'paymentReceived' => 'Přijetí platby',
 
-        'projectCreated' => 'Vytvoření nabídky',
+    'questionApproved' => 'Schválení otázky',
 
-        'applicationStatusChanged' => 'Změna stavu aplikace',
+    // Komunikaty powiadomień
 
-        'newRecruitAssigned' => 'Přiřazení nového náboráře',
+    'newNotification' => 'Nové upozornění',
 
-        'orderCompleted' => 'Dokončení objednávky',
+    'newComment' => 'Nový komentář',
 
-        'invoiceGenerated' => 'Vygenerování faktury',
+    'commentNotificationMessage' => 'Uživatel :user_name přidal komentář k vašemu článku #:id',
 
-        'paymentReceived' => 'Přijetí platby',
+    'notificationsList' => 'Seznam upozornění',
 
-        'questionApproved' => 'Schválení otázky',
+    'noNotificationsAvailable' => 'Žádná upozornění',
 
+    'unread' => 'Nepřečtené',
 
+    'of' => 'z',
 
-        // Komunikaty powiadomień
+    'currentCVFiles' => 'Aktualní soubory CV',
 
-        'newNotification' => 'Nové upozornění',
+    'uploadNewCV' => 'Odeslat nové CV',
 
-        'newComment' => 'Nový komentář',
+    'allowedFileTypes' => 'Povolené typy souborů',
 
-        'commentNotificationMessage' => 'Uživatel :user_name přidal komentář k vašemu článku #:id',
+    'maxFileSize' => 'maximální velikost souboru',
 
-        'notificationsList' => 'Seznam upozornění',
+    'saveCv' => 'Uložit CV',
 
-        'noNotificationsAvailable' => 'Žádná upozornění',
+    'view' => 'Náhled',
 
-        'unread' => 'Nepřečtené',
+    'confirmDeleteFile' => 'Opravdu chcete tento soubor smazat?',
 
-        'of' => 'z',
+    'cvUploadedSuccessfully' => 'Nové CV bylo nahráno',
 
-        'currentCVFiles' => 'Aktualní soubory CV',
+    'createdBy' => 'Vytvořil(a)',
 
-        'uploadNewCV' => 'Odeslat nové CV',
+    'sendExternalSuccess' => 'Odeslání externím firmám bylo úspěšné',
 
-        'allowedFileTypes' => 'Povolené typy souborů',
+    'badLinkExternalResponse' => 'Nesprávný odkaz nebo neplatný token',
 
-        'maxFileSize' => 'maximální velikost souboru',
+    'thanksForResponseCheck' => 'Akce již byla provedena.',
 
-        'saveCv' => 'Uložit CV',
+    'changeStatus' => 'Stav aplikace byl změněn.',
 
-        'view' => 'Náhled',
+    'giveStatus' => 'získala nový stav:',
 
-        'confirmDeleteFile' => 'Opravdu chcete tento soubor smazat?',
+    'backToAplicationList' => 'Zpět na seznam aplikací',
 
-        'cvUploadedSuccessfully' => 'Nové CV bylo nahráno',
+    'variants' => 'varianty',
 
-        'createdBy' => 'Vytvořil(a)',
+    'noAplications' => 'Žádné aplikace k zobrazení',
 
-        'sendExternalSuccess' => 'Odeslání externím firmám bylo úspěšné',
+    'evidence' => 'Evidence',
 
-        'badLinkExternalResponse' => 'Nesprávný odkaz nebo neplatný token',
+    'date_of_hire' => 'Datum nástupu do zaměstnání',
 
-        'thanksForResponseCheck' => 'Akce již byla provedena.',
+    'evidencesCreated' => 'Evidence kandidáta byla vytvořena',
 
-        'changeStatus' => 'Stav aplikace byl změněn.',
+    'evidencesUpdated' => 'Evidence kandidáta byla aktualizována',
 
-        'giveStatus' => 'získala nový stav:',
+    'note' => 'Poznámka',
 
-        'backToAplicationList' => 'Zpět na seznam aplikací',
+    'evidencesDeleted' => 'Evidence kandidáta byla smazána',
 
-        'variants' => 'varianty',
+    'noExternalCompaniesFound' => 'Žádné externí firmy',
 
-        'noAplications' => 'Žádné aplikace k zobrazení',
+    'mustAddExternalCompanyBeforeEvidence' => 'Před přidáním evidence kandidáta musíte přidat alespoň jednu externí firmu.',
 
-        'evidence' => 'Evidence',
+    'addExternalCompany' => 'Přidat externí firmu',
 
-        'date_of_hire' => 'Datum nástupu do zaměstnání',
+    'thanksForResponse' => 'Děkujeme za odpověď: :decision pro aplikaci #:application',
 
-        'evidencesCreated' => 'Evidence kandidáta byla vytvořena',
+    'subtotal' => 'Celkem',
 
-        'evidencesUpdated' => 'Evidence kandidáta byla aktualizována',
+    'collapse' => 'Sbalit',
 
-        'note' => 'Poznámka',
+    'expand' => 'Rozbalit',
 
-        'evidencesDeleted' => 'Evidence kandidáta byla smazána',
+    'detail' => 'Technické podrobnosti',
 
-        'noExternalCompaniesFound' => 'Žádné externí firmy',
+    'target' => 'Cíl',
 
-        'mustAddExternalCompanyBeforeEvidence' => 'Před přidáním evidence kandidáta musíte přidat alespoň jednu externí firmu.',
+    'pointsList' => 'Seznam bodů',
 
-        'addExternalCompany' => 'Přidat externí firmu',
+    'p50' => 'Certifikát 50/50',
 
-        'thanksForResponse' => 'Děkujeme za odpověď: :decision pro aplikaci #:application',
+    'cartAndPoints' => 'Ceník a body',
 
-        'subtotal' => 'Celkem',
+    'extraPackages' => 'Dodatečné služby',
 
-        'collapse' => 'Sbalit',
+    'forbidden' => 'Přístup odepřen',
 
-        'expand' => 'Rozbalit',
+    'success50Pdf' => 'Certifikát 50/50 byl úspěšně vygenerován',
 
-        'detail' => 'Technické podrobnosti',
+    'generateCertyficate' => 'Generovat certifikát',
 
-        'target' => 'Cíl',
+    'whatIsCert50' => 'Co je to za službu?',
 
-        'pointsList' => 'Seznam bodů',
+    'whatIsCert50Desc' => 'Certifikát 50/50 je oficiální potvrzení toho, že vaše firma podpořila vybranou nadaci tím, že jí věnovala 50 % z hodnoty zakoupeného balíčku WORK4YOU.GLOBAL.',
 
-        'p50' => 'Certifikát 50/50',
+    'whatContainsCert50' => 'Co služba obsahuje?',
 
-        'cartAndPoints' => 'Ceník a body',
+    'whatContainsCert50List' => '<li>Certifikát ve formátu PDF:</li><ul class="list-disc list-inside ms-4"><li>název firmy,</li><li>název vybrané nadace,</li><li>datum předání prostředků,</li><li>informaci o předání 50 % hodnoty balíčku.</li></ul><li>Možnost sdílení na sociálních sítích</li><li>Časově neomezená služba.</li>',
 
-        'extraPackages' => 'Dodatečné služby',
+    'howUseCert50' => 'Jak ji můžete využít?',
 
-        'forbidden' => 'Přístup odepřen',
+    'howUseCert50List' => '<li>na webových stránkách a v záložce „Kariéra“,</li><li>na sociálních sítích,</li><li>v prezentacích pro klienty a partnery,</li><li>ve vnitřní komunikaci pro zaměstnance.</li>',
 
-        'success50Pdf' => 'Certifikát 50/50 byl úspěšně vygenerován',
+    'joinFirms' => 'Přidejte se k firmám, které sdílejí dobro',
 
-        'generateCertyficate' => 'Generovat certifikát',
+    'exchangePointsForCert' => 'VYMĚNIT BODY ZA CERTIFIKÁT',
 
-        'whatIsCert50' => 'Co je to za službu?',
+    'historyCertTitle' => 'Historie všech certifikátů',
 
-        'whatIsCert50Desc' => 'Certifikát 50/50 je oficiální potvrzení toho, že vaše firma podpořila vybranou nadaci tím, že jí věnovala 50 % z hodnoty zakoupeného balíčku WORK4YOU.GLOBAL.',
+    'certValue' => 'ČÁSTKA',
 
-        'whatContainsCert50' => 'Co služba obsahuje?',
+    'certSharing' => 'SDÍLENÍ',
 
-        'whatContainsCert50List' => '<li>Certifikát ve formátu PDF:</li><ul class="list-disc list-inside ms-4"><li>název firmy,</li><li>název vybrané nadace,</li><li>datum předání prostředků,</li><li>informaci o předání 50 % hodnoty balíčku.</li></ul><li>Možnost sdílení na sociálních sítích</li><li>Časově neomezená služba.</li>',
+    'cert50HeaderDesc' => 'Certifikát 50/50 je personalizované potvrzení vašeho reálného dopadu – s názvem vaší firmy a vybranou nadací, které jsme věnovali 50 % z hodnoty platby. Je připraven ke stažení, tisku a publikaci na sociálních sítích. Využijte jej v komunikaci CSR, employer brandingu a v budování image, abyste ukázali, že za vaším podnikáním stojí konkrétní hodnoty a reálná pomoc.',
 
-        'howUseCert50' => 'Jak ji můžete využít?',
+    'certGenerated' => 'Váš certifikát byl vygenerován!',
 
-        'howUseCert50List' => '<li>na webových stránkách a v záložce „Kariéra“,</li><li>na sociálních sítích,</li><li>v prezentacích pro klienty a partnery,</li><li>ve vnitřní komunikaci pro zaměstnance.</li>',
+    'noFundation50Pdf' => 'Chybí nadace pro vygenerování certifikátu 50/50',
 
-        'joinFirms' => 'Přidejte se k firmám, které sdílejí dobro',
+    'audio_cv' => [
 
-        'exchangePointsForCert' => 'VYMĚNIT BODY ZA CERTIFIKÁT',
+        'title' => 'Zahájení tvorby audio CV',
 
-        'historyCertTitle' => 'Historie všech certifikátů',
+        'steps' => [
 
-        'certValue' => 'ČÁSTKA',
+            'start' => [
 
-        'certSharing' => 'SDÍLENÍ',
+                'title' => 'Výběr Audia',
 
-        'cert50HeaderDesc' => 'Certifikát 50/50 je personalizované potvrzení vašeho reálného dopadu – s názvem vaší firmy a vybranou nadací, které jsme věnovali 50 % z hodnoty platby. Je připraven ke stažení, tisku a publikaci na sociálních sítích. Využijte jej v komunikaci CSR, employer brandingu a v budování image, abyste ukázali, že za vaším podnikáním stojí konkrétní hodnoty a reálná pomoc.',
+                'step_1' => 'Vyberte možnost „Audio CV“.',
 
-        'certGenerated' => 'Váš certifikát byl vygenerován!',
+                'step_2' => 'Na obrazovce se zobrazí indikátor průběhu a tlačítko „Spustit nahrávání“.',
 
-        'noFundation50Pdf' => 'Chybí nadace pro vygenerování certifikátu 50/50',
+                'step_3' => 'Pro spuštění procesu stiskněte tlačítko „Spustit nahrávání“.',
 
-        'audio_cv' => [
+            ],
 
-            'title' => 'Zahájení tvorby audio CV',
+            'questions' => [
 
-            'steps' => [
+                'title' => 'Odpovídání na otázky',
 
-                'start' => [
+                'step_1' => 'Po spuštění nahrávání se pod lištou zobrazí první otázka.',
 
-                    'title' => 'Výběr Audia',
+                'step_2' => 'Spustí se odpočítávání času na odpověď – časový limit určuje náborář.',
 
-                    'step_1' => 'Vyberte možnost „Audio CV“.',
+                'step_3' => 'Odpovězte na otázku ve stanoveném čase:',
 
-                    'step_2' => 'Na obrazovce se zobrazí indikátor průběhu a tlačítko „Spustit nahrávání“.',
+                'sub_points' => [
 
-                    'step_3' => 'Pro spuštění procesu stiskněte tlačítko „Spustit nahrávání“.',
+                    'finish_early' => 'Pokud skončíte dříve, stiskněte tlačítko „Následující otázka“ pro pokračování.',
 
-                ],
-
-                'questions' => [
-
-                    'title' => 'Odpovídání na otázky',
-
-                    'step_1' => 'Po spuštění nahrávání se pod lištou zobrazí první otázka.',
-
-                    'step_2' => 'Spustí se odpočítávání času na odpověď – časový limit určuje náborář.',
-
-                    'step_3' => 'Odpovězte na otázku ve stanoveném čase:',
-
-                    'sub_points' => [
-
-                        'finish_early' => 'Pokud skončíte dříve, stiskněte tlačítko „Následující otázka“ pro pokračování.',
-
-                        'time_up' => 'Pokud čas vyprší, systém automaticky přejde na následující otázku.',
-
-                    ],
-
-                ],
-
-                'recording' => [
-
-                    'title' => 'Zastavení a opakování nahrávání',
-
-                    'stop' => 'Proces nahrávání můžete kdykoli přerušit kliknutím na „Zastavit nahrávání“. ➝ Tím se ukončí tvorba audio CV.',
-
-                    'after_stop' => 'Po dokončení nahrávání můžete:',
-
-                    'sub_points' => [
-
-                        'play' => 'Kliknout na tlačítko přehrávání (Play) pro poslech nahrávky.',
-
-                        'retry' => 'Zvolit znovu „Spustit nahrávání“ pro opětovné nahrání svých odpovědí.',
-
-                    ],
-
-                ],
-
-                'finish' => [
-
-                    'title' => 'Ukončení procesu a aplikace',
-
-                    'apply' => 'Jakmile je nahrávka připravena a schválena, klikněte na tlačítko „APLIKOVAT“ pro odeslání vašeho audio CV náboráři.',
-
-                ],
-
-                'tips' => [
-
-                    'title' => 'Tipy',
-
-                    'tip_1' => 'Snažte se odpovídat věcně a ve stanoveném čase.',
-
-                    'tip_2' => 'Pokud potřebujete odpovědi zopakovat, můžete proces nahrávání spustit znovu před kliknutím na „APLIKOVAT“.',
-
-                    'tip_3' => 'Ujistěte se, že jste v tichém prostředí, aby byla nahrávka zřetelná.',
+                    'time_up' => 'Pokud čas vyprší, systém automaticky přejde na následující otázku.',
 
                 ],
 
             ],
 
-        ],
+            'recording' => [
 
-        'video_cv' => [
+                'title' => 'Zastavení a opakování nahrávání',
 
-            'title' => 'Zahájení tvorby video CV',
+                'stop' => 'Proces nahrávání můžete kdykoli přerušit kliknutím na „Zastavit nahrávání“. ➝ Tím se ukončí tvorba audio CV.',
 
-            'steps' => [
+                'after_stop' => 'Po dokončení nahrávání můžete:',
 
-                'start' => [
+                'sub_points' => [
 
-                    'title' => 'Výběr Videa',
+                    'play' => 'Kliknout na tlačítko přehrávání (Play) pro poslech nahrávky.',
 
-                    'step_1' => 'Vyberte možnost „Video CV“.',
-
-                    'step_2' => 'Na obrazovce se zobrazí okno nahrávání a tlačítko „Spustit nahrávání“.',
-
-                    'step_3' => 'Pro spuštění procesu stiskněte tlačítko „Spustit nahrávání“.',
-
-                ],
-
-                'questions' => [
-
-                    'title' => 'Odpovídání na otázky',
-
-                    'step_1' => 'Po spuštění nahrávání se pod lištou zobrazí první otázka.',
-
-                    'step_2' => 'Spustí se odpočítávání času na odpověď – časový limit určuje náborář.',
-
-                    'step_3' => 'Odpovězte na otázku ve stanoveném čase:',
-
-                    'sub_points' => [
-
-                        'finish_early' => 'Pokud skončíte dříve, stiskněte tlačítko „Následující otázka“ pro pokračování.',
-
-                        'time_up' => 'Pokud čas vyprší, systém automaticky přejde na následující otázku.',
-
-                    ],
-
-                ],
-
-                'recording' => [
-
-                    'title' => 'Zastavení a opakování nahrávání',
-
-                    'stop' => 'Proces nahrávání můžete kdykoli přerušit kliknutím na „Zastavit nahrávání“. ➝ Tím se ukončí tvorba video CV.',
-
-                    'after_stop' => 'Po dokončení nahrávání můžete:',
-
-                    'sub_points' => [
-
-                        'play' => 'Kliknout na tlačítko přehrávání (Play) pro zhlédnutí nahrávky.',
-
-                        'retry' => 'Zvolit znovu „Spustit nahrávání“ pro opětovné nahrání svých odpovědí.',
-
-                    ],
-
-                ],
-
-                'finish' => [
-
-                    'title' => 'Ukončení procesu a aplikace',
-
-                    'apply' => 'Jakmile je nahrávka připravena a schválena, klikněte na tlačítko „APLIKOVAT“ pro odeslání vašeho video CV náboráři.',
-
-                ],
-
-                'tips' => [
-
-                    'title' => 'Tipy',
-
-                    'tip_1' => 'Snažte se odpovídat věcně a ve stanoveném čase.',
-
-                    'tip_2' => 'Pokud potřebujete odpovědi zopakovat, můžete proces nahrávání spustit znovu před kliknutím na „APLIKOVAT“.',
-
-                    'tip_3' => 'Ujistěte se, že jste v tichém prostředí, dbejte na svůj vzhled a na prostor „za vámi“, aby bylo CV profesionálnější.',
+                    'retry' => 'Zvolit znovu „Spustit nahrávání“ pro opětovné nahrání svých odpovědí.',
 
                 ],
 
             ],
 
+            'finish' => [
+
+                'title' => 'Ukončení procesu a aplikace',
+
+                'apply' => 'Jakmile je nahrávka připravena a schválena, klikněte na tlačítko „APLIKOVAT“ pro odeslání vašeho audio CV náboráři.',
+
+            ],
+
+            'tips' => [
+
+                'title' => 'Tipy',
+
+                'tip_1' => 'Snažte se odpovídat věcně a ve stanoveném čase.',
+
+                'tip_2' => 'Pokud potřebujete odpovědi zopakovat, můžete proces nahrávání spustit znovu před kliknutím na „APLIKOVAT“.',
+
+                'tip_3' => 'Ujistěte se, že jste v tichém prostředí, aby byla nahrávka zřetelná.',
+
+            ],
+
         ],
 
-        'instructionVideo' => 'Návod k použití – Tvorba CV ve formě videa',
+    ],
 
-        'instructionAudio' => 'Návod k použití – Tvorba CV ve formě audia',
+    'video_cv' => [
 
-        'reservervedProject' => 'Odeslat žádost o vytvoření nabídky (4000 bodů)',
+        'title' => 'Zahájení tvorby video CV',
 
-        'sendReservedProject' => 'Žádost o vytvoření nabídky byla odeslána',
+        'steps' => [
 
-        'noReservedMore' => 'Tuto akci můžete provést pouze jednou za 24 hodin.',
+            'start' => [
 
-        'banners' => 'Bannery',
+                'title' => 'Výběr Videa',
 
-        'url' => 'Url',
+                'step_1' => 'Vyberte možnost „Video CV“.',
 
-        'updatedBanner' => 'Banner byl aktualizován',
+                'step_2' => 'Na obrazovce se zobrazí okno nahrávání a tlačítko „Spustit nahrávání“.',
 
-        'bannersInfo' => 'Grafika zobrazující se na různých záložkách a v profilu firmy.',
+                'step_3' => 'Pro spuštění procesu stiskněte tlačítko „Spustit nahrávání“.',
 
-        'cv_classic' => 'Klasické CV',
+            ],
 
-        'cv_audio' => 'Audio CV',
+            'questions' => [
 
-        'cv_video' => 'Video CV',
+                'title' => 'Odpovídání na otázky',
 
-        'add_candidate' => 'Přidání kandidáta do databáze',
+                'step_1' => 'Po spuštění nahrávání se pod lištou zobrazí první otázka.',
 
-        'add_external_company' => 'Přidání externí firmy do databáze',
+                'step_2' => 'Spustí se odpočítávání času na odpověď – časový limit určuje náborář.',
 
-        'external_company' => 'externí firma',
+                'step_3' => 'Odpovězte na otázku ve stanoveném čase:',
 
-        'send_cv_external' => 'Odeslání CV externí firmě',
+                'sub_points' => [
 
-        'unlock_questions' => 'Odblokování otázek k aplikaci',
+                    'finish_early' => 'Pokud skončíte dříve, stiskněte tlačítko „Následující otázka“ pro pokračování.',
 
-        'export_data' => 'Export dat do tabulkového procesoru',
+                    'time_up' => 'Pokud čas vyprší, systém automaticky přejde na následující otázku.',
 
-        'add_video_card' => 'Přidání videa do profilu',
+                ],
 
-        'banner' => 'Reklamní banner',
+            ],
 
-        'bannerSlogan' => 'Vaše značka viditelná od prvního kliknutí.',
+            'recording' => [
 
-        'bannerDescription' => 'Reklamní banner je rychlá a efektivní forma propagace vaší firmy na WORK4YOU.GLOBAL. Po zakoupení přidáte hotový banner s přesměrovávacím odkazem a okamžitě zvýšíte viditelnost své značky mezi uživateli portálu.',
+                'title' => 'Zastavení a opakování nahrávání',
 
-        'whatIsBanner' => 'Co je to reklamní banner?',
+                'stop' => 'Proces nahrávání můžete kdykoli přerušit kliknutím na „Zastavit nahrávání“. ➝ Tím se ukončí tvorba video CV.',
 
-        'whatIsBannerDescription' => 'Reklamní banner je grafická forma propagace firmy zobrazovaná na stránce WORK4YOU.GLOBAL. Po zakoupení služby je banner ihned publikován, proto musí být firmou připraven předem.',
+                'after_stop' => 'Po dokončení nahrávání můžete:',
 
-        'whatIncludeBanner' => 'Co obsahuje služba banner?',
+                'sub_points' => [
 
-        'bannerInclude1' => 'grafický banner dodaný firmou (připravený k publikaci),',
+                    'play' => 'Kliknout na tlačítko přehrávání (Play) pro zhlédnutí nahrávky.',
 
-        'bannerInclude2' => 'samostatné přidání banneru firmou po zakoupení služby,',
+                    'retry' => 'Zvolit znovu „Spustit nahrávání“ pro opětovné nahrání svých odpovědí.',
 
-        'bannerInclude3' => 'možnost nastavení přesměrovávacího odkazu na zvolenou stránku.',
+                ],
 
-        'howUseBanner' => 'Jak jej můžete využít?',
+            ],
 
-        'bannerUse1' => 'k propagaci pracovní nabídky, služeb nebo značky,',
+            'finish' => [
 
-        'bannerUse2' => 'k nasměrování návštěvnosti na firemní web nebo landing page,',
+                'title' => 'Ukončení procesu a aplikace',
 
-        'bannerUse3' => 'jako rychlou a viditelnou podporu náborových a marketingových aktivit.',
+                'apply' => 'Jakmile je nahrávka připravena a schválena, klikněte na tlačítko „APLIKOVAT“ pro odeslání vašeho video CV náboráři.',
 
-        'bannerCallToAction' => 'Zvyšte povědomí. Vsaďte na banner, který funguje.',
+            ],
 
-        'youHave' => 'MÁTE K DISPOZICI:',
+            'tips' => [
 
-        'activeFrom' => 'AKTIVNÍ OD:',
+                'title' => 'Tipy',
 
-        'activeTo' => 'DO:',
+                'tip_1' => 'Snažte se odpovídat věcně a ve stanoveném čase.',
 
-        'exchangePointsBanner' => 'VYMĚNIT BODY ZA BANNER',
+                'tip_2' => 'Pokud potřebujete odpovědi zopakovat, můžete proces nahrávání spustit znovu před kliknutím na „APLIKOVAT“.',
 
-        'insufficientPoints' => 'Nedostatečný počet bodů',
+                'tip_3' => 'Ujistěte se, že jste v tichém prostředí, dbejte na svůj vzhled a na prostor „za vámi“, aby bylo CV profesionálnější.',
 
-        'addNewBanner' => 'PŘIDAT NOVÝ BANNER',
+            ],
 
-        'bannerVisibilityInfo' => 'Určete, zda má být banner na webu viditelný.',
+        ],
 
-        'featured_employer' => 'Zvýrazněný zaměstnavatel',
+    ],
 
-        'sponsored_article' => 'Sponzorovaný článek',
+    'instructionVideo' => 'Návod k použití – Tvorba CV ve formě videa',
 
-        'social_media_promo' => 'Propagace na sociálních sítích',
+    'instructionAudio' => 'Návod k použití – Tvorba CV ve formě audia',
 
-        'cert50_50' => 'Certifikát 50/50',
+    'reservervedProject' => 'Odeslat žádost o vytvoření nabídky (4000 bodů)',
 
-        // Treści szczegółowe
+    'sendReservedProject' => 'Žádost o vytvoření nabídky byla odeslána',
 
-        'cv_classic_desc' => 'Náborář nebo firma otevírá CV zaslané v klasické formě souboru (PDF, Word, OpenOffice apod.).',
+    'noReservedMore' => 'Tuto akci můžete provést pouze jednou za 24 hodin.',
 
-        'cv_classic_target' => 'Umožňuje nahlédnout do základních údajů a profesní historie kandidáta.',
+    'banners' => 'Bannery',
 
-        'cv_classic_detail' => 'Otevření se započítává v momentě kliknutí na soubor a jeho otevření. Každé další otevření téhož CV negeneruje dodatečné body – započítává se pouze první otevření.',
+    'url' => 'Url',
 
+    'updatedBanner' => 'Banner byl aktualizován',
 
+    'bannersInfo' => 'Grafika zobrazující se na různých záložkách a v profilu firmy.',
 
-        'cv_audio_desc' => 'Náborář přehrává CV kandidáta nahrané v audio formě (např. mp3, wav).',
+    'cv_classic' => 'Klasické CV',
 
-        'cv_audio_target' => 'Kandidát se může prezentovat mluvenou formou – přirozeným hlasem a způsobem komunikace.',
+    'cv_audio' => 'Audio CV',
 
-        'cv_audio_detail' => 'Otevření se započítává v momentě poslechu nahrávky, další přehrání jsou bez dodatečných poplatků. Náborář má možnost přetáčení, pauzy a opětovného přehrávání.',
+    'cv_video' => 'Video CV',
 
+    'add_candidate' => 'Přidání kandidáta do databáze',
 
+    'add_external_company' => 'Přidání externí firmy do databáze',
 
-        'cv_video_desc' => 'Náborář otevírá CV ve formě videonahrávky.',
+    'external_company' => 'externí firma',
 
-        'cv_video_target' => 'Umožňuje kandidátovi vizuální prezentaci a lepší představení své osobnosti.',
+    'send_cv_external' => 'Odeslání CV externí firmě',
 
-        'cv_video_detail' => 'Otevření se započítává v momentě spuštění přehrávání nahrávky. Možnost pozastavení a opětovného přehrávání bez dodatečných poplatků.',
+    'unlock_questions' => 'Odblokování otázek k aplikaci',
 
+    'export_data' => 'Export dat do tabulkového procesoru',
 
+    'add_video_card' => 'Přidání videa do profilu',
 
-        'add_candidate_desc' => 'Přenesení údajů kandidáta do interní databáze zaměstnavatele.',
+    'banner' => 'Reklamní banner',
 
-        'add_candidate_target' => 'Umožňuje trvalou správu profilu kandidáta.',
+    'bannerSlogan' => 'Vaše značka viditelná od prvního kliknutí.',
 
-        'add_candidate_detail' => 'Náborář vidí historii aplikací, poznámky a stavy náboru. Kandidát je přiřazen do databáze firmy a je k dispozici pro budoucí náborové procesy.',
+    'bannerDescription' => 'Reklamní banner je rychlá a efektivní forma propagace vaší firmy na WORK4YOU.GLOBAL. Po zakoupení přidáte hotový banner s přesměrovávacím odkazem a okamžitě zvýšíte viditelnost své značky mezi uživateli portálu.',
 
+    'whatIsBanner' => 'Co je to reklamní banner?',
 
+    'whatIsBannerDescription' => 'Reklamní banner je grafická forma propagace firmy zobrazovaná na stránce WORK4YOU.GLOBAL. Po zakoupení služby je banner ihned publikován, proto musí být firmou připraven předem.',
 
-        'add_external_company_desc' => 'Možnost dostupná pro personální agentury provádějící nábor pro jiné firmy.',
+    'whatIncludeBanner' => 'Co obsahuje služba banner?',
 
-        'add_external_company_target' => 'Agentura může v systému vytvořit profil firmy-klienta a spravovat odesílání kandidátů pro ni.',
+    'bannerInclude1' => 'grafický banner dodaný firmou (připravený k publikaci),',
 
-        'add_external_company_detail' => 'Po přidání firmy jí lze odesílat balíčky CV. Profil obsahuje název a kontaktní údaje.',
+    'bannerInclude2' => 'samostatné přidání banneru firmou po zakoupení služby,',
 
+    'bannerInclude3' => 'možnost nastavení přesměrovávacího odkazu na zvolenou stránku.',
 
+    'howUseBanner' => 'Jak jej můžete využít?',
 
-        'send_cv_external_desc' => 'Jednorázové odeslání vybraných CV externí firmě prostřednictvím portálu.',
+    'bannerUse1' => 'k propagaci pracovní nabídky, služeb nebo značky,',
 
-        'send_cv_external_target' => 'Umožňuje rychlé předání kandidátů obchodnímu partnerovi s možností sledovat reakce v reálném čase.',
+    'bannerUse2' => 'k nasměrování návštěvnosti na firemní web nebo landing page,',
 
-        'send_cv_external_detail' => 'Externí firma získá přístup k odeslaným CV a může měnit stavy kandidátů. Odeslání může zahrnovat jednoho nebo více kandidátů současně.',
+    'bannerUse3' => 'jako rychlou a viditelnou podporu náborových a marketingových aktivit.',
 
+    'bannerCallToAction' => 'Zvyšte povědomí. Vsaďte na banner, který funguje.',
 
+    'youHave' => 'MÁTE K DISPOZICI:',
 
-        'points_desc' => 'Níže naleznete přehled služeb dostupných na Work4You.Global spolu s jejich bodovou hodnotou. Každá operace — od otevření CV přes přidání kandidáta do databáze až po propagační aktivity — má přiřazený počet bodů, takže přesně víte, kolik konkrétní úkon stojí. Jedná se o transparentní a flexibilní způsob účtování, kde platíte pouze za to, co skutečně využíváte.',
+    'activeFrom' => 'AKTIVNÍ OD:',
 
-        'cv_database_operations' => 'Operace spojené s CV a databází',
+    'activeTo' => 'DO:',
 
-        'extra_services' => 'Doplňkové služby',
+    'exchangePointsBanner' => 'VYMĚNIT BODY ZA BANNER',
 
-        'unlock_questions_desc' => 'Umožňuje přidat doplňující otázky do schvalovacího procesu aplikace.',
+    'insufficientPoints' => 'Nedostatečný počet bodů',
 
-        'unlock_questions_target' => 'Náborář může shromažďovat podrobnější údaje (např. pracovní preference, dostupnost, zkušenosti v oboru).',
+    'addNewBanner' => 'PŘIDAT NOVÝ BANNER',
 
-        'unlock_questions_detail' => 'Odpovědi se ukládají do profilu kandidáta. Možnost opakovaného použití stejných otázek v různých náborech.',
+    'bannerVisibilityInfo' => 'Určete, zda má být banner na webu viditelný.',
 
+    'featured_employer' => 'Zvýrazněný zaměstnavatel',
 
+    'sponsored_article' => 'Sponzorovaný článek',
 
-        'export_data_desc' => 'Umožňuje export dat kandidátů do souboru XLS/CSV.',
+    'social_media_promo' => 'Propagace na sociálních sítích',
 
-        'export_data_target' => 'Náborář si může vytvářet vlastní přehledy, reporty a filtrovat data offline.',
+    'cert50_50' => 'Certifikát 50/50',
 
-        'export_data_detail' => 'Export zahrnuje pole z aplikace (např. kontaktní údaje, stav náboru, odpovědi na otázky). Soubor lze otevřít v aplikacích Excel, Google Sheets apod.',
+    // Treści szczegółowe
 
-        'add_video_card_desc' => 'Firma může přidat video (mp4) propagující její činnost.',
+    'cv_classic_desc' => 'Náborář nebo firma otevírá CV zaslané v klasické formě souboru (PDF, Word, OpenOffice apod.).',
 
-        'add_video_card_target' => 'Odlíšení se od ostatních nabídek a zvýšení atraktivity profilu.',
+    'cv_classic_target' => 'Umožňuje nahlédnout do základních údajů a profesní historie kandidáta.',
 
-        'add_video_card_detail' => 'Video je viditelné v profilu firmy a u pracovních nabídek. Doporučená délka: 30–90 sekund.',
+    'cv_classic_detail' => 'Otevření se započítává v momentě kliknutí na soubor a jeho otevření. Každé další otevření téhož CV negeneruje dodatečné body – započítává se pouze první otevření.',
 
+    'cv_audio_desc' => 'Náborář přehrává CV kandidáta nahrané v audio formě (např. mp3, wav).',
 
+    'cv_audio_target' => 'Kandidát se může prezentovat mluvenou formou – přirozeným hlasem a způsobem komunikace.',
 
-        'banner_desc' => 'Zobrazení reklamního banneru firmy na portálu.',
+    'cv_audio_detail' => 'Otevření se započítává v momentě poslechu nahrávky, další přehrání jsou bez dodatečných poplatků. Náborář má možnost přetáčení, pauzy a opětovného přehrávání.',
 
-        'banner_target' => 'Propagace značky a přesměrování uživatelů na externí stránku.',
+    'cv_video_desc' => 'Náborář otevírá CV ve formě videonahrávky.',
 
-        'banner_detail' => 'Banner se zobrazuje na různých záložkách portálu a v profilu firmy. Doba zobrazení: 1 měsíc. Formát: JPG/PNG nebo animovaný GIF.',
+    'cv_video_target' => 'Umožňuje kandidátovi vizuální prezentaci a lepší představení své osobnosti.',
 
+    'cv_video_detail' => 'Otevření se započítává v momentě spuštění přehrávání nahrávky. Možnost pozastavení a opětovného přehrávání bez dodatečných poplatků.',
 
+    'add_candidate_desc' => 'Přenesení údajů kandidáta do interní databáze zaměstnavatele.',
 
-        'featured_employer_desc' => 'Firma získá speciální označení „Zvýrazněný zaměstnavatel“.',
+    'add_candidate_target' => 'Umožňuje trvalou správu profilu kandidáta.',
 
-        'featured_employer_target' => 'Zvýšení důvěry a rozpoznatelnosti firmy mezi kandidáty.',
+    'add_candidate_detail' => 'Náborář vidí historii aplikací, poznámky a stavy náboru. Kandidát je přiřazen do databáze firmy a je k dispozici pro budoucí náborové procesy.',
 
-        'featured_employer_detail' => 'Označení viditelné u všech pracovních nabídek firmy. Ikona/značka zvýrazňující firmu v seznamu inzerátů. Doba zobrazení: 1 měsíc.',
+    'add_external_company_desc' => 'Možnost dostupná pro personální agentury provádějící nábor pro jiné firmy.',
 
+    'add_external_company_target' => 'Agentura může v systému vytvořit profil firmy-klienta a spravovat odesílání kandidátů pro ni.',
 
+    'add_external_company_detail' => 'Po přidání firmy jí lze odesílat balíčky CV. Profil obsahuje název a kontaktní údaje.',
 
-        'sponsored_article_desc' => 'Publikace článku připraveného zaměstnavatelem.',
+    'send_cv_external_desc' => 'Jednorázové odeslání vybraných CV externí firmě prostřednictvím portálu.',
 
-        'sponsored_article_target' => 'Budování image experta a propagace firmy v obsahu portálu.',
+    'send_cv_external_target' => 'Umožňuje rychlé předání kandidátů obchodnímu partnerovi s možností sledovat reakce v reálném čase.',
 
-        'sponsored_article_detail' => 'Článek navíc obsahuje reklamní banner a krátký popis firmy. Je propagován v sekci článků portálu.',
+    'send_cv_external_detail' => 'Externí firma získá přístup k odeslaným CV a může měnit stavy kandidátů. Odeslání může zahrnovat jednoho nebo více kandidátů současně.',
 
+    'points_desc' => 'Níže naleznete přehled služeb dostupných na Work4You.Global spolu s jejich bodovou hodnotou. Každá operace — od otevření CV přes přidání kandidáta do databáze až po propagační aktivity — má přiřazený počet bodů, takže přesně víte, kolik konkrétní úkon stojí. Jedná se o transparentní a flexibilní způsob účtování, kde platíte pouze za to, co skutečně využíváte.',
 
+    'cv_database_operations' => 'Operace spojené s CV a databází',
 
-        'social_media_promo_desc' => 'Reklamní kampaň na sociálních sítích (Facebook, Instagram).',
+    'extra_services' => 'Doplňkové služby',
 
-        'social_media_promo_target' => 'Rozšíření dosahu pracovních nabídek a posílení značky zaměstnavatele.',
+    'unlock_questions_desc' => 'Umožňuje přidat doplňující otázky do schvalovacího procesu aplikace.',
 
-        'social_media_promo_detail' => 'Doba trvání kampaně: 7 dní. Dedikovaná grafika a texty připravené portálem. Cílení na vybranou skupinu publika.',
+    'unlock_questions_target' => 'Náborář může shromažďovat podrobnější údaje (např. pracovní preference, dostupnost, zkušenosti v oboru).',
 
+    'unlock_questions_detail' => 'Odpovědi se ukládají do profilu kandidáta. Možnost opakovaného použití stejných otázek v různých náborech.',
 
+    'export_data_desc' => 'Umožňuje export dat kandidátů do souboru XLS/CSV.',
 
-        'cert50_50_desc' => 'Firma obdrží certifikát potvrzující podporu vybrané nadace.',
+    'export_data_target' => 'Náborář si může vytvářet vlastní přehledy, reporty a filtrovat data offline.',
 
-        'cert50_50_target' => 'Budování image společensky odpovědného zaměstnavatele.',
+    'export_data_detail' => 'Export zahrnuje pole z aplikace (např. kontaktní údaje, stav náboru, odpovědi na otázky). Soubor lze otevřít v aplikacích Excel, Google Sheets apod.',
 
-        'cert50_50_detail' => 'Certifikát obsahuje název firmy a nadace. Potvrzuje, že 50 % hodnoty bodů bylo převedeno nadaci. Certifikát je dostupný ve verzi PDF a pro publikaci na stránkách firmy.',
+    'add_video_card_desc' => 'Firma může přidat video (mp4) propagující její činnost.',
 
-        'certyficate' => 'Certifikát',
+    'add_video_card_target' => 'Odlíšení se od ostatních nabídek a zvýšení atraktivity profilu.',
 
-        'forFirm' => 'Pro firmu',
+    'add_video_card_detail' => 'Video je viditelné v profilu firmy a u pracovních nabídek. Doporučená délka: 30–90 sekund.',
 
-        'forInfo' => 'Potvrzení vašeho společenského angažmá.',
+    'banner_desc' => 'Zobrazení reklamního banneru firmy na portálu.',
 
-        'yourCv' => 'Vaše CV (PDF)',
+    'banner_target' => 'Propagace značky a přesměrování uživatelů na externí stránku.',
 
-        'firms' => 'Firmy',
+    'banner_detail' => 'Banner se zobrazuje na různých záložkách portálu a v profilu firmy. Doba zobrazení: 1 měsíc. Formát: JPG/PNG nebo animovaný GIF.',
 
-        'recruiterStatistics' => 'Statistiky náborářů',
+    'featured_employer_desc' => 'Firma získá speciální označení „Zvýrazněný zaměstnavatel“.',
 
-        'recruiterProjects' => 'Nabídky náborářů',
+    'featured_employer_target' => 'Zvýšení důvěry a rozpoznatelnosti firmy mezi kandidáty.',
 
-        'recruiterApps' => 'Aplikace náborářů',
+    'featured_employer_detail' => 'Označení viditelné u všech pracovních nabídek firmy. Ikona/značka zvýrazňující firmu v seznamu inzerátů. Doba zobrazení: 1 měsíc.',
 
-        'statusApps' => 'Stavy aplikací',
+    'sponsored_article_desc' => 'Publikace článku připraveného zaměstnavatelem.',
 
-        'podzial' => 'Rozdělení aplikací podle stavů',
+    'sponsored_article_target' => 'Budování image experta a propagace firmy v obsahu portálu.',
 
-        'percentApp' => 'Procento aplikací podle stavu',
+    'sponsored_article_detail' => 'Článek navíc obsahuje reklamní banner a krátký popis firmy. Je propagován v sekci článků portálu.',
 
-        'without' => 'Žádné',
+    'social_media_promo_desc' => 'Reklamní kampaň na sociálních sítích (Facebook, Instagram).',
 
-        'percentAppSub' => 'Procentuální rozdělení',
+    'social_media_promo_target' => 'Rozšíření dosahu pracovních nabídek a posílení značky zaměstnavatele.',
 
-        'appCount' => 'Počet přihlášek',
+    'social_media_promo_detail' => 'Doba trvání kampaně: 7 dní. Dedikovaná grafika a texty připravené portálem. Cílení na vybranou skupinu publika.',
 
-        'appCountPerProject' => 'Počet přihlášek na nabídku',
+    'cert50_50_desc' => 'Firma obdrží certifikát potvrzující podporu vybrané nadace.',
 
-        'projectCount' => 'Počet nabídek',
+    'cert50_50_target' => 'Budování image společensky odpovědného zaměstnavatele.',
 
-        'lastActive' => 'Poslední aktivita',
+    'cert50_50_detail' => 'Certifikát obsahuje název firmy a nadace. Potvrzuje, že 50 % hodnoty bodů bylo převedeno nadaci. Certifikát je dostupný ve verzi PDF a pro publikaci na stránkách firmy.',
 
-        'NoData' => 'Žádná data',
+    'certyficate' => 'Certifikát',
 
-        'Micro' => 'Mikrofirma (< 10 osob)',
+    'forFirm' => 'Pro firmu',
 
-        'lessThanTen' => 'Méně než 10 zaměstnanců',
+    'forInfo' => 'Potvrzení vašeho společenského angažmá.',
 
-        'betweenTenAndFifty' => 'Od 10 do 50 zaměstnanců',
+    'yourCv' => 'Vaše CV (PDF)',
 
-        'moreThanFifty' => 'Od 50 do 250 zaměstnanců',
+    'firms' => 'Firmy',
 
-        'moreThanTwoHundred' => 'Více než 250 zaměstnanců',
+    'recruiterStatistics' => 'Statistiky náborářů',
 
-        'contactDetails' => 'Kontaktní údaje',
+    'recruiterProjects' => 'Nabídky náborářů',
 
-        'aboutCompany' => 'O firmě',
+    'recruiterApps' => 'Aplikace náborářů',
 
-        'companyVideo' => 'Video o firmě',
+    'statusApps' => 'Stavy aplikací',
 
-        'socialMedia' => 'Sociální média',
+    'podzial' => 'Rozdělení aplikací podle stavů',
 
-        'reviews' => 'Recenze',
+    'percentApp' => 'Procento aplikací podle stavu',
 
-        'employeesCount' => 'Počet zaměstnanců',
+    'without' => 'Žádné',
 
-        'annualTurnover' => 'Roční obrat',
+    'percentAppSub' => 'Procentuální rozdělení',
 
-        'website' => 'Webová stránka',
+    'appCount' => 'Počet přihlášek',
 
-        'details' => 'Podrobnosti',
+    'appCountPerProject' => 'Počet přihlášek na nabídku',
 
-        'metaTitle' => 'Meta titulek',
+    'projectCount' => 'Počet nabídek',
 
-        'metaDescription' => 'Meta popis',
+    'lastActive' => 'Poslední aktivita',
 
-        'metaKeywords' => 'Meta klíčová slova',
+    'NoData' => 'Žádná data',
 
-        'shortDescription' => 'Krátký popis',
+    'Micro' => 'Mikrofirma (< 10 osob)',
 
-        'seoSection' => 'Sekce SEO',
+    'lessThanTen' => 'Méně než 10 zaměstnanců',
 
-        'alt' => 'Atribut alt',
+    'betweenTenAndFifty' => 'Od 10 do 50 zaměstnanců',
 
-        'bold' => 'Tučné',
+    'moreThanFifty' => 'Od 50 do 250 zaměstnanců',
 
-        'italic' => 'Kurzíva',
+    'moreThanTwoHundred' => 'Více než 250 zaměstnanců',
 
-        'strike' => 'Přeškrtnuté',
+    'contactDetails' => 'Kontaktní údaje',
 
-        'bulletList' => 'Odrážkový seznam',
+    'aboutCompany' => 'O firmě',
 
-        'orderedList' => 'Číslovaný seznam',
+    'companyVideo' => 'Video o firmě',
 
-        'heading' => 'Nadpis',
+    'socialMedia' => 'Sociální média',
 
-        'alignLeft' => 'Zarovnat vlevo',
+    'reviews' => 'Recenze',
 
-        'alignRight' => 'Zarovnat vpravo',
+    'employeesCount' => 'Počet zaměstnanců',
 
-        'alignCenter' => 'Zarovnat na střed',
+    'annualTurnover' => 'Roční obrat',
 
-        'justify' => 'Zarovnat do bloku',
+    'website' => 'Webová stránka',
 
-        'link' => 'Odkaz',
+    'details' => 'Podrobnosti',
 
-        'unlink' => 'Odstranit odkaz',
+    'metaTitle' => 'Meta titulek',
 
-        'addVideo' => 'Přidat video',
+    'metaDescription' => 'Meta popis',
 
-        'image' => 'Obrázek',
+    'metaKeywords' => 'Meta klíčová slova',
 
-        'keyWordsDesc' => 'Zadávejte oddělené čárkou, např. slovo1,slovo2,slovo3',
+    'shortDescription' => 'Krátký popis',
 
-        'searchPlaceholder' => 'Vyhledat nabídky...',
+    'seoSection' => 'Sekce SEO',
 
-        'placeholderCategorySub' => 'Vyberte podobor',
+    'alt' => 'Atribut alt',
 
-        'placeholderProfession' => 'Vyberte profesi',
+    'bold' => 'Tučné',
 
-        'placeholderPosition' => 'Vyberte pozici',
+    'italic' => 'Kurzíva',
 
-        'placeholderWorkingMode' => 'Vyberte pracovní režim',
+    'strike' => 'Přeškrtnuté',
 
-        'placeholderExperience' => 'Vyberte praxi',
+    'bulletList' => 'Odrážkový seznam',
 
-        'placeholderTypeOfContract' => 'Vyberte druh smlouvy',
+    'orderedList' => 'Číslovaný seznam',
 
-        'placeholderWorkLoad' => 'Vyberte rozsah práce',
+    'heading' => 'Nadpis',
 
-        'premium_certificate' => 'Premium certifikát',
+    'alignLeft' => 'Zarovnat vlevo',
 
-        'errorLoadingCities' => 'Chyba při načítání měst:',
+    'alignRight' => 'Zarovnat vpravo',
 
-        'errorLoadingCategories' => 'Chyba při načítání kategorií:',
+    'alignCenter' => 'Zarovnat na střed',
 
-        'errorLoadingSubcategories' => 'Chyba při načítání podkategorií:',
+    'justify' => 'Zarovnat do bloku',
 
-        'errorLoadingProfessions' => 'Chyba při načítání profesí:',
+    'link' => 'Odkaz',
 
-        'errorLoadingPositions' => 'Chyba při načítání pozic:',
+    'unlink' => 'Odstranit odkaz',
 
-        'msc' => 'měs',
+    'addVideo' => 'Přidat video',
+
+    'image' => 'Obrázek',
+
+    'keyWordsDesc' => 'Zadávejte oddělené čárkou, např. slovo1,slovo2,slovo3',
+
+    'searchPlaceholder' => 'Vyhledat nabídky...',
+
+    'placeholderCategorySub' => 'Vyberte podobor',
+
+    'placeholderProfession' => 'Vyberte profesi',
+
+    'placeholderPosition' => 'Vyberte pozici',
+
+    'placeholderWorkingMode' => 'Vyberte pracovní režim',
+
+    'placeholderExperience' => 'Vyberte praxi',
+
+    'placeholderTypeOfContract' => 'Vyberte druh smlouvy',
+
+    'placeholderWorkLoad' => 'Vyberte rozsah práce',
+
+    'premium_certificate' => 'Premium certifikát',
+
+    'errorLoadingCities' => 'Chyba při načítání měst:',
+
+    'errorLoadingCategories' => 'Chyba při načítání kategorií:',
+
+    'errorLoadingSubcategories' => 'Chyba při načítání podkategorií:',
+
+    'errorLoadingProfessions' => 'Chyba při načítání profesí:',
+
+    'errorLoadingPositions' => 'Chyba při načítání pozic:',
+
+    'msc' => 'měs',
 
     'icon_pay' => 'ikona platby',
 
@@ -2522,59 +2488,59 @@ return [
 
     'validation' => [
 
-    'www_regex' => 'Odkaz musí začínat na http:// nebo https://',
+        'www_regex' => 'Odkaz musí začínat na http:// nebo https://',
 
-    'facebook_url_regex' => 'Odkaz na Facebook musí začínat na http:// nebo https://',
+        'facebook_url_regex' => 'Odkaz na Facebook musí začínat na http:// nebo https://',
 
-    'instagram_url_regex' => 'Odkaz na Instagram musí začínat na http:// nebo https://',
+        'instagram_url_regex' => 'Odkaz na Instagram musí začínat na http:// nebo https://',
 
-    'linkedin_url_regex' => 'Odkaz na LinkedIn musí začínat na http:// nebo https://',
+        'linkedin_url_regex' => 'Odkaz na LinkedIn musí začínat na http:// nebo https://',
 
-    'x_url_regex' => 'Odkaz na X (Twitter) musí začínat na http:// nebo https://',
+        'x_url_regex' => 'Odkaz na X (Twitter) musí začínat na http:// nebo https://',
 
-    'tiktok_url_regex' => 'Odkaz na TikTok musí začínat na http:// nebo https://',
+        'tiktok_url_regex' => 'Odkaz na TikTok musí začínat na http:// nebo https://',
 
-    'rate_limit' => 'Příliš mnoho pokusů. Zkuste to prosím později.',
+        'rate_limit' => 'Příliš mnoho pokusů. Zkuste to prosím později.',
 
-    'attributes' => [
+        'attributes' => [
 
-        'category_id' => 'kategorie',
+            'category_id' => 'kategorie',
 
-        'subcategory_id' => 'podkategorie',
+            'subcategory_id' => 'podkategorie',
 
-        'year_of_foundation' => 'rok založení',
+            'year_of_foundation' => 'rok založení',
 
-        'worker_count' => 'počet zaměstnanců',
+            'worker_count' => 'počet zaměstnanců',
 
-        'annual_turnover' => 'roční obrat',
+            'annual_turnover' => 'roční obrat',
 
-        'address_street' => 'ulice autocomplete',
+            'address_street' => 'ulice autocomplete',
 
-        'address_city' => 'město autocomplete',
+            'address_city' => 'město autocomplete',
 
-        'address_country' => 'země autocomplete',
+            'address_country' => 'země autocomplete',
 
-        'address_postcode' => 'poštovní směrovací číslo autocomplete',
+            'address_postcode' => 'poštovní směrovací číslo autocomplete',
 
-        'phone' => 'telefon',
+            'phone' => 'telefon',
 
-        'description' => 'popis',
+            'description' => 'popis',
 
-        'photo' => 'logo',
+            'photo' => 'logo',
 
-        'facebook_url' => 'Facebook URL',
+            'facebook_url' => 'Facebook URL',
 
-        'instagram_url' => 'Instagram URL',
+            'instagram_url' => 'Instagram URL',
 
-        'linkedin_url' => 'LinkedIn URL',
+            'linkedin_url' => 'LinkedIn URL',
 
-        'x_url' => 'X (Twitter) URL',
+            'x_url' => 'X (Twitter) URL',
 
-        'tiktok_url' => 'TikTok URL',
+            'tiktok_url' => 'TikTok URL',
+
+        ],
 
     ],
-
-],
 
     'addFoundation' => 'Přidat nadaci',
 
@@ -2606,7 +2572,7 @@ return [
 
     'foundationBanner' => 'Banner nadace',
 
-'linkRegisterFoundation' => 'Registrační odkaz nadace',
+    'linkRegisterFoundation' => 'Registrační odkaz nadace',
 
     'copied' => 'Zkopírováno ✓',
 
@@ -2644,109 +2610,109 @@ return [
 
     'tabs' => [
 
-    'active' => 'Aktivní',
+        'active' => 'Aktivní',
 
-    'finished' => 'Ukončené',
+        'finished' => 'Ukončené',
 
-],
+    ],
 
     'total' => 'Celkem',
 
     'stats' => [
 
-    'title' => 'Statistiky aplikací',
+        'title' => 'Statistiky aplikací',
 
-],
+    ],
 
     'empty' => [
 
-    'title' => 'Žádné aplikace',
+        'title' => 'Žádné aplikace',
 
-    'description' => 'Nebyly nalezeny žádné aplikace splňující kritéria.',
+        'description' => 'Nebyly nalezeny žádné aplikace splňující kritéria.',
 
-],
+    ],
 
     'footer' => [
 
-    'description' => 'Globální náborová platforma, která redefinuje standardy spojování talentů s vizionářskými firmami. Budujeme budoucnost práce bez hranic.',
+        'description' => 'Globální náborová platforma, která redefinuje standardy spojování talentů s vizionářskými firmami. Budujeme budoucnost práce bez hranic.',
 
-    'for_candidates' => 'PRO KANDIDÁTY',
+        'for_candidates' => 'PRO KANDIDÁTY',
 
-    'browse_offers' => 'PROCHÁZET NABÍDKY',
+        'browse_offers' => 'PROCHÁZET NABÍDKY',
 
-    'articles_and_guides' => 'ČLÁNKY A NÁVODY',
+        'articles_and_guides' => 'ČLÁNKY A NÁVODY',
 
-    'login' => 'PŘIHLÁSIT SE',
+        'login' => 'PŘIHLÁSIT SE',
 
-    'register' => 'ZAREGISTROVAT SE',
+        'register' => 'ZAREGISTROVAT SE',
 
-    'for_companies' => 'PRO FIRMY',
+        'for_companies' => 'PRO FIRMY',
 
-    'add_offer' => 'PŘIDAT INZERÁT',
+        'add_offer' => 'PŘIDAT INZERÁT',
 
-    'pricing' => 'CENÍK',
+        'pricing' => 'CENÍK',
 
-    'about_us' => 'O NÁS',
+        'about_us' => 'O NÁS',
 
-    'companies' => 'FIRMY',
+        'companies' => 'FIRMY',
 
-    'about' => 'O NÁS',
+        'about' => 'O NÁS',
 
-    'contact' => 'KONTAKT',
+        'contact' => 'KONTAKT',
 
-    'partners' => 'PARTNEŘI',
+        'partners' => 'PARTNEŘI',
 
-    'stay_in_touch' => 'BUĎME V KONTAKTU',
+        'stay_in_touch' => 'BUĎME V KONTAKTU',
 
-    'newsletter_text' => 'Přihlaste se k odběru newsletteru a dostávejte nejnovější pracovní nabídky přímo do své schránky.',
+        'newsletter_text' => 'Přihlaste se k odběru newsletteru a dostávejte nejnovější pracovní nabídky přímo do své schránky.',
 
-    'email_placeholder' => 'VAŠE E-MAILOVÁ ADRESA...',
+        'email_placeholder' => 'VAŠE E-MAILOVÁ ADRESA...',
 
-    'subscribe' => 'PŘIHLÁSIT SE',
+        'subscribe' => 'PŘIHLÁSIT SE',
 
-    'privacy_notice' => 'PŘIHLÁŠENÍM SOUHLASÍTE S NAŠIMI ZÁSADAMI OCHRANY OSOBNÍCH ÚDAJŮ.',
+        'privacy_notice' => 'PŘIHLÁŠENÍM SOUHLASÍTE S NAŠIMI ZÁSADAMI OCHRANY OSOBNÍCH ÚDAJŮ.',
 
-    'privacy_policy' => 'ZÁSADY OCHRANY OSOBNÍCH ÚDAJŮ',
+        'privacy_policy' => 'ZÁSADY OCHRANY OSOBNÍCH ÚDAJŮ',
 
-    'owner' => 'KONTAKT/PRÁVNÍ INFORMACE',
+        'owner' => 'KONTAKT/PRÁVNÍ INFORMACE',
 
-    'terms' => 'VŠEOBECNÉ PODMÍNKY',
+        'terms' => 'VŠEOBECNÉ PODMÍNKY',
 
-    'cookies' => 'COOKIES',
+        'cookies' => 'COOKIES',
 
-    'gdpr' => 'GDPR',
+        'gdpr' => 'GDPR',
 
-    'copyright' => '© 2026 WORK4YOU.GLOBAL. VŠECHNA PRÁVA VYHRAZENA.',
+        'copyright' => '© 2026 WORK4YOU.GLOBAL. VŠECHNA PRÁVA VYHRAZENA.',
 
-    'documentation' => 'Dokumentace',
+        'documentation' => 'Dokumentace',
 
-    'lastUpdate' => 'Poslední aktualizace',
+        'lastUpdate' => 'Poslední aktualizace',
 
-    'docGeneratedInfo' => 'Dokument byl vygenerován pro informační účely.',
+        'docGeneratedInfo' => 'Dokument byl vygenerován pro informační účely.',
 
-    'privacyPolicyTitle' => 'Zásady ochrany osobních údajů',
+        'privacyPolicyTitle' => 'Zásady ochrany osobních údajů',
 
-    'termsTitle' => 'Všeobecné podmínky',
+        'termsTitle' => 'Všeobecné podmínky',
 
-    'downloadTermsPdf' => 'Stáhnout všeobecné podmínky pro firmy ve formátu PDF',
+        'downloadTermsPdf' => 'Stáhnout všeobecné podmínky pro firmy ve formátu PDF',
 
-    'downloadTermsCandidatePdf' => 'Stáhnout všeobecné podmínky pro kandidáty ve formátu PDF',
+        'downloadTermsCandidatePdf' => 'Stáhnout všeobecné podmínky pro kandidáty ve formátu PDF',
 
-    'company' => 'Firma',
+        'company' => 'Firma',
 
-    'candidate' => 'Kandidát',
+        'candidate' => 'Kandidát',
 
-    'downloadTerms' => 'Stáhnout všeobecné podmínky',
+        'downloadTerms' => 'Stáhnout všeobecné podmínky',
 
-    'downloadPrivacyPdf' => 'Stáhnout zásady ochrany osobních údajů ve formátu PDF',
+        'downloadPrivacyPdf' => 'Stáhnout zásady ochrany osobních údajů ve formátu PDF',
 
-    'invalid_nip_format' => 'Neplatný formát DIČ pro vybranou zemi.',
+        'invalid_nip_format' => 'Neplatný formát DIČ pro vybranou zemi.',
 
-    'suggested_format' => 'Navrhovaný formát',
+        'suggested_format' => 'Navrhovaný formát',
 
-    'rights' => 'Všechna práva vyhrazena.',
+        'rights' => 'Všechna práva vyhrazena.',
 
-],
+    ],
 
     'logo' => 'Logo',
 
@@ -2767,8 +2733,6 @@ return [
     'Mail-accepted-line' => 'Gratulujeme! Vaše aplikace byla předběžně schválena. Vyčkejte na kontaktování.',
 
     'Mail-rejected-line' => 'Děkujeme za vaši aplikaci. V této fázi nebyla vybrána k postupu.',
-
-
 
     'application' => 'Aplikace',
 
@@ -2796,8 +2760,6 @@ return [
 
     'location' => 'Lokalita',
 
-
-
     // Timeline
 
     'application_sent' => 'Aplikace odeslána',
@@ -2810,8 +2772,6 @@ return [
 
     'aplicationDetailsInfo' => 'Správa výběrového řízení kandidáta',
 
-
-
     // Dashboard placeholders
 
     'noApplicationSelected' => 'Nebyla vybrána žádná aplikace',
@@ -2822,15 +2782,15 @@ return [
 
     'labels' => [
 
-    'yes' => 'Přijato',
+        'yes' => 'Přijato',
 
-    'no' => 'Zamítnuto',
+        'no' => 'Zamítnuto',
 
-    'sent' => 'Odesláno',
+        'sent' => 'Odesláno',
 
-    'maybe' => 'V řešení',
+        'maybe' => 'V řešení',
 
-],
+    ],
 
     'projectIsActive' => 'Nabídka je aktivní',
 
@@ -2944,8 +2904,6 @@ return [
 
     'deleteButton' => 'SMAZAT',
 
-
-
     // Atrybuty alt dla ikon w widoku Show projektu
 
     'altBasicInfo' => 'ikona základní informace',
@@ -2969,8 +2927,6 @@ return [
     'altWorkplace' => 'ikona místo výkonu práce',
 
     'altExternalCompany' => 'ikona externí firma',
-
-
 
     // Tłumaczenia dla kroków formularza
 
@@ -3013,7 +2969,7 @@ return [
 
     'searchInBenefits' => 'Hledat v benefitech...',
 
-'noBenefitsFound' => 'Nebyly nalezeny žádné benefity odpovídající vyhledávání',
+    'noBenefitsFound' => 'Nebyly nalezeny žádné benefity odpovídající vyhledávání',
 
     'tryOtherKeywords' => 'Zkuste použít jiná klíčová slova',
 
@@ -3037,8 +2993,6 @@ return [
 
     'stripeProductName' => 'Nákup bodů a podpora nadace',
 
-
-
     // Filters
 
     'classicCV' => 'Klasické CV',
@@ -3059,8 +3013,6 @@ return [
 
     'allApplications' => 'Všechny aplikace',
 
-
-
     // Export
 
     'exportToSpreadsheet' => 'Exportovat do tabulkového procesoru',
@@ -3075,8 +3027,6 @@ return [
 
     'candidate' => 'Kandidát',
 
-
-
     // External firms
 
     'selectExternalFirms' => 'Vyberte externí firmy',
@@ -3084,8 +3034,6 @@ return [
     'submitApplications' => 'Odeslat aplikace',
 
     'sending' => 'Odesílání...',
-
-
 
     // Table
 
@@ -3226,8 +3174,6 @@ return [
     'months' => 'Měsíce',
 
     'services' => 'Služby',
-
-
 
     // Dla komponentów filtrów (zgodnie z użyciem w UI)
 
@@ -3399,7 +3345,7 @@ return [
 
     'cannotAddArticle' => 'Není možné přidat článek',
 
-'featured_employer_title' => 'ZVÝRAZNĚNÍ',
+    'featured_employer_title' => 'ZVÝRAZNĚNÍ',
 
     'featured_employer_subtitle' => 'Status, který přitahuje kandidáty',
 
@@ -3654,4 +3600,35 @@ return [
     'meta_description_login' => 'Přihlaste se do WORK4YOU.GLOBAL a najděte ideální práci nebo zaměstnance. Rychlý přístup k vašemu profilu a pracovním nabídkám.',
     'meta_description_register' => 'Připojte se ke komunitě WORK4YOU.GLOBAL. Zaregistrujte se jako zaměstnanec nebo společnost a začněte využívat moderní náborovou platformu.',
     'meta_description_forgot' => 'Zapomněli jste heslo do WORK4YOU.GLOBAL? Zadejte svou e-mailovou adresu a obdržíte odkaz pro obnovení hesla a opětovný přístup k účtu.',
+    'detected_language' => 'Zjistili jsme, že vaše poloha je :language. Chcete změnit zemi na navrhovanou?',
+    'yes_apply' => 'Ano, použít',
+    'choose_other' => 'Vybrat jinou',
+    'search_country' => 'Hledat zemi...',
+    'select_country' => 'Vyberte zemi',
+    'select_country_desc' => 'Díky tomu vám budeme moci nabídnout pracovní nabídky a obsah, který nejlépe odpovídá vašemu regionu.',
+    'no_results' => 'Nebyly nalezeny žádné země',
+    'adjusting_portal' => 'Portál se přizpůsobuje, počkejte prosím...',
+    'CountryPublishDesc' => 'Kde má být nabídka zveřejněna? Ve výchozím nastavení bude nabídka dostupná na všech trzích Work4You.Global. Její dosah můžete omezit výběrem regionů nebo konkrétních trhů.',
+    'WholeWorld' => 'Celý svět (výchozí)',
+    'EU_EOG_CH' => 'Evropská unie + EHP a Švýcarsko',
+    'Europe' => 'Evropa',
+    'Asia' => 'Asie',
+    'Africa' => 'Afrika',
+    'NorthAmerica' => 'Severní Amerika',
+    'SouthAmerica' => 'Jižní Amerika',
+    'Australia' => 'Austrálie',
+    'ChooseSpecificMarkets' => 'nebo Vyberte konkrétní trhy',
+    'MarketPopupTitle' => 'Na kterém trhu hledáte práci?',
+    'MarketPopupSuggested' => 'Doporučený trh na základě jazykového nastavení prohlížeče:',
+    'MarketSuggestedShort' => 'Doporučený trh:',
+    'MarketRemember' => 'Nezapomeňte, že to můžete kdykoli změnit!',
+    'MarketLabel' => 'Trh',
+    'continents' => [
+        'africa' => 'Afrika',
+        'south_america' => 'Jižní a Střední Amerika',
+        'north_america' => 'Severní Amerika a Karibik',
+        'asia' => 'Asie',
+        'europe' => 'Evropa',
+        'oceania' => 'Oceánie',
+    ],
 ];
