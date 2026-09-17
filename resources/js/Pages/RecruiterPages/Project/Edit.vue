@@ -42,6 +42,15 @@ const props = defineProps({
     salaryPeriods: Array,
 });
 
+const getCurrencyFlag = (currency) => {
+    if (!currency || !currency.name) return '';
+    const code = currency.name.toLowerCase();
+    if (code === 'eur') return 'eu';
+    if (code === 'usd') return 'us';
+    if (code === 'gbp') return 'gb';
+    return code.substring(0, 2);
+}
+
 const sortLangs = computed(() => {
     const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
     const languages = usePage().props.languages;
@@ -1072,7 +1081,7 @@ onMounted(async () => {
                         <!-- Wybór typu CV -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.cv') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.cv') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
@@ -1177,7 +1186,7 @@ onMounted(async () => {
                         <!-- Kategoria z obowiązkami w 2 kolumnach -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categorySection') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categorySection') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
@@ -1305,7 +1314,7 @@ onMounted(async () => {
                                 <div class="hidden">
                                     <div class="space-y-6">
                                         <div>
-                                            <InputLabel :value="__('translate.category')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                            <InputLabel :value="__('translate.category') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                             <multiselect
                                                 :disabled="true"
                                                 :selectLabel="''"
@@ -1328,7 +1337,7 @@ onMounted(async () => {
                                         </div>
 
                                         <div>
-                                            <InputLabel :value="__('translate.subcategory')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                            <InputLabel :value="__('translate.subcategory') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                             <multiselect
                                                 :disabled="true"
                                                 :selectLabel="''"
@@ -1353,7 +1362,7 @@ onMounted(async () => {
                                         </div>
 
                                         <div>
-                                            <InputLabel :value="__('translate.profession')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                            <InputLabel :value="__('translate.profession') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                             <multiselect
                                                 :disabled="true"
                                                 :selectLabel="''"
@@ -1434,7 +1443,7 @@ onMounted(async () => {
                                             </div>
 
                                             <div v-if="!isFetchingDetails" class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-                                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{ __('translate.detailProjects') }}</h3>
+                                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{ __('translate.detailProjects') }}*</h3>
                                                 <div class="flex gap-4">
                                                     <button type="button" @click="addAll()" class="text-[10px] font-black text-[#00a0e3] hover:text-blue-700 uppercase tracking-widest transition-colors">
                                                         {{ __('translate.selectAll') }}
@@ -1517,7 +1526,7 @@ onMounted(async () => {
                         <!-- Zasięg publikacji -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.CountryPublish') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.CountryPublish') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
@@ -1569,7 +1578,7 @@ onMounted(async () => {
                                 </div>
 
                                 <div v-if="showSpecificMarkets || form.country.length > 0">
-                                    <InputLabel :value="__('translate.MarketLabel')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                    <InputLabel :value="__('translate.MarketLabel') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                     <multiselect
                                         group-values="elements" group-label="group"
                                         :group-select="true"
@@ -1621,12 +1630,12 @@ onMounted(async () => {
                         <!-- Lokalizacja -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.locationLabel') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.locationLabel') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
                             <div>
-                                <InputLabel :value="__('translate.Country')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                <InputLabel :value="__('translate.Country') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                 <multiselect
                                     group-values="elements" group-label="group"
                                     :group-select="false"
@@ -1655,7 +1664,7 @@ onMounted(async () => {
                             <!-- Mapbox Geocoder (Autocomplete) -->
                             <div v-if="form.countryWork" class="mt-10">
                                 <div class="mb-8">
-                                    <InputLabel :value="__('translate.searchAddress')" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-4" />
+                                    <InputLabel :value="__('translate.searchAddress') + '*'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-4" />
                                     <div
                                         ref="geocoderContainer"
                                         class="mapbox-geocoder-container rounded-2xl border border-gray-100 bg-gray-50 shadow-sm focus-within:shadow-md transition-all text-[#0A2C5C]"
@@ -1741,7 +1750,7 @@ onMounted(async () => {
                         <!-- Rodzaj umowy -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.contractType') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.contractType') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
                             <div v-if="typesOfContract" class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1771,14 +1780,14 @@ onMounted(async () => {
                         <!-- Wynagrodzenie -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.salary') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.salary') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
                             <!-- Wynagrodzenie podstawowe -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
-                                    <InputLabel :value="__('translate.basicSalaryFrom')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                    <InputLabel :value="__('translate.basicSalaryFrom') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                     <input
                                         id="basicSalaryFrom"
                                         v-model="form.basicSalaryFrom"
@@ -1802,7 +1811,7 @@ onMounted(async () => {
                                     <InputError :message="form.errors.basicSalaryTo" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
-                                    <InputLabel :value="__('translate.currency')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                    <InputLabel :value="__('translate.currency') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                     <multiselect
                                         :selectLabel="''"
                                         :selectGroupLabel="''"
@@ -1815,6 +1824,18 @@ onMounted(async () => {
                                         :placeholder="__('translate.placeholder')"
                                         v-model="form.currency" :options="optionsCurrency"
                                         class="custom-multiselect">
+                                        <template #singleLabel="{ option }">
+                                            <div class="flex items-center gap-2">
+                                                <span :class="'fi fi-' + getCurrencyFlag(option) + ' fis rounded-sm'"></span>
+                                                <span class="multiselect__single">{{ option.name }}</span>
+                                            </div>
+                                        </template>
+                                        <template #option="{ option }">
+                                            <div class="flex items-center gap-2">
+                                                <span :class="'fi fi-' + getCurrencyFlag(option) + ' fis rounded-sm'"></span>
+                                                <span>{{ option.name }}</span>
+                                            </div>
+                                        </template>
                                         <template #noResult>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
@@ -1849,7 +1870,7 @@ onMounted(async () => {
                             <!-- Rodzaj wynagrodzenia i Rekrutacja inkluzywna -->
                             <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <InputLabel :value="__('translate.salary_type')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <InputLabel :value="__('translate.salary_type') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
                                     <div class="flex gap-4">
                                         <div v-for="option in salaryTypeOptions" :key="option.value"
                                              class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
@@ -1909,7 +1930,7 @@ onMounted(async () => {
 
                             <!-- Tryb wypłaty -->
                             <div class="mb-10" v-if="payoutModes">
-                                <InputLabel :value="__('translate.payoutModes')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                <InputLabel :value="__('translate.payoutModes') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div v-for="payoutMode in payoutModes" :key="payoutMode.id"
                                          class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
@@ -1960,7 +1981,7 @@ onMounted(async () => {
                         <!-- Dni pracy -->
                         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" v-if="days">
                             <div class="flex items-center gap-2 mb-6">
-                                <h2 class="text-xl font-bold text-gray-900">{{ __('translate.workDays') }}</h2>
+                                <h2 class="text-xl font-bold text-gray-900">{{ __('translate.workDays') }}*</h2>
                             </div>
                             <div v-if="days" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                                 <div v-for="day in days" :key="day.id"
@@ -2019,7 +2040,7 @@ onMounted(async () => {
                         <!-- System wynagrodzeń -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8" v-if="paySystems">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.paySystem') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.paySystem') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -2134,13 +2155,13 @@ onMounted(async () => {
                         <!-- Tryb pracy i wymiar -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workOrganization') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workOrganization') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div v-if="workingModes">
-                                    <InputLabel for="workingMode" :value="__('translate.workingMode')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <InputLabel for="workingMode" :value="__('translate.workingMode') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
                                     <div class="space-y-3">
                                         <div v-for="workingMode in workingModes" :key="workingMode.value"
                                              class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
@@ -2165,7 +2186,7 @@ onMounted(async () => {
                                     <InputError :message="form.errors.workingMode" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
                                 <div v-if="workLoads">
-                                    <InputLabel :value="__('translate.workLoads')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <InputLabel :value="__('translate.workLoads') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
                                     <div class="grid grid-cols-1 gap-3">
                                         <div v-for="workLoad in workLoads" :key="workLoad.value"
                                              class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
@@ -2186,7 +2207,7 @@ onMounted(async () => {
                             </div>
 
                             <div class="mt-10">
-                                <InputLabel :value="__('translate.workingPlace')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                <InputLabel :value="__('translate.workingPlace') + '*'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                 <multiselect
                                     :selectLabel="''"
                                     :selectGroupLabel="''"
@@ -2213,7 +2234,7 @@ onMounted(async () => {
                         <!-- Oferujemy - graficzne karty z filtrowaniem -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8" v-if="offers">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.offer') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.offer') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
@@ -2310,7 +2331,7 @@ onMounted(async () => {
                             <!-- Oczekujemy -->
                             <div v-if="waits" class="mb-12">
                                 <div class="flex items-center gap-4 mb-8">
-                                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.wait') }}</h2>
+                                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.wait') }}*</h2>
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
 
@@ -2371,7 +2392,7 @@ onMounted(async () => {
                             <!-- Mile widziane -->
                             <div v-if="welcomes">
                                 <div class="flex items-center gap-4 mb-8">
-                                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.welcome') }}</h2>
+                                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.welcome') }}*</h2>
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
 
@@ -2433,7 +2454,7 @@ onMounted(async () => {
                         <!-- Doświadczenie -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8" v-if="experiences && experiences.length > 0">
                             <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.experience') }}</h2>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.experience') }}*</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
                             <div class="bg-gray-50/50 rounded-[2.5rem] p-8 border border-gray-100/50">

@@ -1127,11 +1127,17 @@ const getTranslation = (value) => {
                                     </div>
                                 </td>
                                 <td class="p-8 text-center text-xs font-bold text-[#0A2C5C]">
-                                    <div class="flex flex-col items-center justify-center gap-1">
+                                    <div class="flex flex-col items-center justify-center gap-1 max-h-36 overflow-y-auto pr-1 custom-scrollbar-slim">
                                         <template v-if="Array.isArray(offer.country)">
-                                            <span v-for="(c, index) in offer.country" :key="index" class="px-2 py-1 bg-gray-100 rounded uppercase tracking-tighter whitespace-nowrap">
+                                            <span v-for="(c, index) in offer.country.slice(0, 5)" :key="index" class="px-2 py-1 bg-gray-100 rounded uppercase tracking-tighter whitespace-nowrap">
                                                 {{ c.name }} ({{ c.countryCode }})
                                             </span>
+                                            <template v-if="offer.country.length > 5">
+                                                <span class="text-[10px] font-black text-gray-400 my-0.5 uppercase tracking-widest">...</span>
+                                                <span v-for="(c, index) in offer.country.slice(5)" :key="index + 5" class="px-2 py-1 bg-gray-100 rounded uppercase tracking-tighter whitespace-nowrap">
+                                                    {{ c.name }} ({{ c.countryCode }})
+                                                </span>
+                                            </template>
                                         </template>
                                         <span v-else-if="offer.country" class="px-2 py-1 bg-gray-100 rounded uppercase tracking-tighter whitespace-nowrap">
                                             {{ offer.country.name }} ({{ offer.country.countryCode }})
@@ -1403,6 +1409,18 @@ const getTranslation = (value) => {
         .multiselect__tags {
             @apply bg-gray-100;
         }
+    }
+}
+
+.custom-scrollbar-slim {
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        @apply bg-gray-50 rounded-full;
+    }
+    &::-webkit-scrollbar-thumb {
+        @apply bg-gray-200 rounded-full hover:bg-gray-300 transition-colors;
     }
 }
 </style>

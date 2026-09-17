@@ -1,7 +1,7 @@
 <template>
     <div class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
-            <InputLabel for="street" :value="__('translate.Street')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+            <InputLabel for="street" :value="__('translate.Street') + ' *'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
                 type="text"
                 id="street"
@@ -16,7 +16,7 @@
             </p>
         </div>
         <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
-            <InputLabel for="number" :value="__('translate.Number')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+            <InputLabel for="number" :value="__('translate.Number') + ' *'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
                 class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-gray-50/50 focus:ring-0 focus:border-gray-100 transition-all font-bold tracking-widest uppercase cursor-not-allowed"
                 type="text"
@@ -30,7 +30,7 @@
             </p>
         </div>
         <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
-            <InputLabel for="postcode" :value="__('translate.Postal')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+            <InputLabel for="postcode" :value="__('translate.Postal') + ' *'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
                     class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-gray-50/50 focus:ring-0 focus:border-gray-100 transition-all font-bold tracking-widest uppercase cursor-not-allowed"
                     type="text"
@@ -41,7 +41,7 @@
                     :placeholder="__('translate.Postal')"/>
         </div>
         <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
-            <InputLabel for="city" :value="__('translate.City')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+            <InputLabel for="city" :value="__('translate.City') + ' *'" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
                     class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-gray-50/50 focus:ring-0 focus:border-gray-100 transition-all font-bold tracking-widest uppercase cursor-not-allowed"
                     type="text"

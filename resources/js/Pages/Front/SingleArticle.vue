@@ -467,5 +467,11 @@ const articleSchema = computed(() => {
     p {
         color: #0a2c5c;
     }
+
+    .article-content {
+        a {
+            text-decoration: underline;
+        }
+    }
 }
 </style>

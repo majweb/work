@@ -144,7 +144,7 @@ const submit = () => {
                             <!-- Left Column: Basic Info -->
                             <div class="space-y-8">
                                 <div>
-                                    <InputLabel for="categories" value="Kategorie" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-3 ml-1" />
+                                    <InputLabel for="categories" value="Kategorie *" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-3 ml-1" />
                                     <Multiselect
                                         v-model="form.categories"
                                         :options="options.map(c => c.id)"
@@ -229,7 +229,7 @@ const submit = () => {
                                     <div class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 space-y-6">
                                         <div>
                                             <div class="flex items-center justify-between mb-3 ml-1">
-                                                <InputLabel :for="'name_' + lang" :value="'Nazwa wyświetlana (' + lang.toUpperCase() + ')'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest" />
+                                                <InputLabel :for="'name_' + lang" :value="'Nazwa wyświetlana (' + lang.toUpperCase() + ') *'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest" />
                                                 <div class="flex items-center gap-3">
                                                     <button
                                                         type="button"
