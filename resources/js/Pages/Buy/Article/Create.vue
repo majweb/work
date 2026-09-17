@@ -205,7 +205,7 @@ const createArticle = () => {
                             <div>
                                 <InputLabel for="content" :value="__('translate.content')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
                                 <div class="prose max-w-none">
-                                    <Tiptap id="content" v-model="form.content" class="border border-gray-100 rounded-2xl overflow-hidden shadow-sm bg-gray-50" />
+                                    <Tiptap id="content" v-model="form.content" class="border border-gray-100 rounded-2xl shadow-sm bg-gray-50" />
                                 </div>
                                 <InputError :message="form.errors.content" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                             </div>

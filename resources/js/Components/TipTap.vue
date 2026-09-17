@@ -1,7 +1,7 @@
 <template>
     <div class="inner">
         <!-- Toolbar -->
-        <div v-if="editor" class="toolbar flex flex-wrap gap-2 p-4 bg-gray-100 rounded-md shadow-sm">
+        <div v-if="editor" class="toolbar sticky top-0 z-50 flex flex-wrap gap-2 p-4 bg-gray-100 shadow-sm border-b border-gray-200">
             <!-- Formatowanie -->
             <button type="button" @click="editor.chain().focus().toggleBold().run()" :class="buttonClass('bold')" class="font-bold" :title="__('translate.bold')">
                 B

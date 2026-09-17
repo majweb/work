@@ -2947,9 +2947,8 @@ return [
     'searchAddress' => 'Vyhledat adresu',
 
     'searchAddressDescription' => 'Zadejte město nebo úplnou adresu místa, kde se práce vykonává.',
-    'salaryFromPlaceholder' => 'Práce od',
-
-    'salaryToPlaceholder' => 'Práce do',
+    'salaryFromPlaceholder' => 'Mzda od',
+    'salaryToPlaceholder' => 'Mzda do',
 
     'bonusFromPlaceholder' => 'Prémie od',
 

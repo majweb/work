@@ -1496,7 +1496,7 @@ return [
     'searchAddress' => 'Kërkoni adresën',
     'searchAddressDescription' => 'Shkruani qytetin ose adresën e plotë të vendit ku kryhet puna.',
     'salaryFromPlaceholder' => 'Paga nga',
-    'salaryToPlaceholder' => 'Paga deri',
+    'salaryToPlaceholder' => 'Paga deri në',
     'bonusFromPlaceholder' => 'Bonusi nga',
     'bonusToPlaceholder' => 'Bonusi deri',
     'workDays' => 'Ditët e punës',

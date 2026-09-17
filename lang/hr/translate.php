@@ -820,6 +820,8 @@ return [
     'noNotesAvailable' => 'Nema dostupnih bilješki',
     'noProjectInfo' => 'Nema informacija o projektu',
     'enterName' => 'Unesite ime',
+    'salaryFromPlaceholder' => 'Plaća od',
+    'salaryToPlaceholder' => 'Plaća do',
     'enterSurname' => 'Unesite prezime',
     'enterEmail' => 'Unesite e-mail',
     'enterPhone' => 'Unesite telefon',
