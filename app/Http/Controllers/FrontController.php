@@ -180,7 +180,8 @@ class FrontController extends Controller
 
         // Tworzymy unikalny klucz na podstawie wersji, języka i wszystkich parametrów filtrowania
         // Dodajemy datę dzisiejszą do klucza, aby uniknąć problemów z cache w przypadku braku zmian w wersji
-        $cacheKey = "projects_list_v{$version}_".app()->getLocale().'_'.getSelectedCountry().'_'.date('Y-m-d_H').'_'.md5(json_encode(request()->all()));
+        $currentCountry = getSelectedCountry() ?: getLocalBrowserLang();
+        $cacheKey = "projects_list_v{$version}_".app()->getLocale()."_{$currentCountry}_".date('Y-m-d_H').'_'.md5(json_encode(request()->all()));
         $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
             $query = Project::with(['user.changeProducts', 'externalCompany'])
                 ->whereHas('user', function ($q) {

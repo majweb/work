@@ -21,7 +21,8 @@ class SetLanguage
         } elseif (getSelectedCountry()) {
             $locale = getSelectedCountry();
         } else {
-            $locale = explode(',', request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'))[0];
+            $locale = getLocalBrowserLang();
+            session()->put('selected_country', $locale);
         }
 
         if ($locale) {
