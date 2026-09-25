@@ -4,14 +4,13 @@ import {Link, usePage} from '@inertiajs/vue3';
 import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import {computed, onMounted, ref} from "vue";
 import {usePermission} from "@/Composables/usePermission.js";
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import {Navigation, Pagination, Autoplay} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import moment from "moment";
+import ProjectLocationMap from "@/Components/ProjectLocationMap.vue";
 
 const props = defineProps({
     project: Object,
@@ -21,7 +20,7 @@ const props = defineProps({
     page: Object
 });
 const {hasRole} = usePermission();
-const { getPositionTitle } = useProjectHelpers();
+const { getPositionTitle, hasProjectLocation } = useProjectHelpers();
 const user = computed(()=>usePage().props.auth.user);
 const isClient = ref(false);
 
@@ -109,47 +108,6 @@ const jobSchema = computed(() => {
 
 onMounted(() => {
     isClient.value = true;
-});
-
-mapboxgl.accessToken = usePage().props.mapboxToken;
-const map = ref(null);
-
-onMounted(async () => {
-    isClient.value = true;
-    if (!isClient.value || !props.project.cityWork || !props.project.streetWork) return;
-
-    // Geocoding - pobierz współrzędne z adresu
-    const countryName = props.project.countryWork?.allTranslations?.[usePage().props.language] || props.project.countryWork?.name || props.project.countryWork || '';
-    const address = `${props.project.streetWork} ${props.project.streetWorkNumber}, ${props.project.postalWork} ${props.project.cityWork}, ${countryName}`;
-    const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${mapboxgl.accessToken}`;
-
-    try {
-        const response = await fetch(geocodeUrl);
-        const data = await response.json();
-
-        if (data.features && data.features.length > 0) {
-            const [lng, lat] = data.features[0].center;
-
-            // Inicjalizacja mapy
-            map.value = new mapboxgl.Map({
-                container: 'projectMap',
-                style: "mapbox://styles/mapbox/light-v11",
-                center: [lng, lat],
-                zoom: 14,
-                attributionControl: false
-            });
-
-            // Dodaj marker
-            new mapboxgl.Marker({ color: '#0A2C5C' })
-                .setLngLat([lng, lat])
-                .addTo(map.value);
-
-            // Dodaj kontrolki nawigacji
-            map.value.addControl(new mapboxgl.NavigationControl(), 'top-right');
-        }
-    } catch (error) {
-        console.error('Error loading map:', error);
-    }
 });
 </script>
 <template>
@@ -601,13 +559,15 @@ onMounted(async () => {
                     </div>
 
                     <!-- MAP SECTION -->
-                    <div class="bg-white p-8 md:p-16 border-t border-gray-50" v-if="isClient && props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber">
+                    <div class="bg-white p-8 md:p-16 border-t border-gray-50" v-if="isClient && hasProjectLocation(props.project)">
                         <div class="flex items-center gap-4 mb-8">
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.location') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
                         <div class="rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-900/10 border-8 border-gray-50 ring-1 ring-gray-100">
-                            <div id="projectMap" class="w-full h-[450px]"></div>
+                            <div class="w-full h-[450px]">
+                                <ProjectLocationMap :project="props.project" marker-color="#0A2C5C" />
+                            </div>
                         </div>
                     </div>
 

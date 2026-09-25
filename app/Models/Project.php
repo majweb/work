@@ -226,6 +226,41 @@ class Project extends Model
         return $query->latest();
     }
 
+    /**
+     * Oferty w promieniu $distance km od najbliższego z punktów $points ([[lat, lng], ...]).
+     * Kilka punktów obsługuje miejscowości o tej samej nazwie (np. kilka „Wól” w jednym kraju) -
+     * promień liczymy od każdej z nich, a nie od średniej, która mogłaby wypaść daleko od wszystkich.
+     */
+    public function scopeWithinDistance(Builder $query, array $points, int $distance): Builder
+    {
+        $expressions = [];
+        $bindings = [];
+
+        foreach ($points as [$lat, $lng]) {
+            // LEAST/GREATEST: przez błąd zaokrąglenia wartość pod acos potrafi wyjść minimalnie > 1
+            // dla punktu w odległości 0 km, wtedy MySQL zwraca NULL i projekt wypada z wyników
+            $expressions[] = '(6371 * acos(LEAST(1, GREATEST(-1, cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))))))';
+            array_push($bindings, (float) $lat, (float) $lng, (float) $lat);
+        }
+
+        // MySQL LEAST wymaga co najmniej dwóch argumentów
+        $distanceSql = count($expressions) > 1
+            ? 'LEAST('.implode(', ', $expressions).')'
+            : $expressions[0];
+
+        // featured() ustawia już kolumny (projects.* + is_featured) - select('*') by je nadpisał
+        // i oferty wyróżnione traciłyby wyróżnienie w wynikach wyszukiwania po promieniu
+        if (is_null($query->getQuery()->columns)) {
+            $query->select('projects.*');
+        }
+
+        return $query->selectRaw($distanceSql.' AS distance', $bindings)
+            ->having('distance', '<=', $distance)
+            // Najbliższe oferty najpierw, przy tej samej odległości najnowsze
+            ->reorder('distance')
+            ->latest();
+    }
+
     public function scopeLang($query)
     {
         $locale = getSelectedCountry();

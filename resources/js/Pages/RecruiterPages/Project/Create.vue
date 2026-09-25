@@ -748,24 +748,13 @@ const initializeMap = () => {
 
     geocoderContainer.value.appendChild(geocoder.value.onAdd(map.value));
 
-    // Czyść pola przy nowym wyszukiwaniu
-    geocoder.value.on('loading', () => {
-        clearAddressFields();
-    });
-
-    // Czyść pola przy wyczyszczeniu wyszukiwarki
-    geocoder.value.on('clear', () => {
-        clearAddressFields();
-    });
-
     // Obsługa wyboru miejsca z autocomplete
     geocoder.value.on('result', (e) => {
         const place = e.result;
 
-        // Usuń stary marker
-        if (marker.value) {
-            marker.value.remove();
-        }
+        // Czyścimy poprzedni adres dopiero po wybraniu nowego miejsca - samo pisanie w wyszukiwarce
+        // (bez wyboru) nie może kasować zapisanego adresu i współrzędnych
+        clearAddressFields();
 
         // Dodaj nowy marker
         marker.value = new mapboxgl.Marker({ color: '#0A2C5C' })

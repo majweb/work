@@ -764,24 +764,13 @@ const initializeMap = () => {
 
     geocoderContainer.value.appendChild(geocoder.value.onAdd(map.value));
 
-    // Czyść pola przy nowym wyszukiwaniu
-    geocoder.value.on('loading', () => {
-        clearAddressFields();
-    });
-
-    // Czyść pola przy wyczyszczeniu wyszukiwarki
-    geocoder.value.on('clear', () => {
-        clearAddressFields();
-    });
-
     // Obsługa wyboru miejsca z autocomplete
     geocoder.value.on('result', (e) => {
         const place = e.result;
 
-        // Usuń stary marker
-        if (marker.value) {
-            marker.value.remove();
-        }
+        // Czyścimy poprzedni adres dopiero po wybraniu nowego miejsca - samo pisanie w wyszukiwarce
+        // (bez wyboru) nie może kasować zapisanego adresu i współrzędnych
+        clearAddressFields();
 
         // Dodaj nowy marker
         marker.value = new mapboxgl.Marker({ color: '#0A2C5C' })
@@ -976,38 +965,21 @@ onMounted(async () => {
         setTimeout(() => {
             initializeMap();
 
-            // Jeśli mamy wszystkie dane adresowe, dodaj marker na mapie
-            if (form.cityWork && form.streetWork && form.streetWorkNumber) {
-                // Użyj geocodera do znalezienia współrzędnych
-                const fullAddress = `${form.streetWork} ${form.streetWorkNumber}, ${form.postalWork} ${form.cityWork}, ${form.countryWork.name}`;
+            // Pokaż zapisaną lokalizację ze współrzędnych z bazy - ponowne geokodowanie adresu tekstowego
+            // przy niejednoznacznych nazwach miejscowości (np. "Wola") trafiało w inne miejsce
+            const lat = parseFloat(form.lat);
+            const lng = parseFloat(form.lng);
+            if (map.value && Number.isFinite(lat) && Number.isFinite(lng)) {
+                map.value.jumpTo({ center: [lng, lat], zoom: 14 });
 
-                // Spróbuj pobrać współrzędne dla istniejącego adresu
-                fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(fullAddress)}.json?access_token=${usePage().props.mapboxToken}&limit=1`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.features && data.features.length > 0) {
-                            const coords = data.features[0].center;
-
-                            // Wycentruj mapę na adresie
-                            if (map.value) {
-                                map.value.setCenter(coords);
-                                map.value.setZoom(15);
-
-                                // Dodaj marker
-                                if (marker.value) {
-                                    marker.value.remove();
-                                }
-                                marker.value = new mapboxgl.Marker()
-                                    .setLngLat(coords)
-                                    .addTo(map.value);
-                            }
-                        }
-                    })
-                    .catch(error => {
-                        console.error(__('translate.errorGeocodingAddress'), error);
-                    });
+                if (marker.value) {
+                    marker.value.remove();
+                }
+                marker.value = new mapboxgl.Marker({ color: '#0A2C5C' })
+                    .setLngLat([lng, lat])
+                    .addTo(map.value);
             }
-        }, 300); // Zwiększony timeout dla pewności że DOM jest gotowy
+        }, 300);
     }
 });
 

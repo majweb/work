@@ -203,36 +203,40 @@ class FrontController extends Controller
 
             // Filtrowanie po promieniu (Haversine)
             $distance = (int) request('distance');
+            $points = [];
 
-            if (! $lat && ! $lng && request('city') && $distance > 0) {
-                $cityName = request('city');
-                $cityCoords = Project::where('cityWork', $cityName)
-                    ->whereNotNull('lat')
-                    ->whereNotNull('lng')
-                    ->selectRaw('AVG(lat) as lat, AVG(lng) as lng')
-                    ->first();
+            if ($distance > 0) {
+                if ($lat && $lng) {
+                    $points = [[(float) $lat, (float) $lng]];
+                } elseif (request('city')) {
+                    // Punkty odniesienia = lokalizacje aktywnych ofert w miejscowości o tej nazwie w wybranym kraju
+                    // (tak jak lista miast w ProjectCityController). Promień liczymy od każdej z nich, a nie od średniej -
+                    // przy kilku miejscowościach o tej samej nazwie średnia wypadałaby daleko od wszystkich.
+                    // Zaokrąglenie do ~100 m ogranicza liczbę punktów w dużych miastach.
+                    $points = Project::where('cityWork', request('city'))
+                        ->active()
+                        ->when(request('country'), fn ($q) => $q->whereJsonContains('countryWork', ['value' => (int) request('country')]))
+                        ->whereNotNull('lat')
+                        ->whereNotNull('lng')
+                        ->selectRaw('ROUND(lat, 3) as lat, ROUND(lng, 3) as lng')
+                        ->distinct()
+                        ->toBase()
+                        ->get()
+                        ->map(fn ($point) => [(float) $point->lat, (float) $point->lng])
+                        ->all();
 
-                if ($cityCoords && $cityCoords->lat) {
-                    $lat = $cityCoords->lat;
-                    $lng = $cityCoords->lng;
+                    if ($points) {
+                        // Tylko informacyjnie dla frontu (props lat/lng, cityFront)
+                        $lat = collect($points)->avg(0);
+                        $lng = collect($points)->avg(1);
+                    }
                 }
             }
 
-            if ($lat && $lng && $distance > 0) {
-                $lat = (float) $lat;
-                $lng = (float) $lng;
-
-                $query->select('*')
-                    ->selectRaw(
-                        '(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance',
-                        [$lat, $lng, $lat]
-                    )
-                    ->having('distance', '<=', $distance)
-                    ->orderBy('distance');
-            }
-
-            // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
-            if (! ($lat && $lng && $distance > 0)) {
+            if ($points) {
+                $query->withinDistance($points, $distance);
+            } else {
+                // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
                 if (request('country')) {
                     $query->whereJsonContains('countryWork', ['value' => (int) request('country')]);
                 }

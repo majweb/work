@@ -4,16 +4,12 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from "@/Components/DangerButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import { ref, computed, onMounted, nextTick } from "vue";
+import { ref, computed } from "vue";
 import Multiselect from 'vue-multiselect'
 import Info from "@/Components/Info.vue";
 import __ from "@/lang.js";
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import { useProjectHelpers } from '@/Composables/useProjectHelpers';
-
-// Używamy tokena z propsów jeśli jest dostępny, w przeciwnym razie fallback na ten z designu
-mapboxgl.accessToken = usePage().props.mapboxToken;
+import ProjectLocationMap from "@/Components/ProjectLocationMap.vue";
 
 const props = defineProps({
     project: Object,
@@ -23,7 +19,6 @@ const props = defineProps({
 const selectedProject = ref(null);
 const confirmCancelProject = ref(false);
 const showChangeRecruit = ref(false);
-const map = ref(null);
 const goBack = () => {
     if (typeof window !== 'undefined') {
         window.history.back();
@@ -80,62 +75,12 @@ const DeleteProject = () => {
     }
 };
 
-const { getPositionTitle, getInitials } = useProjectHelpers();
+const { getPositionTitle, getInitials, hasProjectLocation } = useProjectHelpers();
 const projectTitle = computed(() => getPositionTitle(props.project));
 
-const hasLocation = computed(() => {
-    return props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber;
-});
+const hasLocation = computed(() => hasProjectLocation(props.project));
 
 const lang = computed(() => usePage().props.language);
-
-onMounted(async () => {
-    if (!hasLocation.value) return;
-
-    await nextTick();
-
-    // Geocoding - pobierz współrzędne z adresu
-    const countryName = props.project.countryWork?.allTranslations?.[lang.value] || props.project.countryWork?.name || props.project.countryWork || '';
-    const address = `${props.project.streetWork} ${props.project.streetWorkNumber}, ${props.project.postalWork} ${props.project.cityWork}, ${countryName}`;
-    const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${mapboxgl.accessToken}`;
-
-    try {
-        const response = await fetch(geocodeUrl);
-        const data = await response.json();
-
-        if (data.features && data.features.length > 0) {
-            const [lng, lat] = data.features[0].center;
-
-            // Inicjalizacja mapy
-            map.value = new mapboxgl.Map({
-                container: 'projectMap',
-                style: "mapbox://styles/mapbox/light-v11",
-                center: [lng, lat],
-                zoom: 14,
-                attributionControl: false
-            });
-
-            // Dodaj marker
-            new mapboxgl.Marker({ color: '#e31e24' })
-                .setLngLat([lng, lat])
-                .setPopup(
-                    new mapboxgl.Popup({ offset: 25 })
-                        .setHTML(`
-                            <div class="p-2">
-                                <p class="font-semibold">${props.project.cityWork}</p>
-                                <p class="text-sm text-gray-600">${props.project.streetWork} ${props.project.streetWorkNumber}</p>
-                            </div>
-                        `)
-                )
-                .addTo(map.value);
-
-            // Dodaj kontrolki nawigacji
-            map.value.addControl(new mapboxgl.NavigationControl(), 'top-right');
-        }
-    } catch (error) {
-        console.error('Error loading map:', error);
-    }
-});
 </script>
 
 <template>
@@ -606,7 +551,7 @@ onMounted(async () => {
                         <!-- Mapa -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden h-[300px] relative"
                              v-if="hasLocation">
-                            <div id="projectMap" class="w-full h-full"></div>
+                            <ProjectLocationMap :project="props.project" popup />
                         </div>
 
                         <!-- Lokalizacja -->

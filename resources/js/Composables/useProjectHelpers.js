@@ -59,8 +59,16 @@ export function useProjectHelpers() {
         return name.charAt(0).toUpperCase();
     };
 
+    // Mapę pokazujemy, gdy są zapisane współrzędne albo (dla starych projektów) adres do geokodowania
+    const hasProjectLocation = (project) => {
+        if (!project) return false;
+        if (project.lat && project.lng) return true;
+        return !!(project.cityWork && project.streetWork && project.streetWorkNumber);
+    };
+
     return {
         getPositionTitle,
-        getInitials
+        getInitials,
+        hasProjectLocation
     };
 }
