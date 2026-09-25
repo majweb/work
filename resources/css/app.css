@@ -143,9 +143,10 @@
 input, textarea, select {
     color: #0A2C5C !important;
 }
+/* Biblioteka daje obszarowi strzałki szare tło (#ededed) o innej wysokości i zaokrągleniu niż pole -
+   w stanie zablokowanym wyglądał jak doklejony kwadrat. Przezroczyste tło = jednolite pole. */
 .multiselect--disabled .multiselect__select {
-    border-top-right-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
+    background: transparent !important;
 }
 .multiselect--disabled{
     overflow: hidden !important;
