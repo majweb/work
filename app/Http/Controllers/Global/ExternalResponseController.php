@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Aplication;
 use App\Models\ExternalResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class ExternalResponseController extends Controller
 {
@@ -14,24 +16,20 @@ class ExternalResponseController extends Controller
     {
         $email = $request->query('email');
         $token = $request->query('token');
-        $aplications = $request->query('aplications'); // np. "1,2,3"
 
-        // Sprawdzenie, czy istnieje rekord z tym tokenem i emailem
-        $responseExists = ExternalResponse::where([
-            'email' => $email,
-            'token' => $token
-        ])->exists();
+        // Aplikacje bierzemy wyłącznie z zaproszenia powiązanego z tokenem - nie z adresu URL.
+        // Stare zaproszenia (bez zapisanej listy aplikacji) traktujemy jak nieprawidłowy link.
+        $externalResponse = ExternalResponse::findValid($email, $token);
 
-        if (!$responseExists) {
+        if (! $externalResponse || empty($externalResponse->aplication_ids)) {
             session()->flash('flash.banner', __('translate.badLinkExternalResponse'));
             session()->flash('flash.bannerStyle', 'danger');
             return redirect()->route('aplications.index');
         }
 
         // Pobranie aplikacji
-        $appsIds = explode(',', $aplications);
         $apps = Aplication::with(['project', 'cvAudio', 'cvVideo', 'candidate.media'])
-            ->whereIn('id', $appsIds)
+            ->whereIn('id', $externalResponse->aplication_ids)
 //            ->whereNull('status')
             ->get()
             ->map(function ($app) {
@@ -62,13 +60,17 @@ class ExternalResponseController extends Controller
     // POST /external/response
     public function storeAnswer(Request $request)
     {
-
         $data = $request->validate([
-            'application' => 'required|exists:aplications,id',
+            'application' => 'required|integer',
             'decision' => 'required|in:yes,no',
+            'email' => 'required|string',
+            'token' => 'required|string',
         ]);
-        $app = Aplication::where('id', $data['application'])->first();
 
+        $externalResponse = ExternalResponse::findValid($data['email'], $data['token']);
+        abort_unless($externalResponse && $externalResponse->grantsAccessTo((int) $data['application']), 403);
+
+        $app = Aplication::where('id', $data['application'])->first();
 
         if ($app) {
             $app->update([
@@ -94,5 +96,28 @@ class ExternalResponseController extends Controller
                 ->with('flash.bannerStyle', 'danger');
 
         }
+    }
+
+    // GET /download/cv-audio/{aplication}
+    public function downloadRecording(Request $request, Aplication $aplication)
+    {
+        $user = $request->user();
+
+        $allowed = $user
+            ? $user->hasRole('admin') || (int) $aplication->user_id === $user->id || Gate::allows('aplication-recruiter', $aplication)
+            : false;
+
+        // Firma zewnętrzna (bez konta) - dostęp tylko przez zaproszenie obejmujące tę aplikację
+        if (! $allowed) {
+            $externalResponse = ExternalResponse::findValid($request->query('email'), $request->query('token'));
+            $allowed = $externalResponse && $externalResponse->grantsAccessTo($aplication->id);
+        }
+
+        abort_unless($allowed, 403);
+
+        $recording = $aplication->cvAudio ?? $aplication->cvVideo;
+        abort_unless($recording, 404);
+
+        return Storage::download($recording->file_path);
     }
 }

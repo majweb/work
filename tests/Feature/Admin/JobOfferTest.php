@@ -6,57 +6,20 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Role;
+use Tests\Concerns\CreatesProjects;
 use Tests\TestCase;
 
 class JobOfferTest extends TestCase
 {
+    use CreatesProjects;
     use RefreshDatabase;
 
     protected function setUp(): void
     {
         parent::setUp();
-        if (!Role::where('name', 'admin')->exists()) {
-            Role::create(['name' => 'admin']);
+        foreach (['admin', 'firm'] as $role) {
+            Role::firstOrCreate(['name' => $role]);
         }
-        $this->shiftWorkId = \App\Models\ShiftWork::create(['name' => ['pl' => 'Test']])->id;
-    }
-
-    private function createProject(User $user, array $overrides = []): Project
-    {
-        return Project::forceCreate(array_merge([
-            'user_id' => $user->id,
-            'recruiter_id' => $user->id,
-            'title' => ['pl' => 'Oferta'],
-            'category' => [],
-            'categorySub' => [],
-            'profession' => [],
-            'position' => [],
-            'currency' => [],
-            'workingMode' => [],
-            'typeOfContract' => [],
-            'payoutMode' => [],
-            'workingPlace' => [],
-            'country' => [],
-            'workLoad' => [],
-            'shiftWork' => $this->shiftWorkId,
-            'paySystem' => [],
-            'days' => [],
-            'basicSalaryFrom' => 0,
-            'basicSalaryTo' => 0,
-            'salary_type' => 'monthly',
-            'workNight' => false,
-            'experience' => [],
-            'offer' => [],
-            'wait' => [],
-            'welcome' => [],
-            'education' => null,
-            'other_recruits' => [],
-            'cv' => [],
-            'langs' => [],
-            'is_active' => true,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ], $overrides));
     }
 
     public function test_admin_can_see_all_job_offers_by_default(): void

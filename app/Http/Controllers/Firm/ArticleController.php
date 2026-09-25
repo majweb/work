@@ -140,7 +140,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article, DictionaryService $dictionaryService)
     {
-        Gate::authorize('update',auth()->user());
+        Gate::authorize('update', $article);
 
         $article->load(['comments' => function ($query) {
             $query->with(['user', 'replies' => function ($q) {
@@ -184,7 +184,7 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        Gate::authorize('update',auth()->user());
+        Gate::authorize('update', $article);
 
         $article->update([
             'title' => $request->articleData()['title'],

@@ -253,7 +253,8 @@ class JobOfferController extends Controller
         }
 
         $sort = $request->get('sort', 'created_at');
-        $direction = $request->get('direction', 'desc');
+        // Kierunek trafia do orderByRaw - tylko asc/desc, inaczej SQL injection
+        $direction = strtolower((string) $request->get('direction', 'desc')) === 'asc' ? 'asc' : 'desc';
 
         // Zabezpieczenie przed nieprawidłowymi kolumnami
         $allowedSorts = ['id', 'title', 'created_at', 'is_active', 'views_count', 'aplications_count'];

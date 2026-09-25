@@ -35,8 +35,8 @@ class StoreRecruitRequest extends FormRequest
         } elseif (request()->isMethod('put')){
             $ruleId = ['required'];
             $rulePassword = ['nullable', 'string', Password::default(), 'confirmed'];
-            $rulePhone=['required','numeric',Rule::unique('users', 'recruiter_phone')->ignore(request()->id)];
-            $ruleEmail = ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore(request()->id)];
+            $rulePhone=['required','numeric',Rule::unique('users', 'recruiter_phone')->ignore($this->route('recruit'))];
+            $ruleEmail = ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->route('recruit'))];
         }
         return [
             'name' => ['required', 'string', 'max:255'],

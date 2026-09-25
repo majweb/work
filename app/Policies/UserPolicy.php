@@ -38,8 +38,8 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->hasRole('firm');
-
+        // Firma może zarządzać wyłącznie własnymi rekruterami
+        return $user->hasRole('firm') && (int) $model->recruiter_from_firm_id === $user->id;
     }
 
     /**
@@ -47,8 +47,8 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $user->hasRole('firm');
-
+        // Firma może zarządzać wyłącznie własnymi rekruterami
+        return $user->hasRole('firm') && (int) $model->recruiter_from_firm_id === $user->id;
     }
 
     /**

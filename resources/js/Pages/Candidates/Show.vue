@@ -22,6 +22,8 @@ const props = defineProps({
 const locale = computed(() => usePage().props.language);
 
 // --- State ---
+// Komunikat błędu z serwera przy uploadzie CV (np. zły typ lub rozmiar pliku)
+const serverMessage = ref(null);
 const professionCategories = ref(props.categories || []);
 const customTags = ref(props.customTags || []);
 const selectedTags = ref(props.selectedCandidateTags || []);
@@ -374,7 +376,8 @@ const filepondOptions = {
     labelButtonRetryItemProcessing: __('translate.labelButtonRetryItemProcessing'),
     labelButtonProcessItem: __('translate.labelButtonProcessItem'),
     acceptedFileTypes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
-    maxFileSize: '10MB',
+    // Zgodnie z walidacją serwera (FileUploadController: cvFile max:5000 KB)
+    maxFileSize: '5MB',
     credits: 'false',
 };
 </script>
@@ -710,7 +713,7 @@ const filepondOptions = {
                                     :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
                                     :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
                                     :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
-                                    :accepted-file-types="'image/png, image/jpeg, image/jpg, image/gif, image/svg, image/webp'"
+                                    :accepted-file-types="['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']"
                                     credits="false"
 
 
@@ -720,7 +723,7 @@ const filepondOptions = {
                                         process: {
                                             url: '/temporary/upload',
                                             onload: (response) => { cvForm.cvFile.push(response); return response; },
-                                            onerror: (response) => { serverMessage = JSON.parse(response).error.cv_file[0]; }
+                                            onerror: (response) => { serverMessage = JSON.parse(response)?.error?.cvFile?.[0] ?? null; }
                                         },
                                         revert: {
                                             url: '/temporary/delete',
@@ -734,7 +737,7 @@ const filepondOptions = {
                                     }"
                                 />
                                 <p class="text-[10px] font-bold text-gray-400 mt-4 uppercase tracking-tight">
-                                    {{ __('translate.allowedFileTypes') }}: PDF, DOC, DOCX ({{ __('translate.maxFileSize') }}: 10MB)
+                                    {{ __('translate.allowedFileTypes') }}: PDF, DOC, DOCX ({{ __('translate.maxFileSize') }}: 5MB)
                                 </p>
                             </div>
                             <div class="flex justify-end">

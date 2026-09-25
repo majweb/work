@@ -560,6 +560,8 @@ class ProjectController extends Controller implements HasMiddleware
 
     public function duplicate(Project $project)
     {
+        Gate::authorize('project-recruiter', $project);
+
         $newProject = $project->replicate();
         $newProject->views_count = 0;
         $newProject->save();

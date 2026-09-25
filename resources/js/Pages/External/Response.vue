@@ -100,8 +100,8 @@ function downloadFile(url, filename = 'CV.pdf') {
                         <div v-if="app.cv_audio?.file_path || app.cv_video?.file_path" class="flex items-center gap-2">
                             <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.variants') }}:</span>
                             <div class="flex gap-2">
-                                <a v-if="app.cv_audio?.file_path" :href="route('cv_audio.download', app.id)" class="px-3 py-1.5 bg-white border border-purple-100 text-purple-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-purple-600 hover:text-white transition-all shadow-sm">{{ __('translate.audio') }}</a>
-                                <a v-if="app.cv_video?.file_path" :href="route('cv_audio.download', app.id)" class="px-3 py-1.5 bg-white border border-orange-100 text-orange-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-orange-600 hover:text-white transition-all shadow-sm">{{ __('translate.video') }}</a>
+                                <a v-if="app.cv_audio?.file_path" :href="route('cv_audio.download', { aplication: app.id, email, token })" class="px-3 py-1.5 bg-white border border-purple-100 text-purple-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-purple-600 hover:text-white transition-all shadow-sm">{{ __('translate.audio') }}</a>
+                                <a v-if="app.cv_video?.file_path" :href="route('cv_audio.download', { aplication: app.id, email, token })" class="px-3 py-1.5 bg-white border border-orange-100 text-orange-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-orange-600 hover:text-white transition-all shadow-sm">{{ __('translate.video') }}</a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@ function downloadFile(url, filename = 'CV.pdf') {
                                 v-if="app.status != 'yes'"
                                 method="post"
                                 :href="route('external.answer')"
-                                :data="{ application: app.id, decision: 'yes' }"
+                                :data="{ application: app.id, decision: 'yes', email, token }"
                                 class="px-6 py-2.5 bg-green-50 text-green-600 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-green-600 hover:text-white transition-all"
                             >
                                 {{ __('translate.yes') }}
@@ -128,7 +128,7 @@ function downloadFile(url, filename = 'CV.pdf') {
                                 v-if="app.status != 'no'"
                                 method="post"
                                 :href="route('external.answer')"
-                                :data="{ application: app.id, decision: 'no' }"
+                                :data="{ application: app.id, decision: 'no', email, token }"
                                 class="px-6 py-2.5 bg-red-50 text-red-600 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-red-600 hover:text-white transition-all"
                             >
                                 {{ __('translate.no') }}

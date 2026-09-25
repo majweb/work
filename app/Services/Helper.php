@@ -16,6 +16,7 @@ class Helper
             ->groupBy(fn ($country) => $country->getTranslation('continent', app()->getLocale()) ?: 'Other')
             ->toArray();
 
+        $data = [];
         foreach ($countries as $key => $value) {
             $data[] = [
                 'group' => $key,
@@ -70,6 +71,7 @@ class Helper
                 ->get()
                 ->groupBy('continent')->toArray(); // przykładowa grupa, możesz grupować np. po kontynencie
 
+            $data = [];
             foreach ($countries as $key => $value) {
                 $data[] = [
                     'group' => $key,

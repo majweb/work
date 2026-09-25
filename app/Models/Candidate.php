@@ -117,4 +117,16 @@ class Candidate extends Model implements HasMedia
     {
         return $this->hasOne(\App\Models\User::class, 'email', 'email');
     }
+
+    // Dostęp ma autor kandydata albo firma/rekruter, do których kandydat aplikował (jak w CandidatesController::evidence)
+    public function isAccessibleBy(User $user): bool
+    {
+        if ($user->hasRole('admin') || (int) $this->created_by_id === $user->id) {
+            return true;
+        }
+
+        return $this->applications()
+            ->where(fn ($q) => $q->where('user_id', $user->id)->orWhere('recruiter_id', $user->id))
+            ->exists();
+    }
 }

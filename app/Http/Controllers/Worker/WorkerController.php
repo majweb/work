@@ -116,6 +116,8 @@ class WorkerController extends Controller
 
     public function myCvUpdateCv(WorkerUpdateCv $request, CvClassic $selectedCv)
     {
+        abort_unless((int) $selectedCv->worker_id === auth()->id(), 403);
+
         $selectedCv->fill([
             'experiences' => $request->cvData()['experiences'],
             'educations' => $request->cvData()['educations'],
@@ -134,6 +136,7 @@ class WorkerController extends Controller
     public function updateBasicInformation(Request $request, CvClassic $selectedCv)
     {
         $user = auth()->user();
+        abort_unless((int) $selectedCv->worker_id === $user->id, 403);
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -186,6 +189,8 @@ class WorkerController extends Controller
 
     public function singleAplication(Aplication $aplication)
     {
+        abort_unless((int) $aplication->aplication_user_id === auth()->id(), 403);
+
         $aplication->load([
             'project',
         ]);

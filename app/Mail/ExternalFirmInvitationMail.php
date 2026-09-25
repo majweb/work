@@ -15,13 +15,12 @@ class ExternalFirmInvitationMail extends Mailable
 
     public string $email;
     public string $token;
-    public string $aplications;
 
-    public function __construct(string $email, string $token,array $aplications)
+    // Lista udostępnionych aplikacji jest zapisana przy tokenie (ExternalResponse), nie w linku
+    public function __construct(string $email, string $token)
     {
         $this->email = $email;
         $this->token = $token;
-        $this->aplications = implode(', ', $aplications);;
     }
 
     /**
@@ -45,7 +44,6 @@ class ExternalFirmInvitationMail extends Mailable
                 'link' => route('external.response', [
                     'email' => $this->email,
                     'token' => $this->token,
-                    'aplications' => $this->aplications,
                 ]),
             ],
         );

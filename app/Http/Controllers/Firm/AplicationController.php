@@ -353,6 +353,8 @@ class AplicationController extends Controller
      */
     public function unlockQuestions(Request $request, Candidate $candidate)
     {
+        abort_unless($candidate->isAccessibleBy(auth()->user()), 403);
+
         // Jeśli pytania już zostały odblokowane, zwróć sukces
         if ($candidate->questions_unlocked_at) {
             return $this->flashAndRedirect('translate.questionsAlreadyUnlocked');
@@ -389,6 +391,8 @@ class AplicationController extends Controller
      */
     public function saveAnswers(Request $request, Candidate $candidate)
     {
+        abort_unless($candidate->isAccessibleBy(auth()->user()), 403);
+
 
         // Sprawdź czy pytania zostały odblokowane
         if (!$candidate->questions_unlocked_at) {

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ExternalFirmInvitationMail;
+use App\Models\Aplication;
 use App\Models\Candidate;
 use App\Models\ExternalResponse;
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -55,6 +57,8 @@ class CandidateCvController extends Controller
      */
     public function saveCv(Request $request, Candidate $candidate)
     {
+        abort_unless($candidate->isAccessibleBy(auth()->user()), 403);
+
         $validator = Validator::make($request->all(), [
             'cvFile' => 'required|array'
         ]);
@@ -93,6 +97,8 @@ class CandidateCvController extends Controller
      */
     public function deleteCv(Candidate $candidate)
     {
+        abort_unless($candidate->isAccessibleBy(auth()->user()), 403);
+
         if ($candidate) {
             $candidate->clearMediaCollection('candidate_cv_files');
         }
@@ -102,7 +108,11 @@ class CandidateCvController extends Controller
     public function sendExternal(Request $request, \App\Services\PointService $pointService)
     {
         $externals = $request->externalFirms; // lista firm do powiadomienia
-        $aplications = $request->apps;
+        $aplications = $this->ownAplicationIds($request, auth()->id());
+
+        if (! $aplications) {
+            return $this->noAplicationsSelected();
+        }
 
         $firm = auth()->user()->firm;
         $cost = config('getPoints.SendToExternalFirm', 1);
@@ -128,8 +138,10 @@ class CandidateCvController extends Controller
             ExternalResponse::create([
                 'email' => $ext['email'],
                 'token' => $token,
+                'aplication_ids' => $aplications,
+                'sender_id' => auth()->id(),
             ]);
-            Mail::to($ext['email'])->locale($lang)->send(new ExternalFirmInvitationMail($ext['email'],$token, $aplications));
+            Mail::to($ext['email'])->locale($lang)->send(new ExternalFirmInvitationMail($ext['email'], $token));
             // Odejmujemy punkty
             $pointService->decrement($firm->user, $cost, 'SendToExternalFirm: ' . $ext['email']);
         }
@@ -146,7 +158,11 @@ class CandidateCvController extends Controller
     {
 
         $externals = $request->externalFirms; // lista firm do powiadomienia
-        $aplications = $request->apps;
+        $aplications = $this->ownAplicationIds($request, auth()->user()->recruiter_from_firm_id, asRecruiter: true);
+
+        if (! $aplications) {
+            return $this->noAplicationsSelected();
+        }
 
         $firm = auth()->user()->user->firm;
 
@@ -173,8 +189,10 @@ class CandidateCvController extends Controller
             ExternalResponse::create([
                 'email' => $ext['email'],
                 'token' => $token,
+                'aplication_ids' => $aplications,
+                'sender_id' => auth()->id(),
             ]);
-            Mail::to($ext['email'])->locale($lang)->send(new ExternalFirmInvitationMail($ext['email'],$token, $aplications));
+            Mail::to($ext['email'])->locale($lang)->send(new ExternalFirmInvitationMail($ext['email'], $token));
             // Odejmujemy punkty
             $pointService->decrement($firm->user, $cost, 'SendToExternalFirm: ' . $ext['email']);
         }
@@ -182,5 +200,33 @@ class CandidateCvController extends Controller
         return back()->with('sender', [
             'id' => now()->timestamp // albo uniqid()
         ]);
+    }
+
+    /**
+     * Tylko aplikacje należące do firmy nadawcy (a dla rekrutera - te, do których ma dostęp).
+     * Zaproszenie zewnętrzne daje dostęp wyłącznie do nich.
+     */
+    private function ownAplicationIds(Request $request, ?int $firmId, bool $asRecruiter = false): array
+    {
+        $request->validate([
+            'apps' => ['required', 'array'],
+            'apps.*' => ['integer'],
+        ]);
+
+        return Aplication::whereIn('id', $request->apps)
+            ->where('user_id', $firmId)
+            ->get()
+            ->filter(fn (Aplication $aplication) => ! $asRecruiter || Gate::allows('aplication-recruiter', $aplication))
+            ->pluck('id')
+            ->values()
+            ->all();
+    }
+
+    private function noAplicationsSelected()
+    {
+        session()->flash('flash.banner', __('translate.noApplicationsAvailable'));
+        session()->flash('flash.bannerStyle', 'danger');
+
+        return redirect()->back();
     }
 }

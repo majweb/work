@@ -822,6 +822,7 @@ class ProjectController extends Controller
     {
         Gate::authorize('update', $project);
         if (isset(request()->recruit['value'])) {
+            abort_unless($this->belongsToFirm((int) request()->recruit['value']), 403);
 
             $array1 = $project->other_recruits;
             $array2 = request()->recruit;
@@ -844,7 +845,11 @@ class ProjectController extends Controller
 
     public function changeRecruitApp(Aplication $aplication)
     {
+        abort_unless((int) $aplication->user_id === auth()->id(), 403);
+
         if (isset(request()->recruit['value'])) {
+            abort_unless($this->belongsToFirm((int) request()->recruit['value']), 403);
+
             $aplication->update([
                 'opened_by_user_id' => request()->recruit['value'],
                 'opened_at' => now(),
@@ -981,5 +986,12 @@ class ProjectController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
         return back();
+    }
+
+    // Sama firma albo jej rekruter
+    private function belongsToFirm(int $userId): bool
+    {
+        return $userId === auth()->id()
+            || User::whereKey($userId)->where('recruiter_from_firm_id', auth()->id())->exists();
     }
 }

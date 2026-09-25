@@ -1249,6 +1249,8 @@ class FrontController extends Controller
         $fileName = 'cv_'.time().'.pdf';
         $filePath = 'pdfGenerateTemporary/'.$fileName;
         Storage::disk('public')->put($filePath, $pdf->output());
+        // Zapamiętujemy plik w sesji - deletePdf usunie tylko pliki wygenerowane w tej sesji
+        session()->push('generated_pdfs', $filePath);
         $url = Storage::url($filePath); // Generuje URL publiczny
         App::setLocale($previousLocale);
 
@@ -1262,11 +1264,18 @@ class FrontController extends Controller
 
     public function deletePdf()
     {
-        $filePath = request()->get('file');
+        $filePath = (string) request()->get('file');
         if ($filePath) {
+            $generated = session('generated_pdfs', []);
+            abort_unless(
+                in_array($filePath, $generated, true) && preg_match('#^pdfGenerateTemporary/cv_\d+\.pdf$#', $filePath),
+                403
+            );
+
             if (Storage::disk('public')->exists($filePath)) {
                 Storage::disk('public')->delete($filePath);
             }
+            session()->put('generated_pdfs', array_values(array_diff($generated, [$filePath])));
 
             return response()->json(['message' => 'Plik został usunięty.']);
         }

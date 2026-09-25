@@ -511,6 +511,8 @@ class CandidatesController extends Controller
 
     public function evidencesStore(Request $request, Candidate $candidate)
     {
+        abort_unless($candidate->isAccessibleBy(auth()->user()), 403);
+
         $validated = $request->validate([
         'external_company'=>'required|array',
         'position'=>'required',
@@ -539,6 +541,8 @@ class CandidatesController extends Controller
 
     public function evidencesUpdate(Request $request, Candidate $candidate, CandidateEvidence $evidence)
     {
+        abort_unless($candidate->isAccessibleBy(auth()->user()), 403);
+
         if ($evidence->candidate_id !== $candidate->id) {
             abort(403, 'Unauthorized action.');
         }
@@ -566,6 +570,8 @@ class CandidatesController extends Controller
 
     public function evidencesDelete(Candidate $candidate,CandidateEvidence $evidence)
     {
+        abort_unless($candidate->isAccessibleBy(auth()->user()), 403);
+
         if ($evidence->candidate_id !== $candidate->id) {
             abort(403, 'Unauthorized action.');
         }

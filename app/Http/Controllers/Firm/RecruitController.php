@@ -113,7 +113,7 @@ class RecruitController extends Controller
      */
     public function edit(User $recruit)
     {
-        Gate::authorize('update',auth()->user());
+        Gate::authorize('update', $recruit);
         return inertia()->render('Recruits/Edit',['recruit'=>$recruit]);
     }
 
@@ -122,7 +122,7 @@ class RecruitController extends Controller
      */
     public function update(StoreRecruitRequest $request, User $recruit)
     {
-        Gate::authorize('update',auth()->user());
+        Gate::authorize('update', $recruit);
         $recruit->update([
             'name' => $request->userData()['name'],
             'email' => $request->userData()['email'],
@@ -161,7 +161,7 @@ class RecruitController extends Controller
      */
     public function destroyPhoto(User $recruit)
     {
-        Gate::authorize('update', auth()->user());
+        Gate::authorize('update', $recruit);
 
         $recruit->deleteProfilePhoto();
 

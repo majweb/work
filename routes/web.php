@@ -35,28 +35,14 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\Worker\WorkerController;
 use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
-use App\Mail\TestSimpleMail;
 use App\Models\Country;
 use App\Models\Page;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia; // to jest instancja, nie fasada
-
-Route::get('/test-email', function (Request $request) {
-    $to = $request->query('email', 'marcin.five@gmail.com');
-
-    try {
-        Mail::to($to)->send(new TestSimpleMail('To jest treść testowej wiadomości wysłanej przez klasę Mail przy użyciu szablonu Markdown.'));
-
-        return 'Email (klasa Mail + Markdown) wysłany pomyślnie na adres: '.$to;
-    } catch (\Exception $e) {
-        return 'Błąd podczas wysyłki (klasa Mail + Markdown): '.$e->getMessage();
-    }
-});
 
 Route::mediaLibrary();
 Route::post('/stripe/webhook', [BuyController::class, 'stripeWebhook'])->name('buy.stripe.webhook');
@@ -526,7 +512,7 @@ Route::middleware([
 });
 Route::post('temporary/upload', FileUploadController::class)->name('temporary.upload');
 Route::delete('temporary/delete', DeleteTemporaryFileController::class)->name('temporary.delete');
-Route::post('temporary/poster', DeletePosterFile::class)->name('temporary.delete.poster');
+Route::post('temporary/poster', DeletePosterFile::class)->middleware('auth')->name('temporary.delete.poster');
 
 //Baner
 Route::post('temporary/upload/banner', [BannerUploadController::class, 'upload'])->name('temporary.upload.banner');
@@ -535,14 +521,8 @@ Route::get('category/sub/{categoryId}', [FrontController::class, 'getCategorySub
 Route::get('category/professions/{categorySubId}', [FrontController::class, 'getProfessions'])->name('category.professions');
 Route::get('category/positions/{professionId}', [FrontController::class, 'getPositions'])->name('category.positions');
 
-Route::get('/download/cv-audio/{id}', function ($id) {
-    $app = App\Models\Aplication::findOrFail($id);
-    if ($app->cvAudio) {
-        return Storage::download($app->cvAudio->file_path);
-    } elseif ($app->cvVideo) {
-        return Storage::download($app->cvVideo->file_path);
-    }
-})->name('cv_audio.download');
+// Dostęp: zalogowany właściciel/rekruter/admin albo firma zewnętrzna z ważnym zaproszeniem (email + token)
+Route::get('/download/cv-audio/{aplication}', [ExternalResponseController::class, 'downloadRecording'])->name('cv_audio.download');
 
 require __DIR__.'/socialstream.php';
 require __DIR__.'/front.php';

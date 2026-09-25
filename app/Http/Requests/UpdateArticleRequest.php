@@ -16,7 +16,9 @@ class UpdateArticleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return request()->user()->hasRole('firm') || request()->user()->hasRole('admin');
+        // Admin edytuje każdy artykuł (ArticleAcceptController), firma tylko własny - sprawdzane przed walidacją
+        return request()->user()->hasRole('admin')
+            || request()->user()->can('update', $this->route('article'));
     }
 
     /**
