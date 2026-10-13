@@ -131,6 +131,26 @@ class CountryImagesTest extends TestCase
         $this->assertSame(2, $this->mediaCount('countries_images_desktop'));
     }
 
+    public function test_market_image_is_chosen_by_country_code_not_language(): void
+    {
+        // Kraj z setUp (pierwszy w tabeli) ma język równy kodowi wybranego rynku - stary kod szukał po `lang`
+        // i trafiał w niego, jak Austria (lang=de) na rynku niemieckim
+        $this->country->update(['lang' => 'yy']);
+        $this->country->addMedia(UploadedFile::fake()->image('zly.jpg'))->toMediaCollection('countries_images_desktop');
+
+        $market = Country::create([
+            'lang' => 'yy-lang',
+            'countryCode' => 'yy',
+            'name' => ['pl' => 'Rynek testowy'],
+            'continent' => ['pl' => 'Europa'],
+        ]);
+        $expected = $market->addMedia(UploadedFile::fake()->image('dobry.jpg'))->toMediaCollection('countries_images_desktop');
+
+        session()->put('selected_country', 'yy');
+
+        $this->assertStringContainsString("/storage/{$expected->id}/", Country::getRandomImageFromBrowserLocale());
+    }
+
     public function test_command_requires_codes_or_all_option(): void
     {
         $this->artisan('countries:refresh-images')->assertFailed();

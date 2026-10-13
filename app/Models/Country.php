@@ -38,10 +38,13 @@ class Country extends Model implements HasMedia
         $isMobile = $detect->isMobile();
         $isTablet = $detect->isTablet();
 
-        $locale = getSelectedCountry() ?: getLocalBrowserLang(); // np. 'pl', 'en'
+        $locale = getSelectedCountry() ?: getLocalBrowserLang(); // kod rynku, np. 'pl', 'cz', 'de'
 
-        // Szukamy kraju po kodzie języka lub fallback na domyślny
-        $country = self::where('lang', $locale)->first() ?? self::first();
+        // Rynek zapisuje kod kraju (countryCode), a nie języka - szukamy najpierw po kraju,
+        // potem po języku (np. kod z przeglądarki), na końcu fallback na pierwszy kraj
+        $country = self::where('countryCode', $locale)->first()
+            ?? self::where('lang', $locale)->first()
+            ?? self::first();
 
         if (! $country) {
             return null;
