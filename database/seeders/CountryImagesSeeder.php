@@ -3,54 +3,52 @@
 namespace Database\Seeders;
 
 use App\Models\Country;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Services\CountryImageImporter;
 use Illuminate\Database\Seeder;
 
 class CountryImagesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * Wgrywa od nowa zdjęcia wszystkich krajów z public/images/seeds/countries/{kod}/{desktop|mobile}/{1-5}.jpg:
+     * usuwa obecne zdjęcia z kolekcji (rekordy i pliki) i dodaje te z folderów. Można uruchamiać wielokrotnie,
+     * bez duplikatów. Kolekcja, dla której nie ma plików w folderze, zostaje bez zmian.
      */
-    public function run(): void
+    public function run(CountryImageImporter $importer): void
     {
         $countries = Country::all();
 
         if ($countries->isEmpty()) {
             $this->command->info('Brak krajów w bazie danych.');
+
             return;
         }
 
+        $added = 0;
+        $removed = 0;
+        $withoutFiles = [];
+
         foreach ($countries as $country) {
-            $this->command->info("Przetwarzam kraj: {$country->countryCode}");
+            foreach (CountryImageImporter::COLLECTIONS as $folder => $collection) {
+                $files = $importer->sourceFiles($country, $folder);
 
-            // Foldery desktop i mobile
-            $basePath = public_path("/images/seeds/countries/{$country->countryCode}");
-            $desktopPath = "{$basePath}/desktop";
-            $mobilePath  = "{$basePath}/mobile";
+                if (! $files) {
+                    $withoutFiles[] = "{$country->countryCode}/{$folder}";
 
-            // Dodajemy 5 zdjęć dla desktop
-            for ($i = 1; $i <= 5; $i++) {
-                $file = "{$desktopPath}/{$i}.jpg";
-
-                if (file_exists($file)) {
-                    $country->addMedia($file)
-                        ->preservingOriginal()
-                        ->toMediaCollection('countries_images_desktop');
+                    continue;
                 }
-            }
 
-            // Dodajemy 5 zdjęć dla mobile
-            for ($i = 1; $i <= 5; $i++) {
-                $file = "{$mobilePath}/{$i}.jpg";
-
-                if (file_exists($file)) {
-                    $country->addMedia($file)
-                        ->preservingOriginal()
-                        ->toMediaCollection('countries_images_mobile');
-                }
+                $result = $importer->replace($country, $collection, $files);
+                $added += $result['added'];
+                $removed += $result['removed'];
             }
         }
 
-        $this->command->info('✅ Dodano zdjęcia do wszystkich krajów.');
+        $this->command->info("✅ Dodano zdjęć: {$added}, usunięto starych: {$removed}.");
+
+        if ($withoutFiles) {
+            $this->command->warn('Bez plików w folderze (pozostawiono obecne zdjęcia): '.implode(', ', $withoutFiles));
+        }
     }
 }

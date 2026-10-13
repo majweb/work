@@ -19,3 +19,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Znaczniki Windows dodawane przy kopiowaniu plików do WSL
+*:Zone.Identifier
