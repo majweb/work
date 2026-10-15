@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\PrepareNewsletterLocale;
-use App\Lang\Lang;
 use App\Models\Newsletter;
 use App\Models\NewsletterCampaign;
 use App\Models\NewsletterCampaignLocale;
@@ -42,7 +41,7 @@ class NewsletterCampaignController extends Controller
         return Inertia::render('Admin/NewsletterCampaigns/Index', [
             'campaigns' => $campaigns,
             'audience' => $this->audience(),
-            'languageNames' => $this->languageNames(),
+            'languageNames' => Newsletter::languageNames(),
             'getResponseConfigured' => $getResponse->isConfigured(),
         ]);
     }
@@ -51,7 +50,7 @@ class NewsletterCampaignController extends Controller
     {
         return Inertia::render('Admin/NewsletterCampaigns/Create', [
             'audience' => $this->audience(),
-            'languageNames' => $this->languageNames(),
+            'languageNames' => Newsletter::languageNames(),
             'getResponseConfigured' => $getResponse->isConfigured(),
         ]);
     }
@@ -92,7 +91,7 @@ class NewsletterCampaignController extends Controller
 
         return Inertia::render('Admin/NewsletterCampaigns/Show', [
             'campaign' => $newsletterCampaign,
-            'languageNames' => $this->languageNames(),
+            'languageNames' => Newsletter::languageNames(),
         ]);
     }
 
@@ -161,21 +160,6 @@ class NewsletterCampaignController extends Controller
             ->orderByDesc('count')
             ->get()
             ->map(fn ($row) => ['locale' => $row->locale, 'count' => (int) $row->count]);
-    }
-
-    /**
-     * Polskie nazwy języków portalu do wyświetlenia w panelu (kod => nazwa).
-     *
-     * @return array<string, string>
-     */
-    protected function languageNames(): array
-    {
-        $previous = app()->getLocale();
-        app()->setLocale('pl');
-        $names = collect(Lang::cases())->mapWithKeys(fn (Lang $lang) => [$lang->value => $lang->label()])->all();
-        app()->setLocale($previous);
-
-        return $names;
     }
 
     protected function validated(Request $request, bool $preview = false): array

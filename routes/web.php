@@ -296,6 +296,9 @@ Route::middleware([
         Route::get('newsletter-campaigns/create', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'create'])->name('newsletter-campaigns.create');
         Route::post('newsletter-campaigns', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'store'])->name('newsletter-campaigns.store');
         Route::post('newsletter-campaigns/preview', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'preview'])->name('newsletter-campaigns.preview');
+        Route::get('newsletter-campaigns/lists', [\App\Http\Controllers\Admin\NewsletterListController::class, 'index'])->name('newsletter-lists.index');
+        Route::get('newsletter-campaigns/lists/{locale}', [\App\Http\Controllers\Admin\NewsletterListController::class, 'show'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.show');
+        Route::post('newsletter-campaigns/lists/{locale}/sync', [\App\Http\Controllers\Admin\NewsletterListController::class, 'sync'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.sync');
         Route::get('newsletter-campaigns/guide', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'guide'])->name('newsletter-campaigns.guide');
         Route::get('newsletter-campaigns/offers', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'offers'])->name('newsletter-campaigns.offers');
         Route::get('newsletter-campaigns/{newsletterCampaign}', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'show'])->name('newsletter-campaigns.show');

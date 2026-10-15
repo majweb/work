@@ -107,6 +107,62 @@ class GetResponseClient
         return (string) $response->json('newsletterId');
     }
 
+    /**
+     * Listy newslettera w GetResponse (nazwa z prefiksem portalu), według kodu języka.
+     *
+     * @return array<string, array{id: string, name: string, created_at: ?string}>
+     */
+    public function newsletterLists(): array
+    {
+        $prefix = config('services.getresponse.list_prefix');
+        $response = $this->request()->get('campaigns', ['query' => ['name' => $prefix], 'perPage' => 1000]);
+        $this->ensureSuccessful($response, 'Nie udało się pobrać list z GetResponse');
+
+        return collect($response->json())
+            ->filter(fn ($list) => str_starts_with($list['name'], $prefix))
+            ->mapWithKeys(fn ($list) => [substr($list['name'], strlen($prefix)) => [
+                'id' => $list['campaignId'],
+                'name' => $list['name'],
+                'created_at' => $list['createdOn'] ?? null,
+            ]])
+            ->sortKeys()
+            ->all();
+    }
+
+    public function contactsCount(string $listId): int
+    {
+        $response = $this->request()->get("campaigns/{$listId}/contacts", ['perPage' => 1, 'fields' => 'contactId']);
+        $this->ensureSuccessful($response, 'Nie udało się pobrać kontaktów listy z GetResponse');
+
+        return (int) $response->header('TotalCount');
+    }
+
+    /**
+     * Wszystkie kontakty listy: e-mail (małymi literami) => data dodania.
+     *
+     * @return array<string, ?string>
+     */
+    public function contactEmails(string $listId): array
+    {
+        $emails = [];
+        $page = 1;
+
+        do {
+            $response = $this->request()->get("campaigns/{$listId}/contacts", [
+                'perPage' => 1000,
+                'page' => $page,
+                'fields' => 'email,createdOn',
+            ]);
+            $this->ensureSuccessful($response, 'Nie udało się pobrać kontaktów listy z GetResponse');
+
+            foreach ($response->json() as $contact) {
+                $emails[mb_strtolower($contact['email'])] = $contact['createdOn'] ?? null;
+            }
+        } while ($page++ < (int) $response->header('TotalPages'));
+
+        return $emails;
+    }
+
     protected function fromFieldId(): string
     {
         if ($configured = config('services.getresponse.from_field_id')) {

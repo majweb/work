@@ -211,6 +211,54 @@ class NewsletterCampaignTest extends TestCase
         $this->assertSame(0, NewsletterCampaign::count());
     }
 
+    public function test_lists_show_portal_subscribers_against_getresponse_contacts(): void
+    {
+        Http::fake([
+            'gr.test/v3/campaigns/LISTPL/contacts*' => Http::response(
+                [['email' => 'Na.Liscie@example.com', 'createdOn' => '2026-10-15T08:00:00+0000'], ['email' => 'reczny@example.com', 'createdOn' => null]],
+                200,
+                ['TotalCount' => '2', 'TotalPages' => '1'],
+            ),
+            'gr.test/v3/campaigns*' => Http::response([
+                ['campaignId' => 'LISTPL', 'name' => 'w4y_pl', 'createdOn' => null],
+                ['campaignId' => 'OTHER', 'name' => 'marketing', 'createdOn' => null],
+            ]),
+        ]);
+        Newsletter::create(['email' => 'na.liscie@example.com', 'country_code' => 'pl', 'locale' => 'pl', 'getresponse_synced_at' => now()]);
+        Newsletter::create(['email' => 'odrzucony@example.com', 'country_code' => 'pl', 'locale' => 'pl', 'getresponse_synced_at' => now()]);
+        Newsletter::create(['email' => 'nowy@example.com', 'country_code' => 'pl', 'locale' => 'pl']);
+
+        $this->actingAs($this->admin)->get(route('admin.newsletter-lists.index'))
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->component('Admin/NewsletterCampaigns/Lists')
+                ->has('lists', 1)
+                ->where('lists.0', ['locale' => 'pl', 'list_name' => 'w4y_pl', 'subscribers' => 3, 'pending' => 1, 'contacts' => 2]));
+
+        $this->actingAs($this->admin)->get(route('admin.newsletter-lists.show', 'pl'))
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->component('Admin/NewsletterCampaigns/ListContacts')
+                ->where('contactsCount', 2)
+                ->where('pendingCount', 1)
+                ->where('subscribers.data.0.status', 'pending')
+                ->where('subscribers.data.1.status', 'missing')
+                ->where('subscribers.data.2.status', 'on_list')
+                ->where('onlyInGetResponse.0.email', 'reczny@example.com'));
+    }
+
+    public function test_pending_subscribers_of_language_can_be_synced_from_panel(): void
+    {
+        $this->fakeGetResponse();
+        Newsletter::create(['email' => 'a@example.com', 'country_code' => 'pl', 'locale' => 'pl']);
+        Newsletter::create(['email' => 'b@example.com', 'country_code' => 'de', 'locale' => 'de']);
+
+        $this->actingAs($this->admin)->post(route('admin.newsletter-lists.sync', 'pl'))->assertRedirect();
+
+        $this->assertNotNull(Newsletter::where('email', 'a@example.com')->value('getresponse_synced_at'));
+        $this->assertNull(Newsletter::where('email', 'b@example.com')->value('getresponse_synced_at'));
+    }
+
     public function test_guide_pdf_is_downloadable_by_admins_only(): void
     {
         $this->actingAs($this->admin)->get(route('admin.newsletter-campaigns.guide'))

@@ -39,6 +39,12 @@ const formatDate = (value) => new Date(value).toLocaleString('pl-PL', { dateStyl
                             </p>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-3">
+                            <Link
+                                :href="route('admin.newsletter-lists.index')"
+                                class="px-8 py-4 bg-white border border-gray-200 hover:border-[#0A2C5C] text-[#0A2C5C] rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all active:scale-95 text-center"
+                            >
+                                Listy i kontakty
+                            </Link>
                             <a
                                 :href="route('admin.newsletter-campaigns.guide')"
                                 class="px-8 py-4 bg-white border border-gray-200 hover:border-[#0A2C5C] text-[#0A2C5C] rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all active:scale-95 text-center"
@@ -63,9 +69,14 @@ const formatDate = (value) => new Date(value).toLocaleString('pl-PL', { dateStyl
                             Subskrybenci według języka · razem {{ totalSubscribers }}
                         </p>
                         <div v-if="audience.length" class="flex flex-wrap gap-2">
-                            <span v-for="row in audience" :key="row.locale" class="px-4 py-2 bg-gray-50 rounded-xl text-xs font-bold text-[#0A2C5C]">
+                            <Link
+                                v-for="row in audience"
+                                :key="row.locale"
+                                :href="route('admin.newsletter-lists.show', row.locale)"
+                                class="px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-xl text-xs font-bold text-[#0A2C5C] transition-colors"
+                            >
                                 {{ languageNames[row.locale] || row.locale }} <span class="text-gray-400">· {{ row.count }}</span>
-                            </span>
+                            </Link>
                         </div>
                         <p v-else class="text-sm text-gray-400">Nikt jeszcze nie zapisał się na newsletter.</p>
                     </div>

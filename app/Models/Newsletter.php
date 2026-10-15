@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Lang\Lang;
 use Illuminate\Database\Eloquent\Model;
 
 class Newsletter extends Model
@@ -42,5 +43,20 @@ class Newsletter extends Model
         }
 
         return 'en';
+    }
+
+    /**
+     * Polskie nazwy języków portalu do wyświetlenia w panelu admina (kod => nazwa).
+     *
+     * @return array<string, string>
+     */
+    public static function languageNames(): array
+    {
+        $previous = app()->getLocale();
+        app()->setLocale('pl');
+        $names = collect(Lang::cases())->mapWithKeys(fn (Lang $lang) => [$lang->value => $lang->label()])->all();
+        app()->setLocale($previous);
+
+        return $names;
     }
 }
