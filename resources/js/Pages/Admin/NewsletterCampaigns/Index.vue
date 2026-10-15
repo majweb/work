@@ -38,12 +38,20 @@ const formatDate = (value) => new Date(value).toLocaleString('pl-PL', { dateStyl
                                 Piszesz po polsku, tłumaczenia i szkice w GetResponse przygotowują się same
                             </p>
                         </div>
-                        <Link
-                            :href="route('admin.newsletter-campaigns.create')"
-                            class="px-8 py-4 bg-[#0A2C5C] hover:bg-[#0D356D] text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95 text-center"
-                        >
-                            Nowa wysyłka
-                        </Link>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a
+                                :href="route('admin.newsletter-campaigns.guide')"
+                                class="px-8 py-4 bg-white border border-gray-200 hover:border-[#0A2C5C] text-[#0A2C5C] rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all active:scale-95 text-center"
+                            >
+                                Instrukcja (PDF)
+                            </a>
+                            <Link
+                                :href="route('admin.newsletter-campaigns.create')"
+                                class="px-8 py-4 bg-[#0A2C5C] hover:bg-[#0D356D] text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95 text-center"
+                            >
+                                Nowa wysyłka
+                            </Link>
+                        </div>
                     </div>
 
                     <div v-if="!getResponseConfigured" class="mt-8 p-5 bg-red-50 border border-red-100 rounded-2xl text-sm font-medium text-red-700">

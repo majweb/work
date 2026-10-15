@@ -18,12 +18,21 @@ use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Przygotowanie wysyłek newslettera: treść po polsku -> tłumaczenia -> szkice w GetResponse.
  */
 class NewsletterCampaignController extends Controller
 {
+    /**
+     * Instrukcja wysyłki newslettera dla adminów (PDF).
+     */
+    public function guide(): BinaryFileResponse
+    {
+        return response()->download(resource_path('newsletter/instrukcja.pdf'), 'Instrukcja - jak wyslac newsletter.pdf');
+    }
+
     public function index(GetResponseClient $getResponse): Response
     {
         $campaigns = NewsletterCampaign::with(['author:id,name', 'locales:id,newsletter_campaign_id,locale,status,recipients_count'])

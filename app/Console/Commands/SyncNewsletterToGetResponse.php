@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SyncNewsletterSubscriber;
 use App\Models\Newsletter;
 use App\Services\Newsletter\GetResponseClient;
 use Illuminate\Console\Command;
@@ -43,11 +44,8 @@ class SyncNewsletterToGetResponse extends Command
         $failed = 0;
 
         foreach ($subscribers as $subscriber) {
-            $locale = $subscriber->locale ?: Newsletter::localeForCountryCode($subscriber->country_code);
-
             try {
-                $getResponse->addContact($subscriber->email, $getResponse->listIdForLocale($locale), $subscriber->ip_address);
-                $subscriber->update(['locale' => $locale, 'getresponse_synced_at' => now()]);
+                SyncNewsletterSubscriber::dispatchSync($subscriber);
                 $synced++;
             } catch (Throwable $e) {
                 // Nieudany kontakt zostaje niezsynchronizowany i wróci przy następnym uruchomieniu

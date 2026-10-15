@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Newsletter;
 
+use App\Jobs\SyncNewsletterSubscriber;
 use App\Models\Country;
 use App\Models\Newsletter;
 use App\Models\NewsletterCampaign;
@@ -13,6 +14,7 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use OpenAI\Laravel\Facades\OpenAI;
 use OpenAI\Responses\Chat\CreateResponse;
+use RuntimeException;
 use Spatie\Permission\Models\Role;
 use Tests\Concerns\CreatesProjects;
 use Tests\TestCase;
@@ -89,12 +91,34 @@ class NewsletterCampaignTest extends TestCase
 
     public function test_subscribing_stores_language_and_consent(): void
     {
+        $this->fakeGetResponse();
+
         $this->post(route('newsletter.store'), ['email' => 'jan@example.com', 'agreements' => []])->assertRedirect();
 
         $subscriber = Newsletter::where('email', 'jan@example.com')->firstOrFail();
         $this->assertContains($subscriber->locale, config('langsShorts'));
         $this->assertNotNull($subscriber->ip_address);
         $this->assertArrayHasKey('accepted_at', $subscriber->consents);
+
+        // Nowy subskrybent trafia do GetResponse od razu, bez czekania na cogodzinną synchronizację
+        $this->assertNotNull($subscriber->getresponse_synced_at);
+        Http::assertSent(fn (Request $r) => str_ends_with($r->url(), '/contacts') && $r['email'] === 'jan@example.com');
+    }
+
+    public function test_failed_immediate_sync_leaves_subscriber_for_hourly_sync(): void
+    {
+        Http::fake(['gr.test/v3/*' => Http::response(['message' => 'Server error'], 500)]);
+        $subscriber = Newsletter::create(['email' => 'a@example.com', 'country_code' => 'pl', 'locale' => 'pl']);
+
+        try {
+            SyncNewsletterSubscriber::dispatchSync($subscriber);
+            $this->fail('Błąd GetResponse powinien zostać zgłoszony, żeby kolejka ponowiła zadanie');
+        } catch (RuntimeException) {
+        }
+
+        $this->assertNull($subscriber->fresh()->getresponse_synced_at);
+        $this->artisan('newsletter:sync-getresponse')->assertFailed();
+        $this->assertNull($subscriber->fresh()->getresponse_synced_at);
     }
 
     public function test_language_for_existing_subscribers_comes_from_country(): void
@@ -185,6 +209,17 @@ class NewsletterCampaignTest extends TestCase
             ->assertSessionHasErrors('subject');
 
         $this->assertSame(0, NewsletterCampaign::count());
+    }
+
+    public function test_guide_pdf_is_downloadable_by_admins_only(): void
+    {
+        $this->actingAs($this->admin)->get(route('admin.newsletter-campaigns.guide'))
+            ->assertOk()
+            ->assertHeader('content-type', 'application/pdf');
+
+        $firm = User::factory()->create();
+        $firm->assignRole('firm');
+        $this->actingAs($firm)->get(route('admin.newsletter-campaigns.guide'))->assertForbidden();
     }
 
     public function test_access_for_admins_and_sub_admins_only(): void

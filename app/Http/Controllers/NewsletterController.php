@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\NewslettersExport;
+use App\Jobs\SyncNewsletterSubscriber;
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -96,7 +97,7 @@ class NewsletterController extends Controller
 
         $locale = getSelectedCountry() ?: getLocalBrowserLang();
 
-        Newsletter::create([
+        $subscriber = Newsletter::create([
             'email' => $request->email,
             'country_code' => $locale,
             // Newsletter wysyłamy w języku, w którym osoba czytała stronę
@@ -108,6 +109,9 @@ class NewsletterController extends Controller
             ],
             'ip_address' => $request->ip(),
         ]);
+
+        // Od razu na listę GetResponse jego języka; gdyby się nie udało, przeniesie go cogodzinna synchronizacja
+        SyncNewsletterSubscriber::dispatch($subscriber);
 
         return back()->with([
             'flash.banner' => __('footer.newsletter_success'),

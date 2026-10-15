@@ -296,6 +296,7 @@ Route::middleware([
         Route::get('newsletter-campaigns/create', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'create'])->name('newsletter-campaigns.create');
         Route::post('newsletter-campaigns', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'store'])->name('newsletter-campaigns.store');
         Route::post('newsletter-campaigns/preview', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'preview'])->name('newsletter-campaigns.preview');
+        Route::get('newsletter-campaigns/guide', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'guide'])->name('newsletter-campaigns.guide');
         Route::get('newsletter-campaigns/offers', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'offers'])->name('newsletter-campaigns.offers');
         Route::get('newsletter-campaigns/{newsletterCampaign}', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'show'])->name('newsletter-campaigns.show');
         Route::get('newsletter-campaigns/{newsletterCampaign}/locales/{locale}/preview', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'previewLocale'])->name('newsletter-campaigns.locale-preview');
