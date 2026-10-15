@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 /**
  * Rynek (kod kraju z tabeli countries) wykryty z języka przeglądarki przy pierwszej wizycie.
@@ -40,7 +39,7 @@ class BrowserMarketDetector
 
     public function detect(Request $request): string
     {
-        $countries = $this->countryLanguages();
+        $countries = Country::languageMap();
 
         foreach ($request->getLanguages() as $tag) {
             $parts = explode('_', strtolower($tag));
@@ -79,23 +78,5 @@ class BrowserMarketDetector
         sort($matching);
 
         return $matching[0] ?? null;
-    }
-
-    /**
-     * @return array<string, string[]> kod kraju => języki (kraj może mieć kilka, np. cy: el, tr)
-     */
-    protected function countryLanguages(): array
-    {
-        return Cache::remember('browser_market_country_languages', now()->addHour(), fn () => Country::query()
-            ->get(['countryCode', 'lang'])
-            ->mapWithKeys(function (Country $country) {
-                $lang = $country->lang;
-                $languages = is_string($lang) && str_starts_with(trim($lang), '[')
-                    ? (array) json_decode($lang, true)
-                    : [$lang];
-
-                return [strtolower($country->countryCode) => array_map('strtolower', array_filter($languages))];
-            })
-            ->all());
     }
 }

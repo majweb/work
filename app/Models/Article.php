@@ -68,9 +68,43 @@ class Article extends Model implements HasMedia
         return $query->where('active', 1)->where('active_admin', 1);
     }
 
+    /**
+     * Artykuły dla wybranego rynku (w języku tego rynku).
+     */
     public function scopeLang($query)
     {
-        return $query->where('lang', app()->getLocale());
+        return $query->whereIn('lang', self::marketLanguages());
+    }
+
+    /**
+     * Języki artykułów dla rynku: język(i) kraju z tabeli krajów (cz -> cs, at -> de).
+     * Gdy w tych językach nie ma żadnego aktywnego artykułu, bierzemy język portalu,
+     * a gdy i w nim nie ma - język domyślny (polski), żeby lista nie była pusta.
+     *
+     * @return string[]
+     */
+    public static function marketLanguages(): array
+    {
+        // Liczone raz na żądanie - strona artykułów wywołuje filtr kilka razy
+        $attributes = request()->attributes;
+        if ($attributes->has('article_market_languages')) {
+            return $attributes->get('article_market_languages');
+        }
+
+        // Kolejno: język rynku, język portalu, język domyślny - pierwszy, w którym są artykuły
+        $candidates = [
+            Country::languagesForMarket(getSelectedCountry() ?: getLocalBrowserLang()),
+            [app()->getLocale()],
+            [config('app.default_locale')],
+        ];
+
+        $languages = collect($candidates)
+            ->first(fn (array $langs) => $langs && static::query()->active()->whereIn('lang', $langs)->exists())
+            ?? [config('app.default_locale')];
+
+        $attributes->set('article_market_languages', $languages);
+
+        return $languages;
     }
 
     public function registerMediaConversions(?Media $media = null): void

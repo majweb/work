@@ -5,6 +5,7 @@ namespace App\Models;
 use Detection\MobileDetect;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
@@ -29,6 +30,45 @@ class Country extends Model implements HasMedia
         'name' => 'array',
         'continent' => 'array',
     ];
+
+    public const LANGUAGE_MAP_CACHE_KEY = 'country_languages_map';
+
+    protected static function booted(): void
+    {
+        // Mapa kraj -> języki jest w cache; zmiana kraju w panelu admina ją unieważnia
+        static::saved(fn () => Cache::forget(self::LANGUAGE_MAP_CACHE_KEY));
+        static::deleted(fn () => Cache::forget(self::LANGUAGE_MAP_CACHE_KEY));
+    }
+
+    /**
+     * Języki każdego kraju: kod kraju => kody języków (np. cz => [cs], cy => [el, tr]).
+     *
+     * @return array<string, string[]>
+     */
+    public static function languageMap(): array
+    {
+        return Cache::rememberForever(self::LANGUAGE_MAP_CACHE_KEY, fn () => self::query()
+            ->get(['countryCode', 'lang'])
+            ->mapWithKeys(function (self $country) {
+                $lang = $country->lang;
+                $languages = is_string($lang) && str_starts_with(trim($lang), '[')
+                    ? (array) json_decode($lang, true)
+                    : [$lang];
+
+                return [strtolower($country->countryCode) => array_values(array_map('strtolower', array_filter($languages)))];
+            })
+            ->all());
+    }
+
+    /**
+     * Języki rynku (kodu kraju), np. cz -> [cs], at -> [de]. Pusta tablica dla nieznanego kraju.
+     *
+     * @return string[]
+     */
+    public static function languagesForMarket(?string $countryCode): array
+    {
+        return (array) (self::languageMap()[strtolower((string) $countryCode)] ?? []);
+    }
 
     public static function getRandomImageFromBrowserLocale()
     {
