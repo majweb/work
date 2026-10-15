@@ -99,6 +99,14 @@ class NewsletterController extends Controller
         Newsletter::create([
             'email' => $request->email,
             'country_code' => $locale,
+            // Newsletter wysyłamy w języku, w którym osoba czytała stronę
+            'locale' => app()->getLocale(),
+            // Dowód zgody (RODO): które zgody zaznaczono, kiedy i z jakiego IP
+            'consents' => [
+                'agreement_ids' => array_values(array_map('intval', (array) $request->input('agreements', []))),
+                'accepted_at' => now()->toIso8601String(),
+            ],
+            'ip_address' => $request->ip(),
         ]);
 
         return back()->with([

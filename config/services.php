@@ -59,6 +59,21 @@ return [
         'token' => env('MAPBOX_TOKEN'),
     ],
 
+    // Newsletter: synchronizacja zapisów i szkice wysyłek w GetResponse
+    'getresponse' => [
+        'api_key' => env('GETRESPONSE_API_KEY'),
+        'base_url' => env('GETRESPONSE_BASE_URL', 'https://api.getresponse.com/v3'),
+        // Adres nadawcy; puste = domyślny adres z konta GetResponse
+        'from_field_id' => env('GETRESPONSE_FROM_FIELD_ID'),
+        // Listy tworzone są jako {prefix}{język}, np. w4y_newsletter_pl
+        'list_prefix' => env('GETRESPONSE_LIST_PREFIX', 'w4y_newsletter_'),
+    ],
+
+    // Tłumaczenie newslettera (OpenAI)
+    'newsletter' => [
+        'translation_model' => env('NEWSLETTER_TRANSLATION_MODEL', 'gpt-6.1-sol'),
+    ],
+
     'stripe' => [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),

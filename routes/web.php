@@ -291,6 +291,16 @@ Route::middleware([
         Route::delete('articles-accepts/{article:id}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'destroy'])->name('articles-accepts.destroy');
         Route::put('articles-accepts/{article:id}/accept', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'accept'])->name('articles-accepts.accept');
 
+        // NEWSLETTER - wysyłki (wszyscy administratorzy; lista subskrybentów zostaje w ustawieniach głównego admina)
+        Route::get('newsletter-campaigns', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'index'])->name('newsletter-campaigns.index');
+        Route::get('newsletter-campaigns/create', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'create'])->name('newsletter-campaigns.create');
+        Route::post('newsletter-campaigns', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'store'])->name('newsletter-campaigns.store');
+        Route::post('newsletter-campaigns/preview', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'preview'])->name('newsletter-campaigns.preview');
+        Route::get('newsletter-campaigns/offers', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'offers'])->name('newsletter-campaigns.offers');
+        Route::get('newsletter-campaigns/{newsletterCampaign}', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'show'])->name('newsletter-campaigns.show');
+        Route::get('newsletter-campaigns/{newsletterCampaign}/locales/{locale}/preview', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'previewLocale'])->name('newsletter-campaigns.locale-preview');
+        Route::post('newsletter-campaigns/{newsletterCampaign}/locales/{locale}/retry', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'retry'])->name('newsletter-campaigns.retry');
+
         // SOCIAL MEDIA PROMOTION
         Route::get('social-media-promotions', [\App\Http\Controllers\Admin\SocialMediaPromotionController::class, 'index'])->name('social-media.index');
         Route::post('social-media-promotions/{changeProduct}/decrement', [\App\Http\Controllers\Admin\SocialMediaPromotionController::class, 'decrement'])->name('social-media.decrement');
