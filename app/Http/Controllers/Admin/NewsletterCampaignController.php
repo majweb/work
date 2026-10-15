@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\PrepareNewsletterLocale;
+use App\Models\Category;
 use App\Models\Newsletter;
 use App\Models\NewsletterCampaign;
 use App\Models\NewsletterCampaignLocale;
@@ -14,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -50,6 +52,11 @@ class NewsletterCampaignController extends Controller
     {
         return Inertia::render('Admin/NewsletterCampaigns/Create', [
             'audience' => $this->audience(),
+            // Branże = kategorie główne ofert (nazwy po polsku)
+            'categories' => Category::isRoot()->get()
+                ->map(fn (Category $category) => ['id' => $category->id, 'name' => $category->getTranslation('title', 'pl')])
+                ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
+                ->values(),
             'languageNames' => Newsletter::languageNames(),
             'getResponseConfigured' => $getResponse->isConfigured(),
         ]);
@@ -66,6 +73,16 @@ class NewsletterCampaignController extends Controller
         $audience = $this->audience();
         if ($audience->isEmpty()) {
             throw ValidationException::withMessages(['subject' => 'Brak subskrybentów newslettera.']);
+        }
+
+        // Szkice tylko dla wybranych języków (bez wyboru - dla wszystkich języków subskrybentów)
+        if ($request->has('locales')) {
+            $locales = $request->validate(['locales' => ['array'], 'locales.*' => ['string']])['locales'] ?? [];
+            $audience = $audience->whereIn('locale', $locales)->values();
+
+            if ($audience->isEmpty()) {
+                throw ValidationException::withMessages(['locales' => 'Wybierz co najmniej jeden język, dla którego ma powstać szkic.']);
+            }
         }
 
         $campaign = NewsletterCampaign::create($data + ['created_by' => $request->user()->id]);
@@ -174,6 +191,8 @@ class NewsletterCampaignController extends Controller
             'cta_url' => ['nullable', 'required_with:cta_text', 'url', 'max:500'],
             'offer_ids' => ['nullable', 'array', 'max:6'],
             'offer_ids.*' => ['integer', 'exists:projects,id'],
+            'category_ids' => ['nullable', 'array', 'max:6'],
+            'category_ids.*' => ['integer', Rule::exists('categories', 'id')->whereNull('parent_id')],
         ], [], [
             'subject' => 'temat',
             'title' => 'nagłówek',
@@ -181,6 +200,7 @@ class NewsletterCampaignController extends Controller
             'cta_text' => 'tekst przycisku',
             'cta_url' => 'adres przycisku',
             'offer_ids' => 'polecane oferty',
+            'category_ids' => 'polecane branże',
         ]);
     }
 }

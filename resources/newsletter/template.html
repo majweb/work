@@ -17,9 +17,11 @@
     {{cta_url}}         adres głównego przycisku
     {{offers_heading}}  nagłówek sekcji ofert
     {{offer_*}}         dane jednej oferty - blok OFFER powtarzany dla każdej oferty
+    {{categories_heading}} nagłówek sekcji branż
+    {{category_*}}      nazwa i link jednej branży - blok CATEGORY powtarzany dla każdej branży
     {{footer_reason}}   dlaczego odbiorca dostaje maila
     {{unsubscribe_text}} tekst linku wypisu
-  Sekcję ofert (OFFERS) można usunąć w całości, jeśli newsletter nie zawiera ofert.
+  Sekcje ofert (OFFERS) i branż (CATEGORIES) można usunąć w całości, jeśli newsletter ich nie zawiera.
 -->
 <html lang="{{lang}}" dir="{{dir}}" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -129,6 +131,17 @@
             </td>
           </tr>
           <!-- OFFERS:END -->
+
+          <!-- CATEGORIES:START (sekcję można usunąć, jeśli newsletter nie zawiera branż) -->
+          <tr>
+            <td class="px" style="padding:0 36px 32px; text-align:{{align}};">
+              <h2 style="margin:0 0 14px; font-size:19px; line-height:1.3; color:#0a2c5c; text-align:{{align}};">{{categories_heading}}</h2>
+              <!-- CATEGORY:START (blok powtarzany dla każdej branży) -->
+              <a href="{{category_url}}" target="_blank" style="display:inline-block; margin:0 6px 10px 0; padding:10px 16px; font-size:14px; font-weight:bold; line-height:1.3; color:#0a2c5c; text-decoration:none; background:#eef5fb; border:1px solid #cfe3f3; border-radius:20px;">{{category_name}}</a>
+              <!-- CATEGORY:END -->
+            </td>
+          </tr>
+          <!-- CATEGORIES:END -->
 
           <!-- Stopka -->
           <tr>

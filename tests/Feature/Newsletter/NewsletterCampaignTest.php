@@ -3,6 +3,7 @@
 namespace Tests\Feature\Newsletter;
 
 use App\Jobs\SyncNewsletterSubscriber;
+use App\Models\Category;
 use App\Models\Country;
 use App\Models\Newsletter;
 use App\Models\NewsletterCampaign;
@@ -377,5 +378,57 @@ class NewsletterCampaignTest extends TestCase
         $this->assertStringContainsString('2 800 EUR', $html);
         $this->assertStringNotContainsString('<!-- Główny przycisk -->', $html);
         $this->assertStringNotContainsString('{{', $html);
+    }
+
+    public function test_renderer_shows_categories_in_recipient_language(): void
+    {
+        $category = Category::create(['title' => ['pl' => 'Handlowa', 'de' => 'Handel', 'en' => 'commercial']]);
+        $campaign = new NewsletterCampaign($this->campaignPayload(['category_ids' => [$category->id]]));
+        $renderer = app(NewsletterRenderer::class);
+
+        $this->assertArrayHasKey('categories_heading', $renderer->sourceTexts($campaign));
+
+        $german = $renderer->render($campaign, 'de', $renderer->sourceTexts($campaign));
+        $this->assertStringContainsString('>Handel</a>', $german);
+        $this->assertStringContainsString(e(route('front.projects', ['category' => $category->id])), $german);
+        $this->assertStringContainsString('<!-- Główny przycisk -->', $german);
+
+        // Brak tłumaczenia nazwy - angielska, z wielkiej litery
+        $this->assertStringContainsString('>Commercial</a>', $renderer->render($campaign, 'sq', $renderer->sourceTexts($campaign)));
+
+        // Bez branż sekcja znika, a nagłówek branż nie jest tłumaczony
+        $plain = new NewsletterCampaign($this->campaignPayload());
+        $this->assertArrayNotHasKey('categories_heading', $renderer->sourceTexts($plain));
+        $this->assertStringNotContainsString('CATEGORIES', $renderer->render($plain, 'pl', $renderer->sourceTexts($plain)));
+    }
+
+    public function test_only_main_categories_can_be_recommended(): void
+    {
+        $parent = Category::create(['title' => ['pl' => 'Handlowa']]);
+        $child = Category::create(['title' => ['pl' => 'Sprzedawca'], 'parent_id' => $parent->id]);
+
+        $this->actingAs($this->admin)
+            ->post(route('admin.newsletter-campaigns.store'), $this->campaignPayload(['category_ids' => [$child->id]]))
+            ->assertSessionHasErrors('category_ids.0');
+    }
+
+    public function test_drafts_are_created_only_for_selected_languages(): void
+    {
+        $this->fakeGetResponse();
+        $this->fakeTranslation();
+        Newsletter::create(['email' => 'a@example.com', 'country_code' => 'pl', 'locale' => 'pl']);
+        Newsletter::create(['email' => 'b@example.com', 'country_code' => 'de', 'locale' => 'de']);
+
+        $this->actingAs($this->admin)
+            ->post(route('admin.newsletter-campaigns.store'), $this->campaignPayload(['locales' => []]))
+            ->assertSessionHasErrors('locales');
+        $this->assertSame(0, NewsletterCampaign::count());
+
+        $this->actingAs($this->admin)
+            ->post(route('admin.newsletter-campaigns.store'), $this->campaignPayload(['locales' => ['de', 'xx']]))
+            ->assertRedirect();
+
+        $this->assertSame(['de'], NewsletterCampaign::firstOrFail()->locales()->pluck('locale')->all());
+        $this->assertCount(1, Http::recorded(fn (Request $r) => str_ends_with($r->url(), '/newsletters')));
     }
 }

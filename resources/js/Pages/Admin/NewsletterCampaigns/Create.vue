@@ -8,11 +8,13 @@ import axios from 'axios';
 
 const props = defineProps({
     audience: Array,
+    categories: Array,
     languageNames: Object,
     getResponseConfigured: Boolean,
 });
 
 const MAX_OFFERS = 6;
+const MAX_CATEGORIES = 6;
 
 const form = useForm({
     subject: '',
@@ -23,7 +25,26 @@ const form = useForm({
     cta_text: 'Zobacz wszystkie oferty',
     cta_url: 'https://work4you.global/projects',
     offer_ids: [],
+    category_ids: [],
+    // Języki, dla których powstaną szkice - domyślnie wszystkie języki subskrybentów
+    locales: props.audience.map(row => row.locale),
 });
+
+const toggleCategory = (id) => {
+    const index = form.category_ids.indexOf(id);
+    if (index !== -1) {
+        form.category_ids.splice(index, 1);
+    } else if (form.category_ids.length < MAX_CATEGORIES) {
+        form.category_ids.push(id);
+    }
+};
+
+const toggleLocale = (locale) => {
+    const index = form.locales.indexOf(locale);
+    index !== -1 ? form.locales.splice(index, 1) : form.locales.push(locale);
+};
+
+const selectedAudience = computed(() => props.audience.filter(row => form.locales.includes(row.locale)));
 
 // Wybrane oferty (pełne dane do wyświetlenia); do wysyłki idą tylko id
 const selectedOffers = ref([]);
@@ -74,7 +95,7 @@ const refreshPreview = async () => {
     }
 };
 
-const totalRecipients = computed(() => props.audience.reduce((sum, row) => sum + row.count, 0));
+const totalRecipients = computed(() => selectedAudience.value.reduce((sum, row) => sum + row.count, 0));
 
 const submit = () => {
     form.post(route('admin.newsletter-campaigns.store'), { preserveScroll: true });
@@ -180,23 +201,61 @@ const hintClass = 'text-[10px] text-gray-400 font-bold uppercase tracking-widest
                             <InputError :message="form.errors.offer_ids" class="mt-2" />
                         </div>
 
+                        <!-- Polecane branże -->
+                        <div>
+                            <p :class="labelClass">Polecane branże (opcjonalnie, max {{ MAX_CATEGORIES }})</p>
+                            <p :class="hintClass" class="mb-3">W mailu jako przyciski z nazwą branży w języku odbiorcy, prowadzące do ofert z tej branży.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <button
+                                    v-for="category in categories"
+                                    :key="category.id"
+                                    type="button"
+                                    @click="toggleCategory(category.id)"
+                                    :disabled="!form.category_ids.includes(category.id) && form.category_ids.length >= MAX_CATEGORIES"
+                                    class="px-4 py-2 rounded-xl text-xs font-bold transition-colors border disabled:opacity-40 disabled:cursor-not-allowed"
+                                    :class="form.category_ids.includes(category.id)
+                                        ? 'bg-[#0A2C5C] border-[#0A2C5C] text-white'
+                                        : 'bg-gray-50 border-gray-100 text-[#0A2C5C] hover:border-[#329CD1]'"
+                                >
+                                    {{ category.name }}
+                                </button>
+                            </div>
+                            <InputError :message="form.errors.category_ids" class="mt-2" />
+                        </div>
+
                         <!-- Podsumowanie i zapis -->
                         <div class="border-t border-gray-50 pt-8 space-y-4">
+                            <p :class="labelClass" class="!mb-0">Szkice dla języków</p>
                             <p class="text-sm text-gray-600">
-                                Powstanie <strong>{{ audience.length }}</strong> {{ audience.length === 1 ? 'szkic' : 'szkiców' }} dla <strong>{{ totalRecipients }}</strong> subskrybentów:
+                                Powstanie <strong>{{ selectedAudience.length }}</strong> {{ selectedAudience.length === 1 ? 'szkic' : 'szkiców' }} dla <strong>{{ totalRecipients }}</strong> subskrybentów.
+                                Kliknij język, aby go pominąć lub dodać.
                             </p>
                             <div class="flex flex-wrap gap-2">
-                                <span v-for="row in audience" :key="row.locale" class="px-3 py-1.5 bg-gray-50 rounded-xl text-xs font-bold text-[#0A2C5C]">
+                                <button
+                                    v-for="row in audience"
+                                    :key="row.locale"
+                                    type="button"
+                                    @click="toggleLocale(row.locale)"
+                                    class="px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors"
+                                    :class="form.locales.includes(row.locale)
+                                        ? 'bg-[#0A2C5C] border-[#0A2C5C] text-white'
+                                        : 'bg-white border-gray-200 text-gray-400 line-through'"
+                                >
                                     {{ languageNames[row.locale] || row.locale }} · {{ row.count }}
-                                </span>
+                                </button>
                             </div>
+                            <div class="flex gap-4 text-[10px] font-black uppercase tracking-widest">
+                                <button type="button" class="text-[#0A2C5C] hover:underline" @click="form.locales = audience.map(row => row.locale)">Zaznacz wszystkie</button>
+                                <button type="button" class="text-gray-400 hover:underline" @click="form.locales = []">Odznacz wszystkie</button>
+                            </div>
+                            <InputError :message="form.errors.locales" class="mt-2" />
                             <div class="flex flex-wrap gap-4 pt-2">
                                 <button type="button" @click="refreshPreview" class="px-8 py-4 border-2 border-gray-100 hover:bg-gray-50 text-[#0A2C5C] rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all active:scale-95">
                                     Odśwież podgląd
                                 </button>
                                 <button
                                     type="submit"
-                                    :disabled="form.processing || !getResponseConfigured || !audience.length"
+                                    :disabled="form.processing || !getResponseConfigured || !selectedAudience.length"
                                     class="px-8 py-4 bg-[#0A2C5C] hover:bg-[#0D356D] text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     Przygotuj tłumaczenia i szkice

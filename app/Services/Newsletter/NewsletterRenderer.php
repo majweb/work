@@ -2,8 +2,10 @@
 
 namespace App\Services\Newsletter;
 
+use App\Models\Category;
 use App\Models\NewsletterCampaign;
 use App\Models\Project;
+use Illuminate\Support\Str;
 
 /**
  * Składa HTML newslettera z szablonu resources/newsletter/template.html.
@@ -17,6 +19,7 @@ class NewsletterRenderer
     public const FIXED_TEXTS = [
         'offers_heading' => 'Polecane oferty',
         'offer_button' => 'Zobacz',
+        'categories_heading' => 'Oferty pracy według branży',
         'footer_reason' => 'Otrzymujesz tę wiadomość, ponieważ zapisałeś się na newsletter w serwisie Work4you.global.',
         'unsubscribe_text' => 'Wypisz się',
     ];
@@ -37,7 +40,13 @@ class NewsletterRenderer
             'cta_text' => $campaign->cta_text,
         ], fn ($value) => filled($value));
 
-        return $texts + self::FIXED_TEXTS;
+        $fixed = self::FIXED_TEXTS;
+        // Nagłówek branż tłumaczymy tylko, gdy wysyłka ma branże
+        if (empty($campaign->category_ids)) {
+            unset($fixed['categories_heading']);
+        }
+
+        return $texts + $fixed;
     }
 
     /**
@@ -49,6 +58,7 @@ class NewsletterRenderer
         $rtl = in_array($locale, self::RTL_LOCALES, true);
 
         $html = $this->renderOffers($html, $campaign->offer_ids ?? [], $locale, $texts['offer_button'] ?? self::FIXED_TEXTS['offer_button']);
+        $html = $this->renderCategories($html, $campaign->category_ids ?? [], $locale);
         $html = $this->renderCta($html, $texts['cta_text'] ?? null, $campaign->cta_url);
 
         $values = [
@@ -62,6 +72,7 @@ class NewsletterRenderer
             // Treść pochodzi z edytora w panelu admina - to HTML, nie jest escapowana
             'content' => $texts['content'] ?? '',
             'offers_heading' => e($texts['offers_heading'] ?? self::FIXED_TEXTS['offers_heading']),
+            'categories_heading' => e($texts['categories_heading'] ?? self::FIXED_TEXTS['categories_heading']),
             'footer_reason' => e($texts['footer_reason'] ?? self::FIXED_TEXTS['footer_reason']),
             'unsubscribe_text' => e($texts['unsubscribe_text'] ?? self::FIXED_TEXTS['unsubscribe_text']),
         ];
@@ -133,11 +144,39 @@ class NewsletterRenderer
         return preg_replace('/<!-- OFFER:START.*?<!-- OFFER:END -->/s', str_replace(['\\', '$'], ['\\\\', '\\$'], $items), $html);
     }
 
+    /**
+     * Branże (kategorie główne) jako przyciski z nazwą w języku odbiorcy, prowadzące do ofert z danej branży.
+     */
+    protected function renderCategories(string $html, array $categoryIds, string $locale): string
+    {
+        $categories = $categoryIds
+            ? Category::whereIn('id', $categoryIds)->get()->sortBy(fn ($c) => array_search($c->id, $categoryIds))
+            : collect();
+
+        if ($categories->isEmpty()) {
+            return preg_replace('/<!-- CATEGORIES:START.*?<!-- CATEGORIES:END -->\s*/s', '', $html);
+        }
+
+        preg_match('/<!-- CATEGORY:START.*?-->(.*?)<!-- CATEGORY:END -->/s', $html, $match);
+        $block = $match[1];
+
+        $items = $categories->map(fn (Category $category) => str_replace(
+            ['{{category_name}}', '{{category_url}}'],
+            [
+                e(Str::ucfirst($category->getTranslation('title', $locale, false) ?: $category->getTranslation('title', 'en', false) ?: $category->getTranslation('title', 'pl'))),
+                e(route('front.projects', ['category' => $category->id])),
+            ],
+            $block
+        ))->implode('');
+
+        return preg_replace('/<!-- CATEGORY:START.*?<!-- CATEGORY:END -->/s', str_replace(['\\', '$'], ['\\\\', '\\$'], $items), $html);
+    }
+
     protected function renderCta(string $html, ?string $text, ?string $url): string
     {
         // Bez tekstu lub adresu przycisk znika z maila
         if (blank($text) || blank($url)) {
-            return preg_replace('/\s*<!-- Główny przycisk -->.*?<\/tr>\s*(?=\s*<!-- OFFERS:START|\s*<!-- Stopka)/s', "\n", $html);
+            return preg_replace('/\s*<!-- Główny przycisk -->.*?<\/tr>\s*(?=\s*<!-- OFFERS:START|\s*<!-- CATEGORIES:START|\s*<!-- Stopka)/s', "\n", $html);
         }
 
         return str_replace(['{{cta_text}}', '{{cta_url}}'], [e($text), e($url)], $html);

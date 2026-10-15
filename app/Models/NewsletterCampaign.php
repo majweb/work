@@ -20,11 +20,13 @@ class NewsletterCampaign extends Model
         'cta_text',
         'cta_url',
         'offer_ids',
+        'category_ids',
         'created_by',
     ];
 
     protected $casts = [
         'offer_ids' => 'array',
+        'category_ids' => 'array',
     ];
 
     public function locales(): HasMany
