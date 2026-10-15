@@ -17,12 +17,16 @@ class SetLanguage
     public function handle(Request $request, Closure $next): Response
     {
         if (session()->has('language')) {
+            // Język wybrany ręcznie w przełączniku języka
             $locale = session()->get('language', config('app.locale'));
-        } elseif (getSelectedCountry()) {
-            $locale = getSelectedCountry();
         } else {
-            $locale = getLocalBrowserLang();
-            session()->put('selected_country', $locale);
+            // Bez ręcznego wyboru obowiązuje język przeglądarki. Rynek (selected_country) nie zmienia
+            // języka portalu - to kod kraju, nie języka (np. al = Albania, a albański to sq;
+            // ar = Argentyna, a nie arabski). Rynek wpływa tylko na oferty i grafiki.
+            $locale = getLocalBrowserLangWithout();
+            if (! getSelectedCountry()) {
+                session()->put('selected_country', getLocalBrowserLang());
+            }
         }
 
         if ($locale) {
