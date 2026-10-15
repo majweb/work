@@ -82,10 +82,6 @@ return [
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
-    // Język domyślny portalu. W odróżnieniu od 'locale' nie jest nadpisywany przy zmianie
-    // języka strony w trakcie żądania (App::setLocale zmienia config('app.locale')).
-    'default_locale' => env('APP_LOCALE', 'pl'),
-
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
     /*

@@ -54,19 +54,12 @@ class ArticlesByMarketTest extends TestCase
         $this->assertSame(['de', 'fr'], $this->articleLanguages('ch'));
     }
 
-    public function test_market_without_articles_in_its_language_shows_portal_language(): void
+    public function test_market_without_articles_in_its_language_shows_none(): void
     {
-        // Albania (sq) nie ma artykułów - zapas: język portalu (tu niemiecki z przeglądarki)
-        $languages = $this->withSession(['selected_country' => 'al'])->get('/__articles', ['Accept-Language' => 'de-DE'])->json();
-        $this->assertSame(['de'], $languages);
-    }
+        // Albania (sq) nie ma artykułów - bez zapasu na inne języki, strona pokazuje komunikat o braku
+        $languages = $this->withSession(['selected_country' => 'al'])->get('/__articles', ['Accept-Language' => 'pl-PL'])->json();
 
-    public function test_falls_back_to_default_language_when_portal_language_has_no_articles_either(): void
-    {
-        // Włoska przeglądarka na rynku albańskim: brak artykułów po albańsku i po włosku - polski
-        $languages = $this->withSession(['selected_country' => 'al'])->get('/__articles', ['Accept-Language' => 'it-IT'])->json();
-
-        $this->assertSame(['pl'], $languages);
+        $this->assertSame([], $languages);
     }
 
     public function test_portal_language_does_not_change_articles_of_market(): void

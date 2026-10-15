@@ -78,8 +78,7 @@ class Article extends Model implements HasMedia
 
     /**
      * Języki artykułów dla rynku: język(i) kraju z tabeli krajów (cz -> cs, at -> de).
-     * Gdy w tych językach nie ma żadnego aktywnego artykułu, bierzemy język portalu,
-     * a gdy i w nim nie ma - język domyślny (polski), żeby lista nie była pusta.
+     * Bez zapasu - gdy w języku rynku nie ma artykułów, strona pokazuje komunikat o ich braku.
      *
      * @return string[]
      */
@@ -91,16 +90,7 @@ class Article extends Model implements HasMedia
             return $attributes->get('article_market_languages');
         }
 
-        // Kolejno: język rynku, język portalu, język domyślny - pierwszy, w którym są artykuły
-        $candidates = [
-            Country::languagesForMarket(getSelectedCountry() ?: getLocalBrowserLang()),
-            [app()->getLocale()],
-            [config('app.default_locale')],
-        ];
-
-        $languages = collect($candidates)
-            ->first(fn (array $langs) => $langs && static::query()->active()->whereIn('lang', $langs)->exists())
-            ?? [config('app.default_locale')];
+        $languages = Country::languagesForMarket(getSelectedCountry() ?: getLocalBrowserLang());
 
         $attributes->set('article_market_languages', $languages);
 
