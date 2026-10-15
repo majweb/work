@@ -30,7 +30,7 @@ class Article extends Model implements HasMedia
         'active',
         'active_admin',
         'content',
-        'lang',
+        'country_code',
         'meta_title',
         'meta_description',
         'short_description',
@@ -69,32 +69,11 @@ class Article extends Model implements HasMedia
     }
 
     /**
-     * Artykuły dla wybranego rynku (w języku tego rynku).
+     * Artykuły wybranego rynku - każdy artykuł należy do jednego kraju (jak baner).
      */
     public function scopeLang($query)
     {
-        return $query->whereIn('lang', self::marketLanguages());
-    }
-
-    /**
-     * Języki artykułów dla rynku: język(i) kraju z tabeli krajów (cz -> cs, at -> de).
-     * Bez zapasu - gdy w języku rynku nie ma artykułów, strona pokazuje komunikat o ich braku.
-     *
-     * @return string[]
-     */
-    public static function marketLanguages(): array
-    {
-        // Liczone raz na żądanie - strona artykułów wywołuje filtr kilka razy
-        $attributes = request()->attributes;
-        if ($attributes->has('article_market_languages')) {
-            return $attributes->get('article_market_languages');
-        }
-
-        $languages = Country::languagesForMarket(getSelectedCountry() ?: getLocalBrowserLang());
-
-        $attributes->set('article_market_languages', $languages);
-
-        return $languages;
+        return $query->where('country_code', getSelectedCountry() ?: getLocalBrowserLang());
     }
 
     public function registerMediaConversions(?Media $media = null): void

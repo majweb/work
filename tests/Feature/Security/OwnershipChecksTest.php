@@ -76,7 +76,7 @@ class OwnershipChecksTest extends TestCase
             'user_id' => $this->firmA->id,
             'title' => 'Artykuł',
             'content' => 'Treść',
-            'lang' => 'pl',
+            'country_code' => 'pl',
             'category' => [],
         ]);
 

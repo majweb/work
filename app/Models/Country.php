@@ -35,9 +35,19 @@ class Country extends Model implements HasMedia
 
     protected static function booted(): void
     {
-        // Mapa kraj -> języki jest w cache; zmiana kraju w panelu admina ją unieważnia
-        static::saved(fn () => Cache::forget(self::LANGUAGE_MAP_CACHE_KEY));
-        static::deleted(fn () => Cache::forget(self::LANGUAGE_MAP_CACHE_KEY));
+        // Zmiana kraju (np. kodu cs -> cz) unieważnia mapę języków i listy krajów w formularzach.
+        // Panel admina czyści cały cache sam, ale zmiana przez seeder lub kod już nie.
+        static::saved(fn () => self::forgetCachedLists());
+        static::deleted(fn () => self::forgetCachedLists());
+    }
+
+    public static function forgetCachedLists(): void
+    {
+        Cache::forget(self::LANGUAGE_MAP_CACHE_KEY);
+
+        foreach (config('langsShorts', []) as $locale) {
+            Cache::forget('countries_'.$locale); // DictionaryService::getCountries
+        }
     }
 
     /**
@@ -58,16 +68,6 @@ class Country extends Model implements HasMedia
                 return [strtolower($country->countryCode) => array_values(array_map('strtolower', array_filter($languages)))];
             })
             ->all());
-    }
-
-    /**
-     * Języki rynku (kodu kraju), np. cz -> [cs], at -> [de]. Pusta tablica dla nieznanego kraju.
-     *
-     * @return string[]
-     */
-    public static function languagesForMarket(?string $countryCode): array
-    {
-        return (array) (self::languageMap()[strtolower((string) $countryCode)] ?? []);
     }
 
     public static function getRandomImageFromBrowserLocale()

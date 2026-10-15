@@ -59,10 +59,14 @@ class BrowserMarketDetector
     }
 
     /**
-     * @param  array<string, string[]>  $countries  kod kraju => języki
+     * Główny kraj języka, np. pl -> pl, de -> de, en -> gb, ar -> sa. Null, gdy żaden kraj nim nie mówi.
+     *
+     * @param  array<string, string[]>|null  $countries  kod kraju => języki (domyślnie z tabeli countries)
      */
-    protected function countryForLanguage(string $language, array $countries): ?string
+    public function countryForLanguage(string $language, ?array $countries = null): ?string
     {
+        $countries ??= Country::languageMap();
+
         $preferred = self::PREFERRED_COUNTRY[$language] ?? null;
         if ($preferred && isset($countries[$preferred])) {
             return $preferred;

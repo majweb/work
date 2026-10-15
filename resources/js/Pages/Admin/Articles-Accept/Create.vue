@@ -7,13 +7,14 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
-import { ref } from 'vue';
+import {ref, computed} from 'vue';
 import Tiptap from "@/Components/TipTap.vue"
 import Multiselect from "vue-multiselect";
 
 let serverMessage = ref(null);
 
 const props = defineProps({
+    countries: Array,
     categories: Array,
 });
 
@@ -21,7 +22,8 @@ const form = useForm({
     title: '',
     content: '',
     active: true,
-    lang: usePage().props.language,
+    // Rynek artykułu: domyślnie bieżący rynek
+    country_code: usePage().props.currentCountry || '',
     photo: [],
     meta_title: '',
     meta_description: '',
@@ -30,6 +32,14 @@ const form = useForm({
     meta_keywords: '',
     category: '',
 });
+
+// Wybór jednego kraju (rynku) jak w banerach - w formularzu trzymamy tylko kod kraju
+const allCountries = computed(() => (props.countries || []).flatMap(group => group.elements || []));
+const selectedCountry = computed({
+    get: () => allCountries.value.find(country => country.countryCode === form.country_code) || null,
+    set: (country) => { form.country_code = country?.countryCode || ''; },
+});
+
 
 const optionsCategory = ref(props.categories);
 
@@ -73,13 +83,26 @@ const createArticle = () => {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="space-y-8">
                             <div>
-                                <InputLabel for="lang" :value="__('translate.language')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
-                                <select v-model="form.lang" name="lang" id="lang" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest">
-                                    <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value">
-                                        {{ language.value.toUpperCase() }}
-                                    </option>
-                                </select>
-                                <InputError :message="form.errors.lang" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                                <InputLabel for="country_code" :value="__('translate.country')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                <multiselect
+                                    id="country_code"
+                                    group-values="elements" group-label="group"
+                                    :group-select="false"
+                                    selectLabel=""
+                                    selectGroupLabel=""
+                                    selectedLabel=""
+                                    deselectLabel=""
+                                    track-by="countryCode"
+                                    label="name"
+                                    :allow-empty="false"
+                                    :placeholder="__('translate.placeholder')"
+                                    v-model="selectedCountry"
+                                    :options="countries"
+                                >
+                                    <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                </multiselect>
+                                <InputError :message="form.errors.country_code" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                             </div>
 
                             <div>

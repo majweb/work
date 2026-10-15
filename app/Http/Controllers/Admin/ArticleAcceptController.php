@@ -61,6 +61,7 @@ class ArticleAcceptController extends Controller
 
         return inertia()->render('Admin/Articles-Accept/Create', [
             'categories' => $dictionaryService->getCategories(),
+            'countries' => $dictionaryService->getCountries(app()->getLocale()),
         ]);
     }
 
@@ -72,7 +73,7 @@ class ArticleAcceptController extends Controller
             'title' => $request->articleData()['title'],
             'active' => $request->articleData()['active'],
             'content' => $request->articleData()['content'],
-            'lang' => $request->articleData()['lang'],
+            'country_code' => $request->articleData()['country_code'],
             'meta_title' => $request->articleData()['meta_title'],
             'meta_description' => $request->articleData()['meta_description'],
             'short_description' => $request->articleData()['short_description'],
@@ -127,7 +128,8 @@ class ArticleAcceptController extends Controller
                 'slug' => $article->slug,
                 'title' => $article->title,
                 'content' => $article->content,
-                'lang' => $article->lang,
+                'country_code' => $article->country_code,
+                'country_name' => \App\Models\Country::where('countryCode', $article->country_code)->first()?->getTranslation('name', app()->getLocale()),
                 'active' => $article->active,
                 'active_admin' => $article->active_admin,
                 'user' => $article->user,
@@ -154,7 +156,8 @@ class ArticleAcceptController extends Controller
                 'slug' => $article->slug,
                 'title' => $article->title,
                 'content' => $article->content,
-                'lang' => $article->lang,
+                'country_code' => $article->country_code,
+                'country_name' => \App\Models\Country::where('countryCode', $article->country_code)->first()?->getTranslation('name', app()->getLocale()),
                 'active' => $article->active,
                 'photo' => $article->getFirstMedia('articles_images'),
                 'meta_title' => $article->meta_title,
@@ -164,7 +167,8 @@ class ArticleAcceptController extends Controller
                 'meta_keywords' => $article->meta_keywords,
                 'category' => $article->category,
             ],
-            'categories' => $dictionaryService->getCategories()
+            'categories' => $dictionaryService->getCategories(),
+            'countries' => $dictionaryService->getCountries(app()->getLocale()),
         ]);
     }
 
@@ -176,7 +180,7 @@ class ArticleAcceptController extends Controller
             'title' => $request->articleData()['title'],
             'content' => $request->articleData()['content'],
             'active' => $request->articleData()['active'],
-            'lang' => $request->articleData()['lang'],
+            'country_code' => $request->articleData()['country_code'],
             'meta_title' => $request->articleData()['meta_title'],
             'meta_description' => $request->articleData()['meta_description'],
             'short_description' => $request->articleData()['short_description'],

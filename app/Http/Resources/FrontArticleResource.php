@@ -63,7 +63,7 @@ class FrontArticleResource extends JsonResource
             'slug' => $this->slug,
             'title' => $this->title,
             'content' => $this->content,
-            'lang' => $this->lang,
+            'country_code' => $this->country_code,
             'active' => $this->active,
             'user' => [
                 'name' => $this->user['name'] ?? null,

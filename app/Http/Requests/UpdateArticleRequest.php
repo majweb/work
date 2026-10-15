@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Lang\Lang;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\Rule;
 use Spatie\MediaLibraryPro\Rules\Concerns\ValidatesMedia;
 
 class UpdateArticleRequest extends FormRequest
@@ -37,7 +36,8 @@ class UpdateArticleRequest extends FormRequest
             'alt' => ['nullable', 'string', 'max:70'],
             'meta_description' => ['nullable', 'string', 'max:160'],
             'meta_keywords' => ['required', 'string', 'max:160'],
-            'lang' => ['required', 'string', new Enum(Lang::class)],
+            // Rynek artykułu - jeden kraj, jak w banerach
+            'country_code' => ['required', 'string', Rule::exists('countries', 'countryCode')],
             'active' => ['boolean'],
             'photo' => ['required', 'array'],
 
@@ -54,7 +54,7 @@ class UpdateArticleRequest extends FormRequest
         return [
             'title' => strtolower(__('translate.title')),
             'content' => strtolower(__('translate.content')),
-            'lang' => strtolower(__('translate.language')),
+            'country_code' => strtolower(__('translate.country')),
             'photo' => strtolower(__('translate.photo')),
             'short_description' => strtolower(__('translate.shortDescription')),
             'category' => strtolower(__('translate.category')),

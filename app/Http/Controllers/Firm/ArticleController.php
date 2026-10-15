@@ -78,6 +78,7 @@ class ArticleController extends Controller
         }
         return inertia()->render('Buy/Article/Create',[
             'categories' => $dictionaryService->getCategories(),
+            'countries' => $dictionaryService->getCountries(app()->getLocale()),
         ]);
     }
 
@@ -95,7 +96,7 @@ class ArticleController extends Controller
                         'title' => $request->articleData()['title'],
                         'active' => $request->articleData()['active'],
                         'content' => $request->articleData()['content'],
-                        'lang' => $request->articleData()['lang'],
+                        'country_code' => $request->articleData()['country_code'],
                         'meta_title' => $request->articleData()['meta_title'],
                         'meta_description' => $request->articleData()['meta_description'],
                         'short_description' => $request->articleData()['short_description'],
@@ -153,6 +154,7 @@ class ArticleController extends Controller
 
         return inertia()->render('Buy/Article/Edit',[
             'article' => new FrontArticleResource($article),
+            'countries' => $dictionaryService->getCountries(app()->getLocale()),
             'categories' => $dictionaryService->getCategories()
         ]);
     }
@@ -190,7 +192,7 @@ class ArticleController extends Controller
             'title' => $request->articleData()['title'],
             'content' => $request->articleData()['content'],
             'active' => $request->articleData()['active'],
-            'lang' => $request->articleData()['lang'],
+            'country_code' => $request->articleData()['country_code'],
             'meta_title' => $request->articleData()['meta_title'],
             'meta_description' => $request->articleData()['meta_description'],
             'short_description' => $request->articleData()['short_description'],

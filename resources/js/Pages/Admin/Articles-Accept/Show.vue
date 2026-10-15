@@ -223,8 +223,8 @@ const goToPage = (page) => {
                                     <span class="text-[#0A2C5C]">{{ moment(article.created_at).format('DD.MM.YYYY') }}</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
-                                    <span class="text-gray-400">Język</span>
-                                    <span class="text-[#0A2C5C] uppercase">{{ article.lang }}</span>
+                                    <span class="text-gray-400">Rynek</span>
+                                    <span class="text-[#0A2C5C] uppercase">{{ article.country_name || article.country_code }}</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
                                     <span class="text-gray-400">Status firmy</span>
