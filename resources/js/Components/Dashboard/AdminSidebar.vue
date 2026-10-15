@@ -78,6 +78,7 @@ const menuItems = [
             { name: 'Usługi promocyjne', route: 'admin.promotion-services.index' },
             { name: 'Aktywne usługi', route: 'admin.active-services.index' },
             { name: 'Punkty', route: 'admin.admin-points.index' },
+            { name: 'Newsletter', route: 'admin.newsletter-campaigns.index' },
         ]
     },
     {

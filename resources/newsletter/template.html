@@ -1,0 +1,151 @@
+<!doctype html>
+<!--
+  Szablon newslettera Work4you.global (GetResponse).
+  Portal podstawia znaczniki {{...}} przetłumaczonymi tekstami dla danego języka, a gotowy HTML
+  wysyła do GetResponse jako szkic. [[remove]] to znacznik GetResponse - zamieniany na link wypisu.
+
+  Znaczniki:
+    {{lang}}            kod języka, np. pl, de, ar
+    {{dir}}             kierunek tekstu: ltr albo rtl (arabski, hebrajski, perski)
+    {{align}}           wyrównanie tekstu: left albo right (dla rtl)
+    {{subject}}         temat maila (tytuł karty w przeglądarce)
+    {{preheader}}       krótki tekst widoczny w skrzynce obok tematu
+    {{title}}           nagłówek w granatowym pasie
+    {{intro}}           jedno-dwa zdania pod nagłówkiem
+    {{content}}         treść z edytora w panelu (akapity, listy, obrazki)
+    {{cta_text}}        tekst głównego przycisku
+    {{cta_url}}         adres głównego przycisku
+    {{offers_heading}}  nagłówek sekcji ofert
+    {{offer_*}}         dane jednej oferty - blok OFFER powtarzany dla każdej oferty
+    {{footer_reason}}   dlaczego odbiorca dostaje maila
+    {{unsubscribe_text}} tekst linku wypisu
+  Sekcję ofert (OFFERS) można usunąć w całości, jeśli newsletter nie zawiera ofert.
+-->
+<html lang="{{lang}}" dir="{{dir}}" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>{{subject}}</title>
+<style>
+  body { margin: 0; padding: 0; width: 100% !important; background: #f2f5f9; }
+  table { border-collapse: collapse; }
+  img { border: 0; line-height: 100%; outline: none; text-decoration: none; display: block; max-width: 100%; height: auto; }
+  a { color: #0a2c5c; }
+  .content p { margin: 0 0 16px; }
+  .content ul, .content ol { margin: 0 0 16px; padding-inline-start: 22px; }
+  .content li { margin-bottom: 6px; }
+  .content h2 { margin: 24px 0 10px; font-size: 20px; line-height: 1.3; color: #0a2c5c; }
+  .content img { margin: 8px 0 16px; border-radius: 8px; }
+  @media only screen and (max-width: 620px) {
+    .wrapper { width: 100% !important; }
+    .px { padding-left: 20px !important; padding-right: 20px !important; }
+    .hero-title { font-size: 24px !important; line-height: 1.25 !important; }
+    .logo { width: 210px !important; }
+    .offer-col { display: block !important; width: auto !important; text-align: {{align}} !important; }
+    .offer-col.btn-col { padding-top: 12px !important; }
+    .cta a { display: block !important; }
+  }
+</style>
+</head>
+<body style="margin:0; padding:0; background:#f2f5f9;">
+  <!-- Tekst widoczny w skrzynce obok tematu, ukryty w treści -->
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px; color:#f2f5f9;">{{preheader}}&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f5f9;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+        <table role="presentation" class="wrapper" width="600" cellpadding="0" cellspacing="0" dir="{{dir}}" style="width:600px; max-width:600px; background:#ffffff; border-radius:14px; overflow:hidden; font-family:Arial, Helvetica, sans-serif;">
+
+          <!-- Logo -->
+          <tr>
+            <td class="px" align="{{align}}" style="padding:26px 36px 22px;">
+              <a href="https://work4you.global" target="_blank">
+                <img class="logo" src="https://work4you.global/images/mail.png" width="260" alt="Work4you.global – We help. 4 real." style="width:260px; max-width:100%;">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Pasek w kolorach logo -->
+          <tr>
+            <td style="font-size:0; line-height:0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="70%" height="4" style="background:#0a2c5c; font-size:0; line-height:0;">&nbsp;</td>
+                  <td width="15%" height="4" style="background:#e31e24; font-size:0; line-height:0;">&nbsp;</td>
+                  <td width="15%" height="4" style="background:#329cd1; font-size:0; line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Nagłówek -->
+          <tr>
+            <td class="px" align="{{align}}" style="background:#0a2c5c; padding:34px 36px 32px; text-align:{{align}};">
+              <h1 class="hero-title" style="margin:0 0 12px; font-size:28px; line-height:1.2; font-weight:bold; color:#ffffff;">{{title}}</h1>
+              <p style="margin:0; font-size:16px; line-height:1.55; color:#c9d8ee;">{{intro}}</p>
+            </td>
+          </tr>
+
+          <!-- Treść -->
+          <tr>
+            <td class="px content" align="{{align}}" style="padding:32px 36px 8px; font-size:16px; line-height:1.65; color:#26354d; text-align:{{align}};">
+              {{content}}
+            </td>
+          </tr>
+
+          <!-- Główny przycisk -->
+          <tr>
+            <td class="px cta" align="{{align}}" style="padding:8px 36px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" align="{{align}}">
+                <tr>
+                  <td align="center" style="background:#e31e24; border-radius:10px;">
+                    <a href="{{cta_url}}" target="_blank" style="display:inline-block; padding:15px 30px; font-size:16px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:10px;">{{cta_text}}</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- OFFERS:START (sekcję można usunąć, jeśli newsletter nie zawiera ofert) -->
+          <tr>
+            <td class="px" style="padding:0 36px 32px;">
+              <h2 style="margin:0 0 14px; font-size:19px; line-height:1.3; color:#0a2c5c; text-align:{{align}};">{{offers_heading}}</h2>
+              <!-- OFFER:START (blok powtarzany dla każdej oferty) -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #dde5ef; border-radius:10px; margin-bottom:12px;">
+                <tr>
+                  <td class="offer-col" valign="middle" style="padding:16px 18px; text-align:{{align}};">
+                    <p style="margin:0 0 4px; font-size:16px; font-weight:bold; color:#0a2c5c;">{{offer_title}}</p>
+                    <p style="margin:0; font-size:14px; line-height:1.5; color:#5a6a82;">{{offer_location}} &middot; <span dir="ltr" style="color:#0a2c5c; font-weight:bold; unicode-bidi:isolate;">{{offer_salary}}</span></p>
+                  </td>
+                  <td class="offer-col btn-col" valign="middle" width="130" style="padding:16px 18px; text-align:center;">
+                    <a href="{{offer_url}}" target="_blank" style="display:inline-block; padding:10px 16px; font-size:14px; font-weight:bold; color:#0a2c5c; text-decoration:none; border:2px solid #329cd1; border-radius:8px;">{{offer_button}}</a>
+                  </td>
+                </tr>
+              </table>
+              <!-- OFFER:END -->
+            </td>
+          </tr>
+          <!-- OFFERS:END -->
+
+          <!-- Stopka -->
+          <tr>
+            <td class="px" align="center" style="background:#0a2c5c; padding:26px 36px; text-align:center;">
+              <p style="margin:0 0 10px; font-size:15px; font-weight:bold; color:#ffffff;">Work4you.global</p>
+              <p style="margin:0 0 14px; font-size:13px; line-height:1.55; color:#c9d8ee;">{{footer_reason}}</p>
+              <p style="margin:0; font-size:13px;">
+                <a href="https://work4you.global" target="_blank" style="color:#ffffff; text-decoration:underline;">work4you.global</a>
+                <span style="color:#6f8bb3;">&nbsp;|&nbsp;</span>
+                <a href="[[remove]]" target="_blank" style="color:#ffffff; text-decoration:underline;">{{unsubscribe_text}}</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
