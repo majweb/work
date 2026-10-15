@@ -141,6 +141,39 @@ class NewsletterListController extends Controller
     }
 
     /**
+     * Usuwa subskrybenta z portalu i jego kontakt z list newslettera w GetResponse.
+     * Gdy GetResponse nie odpowiada, subskrybent zostaje - żeby nie został kontakt, o którym portal już nie wie.
+     */
+    public function destroy(Newsletter $subscriber, GetResponseClient $getResponse): RedirectResponse
+    {
+        $removed = 0;
+
+        if ($getResponse->isConfigured()) {
+            try {
+                $removed = $getResponse->deleteContact($subscriber->email);
+            } catch (Throwable $e) {
+                return back()->with([
+                    'flash.banner' => "Nie usunięto {$subscriber->email}: GetResponse nie odpowiada. Spróbuj ponownie za chwilę.",
+                    'flash.bannerStyle' => 'danger',
+                ]);
+            }
+
+            if ($subscriber->locale) {
+                Cache::forget('getresponse_contacts_'.config('services.getresponse.list_prefix').$subscriber->locale);
+            }
+        }
+
+        $subscriber->delete();
+
+        return back()->with([
+            'flash.banner' => $removed
+                ? "Usunięto {$subscriber->email} z portalu i z GetResponse."
+                : "Usunięto {$subscriber->email} z portalu. W GetResponse nie było go na liście newslettera.",
+            'flash.bannerStyle' => 'success',
+        ]);
+    }
+
+    /**
      * Gdzie jest subskrybent: na liście w GetResponse, czeka na przeniesienie albo został przeniesiony, ale go tam nie ma
      * (adres odrzucony przez GetResponse, wypisany z newslettera lub usunięty z listy).
      */

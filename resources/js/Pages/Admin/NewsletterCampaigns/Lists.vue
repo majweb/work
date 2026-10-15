@@ -23,7 +23,15 @@ const totals = computed(() => ({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <Link :href="route('admin.newsletter-campaigns.index')" class="text-[10px] font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C]">← Wysyłki</Link>
-                    <h3 class="mt-3 text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">Listy w GetResponse</h3>
+                    <div class="mt-3 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">Listy w GetResponse</h3>
+                        <Link
+                            :href="route('admin.newsletter.index')"
+                            class="px-6 py-3 bg-white border border-gray-200 hover:border-[#0A2C5C] text-[#0A2C5C] rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all text-center"
+                        >
+                            Wszyscy subskrybenci · eksport CSV
+                        </Link>
+                    </div>
                     <p class="mt-2 text-sm text-gray-500 max-w-3xl">
                         Każdy język ma w GetResponse własną listę kontaktów. Nowi subskrybenci trafiają na listę swojego języka od razu po zapisie na stronie.
                         Kliknij język, aby zobaczyć zapisane adresy.

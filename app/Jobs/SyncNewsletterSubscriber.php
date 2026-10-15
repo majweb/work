@@ -20,6 +20,9 @@ class SyncNewsletterSubscriber implements ShouldQueue
 
     public int $tries = 3;
 
+    // Subskrybent usunięty w panelu, zanim zadanie się wykonało - nie ma czego przenosić
+    public bool $deleteWhenMissingModels = true;
+
     public array $backoff = [60, 300];
 
     public function __construct(public Newsletter $subscriber) {}

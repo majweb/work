@@ -299,6 +299,7 @@ Route::middleware([
         Route::get('newsletter-campaigns/lists', [\App\Http\Controllers\Admin\NewsletterListController::class, 'index'])->name('newsletter-lists.index');
         Route::get('newsletter-campaigns/lists/{locale}', [\App\Http\Controllers\Admin\NewsletterListController::class, 'show'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.show');
         Route::post('newsletter-campaigns/lists/{locale}/sync', [\App\Http\Controllers\Admin\NewsletterListController::class, 'sync'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.sync');
+        Route::delete('newsletter-campaigns/subscribers/{subscriber}', [\App\Http\Controllers\Admin\NewsletterListController::class, 'destroy'])->name('newsletter-subscribers.destroy');
         Route::get('newsletter-campaigns/guide', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'guide'])->name('newsletter-campaigns.guide');
         Route::get('newsletter-campaigns/offers', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'offers'])->name('newsletter-campaigns.offers');
         Route::get('newsletter-campaigns/{newsletterCampaign}', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'show'])->name('newsletter-campaigns.show');

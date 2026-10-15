@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
+import DeleteSubscriberButton from '@/Components/Newsletter/DeleteSubscriberButton.vue';
 import { Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -123,6 +124,7 @@ const formatDate = (value) => (value ? new Date(value).toLocaleString('pl-PL', {
                                     <th class="px-10 py-5 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Kraj</th>
                                     <th class="px-10 py-5 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Data zapisu</th>
                                     <th class="px-10 py-5 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">GetResponse</th>
+                                    <th class="px-10 py-5"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -135,9 +137,12 @@ const formatDate = (value) => (value ? new Date(value).toLocaleString('pl-PL', {
                                             {{ STATUS[subscriber.status].label }}
                                         </span>
                                     </td>
+                                    <td class="px-10 py-5 text-right">
+                                        <DeleteSubscriberButton :subscriber="subscriber" />
+                                    </td>
                                 </tr>
                                 <tr v-if="!subscribers.data.length">
-                                    <td colspan="4" class="px-10 py-12 text-center text-sm text-gray-400">
+                                    <td colspan="5" class="px-10 py-12 text-center text-sm text-gray-400">
                                         {{ filters?.search ? 'Brak adresów pasujących do wyszukiwania.' : 'Nikt nie zapisał się w tym języku.' }}
                                     </td>
                                 </tr>

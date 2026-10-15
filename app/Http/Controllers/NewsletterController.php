@@ -40,8 +40,9 @@ class NewsletterController extends Controller
             ->paginate(20)
             ->withQueryString();
 
-        return Inertia::render('Admin/Settings/Newsletter', [
+        return Inertia::render('Admin/NewsletterCampaigns/Subscribers', [
             'newsletters' => $newsletters,
+            'languageNames' => Newsletter::languageNames(),
             'filters' => $request->only(['search', 'country_code', 'date_from', 'date_to']),
         ]);
     }

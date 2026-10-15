@@ -78,7 +78,8 @@ const menuItems = [
             { name: 'Usługi promocyjne', route: 'admin.promotion-services.index' },
             { name: 'Aktywne usługi', route: 'admin.active-services.index' },
             { name: 'Punkty', route: 'admin.admin-points.index' },
-            { name: 'Newsletter', route: 'admin.newsletter-campaigns.index' },
+            // Podświetlone na wszystkich stronach newslettera (wysyłki, listy, subskrybenci)
+            { name: 'Newsletter', route: 'admin.newsletter-campaigns.index', active: 'admin.newsletter*' },
         ]
     },
     {
@@ -98,7 +99,6 @@ const menuItems = [
             { name: 'Główne', route: 'admin.general.edit' },
             { name: 'Zgody', route: 'admin.agreements.index' },
             { name: 'Statystyki wyszukiwarki', route: 'admin.search-statistics.index' },
-            { name: 'Newsletter', route: 'admin.newsletter.index' },
             { name: 'Integracje', route: 'admin.integrations.edit' },
             { name: 'CMS', route: 'admin.cms.index' },
             { name: 'Baner', route: 'admin.admin-banners.index' },
@@ -118,7 +118,7 @@ const toggleGroup = (groupName) => {
 // Initialize groups as open if they contain the current route
 menuItems.forEach(item => {
     if (item.subItems) {
-        const hasActiveSubItem = item.subItems.some(sub => sub.route && route().current(sub.route));
+        const hasActiveSubItem = item.subItems.some(sub => sub.route && route().current(sub.active || sub.route));
         if (hasActiveSubItem) {
             openGroups.value[item.name] = true;
         }
@@ -231,7 +231,7 @@ const getIcon = (name) => {
                                             v-if="!sub.can || (sub.can === 'super-admin-only' && $page.props.roles && $page.props.roles.includes('admin') && !$page.props.roles.includes('admin-sub'))"
                                             :href="sub.route ? route(sub.route) : '#'"
                                             class="block py-2 text-[10px] font-black text-white/40 hover:text-white transition-all uppercase tracking-widest group relative"
-                                            :class="{'text-white border-r-4 border-blue-400 -mr-10 pr-10 bg-gradient-to-l from-blue-400/10 to-transparent': sub.route && route().current(sub.route)}"
+                                            :class="{'text-white border-r-4 border-blue-400 -mr-10 pr-10 bg-gradient-to-l from-blue-400/10 to-transparent': sub.route && route().current(sub.active || sub.route)}"
                                         >
                                             {{ sub.name }}
                                             <span v-if="sub.route === 'admin.tickets.index' && $page.props.unreadTicketsCount > 0" class="absolute right-4 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shadow-lg shadow-red-500/50">

@@ -259,6 +259,60 @@ class NewsletterCampaignTest extends TestCase
         $this->assertNull(Newsletter::where('email', 'b@example.com')->value('getresponse_synced_at'));
     }
 
+    public function test_deleting_subscriber_removes_contact_from_newsletter_lists_only(): void
+    {
+        Http::fake([
+            'gr.test/v3/contacts?*' => Http::response([
+                ['contactId' => 'C1', 'email' => 'Jan@example.com', 'campaign' => ['name' => 'w4y_pl']],
+                ['contactId' => 'C2', 'email' => 'jan@example.com', 'campaign' => ['name' => 'marketing']],
+                ['contactId' => 'C3', 'email' => 'jan@example.com.pl', 'campaign' => ['name' => 'w4y_pl']],
+            ]),
+            'gr.test/v3/contacts/*' => Http::response(null, 204),
+        ]);
+        $subscriber = Newsletter::create(['email' => 'jan@example.com', 'country_code' => 'pl', 'locale' => 'pl', 'getresponse_synced_at' => now()]);
+
+        $this->actingAs($this->admin)->delete(route('admin.newsletter-subscribers.destroy', $subscriber))->assertRedirect();
+
+        $this->assertModelMissing($subscriber);
+        Http::assertSent(fn (Request $r) => $r->method() === 'DELETE' && str_ends_with($r->url(), '/contacts/C1'));
+        // Inne listy w GetResponse i inne adresy zostają
+        Http::assertNotSent(fn (Request $r) => $r->method() === 'DELETE' && preg_match('#/contacts/C[23]$#', $r->url()));
+    }
+
+    public function test_subscriber_stays_when_getresponse_fails(): void
+    {
+        Http::fake(['gr.test/v3/*' => Http::response(['message' => 'Server error'], 500)]);
+        $subscriber = Newsletter::create(['email' => 'jan@example.com', 'country_code' => 'pl', 'locale' => 'pl', 'getresponse_synced_at' => now()]);
+
+        $this->actingAs($this->admin)->delete(route('admin.newsletter-subscribers.destroy', $subscriber))->assertRedirect();
+
+        $this->assertModelExists($subscriber);
+    }
+
+    public function test_only_admin_can_delete_subscriber(): void
+    {
+        Http::fake();
+        $subscriber = Newsletter::create(['email' => 'jan@example.com', 'country_code' => 'pl', 'locale' => 'pl']);
+        $firm = User::factory()->create();
+        $firm->assignRole('firm');
+
+        $this->actingAs($firm)->delete(route('admin.newsletter-subscribers.destroy', $subscriber))->assertForbidden();
+        $this->assertModelExists($subscriber);
+        Http::assertNothingSent();
+    }
+
+    public function test_all_subscribers_page_is_in_newsletter_section(): void
+    {
+        Newsletter::create(['email' => 'jan@example.com', 'country_code' => 'pl', 'locale' => 'pl']);
+
+        $this->actingAs($this->admin)->get(route('admin.newsletter.index'))
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->component('Admin/NewsletterCampaigns/Subscribers')
+                ->where('newsletters.data.0.locale', 'pl')
+                ->where('languageNames.pl', fn ($name) => filled($name)));
+    }
+
     public function test_guide_pdf_is_downloadable_by_admins_only(): void
     {
         $this->actingAs($this->admin)->get(route('admin.newsletter-campaigns.guide'))

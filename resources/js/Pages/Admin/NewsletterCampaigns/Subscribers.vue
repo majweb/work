@@ -1,8 +1,9 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { ref, watch } from 'vue';
-import { router } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import Pagination from '@/Components/Pagination.vue';
+import DeleteSubscriberButton from '@/Components/Newsletter/DeleteSubscriberButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -12,6 +13,7 @@ import pickBy from 'lodash/pickBy';
 const props = defineProps({
     newsletters: Object,
     filters: Object,
+    languageNames: Object,
 });
 
 const search = ref(props.filters.search);
@@ -53,18 +55,17 @@ const clearFilters = () => {
 </script>
 
 <template>
-    <AppLayout title="Newsletter">
+    <AppLayout title="Newsletter – wszyscy subskrybenci">
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <!-- Header Section -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
                         <div>
-                            <div class="flex items-center gap-4 mb-2">
-                                <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">Newsletter</h3>
-                            </div>
+                            <Link :href="route('admin.newsletter-lists.index')" class="text-[10px] font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C]">← Listy w GetResponse</Link>
+                            <h3 class="mt-3 text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">Wszyscy subskrybenci</h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                                Zarządzanie listą subskrybentów newslettera
+                                Wszystkie języki razem · filtry i eksport do CSV
                             </p>
                         </div>
                         <div class="flex items-center gap-4">
@@ -139,7 +140,9 @@ const clearFilters = () => {
                                     <th class="px-10 py-6 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">ID</th>
                                     <th class="px-10 py-6 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Email</th>
                                     <th class="px-10 py-6 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Kraj</th>
+                                    <th class="px-10 py-6 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Język</th>
                                     <th class="px-10 py-6 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Data Zapisu</th>
+                                    <th class="px-10 py-6"></th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-50">
@@ -158,13 +161,26 @@ const clearFilters = () => {
                                         </div>
                                     </td>
                                     <td class="px-10 py-6">
+                                        <Link
+                                            v-if="item.locale"
+                                            :href="route('admin.newsletter-lists.show', item.locale)"
+                                            class="text-xs font-bold text-[#0A2C5C] hover:underline whitespace-nowrap"
+                                        >
+                                            {{ languageNames[item.locale] || item.locale }}
+                                        </Link>
+                                        <span v-else class="text-xs text-gray-400">–</span>
+                                    </td>
+                                    <td class="px-10 py-6">
                                         <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">
                                             {{ new Date(item.created_at).toLocaleDateString('pl-PL') }}
                                         </span>
                                     </td>
+                                    <td class="px-10 py-6 text-right">
+                                        <DeleteSubscriberButton :subscriber="item" />
+                                    </td>
                                 </tr>
                                 <tr v-if="newsletters.data.length === 0">
-                                    <td colspan="4" class="px-10 py-12 text-center">
+                                    <td colspan="6" class="px-10 py-12 text-center">
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Brak subskrybentów do wyświetlenia.</p>
                                     </td>
                                 </tr>

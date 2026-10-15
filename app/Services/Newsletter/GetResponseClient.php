@@ -86,6 +86,31 @@ class GetResponseClient
     }
 
     /**
+     * Usuwa adres ze wszystkich list newslettera (inne listy w GetResponse zostają bez zmian).
+     *
+     * @return int liczba usuniętych kontaktów
+     */
+    public function deleteContact(string $email): int
+    {
+        $prefix = config('services.getresponse.list_prefix');
+        $response = $this->request()->get('contacts', ['query' => ['email' => $email], 'perPage' => 1000]);
+        $this->ensureSuccessful($response, 'Nie udało się wyszukać kontaktu w GetResponse');
+
+        // query[email] wyszukuje fragment adresu - usuwamy tylko dokładne dopasowanie na listach newslettera
+        $contacts = collect($response->json())->filter(fn ($contact) => mb_strtolower($contact['email']) === mb_strtolower($email)
+            && str_starts_with($contact['campaign']['name'] ?? '', $prefix));
+
+        foreach ($contacts as $contact) {
+            $deleted = $this->request()->delete("contacts/{$contact['contactId']}");
+            if ($deleted->status() !== 404) {
+                $this->ensureSuccessful($deleted, 'Nie udało się usunąć kontaktu z GetResponse');
+            }
+        }
+
+        return $contacts->count();
+    }
+
+    /**
      * Tworzy szkic newslettera. Typ "draft" jest konieczny - bez niego GetResponse od razu kolejkuje wysyłkę.
      *
      * @return string id utworzonego szkicu
