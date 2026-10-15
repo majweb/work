@@ -1,25 +1,13 @@
 <?php
 
 if (! function_exists('getLocalBrowserLang')) {
+    /**
+     * Rynek wykryty z przeglądarki. Mimo nazwy zwraca kod KRAJU z tabeli countries
+     * (np. ar-SA -> sa, de-AT -> at, uk -> ua), a nie kod języka.
+     */
     function getLocalBrowserLang()
     {
-        $lang = substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'pl'), 0, 2);
-        $map = [
-            'uk' => 'ua', // Wyjątek: użytkownik chce 'uk' dla języka ukraińskiego
-            'be' => 'by',
-            'el' => 'gr',
-            'ja' => 'jp',
-            'ko' => 'kr',
-            'zh' => 'cn',
-            'sq' => 'al',
-            'hy' => 'am',
-            'da' => 'dk',
-            'et' => 'ee',
-            'sv' => 'se',
-            'sl' => 'si',
-        ];
-
-        return $map[$lang] ?? $lang;
+        return app(\App\Services\BrowserMarketDetector::class)->detect(request());
     }
 }
 

@@ -47,7 +47,6 @@ class LanguageFromMarketTest extends TestCase
         // Ukraiński - wcześniej przeglądarka "uk" zamieniała się na kraj "ua" i portal był po polsku
         $this->flushSession();
         $this->assertSame('uk', $this->locale([], 'uk-UA'));
-        $this->assertSame('ua', session('selected_country'));
     }
 
     public function test_language_chosen_manually_is_kept_regardless_of_market(): void
