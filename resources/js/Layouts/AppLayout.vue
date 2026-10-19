@@ -11,6 +11,7 @@ import SupportDrawer from '@/Components/SupportDrawer.vue';
 import AdminSidebar from '@/Components/Dashboard/AdminSidebar.vue';
 import {usePermission} from "@/Composables/usePermission";
 import NotificationBell from "@/Components/NotificationBell.vue";
+import MessagesNavButton from "@/Components/Messenger/MessagesNavButton.vue";
 import { Dialog, DialogPanel, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -435,6 +436,7 @@ onUnmounted(()=>{
                                             <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
                                         </span>
                                     </Link>
+                                    <MessagesNavButton v-if="hasRole('worker') || hasRole('firm') || hasRole('recruit')" />
                                     <notification-bell :count="notifications" />
                                 </div>
 

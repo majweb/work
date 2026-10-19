@@ -107,6 +107,11 @@ class HandleInertiaRequests extends Middleware
             'pageName' => config('app.name'),
             'assetVersion' => time(),
             'unreadNotifications' => $request->user() ? $request->user()->unreadNotifications()->count() : 0,
+            // Licznik nieprzeczytanych wiadomości do ikony w menu (pracownik, firma, rekruter, admin)
+            'messengerUnread' => fn () => $request->user()
+                && ($request->user()->isMessengerWorker() || $request->user()->isMessengerEmployer() || $request->user()->isMessengerAdmin())
+                ? app(\App\Services\MessengerService::class)->unreadCountFor($request->user())
+                : null,
             'unreadTicketsCount' => $request->user() && $request->user()->hasRole('admin') ? \App\Models\Ticket::where('is_read', false)->count() : 0,
             'isImpersonating' => $request->session()->has('impersonate'),
             'foundation' => fn () => $request->session()->has('foundation_auth_id')

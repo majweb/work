@@ -1,5 +1,6 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
+import ContactButton from "@/Components/Messenger/ContactButton.vue";
 import {Link, usePage} from '@inertiajs/vue3';
 import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import {computed, onMounted, ref} from "vue";
@@ -17,7 +18,9 @@ const props = defineProps({
     similarProjects: Array,
     image: String,
     agreements: Array,
-    page: Object
+    page: Object,
+    // "Napisz wiadomość" do firmy albo rekrutera oferty
+    messenger: Object,
 });
 const {hasRole} = usePermission();
 const { getPositionTitle, hasProjectLocation } = useProjectHelpers();
@@ -221,6 +224,7 @@ onMounted(() => {
                                 {{ user && (user && hasRole('worker')) ? __('translate.apply') : __('translate.applyWithoutLogin') }}
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                             </Link>
+                            <ContactButton v-if="messenger" :contact="messenger" />
                         </div>
                     </div>
 
