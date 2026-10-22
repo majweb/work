@@ -43,6 +43,15 @@ const operations = computed(() => [
                 ]
             },
             {
+                // Wiadomość od kandydata w czacie - odczytanie za punkty, raz za rozmowę
+                name: __("messenger.pointsName"),
+                points: props.pointCosts.OpenMessage,
+                icon: '/images/icons/firm/klasyczne_cv.png',
+                details: [
+                    `<strong>${__("translate.description")}</strong>: ${__("messenger.pointsDesc")}`,
+                ]
+            },
+            {
                 name: __("translate.cv_audio"),
                 points: props.pointCosts.OpenAppWithAudio,
                 icon: '/images/icons/firm/audio_cv.png',

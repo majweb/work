@@ -43,7 +43,7 @@ class MessengerTest extends TestCase
         $this->worker = $this->user('worker');
         $this->firm = $this->user('firm', ['name' => 'Firma Testowa']);
         // Panel firmy wymaga profilu firmy (punkty, logo)
-        Firm::factory()->create(['user_id' => $this->firm->id]);
+        Firm::factory()->create(['user_id' => $this->firm->id, 'points' => 1000]);
         $this->recruiter = $this->user('recruit', ['name' => 'Anna Rekruter', 'recruiter_from_firm_id' => $this->firm->id]);
     }
 
@@ -58,6 +58,16 @@ class MessengerTest extends TestCase
     private function start(User $employer, string $body = 'Dzień dobry, interesuje mnie oferta.', array $extra = []): \Illuminate\Testing\TestResponse
     {
         return $this->actingAs($this->worker)->post(route('messages.store'), ['employer_id' => $employer->id, 'body' => $body] + $extra);
+    }
+
+    /**
+     * Pracodawca odczytuje wiadomość za punkty i akceptuje kontakt.
+     */
+    private function unlockAndAccept(Conversation $conversation, ?User $employer = null): void
+    {
+        $employer ??= $this->firm;
+        $this->actingAs($employer)->post(route('messages.unlock', $conversation))->assertRedirect();
+        $this->actingAs($employer)->post(route('messages.accept', $conversation))->assertRedirect();
     }
 
     private function conversation(User $employer): Conversation
@@ -139,7 +149,7 @@ class MessengerTest extends TestCase
         // Pracownik nie może zaakceptować
         $this->actingAs($this->worker)->post(route('messages.accept', $conversation))->assertForbidden();
 
-        $this->actingAs($this->firm)->post(route('messages.accept', $conversation))->assertRedirect();
+        $this->unlockAndAccept($conversation);
         Notification::assertSentTo($this->worker, ConversationAcceptedNotification::class);
 
         $this->actingAs($this->firm)->post(route('messages.reply', $conversation), ['body' => 'Zapraszamy'])->assertRedirect(route('messages.show', $conversation));
@@ -151,7 +161,7 @@ class MessengerTest extends TestCase
     {
         $this->start($this->firm);
         $conversation = $this->conversation($this->firm);
-        $this->actingAs($this->firm)->post(route('messages.accept', $conversation));
+        $this->unlockAndAccept($conversation);
 
         $this->actingAs($this->firm)->patch(route('messages.settings'), ['messenger_online' => false, 'messenger_reply_hours' => 'pon.-pt. 8-16'])->assertRedirect();
         $this->assertFalse($this->firm->fresh()->messenger_online);
@@ -167,7 +177,7 @@ class MessengerTest extends TestCase
     {
         $this->start($this->firm);
         $conversation = $this->conversation($this->firm);
-        $this->actingAs($this->firm)->post(route('messages.accept', $conversation));
+        $this->unlockAndAccept($conversation);
 
         $this->actingAs($this->firm)->post(route('messages.block', $conversation), ['duration' => '24h'])->assertRedirect();
         $this->actingAs($this->worker)->post(route('messages.reply', $conversation), ['body' => 'Halo?'])
@@ -215,6 +225,8 @@ class MessengerTest extends TestCase
         $this->assertSame(1, $messenger->unreadCountFor($this->firm));
         $this->actingAs($this->firm)->getJson(route('messages.unread-count'))->assertJson(['unread_count' => 1]);
 
+        $this->actingAs($this->firm)->post(route('messages.unlock', $conversation));
+
         $this->actingAs($this->firm)->getJson(route('messages.poll', ['conversation' => $conversation->id]))
             ->assertOk()
             ->assertJsonPath('activeConversation.id', $conversation->id)
@@ -233,7 +245,7 @@ class MessengerTest extends TestCase
     {
         $this->start($this->firm);
         $conversation = $this->conversation($this->firm);
-        $this->actingAs($this->firm)->post(route('messages.accept', $conversation));
+        $this->unlockAndAccept($conversation);
 
         $this->actingAs($this->worker)->post(route('messages.typing', $conversation))->assertNoContent();
         $this->actingAs($this->firm)->getJson(route('messages.typing-state', $conversation))->assertJson(['typing' => true]);
@@ -354,7 +366,8 @@ class MessengerTest extends TestCase
                 ->where('view', 'recruiters')
                 ->where('activeConversation.oversight', true)
                 ->where('activeConversation.recruiter.id', $this->recruiter->id)
-                ->where('activeConversation.messages.0.is_mine', false)
+                ->where('activeConversation.locked', true)
+                ->where('activeConversation.unlock.can_unlock', false)
                 ->where('activeConversation.can_reply', false)
                 ->where('activeConversation.can_accept', false)
                 ->where('activeConversation.can_delete', false)
@@ -371,5 +384,98 @@ class MessengerTest extends TestCase
 
         // Inna firma i rekruter innej firmy nie mają podglądu
         $this->actingAs($this->user('firm'))->get(route('messages.show', $conversation))->assertForbidden();
+    }
+
+    public function test_message_from_new_worker_is_locked_until_employer_pays(): void
+    {
+        $this->start($this->firm, 'Tajna treść wiadomości');
+        $conversation = $this->conversation($this->firm);
+
+        // Przed opłatą: imię i oferta widoczne, treść nigdzie
+        $this->actingAs($this->firm)->get(route('messages.show', $conversation))
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->where('activeConversation.locked', true)
+                ->where('activeConversation.participant.name', $this->worker->name)
+                ->where('activeConversation.unlock.price', 120)
+                ->where('activeConversation.unlock.points', 1000)
+                ->where('activeConversation.unlock.can_unlock', true)
+                ->where('activeConversation.can_accept', false)
+                ->has('activeConversation.messages', 1)
+                ->where('activeConversation.messages.0.body', null)
+                ->where('conversations.0.locked', true)
+                ->where('conversations.0.last_message.body', null));
+        $poll = $this->actingAs($this->firm)->getJson(route('messages.poll', ['conversation' => $conversation->id]))->assertOk();
+        $this->assertStringNotContainsString('Tajna treść', $poll->getContent());
+        // Otwarcie zablokowanej rozmowy nie oznacza wiadomości jako przeczytanej
+        $this->assertNull($conversation->messages()->first()->read_at);
+        $this->actingAs($this->firm)->post(route('messages.accept', $conversation))->assertForbidden();
+        // Pracownik zawsze widzi swoją wiadomość
+        $this->actingAs($this->worker)->getJson(route('messages.poll', ['conversation' => $conversation->id]))
+            ->assertJsonPath('activeConversation.messages.0.body', 'Tajna treść wiadomości');
+
+        // Odczytanie: 120 pkt z konta firmy, wpis w historii punktów
+        $this->actingAs($this->firm)->post(route('messages.unlock', $conversation))->assertSessionHas('flash.bannerStyle', 'success');
+        $this->assertSame(880, $this->firm->firm->fresh()->points);
+        $this->assertDatabaseHas('point_histories', ['user_id' => $this->firm->id, 'action_name' => 'OpenMessage', 'points' => 120]);
+        $this->assertNotNull($conversation->fresh()->unlocked_at);
+
+        // Drugie kliknięcie i kolejne wiadomości w tej rozmowie są bezpłatne
+        $this->actingAs($this->firm)->post(route('messages.unlock', $conversation))->assertForbidden();
+        $this->actingAs($this->firm)->post(route('messages.accept', $conversation))->assertRedirect();
+        $this->actingAs($this->worker)->post(route('messages.reply', $conversation), ['body' => 'Druga wiadomość']);
+        $this->assertSame(880, $this->firm->firm->fresh()->points);
+        $this->actingAs($this->firm)->getJson(route('messages.poll', ['conversation' => $conversation->id]))
+            ->assertJsonPath('activeConversation.messages.0.body', 'Tajna treść wiadomości');
+
+        // Kolejny nowy pracownik - kolejna opłata
+        $other = $this->user('worker');
+        $this->actingAs($other)->post(route('messages.store'), ['employer_id' => $this->firm->id, 'body' => 'Ja też']);
+        $second = Conversation::where('worker_id', $other->id)->firstOrFail();
+        $this->actingAs($this->firm)->post(route('messages.unlock', $second));
+        $this->assertSame(760, $this->firm->firm->fresh()->points);
+    }
+
+    public function test_not_enough_points_and_recruiter_pays_with_firm_points(): void
+    {
+        $this->firm->firm->update(['points' => 50]);
+        $this->start($this->recruiter);
+        $conversation = $this->conversation($this->recruiter);
+
+        $this->actingAs($this->recruiter)->post(route('messages.unlock', $conversation))
+            ->assertSessionHas('flash.banner', __('messenger.noPoints'));
+        $this->assertNull($conversation->fresh()->unlocked_at);
+        $this->assertSame(50, $this->firm->firm->fresh()->points);
+
+        // Blokada i usunięcie bez płacenia
+        $this->actingAs($this->recruiter)->post(route('messages.block', $conversation), ['duration' => '24h'])->assertRedirect();
+        $this->actingAs($this->recruiter)->delete(route('messages.destroy', $conversation))->assertRedirect();
+
+        // Rekruter płaci punktami swojej firmy
+        $this->firm->firm->update(['points' => 500]);
+        $other = $this->user('worker');
+        $this->actingAs($other)->post(route('messages.store'), ['employer_id' => $this->recruiter->id, 'body' => 'Dzień dobry']);
+        $second = Conversation::where('worker_id', $other->id)->firstOrFail();
+        $this->actingAs($this->recruiter)->post(route('messages.unlock', $second))->assertSessionHas('flash.bannerStyle', 'success');
+        $this->assertSame(380, $this->firm->firm->fresh()->points);
+    }
+
+    public function test_email_does_not_reveal_locked_message(): void
+    {
+        $this->start($this->firm, 'Tajna treść wiadomości');
+        $message = $this->conversation($this->firm)->messages()->first();
+
+        $html = (string) (new NewMessageNotification($message))->toMail($this->firm)->render();
+
+        $this->assertStringNotContainsString('Tajna treść', $html);
+        $this->assertStringContainsString(e(__('messenger.mail.lockedHint')), $html);
+    }
+
+    public function test_unlock_price_is_a_separate_operation_in_admin_price_list(): void
+    {
+        $this->actingAs($this->user('admin'))->get(route('admin.admin-points.index'))
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page->where('operations', fn ($operations) => collect($operations)
+                ->contains(fn ($operation) => $operation['id'] === 'OpenMessage' && $operation['points'] === 120)));
     }
 }

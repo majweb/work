@@ -34,6 +34,9 @@ class Conversation extends Model
         'project_id',
         'status',
         'accepted_at',
+        'unlocked_at',
+        'unlocked_by_id',
+        'unlock_points',
         'last_message_at',
         'employer_deleted_at',
         'participant_deleted_at',
@@ -45,6 +48,7 @@ class Conversation extends Model
 
     protected $casts = [
         'accepted_at' => 'datetime',
+        'unlocked_at' => 'datetime',
         'last_message_at' => 'datetime',
         'employer_deleted_at' => 'datetime',
         'participant_deleted_at' => 'datetime',
@@ -83,6 +87,17 @@ class Conversation extends Model
     public function isPending(): bool
     {
         return $this->status === self::STATUS_PENDING;
+    }
+
+    /**
+     * Treść rozmowy z pracownikiem jest zablokowana dla strony pracodawcy (i podglądu firmy),
+     * dopóki pracodawca nie odczyta jej za punkty. Pracownik i administracja widzą wszystko.
+     */
+    public function isLockedFor(User $user): bool
+    {
+        return $this->type === self::TYPE_WORKER
+            && $this->unlocked_at === null
+            && ($this->isEmployer($user) || $this->isOverseenBy($user));
     }
 
     public function isWithAdmin(): bool

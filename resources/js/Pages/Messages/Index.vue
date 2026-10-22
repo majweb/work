@@ -166,7 +166,21 @@ onUnmounted(() => {
 });
 
 // --- Akcje w rozmowie ---
-const accept = () => router.post(route('messages.accept', active.value.id), {}, { preserveScroll: true });
+const accepting = ref(false);
+const accept = () => router.post(route('messages.accept', active.value.id), {}, {
+    preserveScroll: true,
+    onStart: () => (accepting.value = true),
+    onFinish: () => (accepting.value = false),
+});
+
+// Odczytanie wiadomości od kandydata za punkty (raz za rozmowę)
+const unlocking = ref(false);
+const unlock = () => router.post(route('messages.unlock', active.value.id), {}, {
+    preserveScroll: true,
+    onStart: () => (unlocking.value = true),
+    onFinish: () => (unlocking.value = false),
+});
+const hasEnoughPoints = computed(() => (active.value?.unlock?.points ?? 0) >= (active.value?.unlock?.price ?? 0));
 const block = (duration) => router.post(route('messages.block', active.value.id), { duration }, { preserveScroll: true });
 const unblock = () => router.delete(route('messages.unblock', active.value.id), { preserveScroll: true });
 
@@ -301,7 +315,8 @@ const pendingLabel = (conversation) => conversation.is_employer
                                         <p v-if="conversation.status === 'pending' && conversation.type === 'worker'" class="mt-0.5 text-[10px] font-black uppercase tracking-widest text-amber-600">{{ pendingLabel(conversation) }}</p>
                                         <div class="flex items-center justify-between gap-2 mt-0.5">
                                             <p class="text-xs truncate" :class="conversation.unread_count ? 'text-gray-800 font-semibold' : 'text-gray-500'">
-                                                <span v-if="conversation.last_message?.is_mine">{{ __('messenger.you') }}&nbsp;</span>{{ conversation.last_message?.body }}
+                                                <template v-if="conversation.locked">🔒 {{ __('messenger.lockedPreview') }}</template>
+                                                <template v-else><span v-if="conversation.last_message?.is_mine">{{ __('messenger.you') }}&nbsp;</span>{{ conversation.last_message?.body }}</template>
                                             </p>
                                             <span v-if="conversation.unread_count" class="shrink-0 inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-black text-white bg-red-600 rounded-lg">{{ conversation.unread_count }}</span>
                                         </div>
@@ -366,12 +381,46 @@ const pendingLabel = (conversation) => conversation.is_employer
                             </div>
                             <div v-if="active.can_accept" class="px-5 py-3 bg-amber-50 text-xs text-amber-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                 <span>{{ __('messenger.acceptBar') }}</span>
-                                <button type="button" class="self-start sm:self-auto px-5 py-2.5 bg-[#0A2C5C] hover:bg-[#0D356D] text-white rounded-xl font-black text-[10px] uppercase tracking-[0.2em]" @click="accept">{{ __('messenger.acceptButton') }}</button>
+                                <button
+                                    type="button"
+                                    :disabled="accepting"
+                                    class="self-start sm:self-auto inline-flex items-center gap-2 px-5 py-2.5 bg-[#0A2C5C] hover:bg-[#0D356D] text-white rounded-xl font-black text-[10px] uppercase tracking-[0.2em]"
+                                    :class="{ 'cursor-wait opacity-80': accepting }"
+                                    @click="accept"
+                                >
+                                    <span v-if="accepting" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                                    {{ __('messenger.acceptButton') }}
+                                </button>
                             </div>
 
                             <!-- Wiadomości -->
                             <div ref="thread" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 bg-gray-50/40">
-                                <div v-for="message in active.messages" :key="message.id" class="flex" :class="message.is_mine ? 'justify-end' : 'justify-start'">
+                                <!-- Wiadomość od kandydata przed odczytaniem za punkty -->
+                                <div v-if="active.locked" class="max-w-md mx-auto my-6 p-6 bg-white border border-gray-100 rounded-3xl shadow-sm text-center space-y-3">
+                                    <div class="mx-auto w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-2xl">🔒</div>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('messenger.lockedTitle', { name: active.participant.name }) }}</p>
+                                    <p class="text-xs text-gray-500">
+                                        {{ active.oversight ? __('messenger.oversightLocked') : __('messenger.lockedText') }}
+                                    </p>
+                                    <template v-if="active.unlock?.can_unlock">
+                                        <button
+                                            type="button"
+                                            :disabled="unlocking || !hasEnoughPoints"
+                                            class="inline-flex items-center gap-2 px-6 py-3 bg-[#0A2C5C] hover:bg-[#0D356D] text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all"
+                                            :class="unlocking ? 'cursor-wait opacity-80' : 'disabled:opacity-40'"
+                                            @click="unlock"
+                                        >
+                                            <span v-if="unlocking" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                                            {{ __('messenger.unlockButton', { points: active.unlock.price }) }}
+                                        </button>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ __('messenger.yourPoints', { points: active.unlock.points }) }}</p>
+                                        <p v-if="!hasEnoughPoints" class="text-xs text-red-600">
+                                            {{ __('messenger.noPoints') }}
+                                            <Link v-if="$page.props.roles?.includes('firm')" :href="route('buy.index')" class="font-bold underline">{{ __('messenger.buyPoints') }}</Link>
+                                        </p>
+                                    </template>
+                                </div>
+                                <div v-for="message in (active.locked ? [] : active.messages)" :key="message.id" class="flex" :class="message.is_mine ? 'justify-end' : 'justify-start'">
                                     <div class="max-w-[85%] sm:max-w-[70%]">
                                         <p v-if="message.author" class="text-[10px] font-bold text-gray-400 mb-1" :class="message.is_mine ? 'text-right' : ''">{{ message.author }}</p>
                                         <div class="px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm" :class="message.is_mine ? 'bg-[#0A2C5C] text-white rounded-br-md' : 'bg-white text-gray-800 border border-gray-100 rounded-bl-md'">

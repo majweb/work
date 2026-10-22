@@ -133,6 +133,23 @@ class MessengerController extends Controller
         return response()->noContent();
     }
 
+    /**
+     * Odczytanie wiadomości od kandydata - punkty schodzą z konta firmy raz za rozmowę.
+     */
+    public function unlock(Request $request, Conversation $conversation): RedirectResponse
+    {
+        $this->authorize('unlock', $conversation);
+
+        if (! $this->messenger->unlock($conversation, $request->user())) {
+            return $this->backWithBanner(__('messenger.noPoints'), 'danger');
+        }
+
+        $this->messenger->markAsRead($conversation, $request->user());
+        $this->messenger->markNotificationsAsRead($conversation, $request->user());
+
+        return $this->backWithBanner(__('messenger.unlocked', ['points' => $conversation->unlock_points]));
+    }
+
     public function accept(Conversation $conversation): RedirectResponse
     {
         $this->authorize('accept', $conversation);
@@ -370,6 +387,7 @@ class MessengerController extends Controller
     {
         $latest = $conversation->latestMessage;
         $oversight = $this->isOversight($conversation, $user);
+        $locked = $conversation->isLockedFor($user);
 
         return [
             'id' => $conversation->id,
@@ -380,8 +398,10 @@ class MessengerController extends Controller
             // Podgląd firmy: który rekruter prowadzi rozmowę
             'recruiter_name' => $oversight ? $conversation->employer->name : null,
             'project_title' => $conversation->project ? $this->messenger->projectTitle($conversation->project) : null,
+            // Treść wiadomości od kandydata widać dopiero po odczytaniu za punkty
+            'locked' => $locked,
             'last_message' => $latest ? [
-                'body' => Str::limit($latest->body, 80),
+                'body' => $locked ? null : Str::limit($latest->body, 80),
                 'is_mine' => $oversight ? $latest->sender_id === $conversation->employer_id : $conversation->isSameSide($user, $latest->sender_id),
                 'created_at' => $latest->created_at->toIso8601String(),
             ] : null,
@@ -402,11 +422,20 @@ class MessengerController extends Controller
             : $this->messenger->replyDeniedReason($conversation, $user);
         // W skrzynce administracji admin widzi, który z adminów napisał daną wiadomość
         $showAuthors = $conversation->isWithAdmin() && $user->isMessengerAdmin();
+        $locked = $conversation->isLockedFor($user);
+        $firm = $locked ? $this->messenger->employerFirm($conversation->employer) : null;
 
         return [
             'id' => $conversation->id,
             'type' => $conversation->type,
             'status' => $conversation->status,
+            // Zablokowana wiadomość od kandydata: treść dopiero po odczytaniu za punkty
+            'locked' => $locked,
+            'unlock' => $locked ? [
+                'price' => $this->messenger->unlockPrice(),
+                'points' => (int) ($firm?->points ?? 0),
+                'can_unlock' => $user->can('unlock', $conversation),
+            ] : null,
             'is_employer' => $conversation->isEmployer($user) || $oversight,
             // Podgląd firmy: rozmowa rekrutera, tylko odczyt (wiadomości rekrutera po prawej)
             'oversight' => $oversight,
@@ -420,7 +449,7 @@ class MessengerController extends Controller
                 ->get()
                 ->map(fn (Message $message) => [
                     'id' => $message->id,
-                    'body' => $message->body,
+                    'body' => $locked ? null : $message->body,
                     'is_mine' => $oversight ? $message->sender_id === $conversation->employer_id : $conversation->isSameSide($user, $message->sender_id),
                     'author' => $showAuthors && $message->sender_id !== $conversation->employer_id
                         ? $message->sender?->name

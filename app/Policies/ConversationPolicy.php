@@ -19,9 +19,20 @@ class ConversationPolicy
         return $conversation->hasParticipant($user) || $conversation->isOverseenBy($user);
     }
 
+    /**
+     * Akceptacja dopiero po odczytaniu wiadomości (za punkty).
+     */
     public function accept(User $user, Conversation $conversation): bool
     {
-        return $conversation->isEmployer($user) && $conversation->isPending();
+        return $conversation->isEmployer($user) && $conversation->isPending() && ! $conversation->isLockedFor($user);
+    }
+
+    /**
+     * Odczytanie wiadomości za punkty - tylko pracodawca rozmowy (nie podgląd firmy).
+     */
+    public function unlock(User $user, Conversation $conversation): bool
+    {
+        return $conversation->isEmployer($user) && $conversation->isLockedFor($user);
     }
 
     public function delete(User $user, Conversation $conversation): bool

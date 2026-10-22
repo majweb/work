@@ -100,6 +100,7 @@ const actionTranslations = {
     'Admin: Manually added credits': 'Admin: Ręcznie dodane kredyty',
     'Admin: Manually set credits': 'Admin: Ręcznie ustawione kredyty',
     'SendToExternalFirm': 'Wysłanie do firmy zewnętrznej',
+    'OpenMessage': 'Odczytanie wiadomości od kandydata',
 };
 
 const translateAction = (action) => {

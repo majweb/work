@@ -135,6 +135,7 @@ Route::middleware([
         Route::post('/{conversation}/typing', 'typing')->middleware('throttle:60,1')->name('typing');
         Route::get('/{conversation}/typing', 'typingState')->name('typing-state');
         Route::post('/{conversation}/accept', 'accept')->name('accept');
+        Route::post('/{conversation}/unlock', 'unlock')->name('unlock');
         Route::delete('/{conversation}', 'destroy')->name('destroy');
         Route::post('/{conversation}/block', 'block')->name('block');
         Route::delete('/{conversation}/block', 'unblock')->name('unblock');

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\ContactBlock;
 use App\Models\Conversation;
+use App\Models\Firm;
 use App\Models\Message;
 use App\Models\Project;
 use App\Models\User;
@@ -53,6 +54,14 @@ class MessengerService
      * Najczęściej jeden e-mail do odbiorcy na rozmowę w tym oknie czasowym.
      */
     public const MAIL_COOLDOWN_MINUTES = 30;
+
+    /**
+     * Odczytanie wiadomości od nowego kandydata - pozycja w cenniku punktów (config/getPoints.php,
+     * zmieniana w panelu admina). Do czasu pierwszej zmiany w panelu obowiązuje cena domyślna.
+     */
+    public const UNLOCK_ACTION = 'OpenMessage';
+
+    public const UNLOCK_POINTS_DEFAULT = 120;
 
     /**
      * Aktywny pracownik: zweryfikowany e-mail i konto niezablokowane.
@@ -303,6 +312,54 @@ class MessengerService
         return $message;
     }
 
+    public function unlockPrice(): int
+    {
+        return (int) config('getPoints.'.self::UNLOCK_ACTION, self::UNLOCK_POINTS_DEFAULT);
+    }
+
+    /**
+     * Firma, z której konta schodzą punkty: dla rekrutera - jego firma.
+     */
+    public function employerFirm(User $employer, bool $lockForUpdate = false): ?Firm
+    {
+        $firmUserId = $employer->isRecruiter() ? $employer->recruiter_from_firm_id : $employer->id;
+
+        // Zawsze świeży stan punktów z bazy (przy pobieraniu - z blokadą wiersza)
+        return Firm::where('user_id', $firmUserId)->when($lockForUpdate, fn ($q) => $q->lockForUpdate())->first();
+    }
+
+    /**
+     * Odczytanie wiadomości od kandydata: pobiera punkty z konta firmy raz za rozmowę.
+     *
+     * @return bool false - za mało punktów na koncie firmy
+     */
+    public function unlock(Conversation $conversation, User $employer): bool
+    {
+        return DB::transaction(function () use ($conversation, $employer) {
+            // Blokada wiersza - podwójne kliknięcie nie pobierze punktów dwa razy
+            $fresh = Conversation::whereKey($conversation->id)->lockForUpdate()->first();
+            if ($fresh->unlocked_at !== null) {
+                return true;
+            }
+
+            $firm = $this->employerFirm($employer, lockForUpdate: true);
+            $price = $this->unlockPrice();
+
+            if (! $firm || $firm->points < $price) {
+                return false;
+            }
+
+            if ($price > 0) {
+                app(PointService::class)->decrement($firm->user, $price, self::UNLOCK_ACTION);
+            }
+
+            $fresh->update(['unlocked_at' => now(), 'unlocked_by_id' => $employer->id, 'unlock_points' => $price]);
+            $conversation->setRawAttributes($fresh->getAttributes(), true);
+
+            return true;
+        });
+    }
+
     public function accept(Conversation $conversation): void
     {
         $conversation->update([
@@ -446,6 +503,11 @@ class MessengerService
      */
     public function markAsRead(Conversation $conversation, User $reader): void
     {
+        // Zablokowanej wiadomości pracodawca jeszcze nie przeczytał - pracownik nie zobaczy "Przeczytano"
+        if ($conversation->isLockedFor($reader)) {
+            return;
+        }
+
         $conversation->messages()
             ->where('sender_id', $conversation->isEmployer($reader) ? '!=' : '=', $conversation->employer_id)
             ->whereNull('read_at')
@@ -458,6 +520,10 @@ class MessengerService
      */
     public function markNotificationsAsRead(Conversation $conversation, User $user): void
     {
+        if ($conversation->isLockedFor($user)) {
+            return;
+        }
+
         $query = $user->isMessengerAdmin() && $conversation->isWithAdmin()
             ? DatabaseNotification::where('notifiable_type', $user->getMorphClass())
                 ->whereIn('notifiable_id', User::role('admin')->select('users.id'))

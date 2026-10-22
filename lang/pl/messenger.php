@@ -50,6 +50,7 @@ return [
         'greeting' => 'Dzień dobry,',
         'acceptedSubject' => ':name zaakceptował(a) kontakt',
         'acceptedLine' => ':name zaakceptował(a) Twoją prośbę o kontakt. Możesz kontynuować rozmowę.',
+        'lockedHint' => 'Zaloguj się, aby odczytać wiadomość i odpowiedzieć.',
     ],
 
     // Panel wiadomości
@@ -118,4 +119,17 @@ return [
     'emptyRecruiters' => 'Twoi rekruterzy nie mają jeszcze rozmów z pracownikami.',
     'recruiterLabel' => 'Rekruter: :name',
     'oversightReadOnly' => 'Podgląd rozmowy rekrutera :name – odpowiada rekruter.',
+
+    // Płatne odczytanie wiadomości od kandydata
+    'lockedPreview' => 'Wiadomość do odczytania',
+    'lockedTitle' => 'Wiadomość od kandydata: :name',
+    'lockedText' => 'Odczytaj wiadomość, aby zobaczyć jej treść, zaakceptować kontakt i odpowiedzieć.',
+    'oversightLocked' => 'Rekruter jeszcze nie odczytał tej wiadomości.',
+    'unlockButton' => 'Odczytaj wiadomość – :points pkt',
+    'yourPoints' => 'Punkty firmy: :points',
+    'noPoints' => 'Za mało punktów, aby odczytać wiadomość.',
+    'buyPoints' => 'Kup punkty',
+    'unlocked' => 'Wiadomość odczytana. Pobrano :points pkt.',
+    'pointsName' => 'Odczytanie wiadomości od kandydata',
+    'pointsDesc' => 'Odczytanie pierwszej wiadomości od nowego kandydata w wiadomościach. Kolejne wiadomości w tej rozmowie są bezpłatne.',
 ];

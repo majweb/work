@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PointsResource;
-use App\Models\ChangeProduct;
-use Illuminate\Http\Request;
+use App\Services\MessengerService;
 use Illuminate\Support\Facades\Auth;
 
 class PoinstController extends Controller
@@ -14,8 +13,8 @@ class PoinstController extends Controller
     {
         return inertia()->render('Points/Index', [
             'products' => PointsResource::collection(Auth::user()->changeProducts()->with('product')->paginate(10)->withQueryString()),
-            'pointCosts' => config('getPoints')
+            // Cennik z pozycją odczytania wiadomości (cena domyślna, dopóki admin jej nie zmieni)
+            'pointCosts' => config('getPoints') + [MessengerService::UNLOCK_ACTION => app(MessengerService::class)->unlockPrice()],
         ]);
     }
-
 }

@@ -41,7 +41,9 @@ class NewMessageNotification extends Notification implements ShouldQueue
             ->markdown('emails.messenger.new-message', [
                 'senderName' => $this->senderName(),
                 'projectTitle' => $project ? app(MessengerService::class)->projectTitle($project) : null,
-                'excerpt' => Str::limit($this->message->body, 300),
+                // Wiadomość od kandydata przed odczytaniem za punkty - bez treści w mailu
+                'locked' => $conversation->isLockedFor($notifiable),
+                'excerpt' => $conversation->isLockedFor($notifiable) ? null : Str::limit($this->message->body, 300),
                 // Pierwszy kontakt od pracownika czeka na akceptację pracodawcy
                 'isPending' => $conversation->isPending() && $conversation->isEmployer($notifiable),
                 'url' => route('messages.show', $conversation),

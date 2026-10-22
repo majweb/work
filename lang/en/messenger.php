@@ -46,6 +46,7 @@ return [
         'greeting' => 'Hello,',
         'acceptedSubject' => ':name accepted your contact request',
         'acceptedLine' => ':name accepted your contact request. You can continue the conversation.',
+        'lockedHint' => 'Log in to read the message and reply.',
     ],
 
     'emptyList' => 'You have no conversations yet.',
@@ -109,4 +110,16 @@ return [
     'emptyRecruiters' => 'Your recruiters have no conversations with workers yet.',
     'recruiterLabel' => 'Recruiter: :name',
     'oversightReadOnly' => 'Preview of recruiter :name\'s conversation – the recruiter replies.',
+
+    'lockedPreview' => 'Message to unlock',
+    'lockedTitle' => 'Message from a candidate: :name',
+    'lockedText' => 'Unlock the message to see its content, accept the contact and reply.',
+    'oversightLocked' => 'The recruiter has not unlocked this message yet.',
+    'unlockButton' => 'Unlock message – :points pts',
+    'yourPoints' => 'Company points: :points',
+    'noPoints' => 'Not enough points to unlock the message.',
+    'buyPoints' => 'Buy points',
+    'unlocked' => 'Message unlocked. :points points charged.',
+    'pointsName' => 'Unlocking a message from a candidate',
+    'pointsDesc' => 'Unlocking the first message from a new candidate in Messages. Further messages in that conversation are free.',
 ];
