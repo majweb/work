@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -22,6 +24,7 @@ class Article extends Model implements HasMedia
         'active' => 'boolean',
         'active_admin' => 'boolean',
         'category' => 'array',
+        'countries' => 'array',
     ];
 
     protected $fillable = [
@@ -38,6 +41,9 @@ class Article extends Model implements HasMedia
         'meta_keywords',
         'category',
         'slug',
+        'source_article_id',
+        'locale',
+        'countries',
     ];
 
     /**
@@ -46,8 +52,10 @@ class Article extends Model implements HasMedia
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+            ->generateSlugsFrom(fn (Article $article) => $article->isVersion() ? $article->versionSlugSource() : (string) $article->title)
+            ->saveSlugsTo('slug')
+            // Adres opublikowanej wersji językowej nie zmienia się przy ponownym tłumaczeniu
+            ->skipGenerateWhen(fn () => $this->isVersion() && $this->exists);
     }
 
     /**
@@ -73,7 +81,54 @@ class Article extends Model implements HasMedia
      */
     public function scopeLang($query)
     {
-        return $query->where('country_code', getSelectedCountry() ?: getLocalBrowserLang());
+        $market = getSelectedCountry() ?: getLocalBrowserLang();
+
+        // Wersja językowa jest widoczna we wszystkich wybranych krajach swojego języka (kolumna countries)
+        return $query->where(fn ($q) => $q
+            ->where('country_code', $market)
+            ->orWhereJsonContains('countries', $market));
+    }
+
+    /**
+     * Polski oryginał wersji językowej.
+     */
+    public function source(): BelongsTo
+    {
+        return $this->belongsTo(Article::class, 'source_article_id');
+    }
+
+    public function versions(): HasMany
+    {
+        return $this->hasMany(Article::class, 'source_article_id');
+    }
+
+    public function translations(): HasMany
+    {
+        return $this->hasMany(ArticleTranslation::class, 'source_article_id');
+    }
+
+    /**
+     * Adres wersji językowej: tytuł w łacince i kod języka ("erster-tag-im-neuen-job-de").
+     * Pisma, których nie da się zapisać łacinką (tajski, birmański), dostają "artykul-{id oryginału}-{język}".
+     */
+    public function versionSlugSource(): string
+    {
+        $ascii = Str::slug((string) $this->title);
+
+        return (strlen($ascii) >= 3 ? Str::limit($ascii, 80, '') : 'artykul '.$this->source_article_id).' '.$this->locale;
+    }
+
+    public function isVersion(): bool
+    {
+        return $this->source_article_id !== null;
+    }
+
+    /**
+     * Zdjęcie artykułu - wersja językowa korzysta ze zdjęcia oryginału (bez kopiowania plików).
+     */
+    public function coverMedia(): ?Media
+    {
+        return $this->getFirstMedia('articles_images') ?? $this->source?->getFirstMedia('articles_images');
     }
 
     public function registerMediaConversions(?Media $media = null): void

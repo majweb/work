@@ -37,11 +37,19 @@ class UpdateArticleRequest extends FormRequest
             'meta_description' => ['nullable', 'string', 'max:160'],
             'meta_keywords' => ['required', 'string', 'max:160'],
             // Rynek artykułu - jeden kraj, jak w banerach
-            'country_code' => ['required', 'string', Rule::exists('countries', 'countryCode')],
+            'country_code' => [$this->isVersion() ? 'nullable' : 'required', 'string', Rule::exists('countries', 'countryCode')],
             'active' => ['boolean'],
-            'photo' => ['required', 'array'],
+            // Wersja językowa korzysta ze zdjęcia i rynków oryginału
+            'photo' => [$this->isVersion() ? 'nullable' : 'required', 'array'],
+            'translate_countries' => ['nullable', 'array'],
+            'translate_countries.*' => ['string', Rule::exists('countries', 'countryCode')],
 
         ];
+    }
+
+    private function isVersion(): bool
+    {
+        return (bool) $this->route('article')?->isVersion();
     }
 
     public function articleData()

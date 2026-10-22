@@ -10,6 +10,8 @@ import {usePermission} from "@/Composables/usePermission.js";
 const {hasRole} = usePermission();
 const props = defineProps({
     article: Object,
+    // Wersje językowe artykułu (hreflang)
+    alternates: { type: Array, default: () => [] },
     sidebarSections: {
         type: Array,
         default: () => []
@@ -138,6 +140,7 @@ const articleSchema = computed(() => {
     <FrontLayout
         :title="article.meta_title || __('translate.article')"
         :description="article.meta_description || ''"
+        :alternates="alternates || []"
         :keywords="article.meta_keywords"
         :image="article.photo_fb"
         :url="route('front.articles.single', article.slug)"

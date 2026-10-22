@@ -20,6 +20,8 @@ const props = defineProps({
     author: String,
     imageUrl: String,
     url: String,
+    // Wersje językowe strony: [{ locale, url }] -> <link rel="alternate" hreflang>
+    alternates: { type: Array, default: () => [] },
 });
 
 const { hasRole } = usePermission();
@@ -397,6 +399,7 @@ const socialLinks = [
             <meta name="robots" content="index, follow" />
             <!-- Canonical -->
             <link v-if="props.url || ogUrl" rel="canonical" :href="props.url || ogUrl" />
+            <link v-for="alternate in props.alternates" :key="alternate.locale" rel="alternate" :hreflang="alternate.locale" :href="alternate.url" />
 
             <!-- Open Graph -->
             <meta property="og:locale" content="pl_PL" />

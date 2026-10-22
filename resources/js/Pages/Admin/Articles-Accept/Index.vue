@@ -69,6 +69,10 @@
                                     </td>
                                     <td class="px-6 py-4 bg-gray-50/50 border-y border-gray-100 group-hover:bg-white transition-all">
                                         <span class="text-xs font-black text-[#0A2C5C] line-clamp-1 uppercase tracking-tight">{{ article.title }}</span>
+                                        <!-- Postęp tłumaczeń na rynki -->
+                                        <span v-if="article.translations_count" class="mt-1 inline-block px-2 py-0.5 rounded-md bg-green-50 text-[9px] font-black text-green-700 uppercase tracking-widest">
+                                            Wersje językowe: {{ article.translations_done_count }}/{{ article.translations_count }}
+                                        </span>
                                     </td>
                                     <td class="px-6 py-4 bg-gray-50/50 border-y border-gray-100 group-hover:bg-white transition-all">
                                         <div class="flex items-center gap-2">

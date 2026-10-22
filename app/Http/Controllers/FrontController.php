@@ -458,6 +458,9 @@ class FrontController extends Controller
 
     public function SingleArticle(Article $article)
     {
+        // Szkic wersji językowej widzi tylko admin (podgląd przed publikacją)
+        abort_if($article->isVersion() && ! $article->active && ! request()->user()?->hasRole('admin'), 404);
+
         $article->load(['comments' => function ($query) {
             $query->with(['user', 'replies' => function ($q) {
                 $q->with('user', 'replies')
@@ -506,9 +509,31 @@ class FrontController extends Controller
 
         return inertia()->render('Front/SingleArticle', [
             'article' => new FrontArticleResource($article),
+            // Linki hreflang do opublikowanych wersji językowych tego samego artykułu
+            'alternates' => $this->articleAlternates($article),
             'sidebarSections' => $sections,
             'allOtherArticles' => $allOtherArticles,
         ]);
+    }
+
+    /**
+     * Wersje językowe artykułu (oryginał i opublikowane tłumaczenia) dla linków hreflang.
+     *
+     * @return array<int, array{locale: string, url: string}>
+     */
+    private function articleAlternates(Article $article): array
+    {
+        $sourceId = $article->source_article_id ?? $article->id;
+
+        $family = Article::active()
+            ->where(fn ($q) => $q->where('id', $sourceId)->orWhere('source_article_id', $sourceId))
+            ->whereNotNull('locale')
+            ->get(['id', 'slug', 'locale']);
+
+        return $family->count() < 2 ? [] : $family
+            ->map(fn (Article $item) => ['locale' => $item->locale, 'url' => route('front.articles.single', $item->slug)])
+            ->values()
+            ->all();
     }
 
     public function SingleFirm(User $user)
