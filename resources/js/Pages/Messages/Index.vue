@@ -232,7 +232,15 @@ const pendingLabel = (conversation) => conversation.is_employer
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('messenger.subtitle') }}</p>
                         </div>
 
-                        <AdminNewConversation v-if="isAdmin" :employers="employers" />
+                        <div v-if="isAdmin" class="flex flex-col sm:flex-row gap-3">
+                            <a
+                                :href="route('admin.messages.guide')"
+                                class="px-6 py-3 bg-white border border-gray-200 hover:border-[#0A2C5C] text-[#0A2C5C] rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all text-center"
+                            >
+                                Instrukcja (PDF)
+                            </a>
+                            <AdminNewConversation :employers="employers" />
+                        </div>
 
                         <!-- Firma/rekruter: przyjmowanie wiadomości i godziny odpowiedzi -->
                         <form v-if="isEmployer && settings" class="flex flex-col sm:flex-row sm:items-end gap-4" @submit.prevent="saveSettings">

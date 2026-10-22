@@ -184,7 +184,7 @@ class PointsController extends Controller
             'SendToExternalFirm' => 'operacje z CV i bazą danych',
             'AddVideoToProfile' => 'usługi dodatkowe',
             'sendReservedProject' => 'usługi dodatkowe',
-            'OpenMessage' => 'operacje z CV i bazą danych',
+            'OpenMessage' => 'wiadomości',
         ];
 
         return $categories[$key] ?? 'inne';

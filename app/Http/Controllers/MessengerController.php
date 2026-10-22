@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Wiadomości pracownik - pracodawca (firma albo rekruter) oraz pracodawca - administracja.
@@ -45,6 +46,14 @@ class MessengerController extends Controller
         }
 
         return $this->render($request, $conversation);
+    }
+
+    /**
+     * Instrukcja wiadomości dla adminów (PDF): działanie, dostęp, przechowywanie danych.
+     */
+    public function guide(): BinaryFileResponse
+    {
+        return response()->download(resource_path('messenger/instrukcja.pdf'), 'Instrukcja - wiadomosci (czat).pdf');
     }
 
     /**

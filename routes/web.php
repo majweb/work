@@ -321,6 +321,7 @@ Route::middleware([
         Route::post('forbidden-words/check', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'check'])->name('forbidden-words.check');
         Route::patch('forbidden-words/{forbiddenWord}', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'update'])->name('forbidden-words.update');
         Route::delete('forbidden-words/{forbiddenWord}', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'destroy'])->name('forbidden-words.destroy');
+        Route::get('messages-guide', [\App\Http\Controllers\MessengerController::class, 'guide'])->name('messages.guide');
         Route::get('newsletter-campaigns/lists', [\App\Http\Controllers\Admin\NewsletterListController::class, 'index'])->name('newsletter-lists.index');
         Route::get('newsletter-campaigns/lists/{locale}', [\App\Http\Controllers\Admin\NewsletterListController::class, 'show'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.show');
         Route::post('newsletter-campaigns/lists/{locale}/sync', [\App\Http\Controllers\Admin\NewsletterListController::class, 'sync'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.sync');

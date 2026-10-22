@@ -478,4 +478,13 @@ class MessengerTest extends TestCase
             ->assertInertia(fn ($page) => $page->where('operations', fn ($operations) => collect($operations)
                 ->contains(fn ($operation) => $operation['id'] === 'OpenMessage' && $operation['points'] === 120)));
     }
+
+    public function test_only_admin_can_download_messenger_guide(): void
+    {
+        $this->actingAs($this->user('admin'))->get(route('admin.messages.guide'))
+            ->assertOk()
+            ->assertDownload('Instrukcja - wiadomosci (czat).pdf');
+
+        $this->actingAs($this->firm)->get(route('admin.messages.guide'))->assertForbidden();
+    }
 }

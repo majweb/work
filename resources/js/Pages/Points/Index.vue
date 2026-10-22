@@ -43,15 +43,6 @@ const operations = computed(() => [
                 ]
             },
             {
-                // Wiadomość od kandydata w czacie - odczytanie za punkty, raz za rozmowę
-                name: __("messenger.pointsName"),
-                points: props.pointCosts.OpenMessage,
-                icon: '/images/icons/firm/klasyczne_cv.png',
-                details: [
-                    `<strong>${__("translate.description")}</strong>: ${__("messenger.pointsDesc")}`,
-                ]
-            },
-            {
                 name: __("translate.cv_audio"),
                 points: props.pointCosts.OpenAppWithAudio,
                 icon: '/images/icons/firm/audio_cv.png',
@@ -129,6 +120,20 @@ const operations = computed(() => [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.export_data_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.export_data_target")}`,
                     `<strong>${__("translate.detail")}</strong>: ${__("translate.export_data_detail")}`
+                ]
+            }
+        ]
+    },
+    {
+        // Osobna sekcja - wiadomość od kandydata w czacie, odczytanie za punkty raz za rozmowę
+        title: __("messenger.title"),
+        items: [
+            {
+                name: __("messenger.pointsName"),
+                points: props.pointCosts.OpenMessage,
+                icon: '/images/icons/firm/wiadomosc_od_kandydata.svg',
+                details: [
+                    `<strong>${__("translate.description")}</strong>: ${__("messenger.pointsDesc")}`,
                 ]
             }
         ]
