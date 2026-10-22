@@ -11,6 +11,7 @@ import TextareaLimit from "@/Components/TextareaLimit.vue";
 import {ref, computed} from 'vue';
 import Tiptap from "@/Components/TipTap.vue"
 import Multiselect from "vue-multiselect";
+import MarketPicker from "@/Components/Articles/MarketPicker.vue";
 
 let serverMessage = ref(null);
 
@@ -18,6 +19,9 @@ const props = defineProps({
     countries: Array,
     article: Object,
     categories: Array,
+    // Tłumaczenie oryginału na rynki (wersja językowa tego nie ma)
+    markets: { type: Array, default: () => [] },
+    languageNames: { type: Object, default: () => ({}) },
 });
 
 const form = useForm({
@@ -40,8 +44,11 @@ const form = useForm({
     alt: props.article.alt,
     meta_keywords: props.article.meta_keywords,
     category: props.article.category,
+    translate_countries: [],
     _method: 'PUT',
 });
+
+const translateEnabled = ref(false);
 
 // Wybór jednego kraju (rynku) jak w banerach - w formularzu trzymamy tylko kod kraju
 const allCountries = computed(() => (props.countries || []).flatMap(group => group.elements || []));
@@ -54,7 +61,8 @@ const selectedCountry = computed({
 const optionsCategory = ref(props.categories);
 
 const updateArticle = () => {
-    form.post(route('admin.articles-accepts.update', props.article.id), {
+    form.transform((data) => ({ ...data, translate_countries: translateEnabled.value ? data.translate_countries : [] }))
+        .post(route('admin.articles-accepts.update', props.article.id), {
         errorBag: 'updateArticle',
         preserveScroll: true,
     });
@@ -84,10 +92,16 @@ const updateArticle = () => {
 
             <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                 <form @submit.prevent="updateArticle" class="space-y-12">
+                    <!-- Wersja językowa: zdjęcie, kategoria i rynki pochodzą z oryginału -->
+                    <div v-if="article.is_version" class="p-5 bg-blue-50 border border-blue-100 rounded-2xl text-sm text-[#0A2C5C]">
+                        Edytujesz wersję językową (<strong>{{ languageNames[article.locale] || article.locale }}</strong>) artykułu.
+                        Zdjęcie i rynki pochodzą z oryginału. Po zapisaniu ponowne tłumaczenie nie nadpisze Twoich poprawek bez potwierdzenia.
+                        <Link :href="route('admin.articles-accepts.show', article.source_id)" class="font-bold underline">Przejdź do oryginału</Link>
+                    </div>
                     <!-- Sekcja podstawowa -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="space-y-8">
-                            <div>
+                            <div v-if="!article.is_version">
                                 <InputLabel for="country_code" :value="__('translate.country')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
                                 <multiselect
                                     id="country_code"
@@ -142,7 +156,7 @@ const updateArticle = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div v-if="!article.is_version">
                             <InputLabel for="photo" :value="__('translate.Photo')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
                             <div class="bg-gray-50 rounded-[2rem] p-4 border border-gray-100">
                                 <file-pond
@@ -255,6 +269,23 @@ const updateArticle = () => {
                                 <InputError :message="form.errors.meta_description" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Tłumaczenie na kolejne rynki (oryginał) -->
+                    <div v-if="!article.is_version" class="bg-gray-50 rounded-2xl p-6 border border-gray-100 space-y-5">
+                        <label class="flex items-center gap-4 cursor-pointer">
+                            <input v-model="translateEnabled" type="checkbox" class="rounded border-gray-300 text-[#0A2C5C] focus:ring-[#00a3e0]">
+                            <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">Przetłumacz na kolejne rynki</span>
+                            <span class="text-[10px] text-gray-400">Zielone rynki są już przetłumaczone. Nowe wersje zapisują się jako szkice.</span>
+                        </label>
+                        <MarketPicker
+                            v-if="translateEnabled"
+                            v-model="form.translate_countries"
+                            :markets="markets"
+                            :language-names="languageNames"
+                            :source-country="form.country_code"
+                            :translated="article.translated_countries || []"
+                        />
                     </div>
 
                     <!-- Publish toggle -->

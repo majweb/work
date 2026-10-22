@@ -20,6 +20,8 @@ const props = defineProps({
     author: String,
     imageUrl: String,
     url: String,
+    // Wersje językowe strony: [{ locale, url }] -> <link rel="alternate" hreflang>
+    alternates: { type: Array, default: () => [] },
 });
 
 const { hasRole } = usePermission();
@@ -364,6 +366,9 @@ const getFlagCode = (langCode) => {
     return mapping[langCode] || langCode;
 };
 
+// Kody krajów (ISO 3166-1) są już kodami flag - nie wolno ich przepuszczać przez mapowanie języków (np. 'be' = Belgia, nie białoruski)
+const getCountryFlagCode = (countryCode) => (countryCode || '').toLowerCase();
+
 const showConfetti = ref(false);
 watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
     // Zachowujemy globalne confetti tylko dla aplikacji na ofertę i opłacenia zamówienia
@@ -394,6 +399,7 @@ const socialLinks = [
             <meta name="robots" content="index, follow" />
             <!-- Canonical -->
             <link v-if="props.url || ogUrl" rel="canonical" :href="props.url || ogUrl" />
+            <link v-for="alternate in props.alternates" :key="alternate.locale" rel="alternate" :hreflang="alternate.locale" :href="alternate.url" />
 
             <!-- Open Graph -->
             <meta property="og:locale" content="pl_PL" />
@@ -647,7 +653,7 @@ const socialLinks = [
                         <div v-if="countrySelectionStep === 'suggest'" class="p-10 text-center">
                             <div class="mb-8 flex justify-center">
                                 <div class="w-24 h-24 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center border-4 border-white dark:border-gray-700 shadow-xl">
-                                    <span :class="`fi fi-${getFlagCode((currentCountryCode || '').toLowerCase())} text-5xl shadow-sm rounded-lg`" style="width: 64px; height: 48px;"></span>
+                                    <span :class="`fi fi-${getCountryFlagCode(currentCountryCode)} text-5xl shadow-sm rounded-lg`" style="width: 64px; height: 48px;"></span>
                                 </div>
                             </div>
                             <h3 class="text-2xl font-black uppercase tracking-tighter mb-2 text-[#0A2C5C] dark:text-white">
@@ -739,7 +745,7 @@ const socialLinks = [
                                             class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all text-left group border border-transparent hover:border-gray-100 dark:hover:border-gray-600 shadow-none hover:shadow-sm"
                                         >
                                             <div class="w-7 h-7 rounded-full overflow-hidden flex-shrink-0 border dark:border-gray-600 shadow-sm transition-transform group-hover:scale-110">
-                                                <span :class="`fi fi-${getFlagCode((country.countryCode || '').toLowerCase())} scale-125`" style="width: 28px; height: 28px;"></span>
+                                                <span :class="`fi fi-${getCountryFlagCode(country.countryCode)} fis !block !w-full !h-full !bg-cover`"></span>
                                             </div>
                                             <div class="flex flex-col min-w-0">
                                                 <span class="text-[11px] font-bold text-gray-800 dark:text-gray-200 group-hover:text-[#00a0e3] dark:group-hover:text-blue-400 transition-colors truncate">

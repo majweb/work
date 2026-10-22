@@ -4,9 +4,12 @@ import { Link, router } from '@inertiajs/vue3';
 import moment from "moment";
 import DialogModal from '@/Components/DialogModal.vue';
 import { ref, computed } from 'vue';
+import TranslationsPanel from '@/Components/Articles/TranslationsPanel.vue';
 
 const props = defineProps({
-    article: Object
+    article: Object,
+    // Wersje językowe oryginału (null dla wersji językowej)
+    translations: Object,
 });
 
 const showDeleteModal = ref(false);
@@ -104,6 +107,15 @@ const goToPage = (page) => {
                     </button>
                 </div>
             </div>
+
+            <!-- Wersja językowa: link do oryginału -->
+            <div v-if="article.source" class="p-5 bg-blue-50 border border-blue-100 rounded-2xl text-sm text-[#0A2C5C]">
+                To wersja językowa ({{ article.locale }}) artykułu
+                <Link :href="route('admin.articles-accepts.show', article.source.id)" class="font-bold underline">{{ article.source.title }}</Link>.
+            </div>
+
+            <!-- Wersje językowe oryginału -->
+            <TranslationsPanel v-if="translations" :article-id="article.id" :translations="translations" />
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Content Column -->

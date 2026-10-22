@@ -39,6 +39,9 @@ class StoreArticleRequest extends FormRequest
             'country_code' => ['required', 'string', Rule::exists('countries', 'countryCode')],
             'active' => ['boolean'],
             'photo' => ['required', 'array'],
+            // Panel admina: rynki, na które tłumaczymy artykuł (szkice wersji językowych)
+            'translate_countries' => ['nullable', 'array'],
+            'translate_countries.*' => ['string', Rule::exists('countries', 'countryCode')],
         ];
     }
 

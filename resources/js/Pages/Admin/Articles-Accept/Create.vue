@@ -10,12 +10,16 @@ import TextareaLimit from "@/Components/TextareaLimit.vue";
 import {ref, computed} from 'vue';
 import Tiptap from "@/Components/TipTap.vue"
 import Multiselect from "vue-multiselect";
+import MarketPicker from "@/Components/Articles/MarketPicker.vue";
 
 let serverMessage = ref(null);
 
 const props = defineProps({
     countries: Array,
     categories: Array,
+    // Tłumaczenie na rynki: kraje z językiem i polskie nazwy języków
+    markets: Array,
+    languageNames: Object,
 });
 
 const form = useForm({
@@ -31,7 +35,11 @@ const form = useForm({
     alt: '',
     meta_keywords: '',
     category: '',
+    translate_countries: [],
 });
+
+// Tłumaczenie na inne rynki - szkice wersji językowych powstają po zapisaniu
+const translateEnabled = ref(false);
 
 // Wybór jednego kraju (rynku) jak w banerach - w formularzu trzymamy tylko kod kraju
 const allCountries = computed(() => (props.countries || []).flatMap(group => group.elements || []));
@@ -44,7 +52,8 @@ const selectedCountry = computed({
 const optionsCategory = ref(props.categories);
 
 const createArticle = () => {
-    form.post(route('admin.articles-accepts.store'), {
+    form.transform((data) => ({ ...data, translate_countries: translateEnabled.value ? data.translate_countries : [] }))
+        .post(route('admin.articles-accepts.store'), {
         errorBag: 'createArticle',
         preserveScroll: true,
         onSuccess: () => {
@@ -245,6 +254,23 @@ const createArticle = () => {
                                 <InputError :message="form.errors.meta_description" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Tłumaczenie na rynki -->
+                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 space-y-5">
+                        <label class="flex items-center gap-4 cursor-pointer">
+                            <input v-model="translateEnabled" type="checkbox" class="rounded border-gray-300 text-[#0A2C5C] focus:ring-[#00a3e0]">
+                            <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">Przetłumacz na inne rynki</span>
+                            <span class="text-[10px] text-gray-400">Tłumaczenia trwają w tle (ok. 15–20 min), wersje zapisują się jako szkice.</span>
+                        </label>
+                        <MarketPicker
+                            v-if="translateEnabled"
+                            v-model="form.translate_countries"
+                            :markets="markets"
+                            :language-names="languageNames"
+                            :source-country="form.country_code"
+                        />
+                        <InputError :message="form.errors.translate_countries" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                     </div>
 
                     <!-- Publish toggle -->

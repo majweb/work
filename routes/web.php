@@ -290,6 +290,13 @@ Route::middleware([
         Route::put('articles-accepts/{article:id}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'update'])->name('articles-accepts.update');
         Route::delete('articles-accepts/{article:id}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'destroy'])->name('articles-accepts.destroy');
         Route::put('articles-accepts/{article:id}/accept', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'accept'])->name('articles-accepts.accept');
+        // Wersje językowe artykułu admina (tłumaczenie na rynki)
+        Route::get('articles-accepts/{article:id}/translations', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'status'])->name('articles-accepts.translations.status');
+        Route::post('articles-accepts/{article:id}/translations/publish', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'publishAll'])->name('articles-accepts.translations.publish-all');
+        Route::post('articles-accepts/{article:id}/translations/retranslate', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'retranslateAll'])->name('articles-accepts.translations.retranslate');
+        Route::put('articles-accepts/{article:id}/translations/{translation}/publish', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'togglePublish'])->name('articles-accepts.translations.publish');
+        Route::post('articles-accepts/{article:id}/translations/{translation}/retry', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'retry'])->name('articles-accepts.translations.retry');
+        Route::delete('articles-accepts/{article:id}/translations/{translation}/markets/{country}', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'removeMarket'])->name('articles-accepts.translations.remove-market');
 
         // NEWSLETTER - wysyłki (wszyscy administratorzy; lista subskrybentów zostaje w ustawieniach głównego admina)
         Route::get('newsletter-campaigns', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'index'])->name('newsletter-campaigns.index');
