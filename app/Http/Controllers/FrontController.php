@@ -37,6 +37,7 @@ use App\Services\DictionaryService;
 use App\Services\Helper;
 use App\Services\SearchStatisticService;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
@@ -181,18 +182,15 @@ class FrontController extends Controller
         // Tworzymy unikalny klucz na podstawie wersji, języka i wszystkich parametrów filtrowania
         // Dodajemy datę dzisiejszą do klucza, aby uniknąć problemów z cache w przypadku braku zmian w wersji
         $currentCountry = getSelectedCountry() ?: getLocalBrowserLang();
-        $cacheKey = "projects_list_v{$version}_".app()->getLocale()."_{$currentCountry}_".date('Y-m-d_H').'_'.md5(json_encode(request()->all()));
+        // "l" - lista zawiera opcje filtra języka (stary cache bez nich nie jest używany po wdrożeniu)
+        $cacheKey = "projects_list_l_v{$version}_".app()->getLocale()."_{$currentCountry}_".date('Y-m-d_H').'_'.md5(json_encode(request()->all()));
         $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
             $query = Project::with(['user.changeProducts', 'externalCompany'])
                 ->whereHas('user', function ($q) {
                     $q->whereNull('user_blocked');
                 });
 
-            if (request('countryLang')) {
-                $query->whereJsonContains('country', ['countryCode' => request('countryLang')]);
-            } else {
-                $query->lang();
-            }
+            $this->whereMarket($query);
 
             $query->featured()
                 ->active()
@@ -312,6 +310,13 @@ class FrontController extends Controller
             // Filtrowanie po niepełnosprawności
             if (request('disability_friendly')) {
                 $query->where('disability_friendly', true);
+            }
+
+            // Filtrowanie po wymaganym języku - tylko języki z ofert wybranego rynku
+            $languages = $this->marketLanguages();
+            $languageFront = collect($languages)->firstWhere('value', (string) request('language'));
+            if ($languageFront) {
+                $query->whereJsonContains('langs', ['name' => ['value' => $languageFront['value']]]);
             }
 
             $projects = $query->paginate(5)->withQueryString();
@@ -441,6 +446,8 @@ class FrontController extends Controller
                 'cityFront' => $cityFront,
                 'distanceFront' => $distanceFront,
                 'disabilityFront' => (bool) request('disability_friendly'),
+                'projectLanguages' => $languages,
+                'languageFront' => $languageFront,
                 'lat' => $lat,
                 'lng' => $lng,
                 'country' => $country,
@@ -454,6 +461,43 @@ class FrontController extends Controller
             'banners' => $banners,
             'page' => $page ? new PageResource($page) : null,
         ]));
+    }
+
+    /**
+     * Oferty z wybranego rynku: z parametru countryLang albo rynku wybranego w nagłówku.
+     */
+    private function whereMarket(Builder $query): Builder
+    {
+        return request('countryLang')
+            ? $query->whereJsonContains('country', ['countryCode' => request('countryLang')])
+            : $query->lang();
+    }
+
+    /**
+     * Języki wymagane w aktywnych ofertach wybranego rynku - opcje filtra języka (nazwy w języku strony).
+     *
+     * @return array<int, array{value: string, name: string}>
+     */
+    private function marketLanguages(): array
+    {
+        $locale = app()->getLocale();
+
+        return $this->whereMarket(Project::query())
+            ->active()
+            ->whereHas('user', fn ($q) => $q->whereNull('user_blocked'))
+            ->whereNotNull('langs')
+            ->pluck('langs')
+            ->flatten(1)
+            ->map(fn ($lang) => $lang['name'] ?? null)
+            ->filter(fn ($name) => is_array($name) && ! empty($name['value']))
+            ->unique('value')
+            ->map(fn ($name) => [
+                'value' => (string) $name['value'],
+                'name' => $name['allLabels'][$locale] ?? $name['label'] ?? $name['value'],
+            ])
+            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
+            ->values()
+            ->all();
     }
 
     public function SingleArticle(Article $article)

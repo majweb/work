@@ -33,6 +33,8 @@ const props = defineProps({
     categoryFront: [Object, Array],
     cityFront: Object,
     disabilityFront: Boolean,
+    projectLanguages: Array,
+    languageFront: Object,
     page: Object,
     distanceOptions: Array,
     distanceFront: Object,
@@ -74,6 +76,7 @@ const form = useForm({
     searchPosition: props.searchPositionFront ?? undefined,
     workingMode: props.workingModeFront ?? undefined,
     disability_friendly: props.disabilityFront ?? false,
+    language: props.languageFront ?? undefined,
     experience: props.experienceFront ?? undefined,
     typeOfContract: props.typeOfContractFront ?? undefined,
     workLoad: props.workLoadFront ?? undefined,
@@ -329,7 +332,7 @@ const isCategorySelected = computed(() => {
 });
 
 const isFilterActive = computed(() => {
-    return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.searchPosition || form.workingMode || form.experience || form.typeOfContract || form.workLoad || form.disability_friendly || (form.distance && form.distance.value));
+    return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.searchPosition || form.workingMode || form.experience || form.typeOfContract || form.workLoad || form.disability_friendly || form.language || (form.distance && form.distance.value));
 });
 
 
@@ -348,6 +351,7 @@ const submit = () => {
         searchPosition: form.searchPosition?.value ?? null,
         workingMode: form.workingMode?.value ?? null,
         disability_friendly: form.disability_friendly ? 1 : null,
+        language: form.language?.value ?? null,
         experience: form.experience?.value ?? null,
         typeOfContract: form.typeOfContract?.value ?? null,
         workLoad: form.workLoad?.value ?? null,
@@ -807,6 +811,31 @@ const onPositionSelect = (selectedOption) => {
                                         <span class="text-[10px] font-black text-gray-500 uppercase tracking-widest leading-tight">{{ __('translate.yes') }}</span>
                                     </div>
                                     <InputError :message="form.errors.disability_friendly" class="mt-2"/>
+                                </div>
+
+                                <!-- Wymagany język - tylko języki z ofert wybranego rynku -->
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.langKnow') }}</label>
+                                    <Multiselect
+                                        v-model="form.language"
+                                        :options="props.projectLanguages ?? []"
+                                        track-by="value"
+                                        label="name"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
+                                        :placeholder="__('translate.selectLanguage')"
+                                        :disabled="!props.projectLanguages?.length"
+                                        class="custom-multiselect"
+                                    >
+                                        <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                    </Multiselect>
+                                    <InputError :message="form.errors.language" class="mt-2"/>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
