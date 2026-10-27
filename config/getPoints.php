@@ -23,4 +23,6 @@ return array (
   'AddVideoToProfile_default' => 1500,
   'sendReservedProject' => 4000,
   'sendReservedProject_default' => 4000,
+  'OpenMessage' => 120,
+  'OpenMessage_default' => 120,
 );
