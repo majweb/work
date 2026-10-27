@@ -38,6 +38,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'only_direct_permission' => \App\Http\Middleware\OnlyDirectPermissions::class,
             'firm.profile.completed' => \App\Http\Middleware\EnsureFirmProfileIsCompleted::class,
             'recruiter.firm.profile.completed' => \App\Http\Middleware\EnsureRecruiterFirmProfileIsCompleted::class,
+            // "Zaloguj jako" z panelu admina działa także na kontach bez potwierdzonego e-maila
+            'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         ]);
         //
     })
