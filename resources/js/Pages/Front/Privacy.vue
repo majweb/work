@@ -1,10 +1,14 @@
 <script setup>
+import { computed } from 'vue';
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 
 const props = defineProps({
     page: Object,
     langs: Array
 });
+
+// Do pobrania tylko wersje wiążące: polska i angielska
+const downloadLangs = computed(() => ['pl', 'en'].filter((lang) => props.langs?.includes(lang)));
 </script>
 <template>
     <FrontLayout
@@ -53,9 +57,9 @@ const props = defineProps({
                         <h3 class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest mb-6">
                             {{ __('translate.footer.downloadPrivacyPdf') }}
                         </h3>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap justify-center gap-3">
                             <a
-                                v-for="lang in langs"
+                                v-for="lang in downloadLangs"
                                 :key="lang"
                                 :href="`/storage/privacy/${lang}-privacy.pdf`"
                                 target="_blank"
