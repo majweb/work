@@ -64,6 +64,7 @@ Route::post('/upload-image', function (Request $request) { // <- instancja!
 });
 
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
+Route::get('/write-to/{employer}', [\App\Http\Controllers\MessengerController::class, 'contact'])->name('messages.contact');
 Route::get('/test', function () {
     $unsupportedLanguages = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
 
@@ -120,6 +121,25 @@ Route::middleware([
     Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/{id}/mark-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAsRead'])->name('notifications.markAsRead');
     Route::post('/notifications/mark-all-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+
+    // Wiadomości pracownik - firma/rekruter oraz firma/rekruter - administracja (odpytywanie, bez WebSocketów)
+    Route::prefix('messages')->name('messages.')->controller(\App\Http\Controllers\MessengerController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/unread-count', 'unreadCount')->name('unread-count');
+        Route::get('/poll', 'poll')->name('poll');
+        Route::post('/', 'store')->middleware('throttle:20,1')->name('store');
+        Route::post('/admin', 'storeAdmin')->middleware('throttle:20,1')->name('store-admin');
+        Route::patch('/settings', 'updateSettings')->name('settings');
+        Route::get('/{conversation}', 'show')->name('show');
+        Route::post('/{conversation}', 'reply')->middleware('throttle:20,1')->name('reply');
+        Route::post('/{conversation}/typing', 'typing')->middleware('throttle:60,1')->name('typing');
+        Route::get('/{conversation}/typing', 'typingState')->name('typing-state');
+        Route::post('/{conversation}/accept', 'accept')->name('accept');
+        Route::post('/{conversation}/unlock', 'unlock')->name('unlock');
+        Route::delete('/{conversation}', 'destroy')->name('destroy');
+        Route::post('/{conversation}/block', 'block')->name('block');
+        Route::delete('/{conversation}/block', 'unblock')->name('unblock');
+    });
     Route::get('/notifications/count', [\App\Http\Controllers\NotificationsController::class, 'getCount'])->name('notifications.count');
     Route::post('/notifications/reply-email', [\App\Http\Controllers\NotificationsController::class, 'replyEmail'])->name('notifications.reply-email');
 
@@ -303,6 +323,12 @@ Route::middleware([
         Route::get('newsletter-campaigns/create', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'create'])->name('newsletter-campaigns.create');
         Route::post('newsletter-campaigns', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'store'])->name('newsletter-campaigns.store');
         Route::post('newsletter-campaigns/preview', [\App\Http\Controllers\Admin\NewsletterCampaignController::class, 'preview'])->name('newsletter-campaigns.preview');
+        Route::get('forbidden-words', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'index'])->name('forbidden-words.index');
+        Route::post('forbidden-words', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'store'])->name('forbidden-words.store');
+        Route::post('forbidden-words/check', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'check'])->name('forbidden-words.check');
+        Route::patch('forbidden-words/{forbiddenWord}', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'update'])->name('forbidden-words.update');
+        Route::delete('forbidden-words/{forbiddenWord}', [\App\Http\Controllers\Admin\ForbiddenWordController::class, 'destroy'])->name('forbidden-words.destroy');
+        Route::get('messages-guide', [\App\Http\Controllers\MessengerController::class, 'guide'])->name('messages.guide');
         Route::get('newsletter-campaigns/lists', [\App\Http\Controllers\Admin\NewsletterListController::class, 'index'])->name('newsletter-lists.index');
         Route::get('newsletter-campaigns/lists/{locale}', [\App\Http\Controllers\Admin\NewsletterListController::class, 'show'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.show');
         Route::post('newsletter-campaigns/lists/{locale}/sync', [\App\Http\Controllers\Admin\NewsletterListController::class, 'sync'])->whereIn('locale', config('langsShorts'))->name('newsletter-lists.sync');

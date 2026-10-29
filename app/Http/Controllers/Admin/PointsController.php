@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enum\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Services\MessengerService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,7 +16,7 @@ class PointsController extends Controller
     public function index(): Response
     {
         // Use require to bypass config cache in case it's on
-        $pointsConfig = require config_path('getPoints.php');
+        $pointsConfig = $this->pointsConfig();
 
         $operations = collect($pointsConfig)
             ->reject(fn ($value, $key) => str_ends_with($key, '_default'))
@@ -82,7 +83,7 @@ class PointsController extends Controller
             'points' => ['required', 'integer', 'min:0'],
         ]);
 
-        $pointsConfig = require config_path('getPoints.php');
+        $pointsConfig = $this->pointsConfig();
 
         if (! array_key_exists($key, $pointsConfig)) {
             return back()->with('error', 'Nie znaleziono klucza '.$key.' w pliku konfiguracyjnym.');
@@ -105,7 +106,7 @@ class PointsController extends Controller
 
     public function restoreOperation(string $key): RedirectResponse
     {
-        $pointsConfig = require config_path('getPoints.php');
+        $pointsConfig = $this->pointsConfig();
 
         if (! array_key_exists($key.'_default', $pointsConfig)) {
             return back()->with('error', 'Nie znaleziono domyślnej wartości dla '.$key);
@@ -133,6 +134,22 @@ class PointsController extends Controller
         return back()->with('success', 'Status produktu został zmieniony.');
     }
 
+    /**
+     * Cennik punktów z pliku na serwerze (zmieniany w panelu) uzupełniony o nowe pozycje z ceną domyślną -
+     * nowe pozycje nie wymagają zmiany pliku w repozytorium, trafiają do niego przy pierwszym zapisie w panelu.
+     *
+     * @return array<string, int>
+     */
+    private function pointsConfig(): array
+    {
+        $pointsConfig = require config_path('getPoints.php');
+
+        return $pointsConfig + [
+            MessengerService::UNLOCK_ACTION => MessengerService::UNLOCK_POINTS_DEFAULT,
+            MessengerService::UNLOCK_ACTION.'_default' => MessengerService::UNLOCK_POINTS_DEFAULT,
+        ];
+    }
+
     private function getOperationName(string $key): string
     {
         $names = [
@@ -147,6 +164,7 @@ class PointsController extends Controller
             'SendToExternalFirm' => 'Wysyłka paczki CV do firmy zew.',
             'AddVideoToProfile' => 'Dodanie filmu do wizytówki',
             'sendReservedProject' => 'Projekt baneru',
+            'OpenMessage' => 'Odczytanie wiadomości od kandydata',
         ];
 
         return $names[$key] ?? $key;
@@ -166,6 +184,7 @@ class PointsController extends Controller
             'SendToExternalFirm' => 'operacje z CV i bazą danych',
             'AddVideoToProfile' => 'usługi dodatkowe',
             'sendReservedProject' => 'usługi dodatkowe',
+            'OpenMessage' => 'wiadomości',
         ];
 
         return $categories[$key] ?? 'inne';

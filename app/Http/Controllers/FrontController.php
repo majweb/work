@@ -595,7 +595,23 @@ class FrontController extends Controller
         return inertia()->render('Front/SingleFirm', [
             'firm' => new FrontUserResource($user),
             'page' => $page ? new PageResource($page) : null,
+            // "Napisz wiadomość" z widoku firmy - zawsze do firmy
+            'messenger' => fn () => $user->hasRole('firm')
+                ? app(\App\Services\MessengerService::class)->contactStateFor(request()->user(), $user)
+                : null,
         ]);
+    }
+
+    /**
+     * Stan przycisku "Napisz wiadomość" na stronie oferty (oferta z cache - pobieramy świeży model).
+     */
+    private function messengerContact($project): ?array
+    {
+        $project = $project instanceof Project ? $project : Project::find($project['id'] ?? null);
+        $messenger = app(\App\Services\MessengerService::class);
+        $employer = $project ? $messenger->employerForProject($project) : null;
+
+        return $employer ? $messenger->contactStateFor(request()->user(), $employer, $project) : null;
     }
 
     public function trackClick(Request $request, Firm $firm): \Illuminate\Http\JsonResponse
@@ -694,6 +710,8 @@ class FrontController extends Controller
             'similarProjects' => $similarProjects,
             'image' => $image,
             'page' => $page ? new PageResource($page) : null,
+            // "Napisz wiadomość": oferta rekrutera - do rekrutera, oferta firmy - do firmy
+            'messenger' => fn () => $this->messengerContact($project),
         ]);
     }
 

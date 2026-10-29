@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import { usePermission } from "@/Composables/usePermission";
 import ApplicationMarkWhite from '@/Components/ApplicationMarkWhite.vue';
 import NotificationBell from '@/Components/NotificationBell.vue';
+import MessagesNavButton from '@/Components/Messenger/MessagesNavButton.vue';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -86,9 +87,11 @@ const menuItems = [
         name: 'Bezpieczeństwo',
         icon: 'security',
         subItems: [
+            { name: 'Wiadomości', route: 'messages.index', active: 'messages.*' },
             { name: 'Zgłoszenia', route: 'admin.tickets.index' },
             { name: 'Logi', route: 'admin.logs.index' },
             { name: 'Blokada IP i Email', route: 'admin.security.ip-email-blocks.index' },
+            { name: 'Zakazane słowa', route: 'admin.forbidden-words.index' },
         ],
     },
     { name: 'Administratorzy', icon: 'admins', route: 'admin.users.admins.index', can: 'super-admin-only' },
@@ -170,6 +173,9 @@ const getIcon = (name) => {
                 </div>
             </div>
             <div class="mb-8 flex items-center justify-center gap-4">
+                <div class="bg-white/5 rounded-xl hover:bg-white/10 transition-all">
+                    <MessagesNavButton dark />
+                </div>
                 <Link href="/" class="p-2 bg-white/5 rounded-xl hover:bg-white/10 transition-all group" title="Strona główna">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-blue-400">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />

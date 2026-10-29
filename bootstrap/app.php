@@ -25,6 +25,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(['buy/webhook', 'stripe/webhook']);
         $middleware->web(append: [
             \App\Http\Middleware\SetLanguage::class,
+            // Po SetLanguage - zapamiętuje też język strony dla powiadomień
+            \App\Http\Middleware\UpdateLastSeenAt::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \App\Http\Middleware\BlockFoundationOnPublicRoutes::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,

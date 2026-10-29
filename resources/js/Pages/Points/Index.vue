@@ -125,6 +125,20 @@ const operations = computed(() => [
         ]
     },
     {
+        // Osobna sekcja - wiadomość od kandydata w czacie, odczytanie za punkty raz za rozmowę
+        title: __("messenger.title"),
+        items: [
+            {
+                name: __("messenger.pointsName"),
+                points: props.pointCosts.OpenMessage,
+                icon: '/images/icons/firm/wiadomosc_od_kandydata.svg',
+                details: [
+                    `<strong>${__("translate.description")}</strong>: ${__("messenger.pointsDesc")}`,
+                ]
+            }
+        ]
+    },
+    {
         title: __("translate.extra_services"),
         items: [
             {

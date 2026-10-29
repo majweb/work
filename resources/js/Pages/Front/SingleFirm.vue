@@ -1,5 +1,6 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
+import ContactButton from "@/Components/Messenger/ContactButton.vue";
 import {Link, usePage, router} from "@inertiajs/vue3";
 import __ from "@/lang";
 import {computed, onMounted, ref, nextTick} from "vue";
@@ -11,7 +12,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 const props = defineProps({
     firm: Object,
-    page: Object
+    page: Object,
+    // "Napisz wiadomość" do firmy
+    messenger: Object,
 });
 
 const firmSchema = computed(() => {
@@ -202,6 +205,8 @@ const { getPositionTitle } = useProjectHelpers();
                                 </div>
                             </div>
                         </div>
+
+                        <ContactButton v-if="messenger" :contact="messenger" />
 
                         <!-- Social Media -->
                         <div class="flex flex-col gap-3 w-full md:w-auto" v-if="props.firm?.website || props.firm?.social_facebook || props.firm?.social_google || props.firm?.social_x || props.firm?.social_instagram || props.firm?.social_linkedin || props.firm?.social_tiktok">

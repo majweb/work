@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements HasLocalePreference, MustVerifyEmail
 {
     use HasApiTokens;
     use HasConnectedAccounts;
@@ -48,7 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'color',
         'foundation',
         'inactive_notification_sent_at',
-        'last_login_at'
+        'last_login_at',
+        'locale',
+        'messenger_online',
+        'messenger_reply_hours',
     ];
 
     /**
@@ -85,6 +89,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'foundation' => 'array',
             'last_login_at' => 'datetime',
             'inactive_notification_sent_at' => 'datetime',
+            'last_seen_at' => 'datetime',
+            'messenger_online' => 'boolean',
         ];
     }
 
@@ -221,5 +227,68 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * Język powiadomień i maili - ostatni język strony, w którym użytkownik był zalogowany.
+     */
+    public function preferredLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    /**
+     * Wiadomości: pracownik pisze do firm i rekruterów.
+     */
+    public function isMessengerWorker(): bool
+    {
+        return $this->hasRole('worker');
+    }
+
+    /**
+     * Rekruter firmy (konto firmy też może mieć rolę recruit - nie jest wtedy rekruterem).
+     */
+    public function isRecruiter(): bool
+    {
+        return $this->hasRole('recruit') && ! $this->hasRole('firm');
+    }
+
+    /**
+     * Wiadomości: pracodawca - konto firmy albo rekrutera.
+     */
+    public function isMessengerEmployer(): bool
+    {
+        return $this->hasRole('firm') || $this->isRecruiter();
+    }
+
+    public function isMessengerAdmin(): bool
+    {
+        return $this->hasRole('admin');
+    }
+
+    /**
+     * Online = aktywność w serwisie w ostatnich 5 minutach (zapisuje UpdateLastSeenAt).
+     */
+    public function isOnline(): bool
+    {
+        return $this->last_seen_at !== null && $this->last_seen_at->gt(now()->subMinutes(5));
+    }
+
+    /**
+     * Firma, do której należy konto: dla firmy ona sama, dla rekrutera jego firma.
+     */
+    public function employerFirmUser(): ?User
+    {
+        return $this->isRecruiter() ? $this->user : $this;
+    }
+
+    /**
+     * Nazwa w wiadomościach: rekruter - imię i nazwa firmy (nazwa konta firmy), pozostali - nazwa konta.
+     */
+    public function messengerName(): string
+    {
+        $firmName = $this->isRecruiter() ? $this->user?->name : null;
+
+        return $firmName ? "{$this->name} · {$firmName}" : $this->name;
     }
 }
