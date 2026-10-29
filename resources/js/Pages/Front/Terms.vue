@@ -10,6 +10,9 @@ const props = defineProps({
 
 const activeTab = ref('general'); // 'general' lub 'candidate'
 
+// Do pobrania tylko wersje wiążące: polska i angielska
+const downloadLangs = computed(() => ['pl', 'en'].filter((lang) => props.langs?.includes(lang)));
+
 const currentPdfSuffix = computed(() => {
     return activeTab.value === 'general' ? 'terms' : 'terms-c';
 });
@@ -78,9 +81,9 @@ const currentPdfSuffix = computed(() => {
                         <h3 class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest mb-6">
                             {{ __('translate.footer.downloadTerms') }} ({{ activeTab === 'general' ? __('translate.footer.company') : __('translate.footer.candidate') }})
                         </h3>
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap justify-center gap-3">
                             <a
-                                v-for="lang in langs"
+                                v-for="lang in downloadLangs"
                                 :key="lang + activeTab"
                                 :href="`/storage/terms/${lang}-${currentPdfSuffix}.pdf`"
                                 target="_blank"
