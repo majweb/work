@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Firm;
 
+use App\Http\Controllers\Concerns\LocksProjectEditing;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectResource;
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\RateLimiter;
 
 class ProjectController extends Controller
 {
+    use LocksProjectEditing;
+
     /**
      * Display a listing of the resource.
      */
@@ -45,7 +48,7 @@ class ProjectController extends Controller
             'external_company' => ['nullable', 'integer'],
         ]);
         $query = Project::query()
-            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'basicSalaryTo', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
+            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'basicSalaryTo', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'published_at', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
             ->with(['recruit', 'externalCompany:id,name'])
             ->withCount([
                 'aplications',
@@ -165,6 +168,8 @@ class ProjectController extends Controller
                 'inclusive_recruitment' => (bool) $project->inclusive_recruitment,
                 'currency' => $currency['value'] ?? $currency['name'] ?? '',
                 'is_active' => $project->is_active ?? true,
+                // Edycja tylko przez 24h od publikacji - przycisk "Edytuj" na liście
+                'edit_state' => $project->ownerEditState(),
                 'aplications_count' => $project->aplications_count ?? 0,
                 'views_count' => $project->views_count ?? 0,
                 'yes_count' => $project->yes_count ?? 0,
@@ -364,7 +369,7 @@ class ProjectController extends Controller
         $otherRecruits = OtherRecruitsResource::collection($recruits);
         $locale = app()->getLocale();
 
-        return inertia()->render('Project/Show', ['project' => $project, 'locale' => $locale, 'otherRecruits' => $otherRecruits]);
+        return inertia()->render('Project/Show', ['project' => $project, 'locale' => $locale, 'otherRecruits' => $otherRecruits, 'editState' => $project->ownerEditState()]);
     }
 
     /**
@@ -373,6 +378,9 @@ class ProjectController extends Controller
     public function edit(DictionaryService $dictionaryService, Project $project)
     {
         Gate::authorize('update', $project);
+        if (! $project->isEditableByOwner()) {
+            return $this->projectEditLockedResponse('projects.index');
+        }
         $externalCompanies = ExternalCompany::where('user_id', auth()->user()->id)->latest()->get();
         $project->load('detailprojects', 'questions');
         $dictionaries = $dictionaryService->getAllProjectDictionaries();
@@ -399,6 +407,7 @@ class ProjectController extends Controller
                 'welcomes' => $dictionaries['welcomes'],
                 'educations' => $dictionaries['educations'],
                 'project' => $project,
+                'editState' => $project->ownerEditState(),
                 'salaryPeriods' => $dictionaries['salaryPeriods'],
                 'cvs' => $dictionaries['cvs'],
                 'langLevels' => $dictionaries['langLevels'],
@@ -413,23 +422,29 @@ class ProjectController extends Controller
     {
 
         Gate::authorize('update', $project);
+        if (! $project->isEditableByOwner()) {
+            return $this->projectEditLockedResponse('projects.index');
+        }
+
+        // Pracodawca, stanowisko, stawka i miejsce pracy zostają z bazy - także tytuł liczymy z nich
+        $projectData = $this->withLockedProjectFields($request->projectData(), $project);
         $title = [];
         foreach (config('langsShorts') as $lang) {
-            $posTitle = $request->projectData()['position']['allTranslations']['title'][$lang]
-                ?? $request->projectData()['profession']['allTranslations']['title'][$lang]
+            $posTitle = $projectData['position']['allTranslations']['title'][$lang]
+                ?? $projectData['profession']['allTranslations']['title'][$lang]
                 ?? null;
 
-            $countryTitle = $request->projectData()['countryWork']['allTranslations'][$lang]
-                ?? $request->projectData()['countryWork']['name']
+            $countryTitle = $projectData['countryWork']['allTranslations'][$lang]
+                ?? $projectData['countryWork']['name']
                 ?? null;
 
             $title[$lang] = ($posTitle ? $posTitle.', ' : '').
                 ($countryTitle ? $countryTitle.', ' : '').
-                $request->projectData()['cityWork'].', '.
-                $request->projectData()['basicSalaryFrom'].' '.
-                $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type'], [], $lang).
-                (isset($request->projectData()['salaryPeriod']['allTranslations']['name'][$lang]) ? ' / '.$request->projectData()['salaryPeriod']['allTranslations']['name'][$lang] : (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : ''));
+                $projectData['cityWork'].', '.
+                $projectData['basicSalaryFrom'].' '.
+                $projectData['currency']['name'].' '.
+                __('translate.'.$projectData['salary_type'], [], $lang).
+                (isset($projectData['salaryPeriod']['allTranslations']['name'][$lang]) ? ' / '.$projectData['salaryPeriod']['allTranslations']['name'][$lang] : (isset($projectData['salaryPeriod']['name']) ? ' / '.$projectData['salaryPeriod']['name'] : ''));
         }
         $langs = [];
         foreach ($request->projectData()['langs'] ?? [] as $langData) {
@@ -454,8 +469,6 @@ class ProjectController extends Controller
                 ],
             ];
         }
-
-        $projectData = $request->projectData();
 
         $project->update([
             'title' => $title,
@@ -492,7 +505,7 @@ class ProjectController extends Controller
             'cityWork' => $projectData['cityWork'],
             'lat' => $projectData['lat'],
             'lng' => $projectData['lng'],
-            'user_id' => auth()->user()->id,
+            'user_id' => $project->user_id,
             'recruiter_id' => $project->recruiter_id,
             'cv' => $projectData['cv'],
             'kraz' => $projectData['kraz'] ?? null,
@@ -784,6 +797,8 @@ class ProjectController extends Controller
         Gate::authorize('view', $project);
         $newProject = $project->replicate();
         $newProject->views_count = 0;
+        // Duplikat to nowe ogłoszenie - nowe 24h na edycję od jego publikacji
+        $newProject->published_at = null;
         $newProject->save();
 
         session()->flash('flash.banner', __('translate.projectDuplicated'));

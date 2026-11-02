@@ -12,6 +12,8 @@ import { useProjectHelpers } from '@/Composables/useProjectHelpers';
 import ProjectLocationMap from "@/Components/ProjectLocationMap.vue";
 
 const props = defineProps({
+    // Blokada edycji: do kiedy można edytować
+    editState: Object,
     project: Object,
     otherRecruits: Array,
     locale: String,
@@ -628,12 +630,21 @@ const lang = computed(() => usePage().props.language);
                         <!-- Przyciski akcji -->
                         <div class="flex flex-col gap-4">
                             <Link
+                                v-if="editState?.can_edit !== false"
                                 :href="route('projects.edit', props.project)"
                                 class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0A2C5C] px-8 py-5 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
                             >
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                 {{ __('translate.editButton') }}
                             </Link>
+                            <!-- Po 24h od publikacji edycja wyłączona - zostaje usunięcie lub duplikat -->
+                            <div v-else class="w-full rounded-2xl bg-gray-100 px-8 py-5 text-center cursor-not-allowed" :title="__('projectLock.editDisabled')">
+                                <span class="inline-flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest text-gray-400">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                                    {{ __('translate.editButton') }}
+                                </span>
+                                <p class="mt-2 text-[10px] font-bold text-gray-400 normal-case tracking-normal">{{ __('projectLock.editDisabled') }}</p>
+                            </div>
 
                             <button
                                 @click="openModal(props.project)"
