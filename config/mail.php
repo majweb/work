@@ -114,5 +114,8 @@ return [
     ],
     'ContactEmail' => env('CONTACT_EMAIL', 'contact@work4you.global'),
 
+    // Kto dostaje e-mail o nowej firmie zarejestrowanej w portalu (adresy po przecinku)
+    'firm_registration_recipients' => array_filter(array_map('trim', explode(',', env('FIRM_REGISTRATION_EMAILS', 'm.koziol@work4you.global')))),
+
 
 ];

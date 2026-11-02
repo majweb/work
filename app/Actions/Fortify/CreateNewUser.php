@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Foundation;
 use App\Models\User;
+use App\Notifications\FirmRegisteredNotification;
 use App\Notifications\SystemActivityNotification;
 use App\Services\CrmService;
 use Illuminate\Support\Facades\Hash;
@@ -121,6 +122,10 @@ class CreateNewUser implements CreatesNewUsers
                     'user_name' => $user->name,
                     'role' => 'firm',
                 ]));
+
+                // E-mail o nowej firmie do zespołu Work4you (kolejka)
+                Notification::route('mail', config('mail.firm_registration_recipients'))
+                    ->notify(new FirmRegisteredNotification($user));
             }
         }
 
