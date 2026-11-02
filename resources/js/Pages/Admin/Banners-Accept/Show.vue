@@ -55,8 +55,15 @@ const getMediaUrl = (banner) => {
                 </div>
 
                 <div class="flex items-center gap-3">
+                    <Link
+                        v-if="!banner.user_id"
+                        :href="route('admin.banners-accepts.edit', banner.id)"
+                        class="px-6 py-3 rounded-xl bg-[#0A2C5C] text-white font-black text-[10px] uppercase tracking-widest shadow-lg shadow-blue-900/10 hover:bg-[#00a0e3] transition-all"
+                    >
+                        EDYTUJ BANER
+                    </Link>
                     <button
-                        v-if="!banner.active_admin"
+                        v-else-if="!banner.active_admin"
                         @click="toggleAccept"
                         class="px-6 py-3 rounded-xl bg-blue-500 text-white font-black text-[10px] uppercase tracking-widest shadow-lg shadow-blue-500/10 hover:bg-blue-600 transition-all"
                     >
@@ -118,12 +125,19 @@ const getMediaUrl = (banner) => {
                             <h3 class="text-lg font-black tracking-tight text-[#0A2C5C] uppercase">Użytkownik</h3>
                         </div>
                         <div class="p-8 text-center flex flex-col items-center">
+                            <template v-if="!banner.user_id">
+                                <img src="/images/apple-touch-icon.png" class="w-16 h-16 rounded-full object-contain bg-white shadow-lg shadow-blue-900/10 mb-4 border-2 border-white" alt="Work4you">
+                                <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">Work4you</p>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Baner własny - bez pakietu i akceptacji</p>
+                            </template>
+                            <template v-else>
                             <img v-if="banner.user?.profile_photo_url" :src="banner.user.profile_photo_url" class="w-16 h-16 rounded-full object-cover shadow-lg shadow-blue-900/10 mb-4 border-2 border-white">
                             <div v-else class="w-16 h-16 rounded-full bg-[#0A2C5C] shadow-lg shadow-blue-900/10 flex items-center justify-center text-2xl font-black text-white mb-4">
                                 {{ banner.user?.name?.substring(0, 1).toUpperCase() }}
                             </div>
                             <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ banner.user?.name }}</p>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">ID Użytkownika: #{{ banner.user_id }}</p>
+                            </template>
 
                             <div class="w-full mt-8 pt-8 border-t border-gray-50 flex flex-col gap-4">
                                 <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
@@ -131,7 +145,7 @@ const getMediaUrl = (banner) => {
                                     <span class="text-[#0A2C5C]">{{ moment(banner.created_at).format('DD.MM.YYYY') }}</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
-                                    <span class="text-gray-400">Status firmy</span>
+                                    <span class="text-gray-400">{{ banner.user_id ? 'Status firmy' : 'Status' }}</span>
                                     <span :class="banner.active ? 'text-green-500' : 'text-red-500'">{{ banner.active ? 'AKTYWNY' : 'NIEAKTYWNY' }}</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">

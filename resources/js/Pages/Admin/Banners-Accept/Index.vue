@@ -12,6 +12,12 @@
                     </p>
                 </div>
                 <div class="flex items-center gap-4">
+                    <Link
+                        :href="route('admin.banners-accepts.create')"
+                        class="px-6 py-3 rounded-xl bg-[#0A2C5C] text-white shadow-sm text-[10px] font-black uppercase tracking-widest hover:bg-[#00a0e3] transition-all"
+                    >
+                        + Dodaj baner Work4you
+                    </Link>
                     <button
                         @click="toggleFilter"
                         class="px-6 py-3 rounded-xl border border-gray-100 bg-white shadow-sm text-[10px] font-black uppercase tracking-widest transition-all"
@@ -37,14 +43,14 @@
                                     </th>
                                     <th class="px-6 py-2">Użytkownik</th>
                                     <th class="px-6 py-2" @click="sort('created_at')">Data dodania</th>
-                                    <th class="px-6 py-2">Status firmy</th>
+                                    <th class="px-6 py-2">Status</th>
                                     <th class="px-6 py-2">Status admin</th>
                                     <th class="px-6 py-2 text-right">Akcje</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-if="props.banners.data.length === 0">
-                                    <td colspan="5" class="text-center py-16">
+                                    <td colspan="6" class="text-center py-16">
                                         <p class="text-xs font-black text-gray-300 uppercase tracking-widest">Nie znaleziono żadnych banerów</p>
                                     </td>
                                 </tr>
@@ -53,7 +59,11 @@
                                         <span class="text-xs font-black text-[#0A2C5C]">#{{ banner.id }}</span>
                                     </td>
                                     <td class="px-6 py-4 bg-gray-50/50 border-y border-gray-100 group-hover:bg-white transition-all">
-                                        <div class="flex items-center gap-2">
+                                        <div v-if="!banner.user_id" class="flex items-center gap-2">
+                                            <img src="/images/apple-touch-icon.png" class="w-6 h-6 rounded-full object-contain bg-white shadow-sm" alt="Work4you">
+                                            <span class="inline-flex px-2 py-1 rounded-lg bg-[#0A2C5C] text-[8px] font-black text-white uppercase tracking-widest">Work4you</span>
+                                        </div>
+                                        <div v-else class="flex items-center gap-2">
                                             <img v-if="banner.user?.profile_photo_url" :src="banner.user.profile_photo_url" class="w-6 h-6 rounded-full object-cover shadow-sm">
                                             <div v-else class="w-6 h-6 rounded-full bg-[#0A2C5C] flex items-center justify-center text-[8px] font-black text-white">
                                                 {{ banner.user?.name?.substring(0, 1).toUpperCase() }}
@@ -86,6 +96,11 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                </svg>
+                                            </Link>
+                                            <Link v-if="!banner.user_id" :href="route('admin.banners-accepts.edit', banner)" title="Edytuj" class="p-2 rounded-lg bg-white border border-gray-100 text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                                 </svg>
                                             </Link>
                                             <button @click="openModal(banner)" class="p-2 rounded-lg bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition-all">

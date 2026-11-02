@@ -297,6 +297,10 @@ Route::middleware([
         Route::put('questions-accepts/{projectQuestion}/accept', [QuestionAcceptController::class, 'accept'])->name('questions-accepts.accept');
         //        BANERY
         Route::get('banners-accepts', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'index'])->name('banners-accepts.index');
+        Route::get('banners-accepts/create', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'create'])->name('banners-accepts.create');
+        Route::post('banners-accepts', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'store'])->name('banners-accepts.store');
+        Route::get('banners-accepts/{banner}/edit', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'edit'])->name('banners-accepts.edit');
+        Route::put('banners-accepts/{banner}', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'update'])->name('banners-accepts.update');
         Route::get('banners-accepts/{banner}', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'show'])->name('banners-accepts.show');
         Route::delete('banners-accepts/{banner}', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'destroy'])->name('banners-accepts.destroy');
         Route::put('banners-accepts/{banner}/accept', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'accept'])->name('banners-accepts.accept');
