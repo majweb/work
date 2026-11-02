@@ -13,6 +13,7 @@ use App\Models\ExternalCompany;
 use App\Models\LangLevel;
 use App\Models\Project;
 use App\Models\User;
+use App\Rules\WorkingHoursTo;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\JsonResponse;
@@ -604,8 +605,7 @@ class JobOfferController extends Controller
                     'days.*.id' => ['required', 'exists:App\Models\Day,id'],
 
                     // Godziny pracy
-                    'hoursFrom' => ['nullable', 'date_format:H:i', 'before:hoursTo'],
-                    'hoursTo' => ['nullable', 'date_format:H:i', 'after:hoursFrom'],
+                    ...WorkingHoursTo::rules(),
 
                     // System wynagrodzeń
                     'paySystem' => ['required', 'array', 'min:1'],

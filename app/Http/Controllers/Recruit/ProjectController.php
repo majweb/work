@@ -10,6 +10,7 @@ use App\Lang\Lang;
 use App\Models\Category;
 use App\Models\ExternalCompany;
 use App\Models\Project;
+use App\Rules\WorkingHoursTo;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\Request;
@@ -733,8 +734,7 @@ class ProjectController extends Controller implements HasMiddleware
                     'days.*.allTranslations' => ['required'],
 
                     // Godziny pracy
-                    'hoursFrom' => ['nullable', 'date_format:H:i', 'before:hoursTo'],
-                    'hoursTo' => ['nullable', 'date_format:H:i', 'after:hoursFrom'],
+                    ...WorkingHoursTo::rules(),
 
                     // System wynagrodzeń
                     'paySystem' => ['required', 'array', 'min:1'],

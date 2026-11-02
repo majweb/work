@@ -437,7 +437,7 @@ const lang = computed(() => usePage().props.language);
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workHoursLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] tracking-widest">{{ props.project.hoursFrom ?? '-' }} - {{ props.project.hoursTo ?? '-' }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] tracking-widest">{{ props.project.hoursFrom ?? '-' }} - {{ props.project.hoursTo ?? '-' }}<span v-if="props.project.hoursFrom && props.project.hoursTo && props.project.hoursTo < props.project.hoursFrom"> ({{ __('workHours.nextDay') }})</span></p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
