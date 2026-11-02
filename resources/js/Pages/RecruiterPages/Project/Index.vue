@@ -10,6 +10,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Multiselect from "vue-multiselect";
 import InputError from "@/Components/InputError.vue";
 import __ from "@/lang.js";
+import PublishProjectModal from "@/Components/Project/PublishProjectModal.vue";
 import { useProjectHelpers } from '@/Composables/useProjectHelpers';
 
 const props = defineProps({
@@ -185,10 +186,27 @@ const duplicateProject = (project) => {
     router.post(route('project-recruits.duplicate', project));
 };
 
+// Pierwsze włączenie nieopublikowanego ogłoszenia to publikacja - wymaga potwierdzenia (potem edycja tylko przez 24h)
+const projectToPublish = ref(null);
+const publishing = ref(false);
+
 const toggleActive = (project) => {
+    if (!project.is_active && !project.edit_state?.published) {
+        projectToPublish.value = project;
+        return;
+    }
+    sendToggleActive(project);
+};
+
+const sendToggleActive = (project) => {
     router.post(route('project-recruits.toggle-active', project.id), {}, {
         preserveScroll: true,
         preserveState: true,
+        onStart: () => (publishing.value = true),
+        onFinish: () => {
+            publishing.value = false;
+            projectToPublish.value = null;
+        },
     });
 };
 
@@ -574,12 +592,21 @@ const { getPositionTitle } = useProjectHelpers();
                                 </Link>
 
                                 <Link
+                                    v-if="project.edit_state?.can_edit !== false"
                                     :href="route('project-recruits.edit', project)"
                                     class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-all shadow-sm"
                                     :title="__('translate.edit') || 'EDYTUJ'"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                 </Link>
+                                <!-- Po 24h od publikacji edycja wyłączona - zostaje usunięcie lub duplikat -->
+                                <span
+                                    v-else
+                                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-300 cursor-not-allowed transition-all shadow-sm"
+                                    :title="__('projectLock.editDisabled')"
+                                >
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                                </span>
 
                                 <button
                                     @click="duplicateProject(project)"
@@ -614,6 +641,13 @@ const { getPositionTitle } = useProjectHelpers();
                 <!-- PAGINACJA -->
                 <Pagination v-if="projects.total > 10" class="mt-12" :links="projects.links" />
             </div>
+
+            <PublishProjectModal
+                :show="!!projectToPublish"
+                :processing="publishing"
+                @close="projectToPublish = null"
+                @confirm="sendToggleActive(projectToPublish)"
+            />
 
             <!-- MODAL USUWANIA -->
             <DialogModal :show="confirmCancelProject" @close="confirmCancelProject = false">

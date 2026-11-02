@@ -10,6 +10,32 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
+    /**
+     * Firma i rekruter edytują ogłoszenie tylko przez tyle godzin od publikacji (admin zawsze).
+     */
+    public const OWNER_EDIT_HOURS = 24;
+
+    /**
+     * Pola, których firma i rekruter nie zmieniają nigdy, także w ciągu 24h od publikacji:
+     * pracodawca, stanowisko, stawka (kwota od/do) i miejsce pracy.
+     */
+    public const OWNER_LOCKED_FIELDS = [
+        'external_company_id',
+        'category',
+        'categorySub',
+        'profession',
+        'position',
+        'basicSalaryFrom',
+        'basicSalaryTo',
+        'countryWork',
+        'cityWork',
+        'streetWork',
+        'streetWorkNumber',
+        'postalWork',
+        'lat',
+        'lng',
+    ];
+
     protected $fillable = [
         'user_id',
         'recruiter_id',
@@ -55,6 +81,7 @@ class Project extends Model
         'kraz',
         'external_company_id',
         'is_active',
+        'published_at',
         'salary_period',
         'views_count',
         'image_generator',
@@ -65,6 +92,7 @@ class Project extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'published_at' => 'datetime',
         'inclusive_recruitment' => 'boolean',
         'disability_friendly' => 'boolean',
         'title' => 'array',
@@ -105,6 +133,57 @@ class Project extends Model
         'other_recruits' => '[]',
         'cv' => '[]',
     ];
+
+    protected static function booted(): void
+    {
+        // Publikacja = pierwsza aktywacja; późniejsze wyłączanie i włączanie nie przesuwa tej daty
+        static::saving(function (Project $project) {
+            if ($project->published_at === null && ($project->is_active ?? true)) {
+                $project->published_at = now();
+            }
+        });
+    }
+
+    /**
+     * Do kiedy firma/rekruter może edytować ogłoszenie; null - jeszcze nieopublikowane (bez limitu).
+     */
+    public function ownerEditableUntil(): ?\Carbon\CarbonInterface
+    {
+        return $this->published_at?->copy()->addHours(self::OWNER_EDIT_HOURS);
+    }
+
+    public function isEditableByOwner(): bool
+    {
+        $until = $this->ownerEditableUntil();
+
+        return $until === null || $until->isFuture();
+    }
+
+    /**
+     * Wartości pól zablokowanych w zapisie z bazy - nadpisują to, co przyszło z formularza edycji.
+     *
+     * @return array<string, mixed>
+     */
+    public function ownerLockedValues(): array
+    {
+        return collect(self::OWNER_LOCKED_FIELDS)
+            ->mapWithKeys(fn (string $field) => [$field => $this->getAttribute($field)])
+            ->all();
+    }
+
+    /**
+     * Stan edycji dla panelu firmy/rekrutera (przycisk "Edytuj", informacja w formularzu).
+     *
+     * @return array{can_edit: bool, editable_until: ?string, published: bool}
+     */
+    public function ownerEditState(): array
+    {
+        return [
+            'can_edit' => $this->isEditableByOwner(),
+            'editable_until' => $this->ownerEditableUntil()?->toIso8601String(),
+            'published' => $this->published_at !== null,
+        ];
+    }
 
     public function user(): BelongsTo
     {

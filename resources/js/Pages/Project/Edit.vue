@@ -18,8 +18,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
 import QuestionForm from "@/Components/QuestionForm.vue";
 import __ from "@/lang.js";
+import PublishProjectModal from "@/Components/Project/PublishProjectModal.vue";
 
 const props = defineProps({
+    // Blokada edycji: do kiedy można edytować, czy ogłoszenie było już opublikowane
+    editState: Object,
     categories: Array,
     workingModes: Array,
     typesOfContract: Array,
@@ -710,9 +713,30 @@ const addAll = () => {
 const zeroAll = () => {
     form.detailProjects = []
 }
+// Pierwsza aktywacja w edycji to publikacja - wymaga potwierdzenia (potem edycja tylko przez 24h)
+const showPublishModal = ref(false);
+const submitProject = () => {
+    if (!props.editState?.published && form.is_active) {
+        showPublishModal.value = true;
+        return;
+    }
+    updateProject();
+};
+
+const editableUntilText = computed(() => props.editState?.editable_until
+    ? new Date(props.editState.editable_until).toLocaleString(usePage().props.language || 'pl', { dateStyle: 'short', timeStyle: 'short' })
+    : null);
+
+// Miejsca pracy nie można zmienić - adres tylko do podglądu
+const lockedAddress = computed(() => [
+    [form.streetWork, form.streetWorkNumber].filter(v => v && v !== '-').join(' '),
+    [form.postalWork !== '-' ? form.postalWork : '', form.cityWork].filter(Boolean).join(' '),
+].filter(Boolean).join(', '));
+
 const updateProject = () => {
     form.put(route('projects.update',props.project), {
         errorBag: 'updateProject',
+        onFinish: () => (showPublishModal.value = false),
         preserveScroll: true,
         onSuccess: () => {
             // form.reset();
@@ -794,6 +818,9 @@ const initializeMap = () => {
     });
 
     map.value.addControl(new mapboxgl.NavigationControl());
+
+    // Edycja: miejsca pracy nie można zmienić - mapa tylko pokazuje zapisaną lokalizację, bez wyszukiwarki
+    if (!geocoderContainer.value) return;
 
     // Dodaj Geocoder (autocomplete)
     geocoder.value = new MapboxGeocoder({
@@ -1151,7 +1178,12 @@ onMounted(async () => {
                 </div>
 
                 <!-- Formularz -->
-                <form @submit.prevent="updateProject">
+                <form @submit.prevent="submitProject">
+                    <!-- Blokada edycji: termin i pola, których nie można zmienić -->
+                    <div class="mb-8 p-5 bg-amber-50 border border-amber-200 rounded-2xl space-y-1">
+                        <p v-if="editableUntilText" class="text-[10px] font-black text-amber-900 uppercase tracking-widest">{{ __('projectLock.editableUntil', { date: editableUntilText }) }}</p>
+                        <p class="text-xs font-medium text-amber-900">{{ __('projectLock.lockedFieldsInfo') }}</p>
+                    </div>
 
                     <!-- KROK 1: Podstawowe informacje -->
                     <div v-show="currentStep === 1" class="space-y-8">
@@ -1662,6 +1694,7 @@ onMounted(async () => {
                                         label="name"
                                         :placeholder="__('translate.placeholder')"
                                         v-model="form.external_company_id"
+                                        :disabled="true"
                                         :options="externalCompanies"
                                         class="custom-multiselect">
                                         <template #noResult>
@@ -1699,6 +1732,7 @@ onMounted(async () => {
                                     @update:modelValue="clearCountry"
                                     :placeholder="__('translate.placeholder')"
                                     v-model="form.countryWork" :options="optionsCountry"
+                                    :disabled="true"
                                     class="custom-multiselect">
                                     <template #noResult>
                                         <span>{{__('translate.noOptions')}}</span>
@@ -1712,30 +1746,15 @@ onMounted(async () => {
 
                             <!-- Mapbox Geocoder (Autocomplete) -->
                             <div v-if="form.countryWork" class="mt-10">
-                                <div class="mb-8">
-                                    <InputLabel :value="__('translate.searchAddress') + '*'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-4" />
-                                    <div
-                                        ref="geocoderContainer"
-                                        class="mapbox-geocoder-container rounded-2xl border border-gray-100 bg-gray-50 shadow-sm focus-within:shadow-md transition-all text-[#0A2C5C]"
-                                    ></div>
-                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mt-3">
-                                        {{ __('translate.searchAddressDescription') }}
-                                    </p>
-                                    <div v-if="selectedAddressDisplay" class="mt-4 p-4 bg-[#0A2C5C]/5 border border-[#0A2C5C]/10 rounded-2xl flex items-start gap-3">
-                                        <div class="mt-0.5">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-1">{{ __('translate.selected_address') }}</p>
-                                            <p class="text-sm font-bold text-[#0A2C5C]">{{ selectedAddressDisplay }}</p>
-                                        </div>
+                                <div class="mb-8 p-4 bg-gray-50 border border-gray-100 rounded-2xl flex items-start gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                    </svg>
+                                    <div>
+                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.selected_address') }}</p>
+                                        <p class="text-sm font-bold text-[#0A2C5C]">{{ lockedAddress }}</p>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('projectLock.fieldLocked') }}</p>
                                     </div>
-                                    <InputError v-if="form.errors.streetWork || form.errors.cityWork || form.errors.lat || form.errors.lng"
-                                                :message="__('translate.address_required')"
-                                                class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
 
                                 <!-- Mapa Mapbox -->
@@ -1744,12 +1763,6 @@ onMounted(async () => {
                                 </div>
                             </div>
 
-                            <AddressFieldGroup class="mt-8 bg-gray-50 p-6 rounded-[2rem] border border-dashed border-gray-300" v-if="form.countryWork" :code="form.countryWork?.countryCode"
-                                               v-model:street="form.streetWork"
-                                               v-model:streetNumber="form.streetWorkNumber"
-                                               v-model:postcode="form.postalWork"
-                                               v-model:city="form.cityWork"
-                            />
                         </div>
 
                         <!-- Wykształcenie -->
@@ -1840,6 +1853,9 @@ onMounted(async () => {
                                     <input
                                         id="basicSalaryFrom"
                                         v-model="form.basicSalaryFrom"
+                                        disabled
+                                        :title="__('projectLock.fieldLocked')"
+                                        :class="'!bg-gray-100 !text-gray-400 cursor-not-allowed'"
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                                         type="number"
                                         step="0.01"
@@ -1852,6 +1868,9 @@ onMounted(async () => {
                                     <input
                                         id="basicSalaryTo"
                                         v-model="form.basicSalaryTo"
+                                        disabled
+                                        :title="__('projectLock.fieldLocked')"
+                                        :class="'!bg-gray-100 !text-gray-400 cursor-not-allowed'"
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                                         type="number"
                                         step="0.01"
@@ -2621,6 +2640,13 @@ onMounted(async () => {
                         </div>
                     </div>
                 </form>
+
+                <PublishProjectModal
+                    :show="showPublishModal"
+                    :processing="form.processing"
+                    @close="showPublishModal = false"
+                    @confirm="updateProject"
+                />
             </div>
         </div>
     </AppLayout>

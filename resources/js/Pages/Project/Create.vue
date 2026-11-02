@@ -18,6 +18,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
 import QuestionForm from "@/Components/QuestionForm.vue";
 import __ from "@/lang.js";
+import PublishProjectModal from "@/Components/Project/PublishProjectModal.vue";
 
 const props = defineProps({
     categories: Array,
@@ -641,9 +642,20 @@ watch(() => form.position, async (position) => {
     form.detailProjects = [];
 });
 
+// Publikacja (ogłoszenie aktywne) wymaga potwierdzenia - po niej edycja tylko przez 24h
+const showPublishModal = ref(false);
+const submitProject = () => {
+    if (form.is_active) {
+        showPublishModal.value = true;
+        return;
+    }
+    createProject();
+};
+
 const createProject = () => {
     form.post(route('projects.store'), {
         errorBag: 'createProject',
+        onFinish: () => (showPublishModal.value = false),
         preserveScroll: true,
         onSuccess: () => {
             if (typeof window !== 'undefined') {
@@ -989,7 +1001,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Formularz -->
-                <form @submit.prevent="createProject">
+                <form @submit.prevent="submitProject">
 
                     <!-- KROK 1: Podstawowe informacje -->
                     <div v-show="currentStep === 1" class="space-y-8">
@@ -2481,6 +2493,13 @@ onMounted(() => {
                         </div>
                     </div>
                 </form>
+
+                <PublishProjectModal
+                    :show="showPublishModal"
+                    :processing="form.processing"
+                    @close="showPublishModal = false"
+                    @confirm="createProject"
+                />
             </div>
         </div>
     </AppLayout>
