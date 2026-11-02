@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Recruit;
 
+use App\Rules\WorkingHoursTo;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProject extends FormRequest
@@ -86,8 +87,7 @@ class StoreProject extends FormRequest
             'inclusive_recruitment' => ['nullable', 'boolean'],
             'disability_friendly' => ['nullable', 'boolean'],
             'bonusSalaryFrom' => ['nullable', 'numeric', 'between:1,99999.99'],
-            'hoursFrom' => ['nullable', 'date_format:H:i', 'before:hoursTo'],
-            'hoursTo' => ['nullable', 'date_format:H:i', 'after:hoursFrom'],
+            ...WorkingHoursTo::rules(),
             'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
             'title' => ['nullable'],
             'countryWork' => ['required', 'array'],

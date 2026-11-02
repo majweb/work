@@ -394,7 +394,7 @@ onMounted(() => {
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.godziny') || 'Godziny' }}</p>
-                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.hoursFrom ?? '-' }} {{ __('translate.do') }} {{ project.hoursTo ?? '-' }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.hoursFrom ?? '-' }} {{ __('translate.do') }} {{ project.hoursTo ?? '-' }}<span v-if="project.hoursFrom && project.hoursTo && project.hoursTo < project.hoursFrom"> ({{ __('workHours.nextDay') }})</span></p>
                                         </div>
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.prac_zm') }}</p>

@@ -256,6 +256,9 @@ const form = useForm({
     is_active: true,
 });
 
+// Godzina zakończenia wcześniejsza niż rozpoczęcia = zmiana kończy się następnego dnia (wymaga pracy nocnej)
+const hoursEndNextDay = computed(() => !!form.hoursFrom && !!form.hoursTo && form.hoursTo < form.hoursFrom);
+
 
 const optionsCategory = ref(props.categories);
 const optionsCountry = ref(props.countries);
@@ -1943,6 +1946,9 @@ onMounted(() => {
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                                     />
                                     <InputError :message="form.errors.hoursTo" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                                    <p v-if="hoursEndNextDay && !form.errors.hoursTo" :class="['mt-2 text-[10px] font-black uppercase tracking-widest', Number(form.workNight) === 1 ? 'text-[#00a0e3]' : 'text-amber-600']">
+                                        {{ Number(form.workNight) === 1 ? __('workHours.endsNextDay') : __('workHours.overnightNeedsNightWork') }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
