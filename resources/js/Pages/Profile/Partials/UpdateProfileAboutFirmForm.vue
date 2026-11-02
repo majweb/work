@@ -91,7 +91,7 @@ const updateProfileFirm = () => {
             </div>
             <div class="col-span-6">
                 <h3 class="text-lg mb-3 font-bold uppercase">{{ __('translate.opinions') }}</h3>
-                <div class="grid grid-cols-4 gap-6">
+                <div class="grid grid-cols-4 gap-6 items-start">
                     <!-- opinion_google -->
                     <div class="col-span-6 sm:col-span-2">
                         <InputLabel for="opinion_google" :value="__('translate.opinion_google')"/>
@@ -101,8 +101,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.opinion_google" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.google.com/maps/place/…</small>
+                        <InputError :message="form.errors.opinion_google" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
 
                     <!-- opinion_trust -->
@@ -114,8 +114,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.opinion_trust" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.trustpilot.com/review/…</small>
+                        <InputError :message="form.errors.opinion_trust" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
 
                     <!-- opinion_facebook -->
@@ -127,14 +127,14 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.opinion_facebook" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.facebook.com/…/reviews</small>
+                        <InputError :message="form.errors.opinion_facebook" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
                 </div>
             </div>
             <div class="col-span-6">
                 <h3 class="text-lg mb-3 font-bold uppercase">{{ __('translate.socials') }}</h3>
-                <div class="grid grid-cols-4 gap-6">
+                <div class="grid grid-cols-4 gap-6 items-start">
                     <!-- social_facebook -->
                     <div class="col-span-6 sm:col-span-2">
                         <InputLabel for="social_facebook" :value="__('translate.social_facebook')"/>
@@ -144,8 +144,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_facebook" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.facebook.com/…</small>
+                        <InputError :message="form.errors.social_facebook" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
 
                     <!-- social_google -->
@@ -157,8 +157,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_google" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.google.com/…</small>
+                        <InputError :message="form.errors.social_google" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
 
                     <!-- social_x -->
@@ -170,8 +170,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_x" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://x.com/…</small>
+                        <InputError :message="form.errors.social_x" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
 
                     <!-- social_instagram -->
@@ -183,8 +183,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_instagram" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.instagram.com/…</small>
+                        <InputError :message="form.errors.social_instagram" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
 
                     <!-- social_linkedin -->
@@ -196,8 +196,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_linkedin" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.linkedin.com/company/…</small>
+                        <InputError :message="form.errors.social_linkedin" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
 
                     <!-- social_tiktok -->
@@ -209,8 +209,8 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_tiktok" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                        <small class="text-gray-500">https://www.tiktok.com/@…</small>
+                        <InputError :message="form.errors.social_tiktok" class="mt-2 text-[10px] font-black uppercase tracking-widest break-words"/>
                     </div>
                 </div>
 

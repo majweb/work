@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ServiceLink;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,15 +25,16 @@ class FirmAboutRequest extends FormRequest
     {
         return [
             'www' => ['required', 'string','url:http,https'],
-            'opinion_google' => ['nullable','string','max:100','url:http,https'],
-            'opinion_trust' => ['nullable','string','max:100','url:http,https'],
-            'opinion_facebook' => ['nullable','string','max:100','url:http,https'],
-            'social_facebook' => ['nullable','string','max:100','url:http,https'],
-            'social_google' => ['nullable','string','max:100','url:http,https'],
-            'social_x' => ['nullable','string','max:100','url:http,https'],
-            'social_instagram' => ['nullable','string','max:100','url:http,https'],
-            'social_linkedin' => ['nullable','string','max:100','url:http,https'],
-            'social_tiktok' => ['nullable','string','max:100','url:http,https'],
+            // Linki do opinii i sociali tylko z właściwego serwisu (pełne linki do opinii Google bywają długie)
+            'opinion_google' => ['nullable','string','max:500','url:http,https', new ServiceLink('google')],
+            'opinion_trust' => ['nullable','string','max:500','url:http,https', new ServiceLink('trustpilot')],
+            'opinion_facebook' => ['nullable','string','max:500','url:http,https', new ServiceLink('facebook')],
+            'social_facebook' => ['nullable','string','max:500','url:http,https', new ServiceLink('facebook')],
+            'social_google' => ['nullable','string','max:500','url:http,https', new ServiceLink('google')],
+            'social_x' => ['nullable','string','max:500','url:http,https', new ServiceLink('x')],
+            'social_instagram' => ['nullable','string','max:500','url:http,https', new ServiceLink('instagram')],
+            'social_linkedin' => ['nullable','string','max:500','url:http,https', new ServiceLink('linkedin')],
+            'social_tiktok' => ['nullable','string','max:500','url:http,https', new ServiceLink('tiktok')],
             'count_workers' => ['nullable','integer','digits between:1,5'],
             'annual_turnover' => ['nullable','string','max:50'],
             'extra_description' => ['nullable','string','max:2000'],

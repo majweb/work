@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Rules\ServiceLink;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
@@ -22,9 +23,10 @@ class FrontUserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->firm->contact_phone,
-            'opinion_google' => $this->firm->opinion_google,
-            'opinion_trust' => $this->firm->opinion_trust,
-            'opinion_facebook' => $this->firm->opinion_facebook,
+            // Link spoza właściwego serwisu (zapisany przed walidacją domeny) nie jest pokazywany - też w socialach
+            'opinion_google' => ServiceLink::matches('google', $this->firm->opinion_google) ? $this->firm->opinion_google : null,
+            'opinion_trust' => ServiceLink::matches('trustpilot', $this->firm->opinion_trust) ? $this->firm->opinion_trust : null,
+            'opinion_facebook' => ServiceLink::matches('facebook', $this->firm->opinion_facebook) ? $this->firm->opinion_facebook : null,
             'city' => $this->firm->city,
             'postal' => $this->firm->postal,
             'nip' => $this->firm->nip,
@@ -39,12 +41,12 @@ class FrontUserResource extends JsonResource
             'country' => $this->firm->country,
             'countryJson' => $this->firm->countryJson,
             'annual_turnover' => $this->firm->annual_turnover,
-            'social_facebook' => $this->firm->social_facebook,
-            'social_google' => $this->firm->social_google,
-            'social_x' => $this->firm->social_x,
-            'social_instagram' => $this->firm->social_instagram,
-            'social_linkedin' => $this->firm->social_linkedin,
-            'social_tiktok' => $this->firm->social_tiktok,
+            'social_facebook' => ServiceLink::matches('facebook', $this->firm->social_facebook) ? $this->firm->social_facebook : null,
+            'social_google' => ServiceLink::matches('google', $this->firm->social_google) ? $this->firm->social_google : null,
+            'social_x' => ServiceLink::matches('x', $this->firm->social_x) ? $this->firm->social_x : null,
+            'social_instagram' => ServiceLink::matches('instagram', $this->firm->social_instagram) ? $this->firm->social_instagram : null,
+            'social_linkedin' => ServiceLink::matches('linkedin', $this->firm->social_linkedin) ? $this->firm->social_linkedin : null,
+            'social_tiktok' => ServiceLink::matches('tiktok', $this->firm->social_tiktok) ? $this->firm->social_tiktok : null,
             'is_featured' => $this->whenHas('is_featured_count', fn () => $this->is_featured_count > 0, $this->is_featured ?? false),
             'points' => $this->firm->points,
             'currency' => $this->firm->currency,
