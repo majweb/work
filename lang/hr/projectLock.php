@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Uređivanje je moguće do: :date',
     'lockedFieldsInfo' => 'Naziv poslodavca, radno mjesto, iznos plaće i mjesto rada ne mogu se mijenjati nakon objave.',
     'fieldLocked' => 'Ne može se mijenjati nakon objave',
+    'duplicatedAsDraft' => 'Kopija oglasa za posao spremljena je kao nacrt. Uredite je i objavite kao novi oglas za posao.',
 ];

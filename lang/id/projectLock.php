@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Dapat diedit hingga: :date',
     'lockedFieldsInfo' => 'Nama pemberi kerja, posisi, besaran upah, dan lokasi kerja tidak dapat diubah setelah diterbitkan.',
     'fieldLocked' => 'Tidak dapat diubah setelah diterbitkan',
+    'duplicatedAsDraft' => 'Salinan lowongan pekerjaan telah disimpan sebagai draf. Lakukan perubahan yang diperlukan dan publikasikan sebagai lowongan pekerjaan baru.',
 ];

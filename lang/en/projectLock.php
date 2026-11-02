@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Editing possible until: :date',
     'lockedFieldsInfo' => 'The employer name, position, pay rate and place of work cannot be changed after publication.',
     'fieldLocked' => 'Cannot be changed after publication',
+    'duplicatedAsDraft' => 'The copy of the job offer has been saved as a draft. Make your corrections and publish it as a new job offer.',
 ];

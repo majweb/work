@@ -797,11 +797,13 @@ class ProjectController extends Controller
         Gate::authorize('view', $project);
         $newProject = $project->replicate();
         $newProject->views_count = 0;
-        // Duplikat to nowe ogłoszenie - nowe 24h na edycję od jego publikacji
+        // Duplikat to szkic - firma poprawia go (także stawkę i miejsce pracy) i publikuje jako nowe ogłoszenie,
+        // 24h na edycję liczy się od tej publikacji
+        $newProject->is_active = false;
         $newProject->published_at = null;
         $newProject->save();
 
-        session()->flash('flash.banner', __('translate.projectDuplicated'));
+        session()->flash('flash.banner', __('projectLock.duplicatedAsDraft'));
         session()->flash('flash.bannerStyle', 'success');
 
         return to_route('projects.index');

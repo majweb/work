@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Redaktimi është i mundur deri më: :date',
     'lockedFieldsInfo' => 'Emri i punëdhënësit, pozicioni i punës, paga dhe vendi i punës nuk mund të ndryshohen pas publikimit.',
     'fieldLocked' => 'Nuk mund të ndryshohet pas publikimit',
+    'duplicatedAsDraft' => 'Kopja e shpalljes së punës është ruajtur si draft. Korrigjojeni dhe publikojeni si një shpallje të re pune.',
 ];

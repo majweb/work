@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Modification possible jusqu’au :date',
     'lockedFieldsInfo' => 'Le nom de l’employeur, le poste, la rémunération et le lieu de travail ne peuvent pas être modifiés après la publication.',
     'fieldLocked' => 'Ne peut pas être modifié après la publication',
+    'duplicatedAsDraft' => 'La copie de l’offre d’emploi a été enregistrée comme brouillon. Modifiez-la et publiez-la comme nouvelle offre d’emploi.',
 ];

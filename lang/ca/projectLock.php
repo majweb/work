@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Es pot editar fins al: :date',
     'lockedFieldsInfo' => 'El nom de l\'empresa, el càrrec, la remuneració i el lloc de treball no es poden canviar després de la publicació.',
     'fieldLocked' => 'No es pot canviar després de la publicació',
+    'duplicatedAsDraft' => 'La còpia de l’oferta de feina s’ha desat com a esborrany. Corregeix-la i publica-la com una nova oferta de feina.',
 ];

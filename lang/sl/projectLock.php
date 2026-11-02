@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Urejanje je mogoče do: :date',
     'lockedFieldsInfo' => 'Imena delodajalca, delovnega mesta, višine plačila in kraja dela po objavi ni mogoče spremeniti.',
     'fieldLocked' => 'Po objavi ni mogoče spremeniti',
+    'duplicatedAsDraft' => 'Kopija oglasa za zaposlitev je bila shranjena kot osnutek. Uredite jo in objavite kot nov oglas za zaposlitev.',
 ];

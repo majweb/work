@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Editarea este posibilă până la: :date',
     'lockedFieldsInfo' => 'Numele angajatorului, postul, remunerația și locul de muncă nu pot fi modificate după publicare.',
     'fieldLocked' => 'Nu poate fi modificat după publicare',
+    'duplicatedAsDraft' => 'Copia anunțului de angajare a fost salvată ca ciornă. Fă modificările necesare și public-o ca un nou anunț de angajare.',
 ];

@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Rediģēšana iespējama līdz: :date',
     'lockedFieldsInfo' => 'Pēc publicēšanas nevar mainīt darba devēja nosaukumu, amatu, atalgojuma likmi un darba vietu.',
     'fieldLocked' => 'Pēc publicēšanas nevar mainīt',
+    'duplicatedAsDraft' => 'Darba sludinājuma kopija ir saglabāta kā melnraksts. Veiciet labojumus un publicējiet to kā jaunu darba sludinājumu.',
 ];

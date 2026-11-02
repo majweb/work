@@ -221,18 +221,47 @@ class OwnerEditLockTest extends TestCase
         $this->assertSame('netto', $project->salary_type);
     }
 
-    public function test_duplicate_gets_new_24_hours(): void
+    public function test_duplicate_is_draft_with_new_24_hours_after_publication(): void
     {
         $project = $this->project();
         $this->travel(5)->days();
 
-        $this->actingAs($this->firm)->post(route('projects.duplicate', $project));
+        $this->actingAs($this->firm)->post(route('projects.duplicate', $project))
+            ->assertSessionHas('flash.banner', __('projectLock.duplicatedAsDraft'));
 
         $copy = Project::latest('id')->first();
         $this->assertNotSame($project->id, $copy->id);
-        $this->assertTrue($copy->published_at->isToday());
+        $this->assertFalse($copy->is_active);
+        $this->assertNull($copy->published_at);
         $this->assertTrue($copy->isEditableByOwner());
         $this->assertFalse($project->fresh()->isEditableByOwner());
+
+        // Publikacja kopii uruchamia nowe 24h
+        $this->actingAs($this->firm)->post(route('projects.toggle-active', $copy));
+        $this->assertTrue($copy->fresh()->published_at->isToday());
+        $this->assertTrue($copy->fresh()->isEditableByOwner());
+    }
+
+    public function test_draft_can_change_salary_and_location_before_publication(): void
+    {
+        $draft = $this->project(['is_active' => false]);
+
+        $this->actingAs($this->recruiter)->put(route('project-recruits.update', $draft), $this->payload([
+            'basicSalaryFrom' => 7000,
+            'basicSalaryTo' => 8000,
+            'cityWork' => 'Gliwice',
+            'streetWork' => 'Zwycięstwa',
+            'lat' => 50.3,
+            'lng' => 18.7,
+            'is_active' => false,
+        ]))->assertRedirect(route('project-recruits.index'));
+
+        $draft->refresh();
+        $this->assertEquals(7000, $draft->basicSalaryFrom);
+        $this->assertEquals(8000, $draft->basicSalaryTo);
+        $this->assertSame('Gliwice', $draft->cityWork);
+        $this->assertStringContainsString('Gliwice', $draft->title['pl']);
+        $this->assertNull($draft->published_at);
     }
 
     public function test_admin_can_always_edit(): void
@@ -243,5 +272,14 @@ class OwnerEditLockTest extends TestCase
         $this->travel(30)->days();
 
         $this->actingAs($admin)->get(route('admin.job-offers.edit', $project))->assertOk();
+    }
+
+    public function test_only_admin_downloads_edit_guide(): void
+    {
+        $admin = User::factory()->create();
+        $admin->assignRole('admin');
+
+        $this->actingAs($admin)->get(route('admin.job-offers.guide'))->assertOk()->assertDownload();
+        $this->actingAs($this->firm)->get(route('admin.job-offers.guide'))->assertForbidden();
     }
 }

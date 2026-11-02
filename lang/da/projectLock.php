@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Kan redigeres indtil: :date',
     'lockedFieldsInfo' => 'Arbejdsgiverens navn, stilling, lønsats og arbejdssted kan ikke ændres efter offentliggørelsen.',
     'fieldLocked' => 'Kan ikke ændres efter offentliggørelsen',
+    'duplicatedAsDraft' => 'Kopien af jobopslaget er gemt som kladde. Ret den til, og offentliggør den som et nyt jobopslag.',
 ];

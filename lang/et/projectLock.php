@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Muutmine on võimalik kuni: :date',
     'lockedFieldsInfo' => 'Tööandja nime, ametikohta, töötasu määra ja töö tegemise kohta ei saa pärast avaldamist muuta.',
     'fieldLocked' => 'Pärast avaldamist ei saa muuta',
+    'duplicatedAsDraft' => 'Tööpakkumise koopia on salvestatud mustandina. Tee vajalikud muudatused ja avalda see uue tööpakkumisena.',
 ];

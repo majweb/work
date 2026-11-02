@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Muokkaaminen mahdollista :date asti',
     'lockedFieldsInfo' => 'Työnantajan nimeä, tehtävänimikettä, palkkaa ja työskentelypaikkaa ei voi muuttaa julkaisemisen jälkeen.',
     'fieldLocked' => 'Ei voi muuttaa julkaisemisen jälkeen',
+    'duplicatedAsDraft' => 'Työpaikkailmoituksen kopio on tallennettu luonnoksena. Tee tarvittavat muutokset ja julkaise se uutena työpaikkailmoituksena.',
 ];

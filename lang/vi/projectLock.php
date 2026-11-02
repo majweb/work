@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Có thể chỉnh sửa đến: :date',
     'lockedFieldsInfo' => 'Không thể thay đổi tên nhà tuyển dụng, vị trí tuyển dụng, mức lương và địa điểm làm việc sau khi đăng.',
     'fieldLocked' => 'Không thể thay đổi sau khi đăng',
+    'duplicatedAsDraft' => 'Bản sao tin tuyển dụng đã được lưu dưới dạng bản nháp. Hãy chỉnh sửa và đăng thành tin tuyển dụng mới.',
 ];

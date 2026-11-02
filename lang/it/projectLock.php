@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Modifica possibile fino al: :date',
     'lockedFieldsInfo' => 'Il nome del datore di lavoro, la posizione, la retribuzione e il luogo di lavoro non possono essere modificati dopo la pubblicazione.',
     'fieldLocked' => 'Non modificabile dopo la pubblicazione',
+    'duplicatedAsDraft' => 'La copia dell\'annuncio di lavoro è stata salvata come bozza. Modificala e pubblicala come nuovo annuncio di lavoro.',
 ];

@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Bewerken mogelijk tot: :date',
     'lockedFieldsInfo' => 'De naam van de werkgever, de functie, het loon en de werklocatie kunnen na publicatie niet worden gewijzigd.',
     'fieldLocked' => 'Kan na publicatie niet worden gewijzigd',
+    'duplicatedAsDraft' => 'De kopie van de vacature is opgeslagen als concept. Pas deze aan en publiceer deze als een nieuwe vacature.',
 ];

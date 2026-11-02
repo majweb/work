@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Hægt að breyta til: :date',
     'lockedFieldsInfo' => 'Ekki er hægt að breyta nafni vinnuveitanda, starfsheiti, launum eða starfsstað eftir birtingu.',
     'fieldLocked' => 'Ekki hægt að breyta eftir birtingu',
+    'duplicatedAsDraft' => 'Afrit af atvinnuauglýsingunni hefur verið vistað sem drög. Gerðu viðeigandi breytingar og birtu það sem nýja atvinnuauglýsingu.',
 ];

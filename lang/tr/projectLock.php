@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Son düzenleme tarihi: :date',
     'lockedFieldsInfo' => 'İşveren adı, pozisyon, ücret ve iş yeri yayımlandıktan sonra değiştirilemez.',
     'fieldLocked' => 'Yayımlandıktan sonra değiştirilemez',
+    'duplicatedAsDraft' => 'İş ilanının kopyası taslak olarak kaydedildi. Gerekli düzenlemeleri yapın ve yeni bir iş ilanı olarak yayımlayın.',
 ];

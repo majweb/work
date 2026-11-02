@@ -11,4 +11,5 @@ return [
     'editableUntil' => '수정 가능 기한: :date',
     'lockedFieldsInfo' => '고용주명, 직무, 급여 및 근무지는 게시 후 변경할 수 없습니다.',
     'fieldLocked' => '게시 후 변경할 수 없습니다',
+    'duplicatedAsDraft' => '복사한 채용 공고가 임시 저장되었습니다. 내용을 수정한 후 새 채용 공고로 게시하세요.',
 ];

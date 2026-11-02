@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Tahrirlash muddati: :date gacha',
     'lockedFieldsInfo' => 'Ish beruvchining nomi, lavozim, ish haqi stavkasi va ish joyini chop etilgandan keyin o‘zgartirib bo‘lmaydi.',
     'fieldLocked' => 'Chop etilgandan keyin o‘zgartirib bo‘lmaydi',
+    'duplicatedAsDraft' => 'Ish e’loni nusxasi qoralama sifatida saqlandi. Uni tahrirlang va yangi ish e’loni sifatida e’lon qiling.',
 ];

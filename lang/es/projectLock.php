@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Se puede editar hasta: :date',
     'lockedFieldsInfo' => 'El nombre del empleador, el puesto, la remuneración y el lugar de trabajo no se pueden cambiar después de la publicación.',
     'fieldLocked' => 'No se puede cambiar después de la publicación',
+    'duplicatedAsDraft' => 'La copia de la oferta de empleo se ha guardado como borrador. Revísala y publícala como una nueva oferta de empleo.',
 ];

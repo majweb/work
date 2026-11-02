@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Kan redigeres frem til: :date',
     'lockedFieldsInfo' => 'Arbeidsgiverens navn, stilling, lønnssats og arbeidssted kan ikke endres etter publisering.',
     'fieldLocked' => 'Kan ikke endres etter publisering',
+    'duplicatedAsDraft' => 'Kopien av stillingsannonsen er lagret som et utkast. Gjør nødvendige endringer og publiser den som en ny stillingsannonse.',
 ];

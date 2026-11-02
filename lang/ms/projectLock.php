@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Boleh disunting sehingga: :date',
     'lockedFieldsInfo' => 'Nama majikan, jawatan, kadar gaji dan tempat kerja tidak boleh diubah selepas diterbitkan.',
     'fieldLocked' => 'Tidak boleh diubah selepas diterbitkan',
+    'duplicatedAsDraft' => 'Salinan iklan jawatan telah disimpan sebagai draf. Buat pindaan dan terbitkannya sebagai iklan jawatan baharu.',
 ];
