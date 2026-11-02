@@ -10,11 +10,10 @@ import {ref, watch, computed, onMounted} from "vue";
 import moment from "moment";
 import __ from "@/lang.js";
 import axios from 'axios';
-import {Pagination as SwiperPagination, Autoplay, EffectFade} from 'swiper/modules';
+import {Autoplay, EffectFade} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 const isClient = ref(false);
@@ -458,7 +457,7 @@ const onPositionSelect = (selectedOption) => {
                 <!-- BANNERS SWIPER -->
                 <div v-if="isClient && props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
                     <swiper
-                        :modules="[SwiperPagination, Autoplay, EffectFade]"
+                        :modules="[Autoplay, EffectFade]"
                         effect="fade"
                         :fade-effect="{ crossFade: true }"
                         :speed="800"
@@ -467,7 +466,6 @@ const onPositionSelect = (selectedOption) => {
                         :loop="props.banners?.length > 1"
                         :autoplay="{ delay: 6000, disableOnInteraction: false }"
                         :allowTouchMove="false"
-                        :pagination="{ clickable: true }"
                         class="w-full rounded-[2.5rem] overflow-hidden"
                     >
                         <!-- Baner niższy od pozostałych (inne proporcje) jest wyśrodkowany w pionie -->

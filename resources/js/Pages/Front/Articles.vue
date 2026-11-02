@@ -42,7 +42,7 @@ const props = defineProps({
                 <!-- BANNERS SWIPER -->
                 <div v-if="isClient && props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
                     <swiper
-                        :modules="[Pagination, Autoplay, EffectFade]"
+                        :modules="[Autoplay, EffectFade]"
                         effect="fade"
                         :fade-effect="{ crossFade: true }"
                         :speed="800"
@@ -51,7 +51,6 @@ const props = defineProps({
                         :loop="props.banners?.length > 1"
                         :autoplay="{ delay: 6000, disableOnInteraction: false }"
                         :allowTouchMove="false"
-                        :pagination="{ clickable: true }"
                         class="w-full rounded-[2.5rem] overflow-hidden"
                     >
                         <!-- Baner niższy od pozostałych (inne proporcje) jest wyśrodkowany w pionie -->

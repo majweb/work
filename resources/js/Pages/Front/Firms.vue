@@ -8,10 +8,9 @@ import InputError from "@/Components/InputError.vue";
 import {pickBy} from "lodash";
 import {ref, onMounted} from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, EffectFade, Pagination as SwiperPagination } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import 'swiper/css/scrollbar';
 
@@ -117,7 +116,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                 <!-- BANNERS SWIPER -->
                 <div v-if="isClient && props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
                     <swiper
-                        :modules="[SwiperPagination, Autoplay, EffectFade]"
+                        :modules="[Autoplay, EffectFade]"
                         effect="fade"
                         :fade-effect="{ crossFade: true }"
                         :speed="800"
@@ -126,7 +125,6 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                         :loop="props.banners?.length > 1"
                         :autoplay="{ delay: 6000, disableOnInteraction: false }"
                         :allowTouchMove="false"
-                        :pagination="{ clickable: true }"
                         class="w-full rounded-[2.5rem] overflow-hidden"
                     >
                         <!-- Baner niższy od pozostałych (inne proporcje) jest wyśrodkowany w pionie -->
