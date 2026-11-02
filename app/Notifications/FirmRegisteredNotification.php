@@ -34,8 +34,8 @@ class FirmRegisteredNotification extends Notification implements ShouldQueue
             ->line('W portalu Work4you.global zarejestrowała się nowa firma.')
             ->line('Nazwa: '.$this->firm->name)
             ->line('E-mail: '.$this->firm->email)
+            // Bez linku do panelu admina - odbiorcy nie muszą mieć konta admina
             ->line('Data rejestracji: '.$this->firm->created_at?->timezone('Europe/Warsaw')->format('d.m.Y H:i'))
-            ->action('Zobacz firmę w panelu admina', route('admin.firms.show', $this->firm))
             ->salutation('Work4you.global');
     }
 }
