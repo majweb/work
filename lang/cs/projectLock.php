@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Úpravy možné do: :date',
     'lockedFieldsInfo' => 'Název zaměstnavatele, pracovní pozici, mzdovou sazbu a místo výkonu práce nelze po zveřejnění změnit.',
     'fieldLocked' => 'Po zveřejnění nelze změnit',
+    'duplicatedAsDraft' => 'Kopie pracovní nabídky byla uložena jako koncept. Upravte ji a zveřejněte jako novou pracovní nabídku.',
 ];

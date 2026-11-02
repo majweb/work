@@ -11,4 +11,5 @@ return [
     'editableUntil' => '編集可能期限：:date',
     'lockedFieldsInfo' => '雇用主名、職種、給与額、勤務地は公開後に変更できません。',
     'fieldLocked' => '公開後は変更できません',
+    'duplicatedAsDraft' => '求人のコピーを下書きとして保存しました。内容を修正し、新しい求人として公開してください。',
 ];

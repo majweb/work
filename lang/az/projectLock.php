@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Redaktə üçün son vaxt: :date',
     'lockedFieldsInfo' => 'İşəgötürənin adı, vəzifə, əməkhaqqı və iş yeri dərc edildikdən sonra dəyişdirilə bilməz.',
     'fieldLocked' => 'Dərc edildikdən sonra dəyişdirilə bilməz',
+    'duplicatedAsDraft' => 'Vakansiya elanının surəti qaralama kimi yadda saxlanıldı. Düzəlişlər edin və onu yeni vakansiya elanı kimi dərc edin.',
 ];

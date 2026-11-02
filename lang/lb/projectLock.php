@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Beaarbechtung méiglech bis: :date',
     'lockedFieldsInfo' => 'Den Numm vum Employeur, de Posten, de Lountaux an den Aarbechtsuert kënnen no der Verëffentlechung net méi geännert ginn.',
     'fieldLocked' => 'Kann no der Verëffentlechung net méi geännert ginn',
+    'duplicatedAsDraft' => 'D\'Kopie vun der Stellenannonce gouf als Entworf gespäichert. Passt se un a publizéiert se als nei Stellenannonce.',
 ];

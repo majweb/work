@@ -489,6 +489,12 @@ const getTranslation = (value) => {
                         </div>
 
                         <div class="flex items-center gap-4">
+                            <a
+                                :href="route('admin.job-offers.guide')"
+                                class="flex items-center gap-3 px-8 py-4 bg-white hover:bg-gray-50 text-[#0A2C5C] border-2 border-gray-100 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-sm"
+                            >
+                                Instrukcja (PDF)
+                            </a>
                             <button
                                 @click="exportCsv"
                                 class="flex items-center gap-3 px-8 py-4 bg-white hover:bg-gray-50 text-[#0A2C5C] border-2 border-gray-100 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-sm"

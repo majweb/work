@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Redaguoti galima iki: :date',
     'lockedFieldsInfo' => 'Po paskelbimo negalima keisti darbdavio pavadinimo, pareigų pavadinimo, atlygio dydžio ir darbo vietos.',
     'fieldLocked' => 'Negalima keisti po paskelbimo',
+    'duplicatedAsDraft' => 'Darbo skelbimo kopija išsaugota kaip juodraštis. Pakoreguokite ją ir paskelbkite kaip naują darbo skelbimą.',
 ];

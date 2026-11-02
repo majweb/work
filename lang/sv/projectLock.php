@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Kan redigeras till: :date',
     'lockedFieldsInfo' => 'Arbetsgivarens namn, befattning, lön och arbetsort kan inte ändras efter publicering.',
     'fieldLocked' => 'Kan inte ändras efter publicering',
+    'duplicatedAsDraft' => 'En kopia av jobbannonsen har sparats som utkast. Gör dina ändringar och publicera den som en ny jobbannons.',
 ];

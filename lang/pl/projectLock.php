@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Edycja możliwa do: :date',
     'lockedFieldsInfo' => 'Nazwy pracodawcy, stanowiska, stawki i miejsca pracy nie można zmienić po publikacji.',
     'fieldLocked' => 'Nie można zmienić po publikacji',
+    'duplicatedAsDraft' => 'Kopia ogłoszenia została zapisana jako szkic. Popraw ją i opublikuj jako nowe ogłoszenie.',
 ];

@@ -11,4 +11,5 @@ return [
     'editableUntil' => '可编辑至：:date',
     'lockedFieldsInfo' => '雇主名称、职位名称、薪资标准和工作地点在发布后不可更改。',
     'fieldLocked' => '发布后不可更改',
+    'duplicatedAsDraft' => '职位副本已保存为草稿。请修改后将其发布为新的职位。',
 ];

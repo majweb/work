@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Şu wagta çenli redaktirläp bolýar: :date',
     'lockedFieldsInfo' => 'Iş berijiniň adyny, wezipäni, zähmet hakynyň möçberini we iş ýerini çap edilenden soň üýtgedip bolmaýar.',
     'fieldLocked' => 'Çap edilenden soň üýtgedip bolmaýar',
+    'duplicatedAsDraft' => 'Iş bildirişiniň nusgasy garalama hökmünde ýatda saklandy. Oňa düzediş giriziň we täze iş bildirişi hökmünde neşir ediň.',
 ];

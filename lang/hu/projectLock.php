@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Szerkeszthető eddig: :date',
     'lockedFieldsInfo' => 'A munkáltató neve, a munkakör, a bérezés és a munkavégzés helye a közzététel után nem módosítható.',
     'fieldLocked' => 'A közzététel után nem módosítható',
+    'duplicatedAsDraft' => 'Az álláshirdetés másolatát piszkozatként mentettük. Módosítsd, majd tedd közzé új álláshirdetésként.',
 ];

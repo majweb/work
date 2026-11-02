@@ -21,9 +21,18 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class JobOfferController extends Controller
 {
+    /**
+     * Instrukcja dla adminów (PDF): publikacja ogłoszeń i blokada edycji po 24h, godziny pracy przez północ.
+     */
+    public function guide(): BinaryFileResponse
+    {
+        return response()->download(resource_path('projects/instrukcja-edycji.pdf'), 'Instrukcja - edycja ogloszen (blokada 24h).pdf');
+    }
+
     public function index(Request $request): Response
     {
         $query = $this->buildQuery($request);

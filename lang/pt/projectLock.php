@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Edição possível até: :date',
     'lockedFieldsInfo' => 'O nome da entidade empregadora, o cargo, a remuneração e o local de trabalho não podem ser alterados após a publicação.',
     'fieldLocked' => 'Não pode ser alterado após a publicação',
+    'duplicatedAsDraft' => 'A cópia da oferta de emprego foi guardada como rascunho. Faça as alterações necessárias e publique-a como uma nova oferta de emprego.',
 ];

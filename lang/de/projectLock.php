@@ -11,4 +11,5 @@ return [
     'editableUntil' => 'Bearbeitung möglich bis: :date',
     'lockedFieldsInfo' => 'Der Name des Arbeitgebers, die Position, die Vergütung und der Arbeitsort können nach der Veröffentlichung nicht mehr geändert werden.',
     'fieldLocked' => 'Kann nach der Veröffentlichung nicht mehr geändert werden',
+    'duplicatedAsDraft' => 'Die Kopie des Stellenangebots wurde als Entwurf gespeichert. Bearbeite sie und veröffentliche sie als neues Stellenangebot.',
 ];
