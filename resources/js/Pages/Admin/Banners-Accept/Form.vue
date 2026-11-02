@@ -114,10 +114,10 @@ const submit = () => {
                         <label class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest">Grafika baneru</label>
                         <div class="bg-gray-50 rounded-[2rem] p-4 border border-gray-100">
                             <file-pond
-                                name="photo"
+                                name="adminBanner"
                                 :files="initialFiles"
                                 :allow-multiple="false"
-                                :max-file-size="'2MB'"
+                                :max-file-size="'20MB'"
                                 imagePreviewMaxHeight="300"
                                 filePosterHeight="300"
                                 :label-idle="__('translate.label-idle')"
@@ -156,7 +156,7 @@ const submit = () => {
                                             return response;
                                         },
                                         onerror: (response) => {
-                                            serverMessage = JSON.parse(response).error.photo[0];
+                                            serverMessage = JSON.parse(response).error?.adminBanner?.[0];
                                         }
                                     },
                                     revert: {
@@ -169,9 +169,9 @@ const submit = () => {
                                 }"
                             ></file-pond>
                         </div>
-                        <!-- Te same zasady co przy banerze firmy (walidacja uploadu /temporary/upload) -->
+                        <!-- Walidacja uploadu /temporary/upload (pole adminBanner): jak u firm, ale do 20 MB -->
                         <p class="mt-3 text-[9px] font-bold text-gray-400 uppercase tracking-widest">
-                            Zalecany rozmiar: 1000 × 200 px · format: JPG, PNG lub animowany GIF · maks. 2 MB
+                            Zalecany rozmiar: 1000 × 200 px · format: JPG, PNG lub animowany GIF · maks. 20 MB
                         </p>
                         <InputError :message="form.errors.photo" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                     </div>
