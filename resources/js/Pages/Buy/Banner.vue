@@ -399,6 +399,7 @@ const sortLangs = computed(() => {
                                             }"
                                         ></file-pond>
                                     </div>
+                                    <p class="mt-3 text-[9px] font-bold text-gray-400 uppercase tracking-widest">{{ __('bannerInfo.preferredSize') }}</p>
                                     <InputError :message="form.errors.photo" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>

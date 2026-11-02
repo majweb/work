@@ -39,11 +39,23 @@ class Banner extends Model implements HasMedia
         return $query->active()
             ->lang()
             ->inRandomOrder()
-            ->whereHas('user.changeProducts', function ($q) {
-                $q->where('product_id', 8)
-                    ->where('start', '<=', now())
-                    ->where('end', '>=', now());
+            ->where(function ($q) {
+                // Banery Work4you (bez firmy) losowane na równi z banerami firm z opłaconym pakietem
+                $q->whereNull('user_id')
+                    ->orWhereHas('user.changeProducts', function ($q) {
+                        $q->where('product_id', 8)
+                            ->where('start', '<=', now())
+                            ->where('end', '>=', now());
+                    });
             });
+    }
+
+    /**
+     * Baner Work4you dodany przez admina (nie należy do firmy).
+     */
+    public function isOwn(): bool
+    {
+        return $this->user_id === null;
     }
 
     public function scopeActive($query)
