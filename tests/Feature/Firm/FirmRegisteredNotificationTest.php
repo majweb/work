@@ -51,7 +51,8 @@ class FirmRegisteredNotificationTest extends TestCase
             return $notifiable->routes['mail'] === ['m.koziol@work4you.global']
                 && $notification->firm->is($firm)
                 && str_contains($mail->subject, 'Nowa Firma')
-                && $mail->actionUrl === route('admin.firms.show', $firm);
+                && in_array('E-mail: nowa@firma.pl', $mail->introLines)
+                && $mail->actionUrl === null;
         });
         $this->assertContains(\Illuminate\Contracts\Queue\ShouldQueue::class, class_implements(FirmRegisteredNotification::class));
     }
