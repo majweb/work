@@ -174,7 +174,7 @@ onMounted(() => {
 
                     <!-- Company Info Bar -->
                     <div class="p-8 md:px-16 flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-50">
-                        <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                        <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left md:flex-1 min-w-0">
                             <div class="relative top-5 md:top-0">
                                 <Link :href="project.user?.id ? route('front.firms.single', project.user?.id) : '#'">
                                     <img
@@ -194,17 +194,17 @@ onMounted(() => {
                                         {{ project.user?.firm?.name || project.user?.name }}
                                     </Link>
                                 </h2>
-                                <div class="flex items-center justify-center md:justify-start gap-3 mt-1">
-                                    <div class="flex items-center gap-1.5">
-                                        <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ project.cityWork }}, {{ project.countryWork?.allTranslations?.[usePage().props.language] || project.countryWork?.name }}</span>
+                                <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1 mt-1">
+                                    <div class="flex items-center gap-1 whitespace-nowrap">
+                                        <svg class="w-3.5 h-3.5 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{{ project.cityWork }}, {{ project.countryWork?.allTranslations?.[usePage().props.language] || project.countryWork?.name }}</span>
                                     </div>
-                                    <span v-if="project.kraz" class="w-1 h-1 bg-gray-200 rounded-full"></span>
-                                    <div v-if="project.kraz" class="flex items-center gap-1.5">
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.kraz') }}: {{ project.kraz }}</span>
+                                    <span v-if="project.kraz" class="w-1 h-1 shrink-0 bg-gray-300 rounded-full"></span>
+                                    <div v-if="project.kraz" class="flex items-center gap-1 whitespace-nowrap">
+                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{{ __('translate.kraz') }}: {{ project.kraz }}</span>
                                     </div>
-                                    <span class="w-1 h-1 bg-gray-200 rounded-full"></span>
-                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ moment(project.created_at).format('DD.MM.YYYY') }}</span>
+                                    <span class="w-1 h-1 shrink-0 bg-gray-300 rounded-full"></span>
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider whitespace-nowrap">{{ moment(project.created_at).format('DD.MM.YYYY') }}</span>
                                 </div>
                             </div>
                         </div>
