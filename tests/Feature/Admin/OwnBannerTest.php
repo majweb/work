@@ -115,6 +115,21 @@ class OwnBannerTest extends TestCase
         $this->assertSame(0, Banner::count());
     }
 
+    public function test_admin_uploads_banner_image_up_to_20_mb(): void
+    {
+        $image = fn (int $kb) => UploadedFile::fake()->image('baner.jpg', 1000, 200)->size($kb);
+
+        $this->actingAs($this->admin)->post(route('temporary.upload'), ['adminBanner' => $image(15000)])->assertOk();
+        $this->actingAs($this->admin)->post(route('temporary.upload'), ['adminBanner' => $image(21000)])
+            ->assertStatus(422)->assertJsonStructure(['error' => ['adminBanner']]);
+
+        // Firma (i zwykłe pole photo) - dalej 2 MB
+        $firm = User::factory()->create();
+        $firm->assignRole('firm');
+        $this->actingAs($firm)->post(route('temporary.upload'), ['adminBanner' => $image(15000)])->assertStatus(400);
+        $this->actingAs($this->admin)->post(route('temporary.upload'), ['photo' => $image(15000)])->assertStatus(422);
+    }
+
     public function test_own_banner_is_shown_on_its_markets_without_package(): void
     {
         $own = Banner::create(['user_id' => null, 'url' => 'https://work4you.global', 'lang' => [$this->market('pl')], 'active' => true, 'active_admin' => true]);

@@ -17,14 +17,22 @@ class FileUploadController extends Controller
                 'photo' => ['image', 'mimes:png,jpg,jpeg,gif', 'max:2000','dimensions:min_width=300,min_height=200'],
                 'cvFile' => ['file', 'mimes:pdf,doc,docx', 'max:5000'],
             ];
+
+            // Grafika baneru Work4you dodawanego przez admina - większy limit (20 MB)
+            if ($request->user()?->hasRole('admin')) {
+                $fileFields['adminBanner'] = ['image', 'mimes:png,jpg,jpeg,gif', 'max:20480', 'dimensions:min_width=300,min_height=200'];
+            }
+
             $customMessages = [
                 'photo.dimensions' => __('translate.photoDimensions'),
+                'adminBanner.dimensions' => __('translate.photoDimensions'),
             ];
 
             $customNames = [
                 'files' => __('translate.file.plural'),
                 'photo' => __('translate.photo'),
                 'cvFile' => __('translate.fileCv'),
+                'adminBanner' => __('translate.banner'),
             ];
 
             // Znajdź pierwsze pole, które zawiera plik

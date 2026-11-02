@@ -8,10 +8,11 @@ import InputError from "@/Components/InputError.vue";
 import {pickBy} from "lodash";
 import {ref, onMounted} from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, Navigation, Pagination as SwiperPagination } from "swiper/modules";
+import { Autoplay, EffectFade, Pagination as SwiperPagination } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 import 'swiper/css/scrollbar';
 
 const isClient = ref(false);
@@ -116,20 +117,23 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                 <!-- BANNERS SWIPER -->
                 <div v-if="isClient && props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
                     <swiper
-                        :modules="[Navigation, SwiperPagination, Autoplay]"
+                        :modules="[SwiperPagination, Autoplay, EffectFade]"
+                        effect="fade"
+                        :fade-effect="{ crossFade: true }"
+                        :speed="800"
                         :slides-per-view="1"
                         :space-between="30"
                         :loop="props.banners?.length > 1"
-                        :autoplay="{ delay: 3000, disableOnInteraction: false }"
+                        :autoplay="{ delay: 6000, disableOnInteraction: false }"
                         :allowTouchMove="false"
-                        navigation
                         :pagination="{ clickable: true }"
                         class="w-full rounded-[2.5rem] overflow-hidden"
                     >
-                        <swiper-slide v-for="slide in props.banners" :key="slide.id">
-                            <a :href="slide.url" class="block w-full h-full">
+                        <!-- Baner niższy od pozostałych (inne proporcje) jest wyśrodkowany w pionie -->
+                        <swiper-slide v-for="slide in props.banners" :key="slide.id" class="!flex !h-auto items-center">
+                            <a :href="slide.url" class="block w-full">
                                 <img
-                                    class="object-cover w-full h-full"
+                                    class="block w-full h-auto"
                                     :alt="slide.id"
                                     :src="slide.image"
                                 />
