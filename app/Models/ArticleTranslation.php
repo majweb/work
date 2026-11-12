@@ -18,6 +18,10 @@ class ArticleTranslation extends Model
 
     public const STATUS_FAILED = 'failed';
 
+    // Tłumaczenie trwające dłużej niż limit zadania (TranslateArticle::$timeout) zostało przerwane
+    // (np. restart workera) - można je wznowić
+    public const STALLED_AFTER_MINUTES = 35;
+
     protected $fillable = [
         'source_article_id',
         'locale',
@@ -45,5 +49,28 @@ class ArticleTranslation extends Model
     public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
+    }
+
+    public function isStalled(): bool
+    {
+        return $this->status === self::STATUS_TRANSLATING
+            && $this->updated_at?->lt(now()->subMinutes(self::STALLED_AFTER_MINUTES));
+    }
+
+    /**
+     * Tłumaczenie właśnie trwa (w kolejce albo w toku, bez przerwanych).
+     */
+    public function isInProgress(): bool
+    {
+        return $this->status === self::STATUS_PENDING
+            || ($this->status === self::STATUS_TRANSLATING && ! $this->isStalled());
+    }
+
+    /**
+     * Do wznowienia: błąd (np. brak środków na OpenAI) albo przerwane tłumaczenie.
+     */
+    public function isResumable(): bool
+    {
+        return $this->status === self::STATUS_FAILED || $this->isStalled();
     }
 }

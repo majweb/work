@@ -194,8 +194,11 @@ class ArticleAcceptController extends Controller
                 'is_version' => $article->isVersion(),
                 'locale' => $article->locale,
                 'source_id' => $article->source_article_id,
-                // Rynki już obsłużone: przetłumaczone wersje i dodatkowe rynki oryginału
-                'translated_countries' => $article->isVersion() ? [] : $article->translations()->pluck('countries')->flatten()
+                // Rynki już obsłużone: gotowe lub trwające tłumaczenia i dodatkowe rynki oryginału.
+                // Języki z błędem (np. brak środków na OpenAI) albo przerwane można wybrać ponownie.
+                'translated_countries' => $article->isVersion() ? [] : $article->translations()->get()
+                    ->filter(fn (ArticleTranslation $t) => $t->status === ArticleTranslation::STATUS_DONE || $t->isInProgress())
+                    ->pluck('countries')->flatten()
                     ->merge($article->countries ?? [])->unique()->values(),
             ],
             'categories' => $dictionaryService->getCategories(),
@@ -338,7 +341,8 @@ class ArticleAcceptController extends Controller
                 'id' => $t->id,
                 'locale' => $t->locale,
                 'language' => $names[$t->locale] ?? $t->locale,
-                'status' => $t->status,
+                // Przerwane tłumaczenie (np. restart workera) pokazujemy osobno - można je wznowić
+                'status' => $t->isStalled() ? 'stalled' : $t->status,
                 'error' => $t->error,
                 'edited_manually' => $t->edited_manually,
                 'cost_usd' => $t->cost_usd,
@@ -367,6 +371,7 @@ class ArticleAcceptController extends Controller
             ],
             'items' => $items,
             'in_progress' => $items->contains(fn ($t) => in_array($t['status'], [ArticleTranslation::STATUS_PENDING, ArticleTranslation::STATUS_TRANSLATING], true)),
+            'resumable' => $items->whereIn('status', [ArticleTranslation::STATUS_FAILED, 'stalled'])->count(),
             'cost_usd' => round($items->sum('cost_usd'), 2),
             'markets' => $items->sum(fn ($t) => count($t['countries'])),
         ];

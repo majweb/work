@@ -78,8 +78,8 @@ class ArticleTranslationService
                 continue;
             }
 
-            // W trakcie tłumaczenia nowe kraje trafią do wersji po jego zakończeniu
-            if ($translation->exists && in_array($translation->status, [ArticleTranslation::STATUS_PENDING, ArticleTranslation::STATUS_TRANSLATING], true)) {
+            // W trakcie tłumaczenia nowe kraje trafią do wersji po jego zakończeniu (przerwane tłumaczenie - od nowa)
+            if ($translation->exists && $translation->isInProgress()) {
                 $translation->save();
 
                 continue;
@@ -105,16 +105,39 @@ class ArticleTranslationService
         foreach ($source->translations as $translation) {
             if (($locales !== null && ! in_array($translation->locale, $locales, true))
                 || ($translation->edited_manually && ! $includeEdited)
-                || $translation->status === ArticleTranslation::STATUS_TRANSLATING) {
+                || ($translation->status === ArticleTranslation::STATUS_TRANSLATING && ! $translation->isStalled())) {
                 continue;
             }
 
-            $translation->update(['status' => ArticleTranslation::STATUS_PENDING, 'error' => null]);
-            TranslateArticle::dispatch($translation);
+            $this->queue($translation);
             $count++;
         }
 
         return $count;
+    }
+
+    /**
+     * Wznowienie po przerwie (np. brak środków na OpenAI): tylko języki z błędem i przerwane,
+     * gotowe wersje zostają bez zmian - bez ponownego kosztu.
+     */
+    public function resumeUnfinished(Article $source): int
+    {
+        $count = 0;
+
+        foreach ($source->translations as $translation) {
+            if ($translation->isResumable()) {
+                $this->queue($translation);
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    private function queue(ArticleTranslation $translation): void
+    {
+        $translation->update(['status' => ArticleTranslation::STATUS_PENDING, 'error' => null]);
+        TranslateArticle::dispatch($translation);
     }
 
     /**

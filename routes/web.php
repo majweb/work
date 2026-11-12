@@ -318,6 +318,7 @@ Route::middleware([
         Route::get('articles-accepts/{article:id}/translations', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'status'])->name('articles-accepts.translations.status');
         Route::post('articles-accepts/{article:id}/translations/publish', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'publishAll'])->name('articles-accepts.translations.publish-all');
         Route::post('articles-accepts/{article:id}/translations/retranslate', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'retranslateAll'])->name('articles-accepts.translations.retranslate');
+        Route::post('articles-accepts/{article:id}/translations/resume', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'resume'])->name('articles-accepts.translations.resume');
         Route::put('articles-accepts/{article:id}/translations/{translation}/publish', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'togglePublish'])->name('articles-accepts.translations.publish');
         Route::post('articles-accepts/{article:id}/translations/{translation}/retry', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'retry'])->name('articles-accepts.translations.retry');
         Route::delete('articles-accepts/{article:id}/translations/{translation}/markets/{country}', [\App\Http\Controllers\Admin\ArticleTranslationController::class, 'removeMarket'])->name('articles-accepts.translations.remove-market');

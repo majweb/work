@@ -6,8 +6,10 @@ use App\Models\Article;
 use App\Models\ArticleTranslation;
 use App\Models\Country;
 use App\Models\User;
+use App\Jobs\TranslateArticle;
 use App\Services\Articles\ArticleTranslationService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use OpenAI\Exceptions\ErrorException;
 use OpenAI\Laravel\Facades\OpenAI;
 use OpenAI\Responses\Chat\CreateResponse;
 use Spatie\Permission\Models\Role;
@@ -179,6 +181,78 @@ class ArticleTranslationTest extends TestCase
         $this->actingAs($this->admin)->post(route('admin.articles-accepts.translations.retry', [$this->source->id, $translation->id]))->assertRedirect();
 
         $this->assertSame(ArticleTranslation::STATUS_DONE, $translation->fresh()->status);
+    }
+
+    private function quotaError(): ErrorException
+    {
+        return new ErrorException(['message' => 'You exceeded your current quota, please check your plan and billing details.', 'type' => 'insufficient_quota', 'code' => 'insufficient_quota']);
+    }
+
+    public function test_resume_after_openai_quota_runs_out_translates_only_unfinished_languages(): void
+    {
+        // Niemiecki gotowy, potem kończą się środki na OpenAI
+        OpenAI::fake([
+            CreateResponse::fake(['choices' => [['message' => ['content' => json_encode(array_fill_keys(['title', 'short_description', 'meta_title', 'meta_description', 'meta_keywords', 'alt', 'content'], '[de] tekst'))]]]]),
+            $this->quotaError(),
+            $this->quotaError(),
+        ]);
+        $this->service()->addMarkets($this->source, ['de', 'at', 'us', 'cy']);
+
+        $byLocale = ArticleTranslation::all()->keyBy('locale');
+        $this->assertSame(ArticleTranslation::STATUS_DONE, $byLocale['de']->status);
+        foreach (['en', 'el'] as $locale) {
+            $this->assertSame(ArticleTranslation::STATUS_FAILED, $byLocale[$locale]->status);
+            $this->assertStringContainsString('Brak środków na koncie OpenAI', $byLocale[$locale]->error);
+        }
+        $deCost = $byLocale['de']->cost_usd;
+
+        $this->actingAs($this->admin)->get(route('admin.articles-accepts.translations.status', $this->source->id))
+            ->assertJsonPath('resumable', 2);
+
+        // Edycja: rynki nieprzetłumaczonych języków nie są oznaczone jako gotowe - można je wybrać ponownie
+        $this->actingAs($this->admin)->get(route('admin.articles-accepts.edit', $this->source->id))
+            ->assertInertia(fn ($page) => $page->where('article.translated_countries', fn ($codes) => collect($codes)->sort()->values()->all() === ['at', 'de']));
+
+        // Wznowienie - tylko angielski i grecki (gotowy niemiecki bez ponownego kosztu)
+        $this->fakeTranslations(['en', 'el']);
+        $this->actingAs($this->admin)->post(route('admin.articles-accepts.translations.resume', $this->source->id))
+            ->assertSessionHas('flash.banner', 'Wznowiono tłumaczenie: 2 języków w kolejce.');
+
+        $this->assertSame(3, ArticleTranslation::where('status', ArticleTranslation::STATUS_DONE)->count());
+        $this->assertSame($deCost, ArticleTranslation::where('locale', 'de')->first()->cost_usd);
+        $this->assertSame(3, Article::where('source_article_id', $this->source->id)->count());
+    }
+
+    public function test_stalled_translation_can_be_resumed(): void
+    {
+        $translation = ArticleTranslation::create([
+            'source_article_id' => $this->source->id, 'locale' => 'de', 'countries' => ['de'], 'status' => ArticleTranslation::STATUS_TRANSLATING,
+        ]);
+
+        $status = fn () => $this->actingAs($this->admin)->get(route('admin.articles-accepts.translations.status', $this->source->id));
+        $status()->assertJsonPath('items.0.status', 'translating')->assertJsonPath('in_progress', true)->assertJsonPath('resumable', 0);
+
+        // Worker przerwał tłumaczenie - po limicie czasu język jest "przerwany" i da się go wznowić
+        $this->travel(ArticleTranslation::STALLED_AFTER_MINUTES + 1)->minutes();
+        $status()->assertJsonPath('items.0.status', 'stalled')->assertJsonPath('in_progress', false)->assertJsonPath('resumable', 1);
+
+        $this->fakeTranslations(['de']);
+        $this->actingAs($this->admin)->post(route('admin.articles-accepts.translations.retry', [$this->source->id, $translation->id]));
+
+        $this->assertSame(ArticleTranslation::STATUS_DONE, $translation->fresh()->status);
+    }
+
+    public function test_translation_is_claimed_only_once(): void
+    {
+        $translation = ArticleTranslation::create([
+            'source_article_id' => $this->source->id, 'locale' => 'de', 'countries' => ['de'], 'status' => ArticleTranslation::STATUS_TRANSLATING,
+        ]);
+
+        // Zadanie dla języka, który już tłumaczy inne zadanie - bez zapytania do OpenAI
+        OpenAI::fake([]);
+        TranslateArticle::dispatchSync($translation);
+
+        $this->assertSame(ArticleTranslation::STATUS_TRANSLATING, $translation->fresh()->status);
     }
 
     public function test_draft_is_hidden_publicly_but_admin_can_preview(): void
