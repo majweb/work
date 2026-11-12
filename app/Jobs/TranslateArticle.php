@@ -36,11 +36,20 @@ class TranslateArticle implements ShouldQueue
         $translation = $this->translation;
         $source = $translation->source;
 
-        if (! $source || $translation->status !== ArticleTranslation::STATUS_PENDING) {
+        if (! $source) {
             return;
         }
 
-        $translation->update(['status' => ArticleTranslation::STATUS_TRANSLATING]);
+        // Przejęcie tłumaczenia tylko raz - po wznowieniu w kolejce mogą być dwa zadania tego samego języka
+        $claimed = ArticleTranslation::whereKey($translation->id)
+            ->where('status', ArticleTranslation::STATUS_PENDING)
+            ->update(['status' => ArticleTranslation::STATUS_TRANSLATING, 'updated_at' => now()]);
+
+        if (! $claimed) {
+            return;
+        }
+
+        $translation->refresh();
 
         try {
             $result = $translator->translate($source->only(array_merge(ArticleTranslator::FIELDS, ['content'])), $translation->locale);
@@ -49,8 +58,22 @@ class TranslateArticle implements ShouldQueue
             Log::error("Artykuł #{$source->id} ({$translation->locale}): ".$e->getMessage());
             $translation->update([
                 'status' => ArticleTranslation::STATUS_FAILED,
-                'error' => mb_substr($e->getMessage(), 0, 1000),
+                'error' => self::errorMessage($e),
             ]);
         }
+    }
+
+    /**
+     * Komunikat dla admina - brak środków na koncie OpenAI opisany wprost.
+     */
+    public static function errorMessage(Throwable $e): string
+    {
+        $message = $e->getMessage();
+
+        if (preg_match('/insufficient_quota|exceeded your current quota|billing/i', $message)) {
+            return 'Brak środków na koncie OpenAI - doładuj konto i kliknij „Wznów nieukończone”.';
+        }
+
+        return mb_substr($message, 0, 1000);
     }
 }

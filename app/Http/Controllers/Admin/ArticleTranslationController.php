@@ -79,6 +79,18 @@ class ArticleTranslationController extends Controller
         return back()->with(['flash.banner' => "Ponowne tłumaczenie: {$count} języków w kolejce.", 'flash.bannerStyle' => 'success']);
     }
 
+    /**
+     * Wznowienie po przerwie (np. brak środków na OpenAI) - tylko języki z błędem i przerwane.
+     */
+    public function resume(Article $article): RedirectResponse
+    {
+        Gate::authorize('admin', User::class);
+
+        $count = $this->translations->resumeUnfinished($article);
+
+        return back()->with(['flash.banner' => "Wznowiono tłumaczenie: {$count} języków w kolejce.", 'flash.bannerStyle' => 'success']);
+    }
+
     public function removeMarket(Article $article, ArticleTranslation $translation, string $country): RedirectResponse
     {
         $this->authorizeTranslation($article, $translation);

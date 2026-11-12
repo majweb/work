@@ -18,6 +18,7 @@ const STATUS = {
     translating: { label: 'Tłumaczenie…', class: 'bg-blue-50 text-blue-600' },
     done: { label: 'Gotowe', class: 'bg-green-50 text-green-700' },
     failed: { label: 'Błąd', class: 'bg-red-50 text-red-600' },
+    stalled: { label: 'Przerwane', class: 'bg-amber-50 text-amber-700' },
 };
 
 const items = computed(() => data.value.items || []);
@@ -51,6 +52,11 @@ const retry = (t) => {
     if (t.edited_manually && !confirm('Ta wersja była poprawiana ręcznie. Ponowne tłumaczenie nadpisze poprawki. Kontynuować?')) return;
     router.post(route('admin.articles-accepts.translations.retry', [props.articleId, t.id]), {}, opts);
 };
+// Po przerwie (np. brak środków na OpenAI) - tylko języki z błędem i przerwane, gotowe bez zmian
+const resume = () => {
+    if (!confirm(`Wznowić tłumaczenie ${data.value.resumable} języków? Gotowe wersje zostaną bez zmian.`)) return;
+    router.post(route('admin.articles-accepts.translations.resume', props.articleId), {}, opts);
+};
 const retranslateAll = () => {
     const includeEdited = editedCount.value > 0
         && confirm(`Poprawione ręcznie wersje (${editedCount.value}) też przetłumaczyć od nowa? OK – tak, Anuluj – pomiń je.`);
@@ -78,6 +84,9 @@ const removeMarket = (t, country) => {
                 </p>
             </div>
             <div class="flex flex-wrap gap-2">
+                <button v-if="data.resumable" type="button" class="px-5 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest" @click="resume">
+                    Wznów nieukończone ({{ data.resumable }})
+                </button>
                 <button type="button" :disabled="!draftCount" class="px-5 py-3 bg-[#0A2C5C] hover:bg-[#0D356D] text-white rounded-xl font-black text-[10px] uppercase tracking-widest disabled:opacity-40" @click="publishAll">
                     Opublikuj wszystkie szkice
                 </button>
@@ -132,6 +141,7 @@ const removeMarket = (t, country) => {
                         <td class="py-4 pr-4">
                             <span class="px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest whitespace-nowrap" :class="STATUS[t.status]?.class">{{ STATUS[t.status]?.label || t.status }}</span>
                             <p v-if="t.error" class="mt-2 text-xs text-red-600 max-w-xs break-words">{{ t.error }}</p>
+                            <p v-else-if="t.status === 'stalled'" class="mt-2 text-xs text-amber-700 max-w-xs">Tłumaczenie zostało przerwane – kliknij „Ponów” albo „Wznów nieukończone”.</p>
                         </td>
                         <td class="py-4 pr-4">
                             <div class="flex flex-wrap gap-1 max-w-md">
@@ -157,8 +167,8 @@ const removeMarket = (t, country) => {
                         <td class="py-4 text-right whitespace-nowrap space-x-3">
                             <a v-if="t.article" :href="t.article.url" target="_blank" class="text-[10px] font-black uppercase tracking-widest text-[#329CD1] hover:underline">Podgląd</a>
                             <Link v-if="t.article" :href="route('admin.articles-accepts.edit', t.article.id)" class="text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] hover:underline">Edytuj</Link>
-                            <button v-if="t.status === 'failed' || t.status === 'done'" type="button" class="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:underline" @click="retry(t)">
-                                {{ t.status === 'failed' ? 'Ponów' : 'Tłumacz ponownie' }}
+                            <button v-if="['failed', 'stalled', 'done'].includes(t.status)" type="button" class="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:underline" @click="retry(t)">
+                                {{ t.status === 'done' ? 'Tłumacz ponownie' : 'Ponów' }}
                             </button>
                         </td>
                     </tr>
