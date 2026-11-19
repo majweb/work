@@ -12,7 +12,7 @@ class Agreement extends Model
     use HasFactory;
     use HasTranslations;
 
-    protected $fillable = ['title', 'description', 'help_text', 'type', 'is_active', 'parent_id', 'is_required'];
+    protected $fillable = ['title', 'description', 'help_text', 'type', 'is_active', 'parent_id', 'is_required', 'subscribes_newsletter'];
 
     public array $translatable = ['title', 'description', 'help_text'];
 
@@ -22,6 +22,7 @@ class Agreement extends Model
         'help_text' => 'array',
         'is_active' => 'boolean',
         'is_required' => 'boolean',
+        'subscribes_newsletter' => 'boolean',
     ];
 
     protected static function booted(): void
@@ -95,5 +96,31 @@ class Agreement extends Model
     public function parent()
     {
         return $this->belongsTo(Agreement::class, 'parent_id');
+    }
+
+    /**
+     * Domyślnie zapis do newslettera na zgodzie marketingowej rejestracji pracownika:
+     * "Chcę otrzymywać informacje marketingowe od work4you.global" -> podpunkt "na mój adres e-mail"
+     * (bez podpunktu - sama zgoda); zgoda marketingowa partnerów pomijana. Zwraca ID oznaczonych zgód.
+     *
+     * @return array<int, int>
+     */
+    public static function markWorkerMarketingConsentAsNewsletter(): array
+    {
+        $agreements = self::where('type', 'worker_registration')->get();
+        $text = fn (self $a) => mb_strtolower(($a->getTranslation('title', 'pl', false) ?: '').' '.($a->getTranslation('description', 'pl', false) ?: ''));
+
+        $ids = [];
+        // Bez zgody marketingowej partnerów ("...informacje marketingowe od partnerów work4you.global")
+        $isOwnMarketing = fn (self $a) => str_contains($text($a), 'informacje marketingowe') && ! str_contains($text($a), 'partner');
+
+        foreach ($agreements->filter(fn (self $a) => ! $a->parent_id && $isOwnMarketing($a)) as $parent) {
+            $email = $agreements->filter(fn (self $a) => $a->parent_id === $parent->id && str_contains($text($a), 'e-mail'));
+            array_push($ids, ...($email->isNotEmpty() ? $email->pluck('id')->all() : [$parent->id]));
+        }
+
+        self::whereIn('id', $ids)->update(['subscribes_newsletter' => true]);
+
+        return $ids;
     }
 }

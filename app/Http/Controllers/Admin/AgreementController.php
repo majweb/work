@@ -60,6 +60,8 @@ class AgreementController extends Controller
     public function store(StoreAgreementRequest $request): RedirectResponse
     {
         $data = $request->validated();
+        // Zapis do newslettera tylko przy rejestracji pracownika
+        $data['subscribes_newsletter'] = ($data['type'] ?? null) === 'worker_registration' && ! empty($data['subscribes_newsletter']);
 
         Agreement::create($data);
 
@@ -96,6 +98,8 @@ class AgreementController extends Controller
     public function update(UpdateAgreementRequest $request, Agreement $agreement): RedirectResponse
     {
         $data = $request->validated();
+        // Zapis do newslettera tylko przy rejestracji pracownika
+        $data['subscribes_newsletter'] = ($data['type'] ?? null) === 'worker_registration' && ! empty($data['subscribes_newsletter']);
 
         $agreement->update($data);
 

@@ -114,6 +114,9 @@ const groupedAgreements = computed(() => {
                                             <span v-if="agreement.is_required" class="px-3 py-1 bg-red-50 text-red-500 rounded-full text-[9px] font-black uppercase tracking-widest border border-red-100/50">
                                                 Wymagana
                                             </span>
+                                            <span v-if="agreement.subscribes_newsletter" class="px-3 py-1 bg-sky-50 text-sky-600 rounded-full text-[9px] font-black uppercase tracking-widest border border-sky-100">
+                                                Newsletter (GetResponse)
+                                            </span>
                                             <span class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">ID: #{{ agreement.id }}</span>
                                             <span v-if="agreement.children && agreement.children.length > 0" class="px-3 py-1 bg-blue-50 text-blue-500 rounded-full text-[9px] font-black uppercase tracking-widest">
                                                 Rodzic ({{ agreement.children.length }} dzieci)
@@ -162,6 +165,9 @@ const groupedAgreements = computed(() => {
                                                 </span>
                                                 <span v-if="child.is_required" class="px-2 py-0.5 bg-red-50 text-red-500 rounded-full text-[8px] font-black uppercase tracking-widest border border-red-100/50">
                                                     Wymagana
+                                                </span>
+                                                <span v-if="child.subscribes_newsletter" class="px-2 py-0.5 bg-sky-50 text-sky-600 rounded-full text-[8px] font-black uppercase tracking-widest border border-sky-100">
+                                                    Newsletter (GetResponse)
                                                 </span>
                                                 <span class="text-[9px] font-bold text-gray-300 uppercase tracking-widest">Dziecko ID: #{{ child.id }}</span>
                                             </div>
