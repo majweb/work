@@ -25,6 +25,7 @@ class StoreAgreementRequest extends FormRequest
             'type' => 'required|string',
             'is_active' => 'required|boolean',
             'is_required' => 'required|boolean',
+            'subscribes_newsletter' => 'boolean',
             'parent_id' => 'nullable|exists:agreements,id',
         ];
 
@@ -68,6 +69,7 @@ class StoreAgreementRequest extends FormRequest
             'type' => 'typ formularza',
             'is_active' => 'status aktywności',
             'is_required' => 'wymagalność',
+            'subscribes_newsletter' => 'zapis do newslettera',
             'parent_id' => 'zgoda nadrzędna',
         ];
 

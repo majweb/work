@@ -2,11 +2,13 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Agreement;
 use App\Models\Foundation;
 use App\Models\User;
 use App\Notifications\FirmRegisteredNotification;
 use App\Notifications\SystemActivityNotification;
 use App\Services\CrmService;
+use App\Services\Newsletter\NewsletterSubscriptions;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
@@ -129,6 +131,26 @@ class CreateNewUser implements CreatesNewUsers
             }
         }
 
+        // Pracownik ze zgodą marketingową (oznaczoną w adminie "Zapisuje do newslettera") - lista GetResponse jak ze stopki.
+        // Firm to nie dotyczy.
+        if ($user && $input['type'] === 'worker' && $this->acceptedNewsletterAgreement($input)) {
+            app(NewsletterSubscriptions::class)->subscribe($user->email, (array) $input['agreements'], request()->ip());
+        }
+
         return $user;
+    }
+
+    /**
+     * @param  array<string, mixed>  $input
+     */
+    private function acceptedNewsletterAgreement(array $input): bool
+    {
+        $ids = array_filter((array) ($input['agreements'] ?? []), 'is_numeric');
+
+        return $ids !== [] && Agreement::whereIn('id', $ids)
+            ->where('type', 'worker_registration')
+            ->where('is_active', true)
+            ->where('subscribes_newsletter', true)
+            ->exists();
     }
 }

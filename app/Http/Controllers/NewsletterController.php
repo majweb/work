@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\NewslettersExport;
-use App\Jobs\SyncNewsletterSubscriber;
 use App\Models\Newsletter;
+use App\Services\Newsletter\NewsletterSubscriptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\Rule;
@@ -70,7 +70,7 @@ class NewsletterController extends Controller
         return Excel::download(new NewslettersExport($query), 'newsletters.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, NewsletterSubscriptions $subscriptions)
     {
         $requiredAgreementsCount = \App\Models\Agreement::where('type', 'newsletter')
             ->where('is_active', true)
@@ -96,23 +96,7 @@ class NewsletterController extends Controller
             ]);
         }
 
-        $locale = getSelectedCountry() ?: getLocalBrowserLang();
-
-        $subscriber = Newsletter::create([
-            'email' => $request->email,
-            'country_code' => $locale,
-            // Newsletter wysyłamy w języku, w którym osoba czytała stronę
-            'locale' => app()->getLocale(),
-            // Dowód zgody (RODO): które zgody zaznaczono, kiedy i z jakiego IP
-            'consents' => [
-                'agreement_ids' => array_values(array_map('intval', (array) $request->input('agreements', []))),
-                'accepted_at' => now()->toIso8601String(),
-            ],
-            'ip_address' => $request->ip(),
-        ]);
-
-        // Od razu na listę GetResponse jego języka; gdyby się nie udało, przeniesie go cogodzinna synchronizacja
-        SyncNewsletterSubscriber::dispatch($subscriber);
+        $subscriptions->subscribe($request->email, (array) $request->input('agreements', []), $request->ip());
 
         return back()->with([
             'flash.banner' => __('footer.newsletter_success'),

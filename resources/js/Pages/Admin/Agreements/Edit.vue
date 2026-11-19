@@ -31,6 +31,7 @@ const form = useForm({
     }, {}),
     is_active: !!props.agreement.is_active,
     is_required: !!props.agreement.is_required,
+    subscribes_newsletter: !!props.agreement.subscribes_newsletter,
 });
 
 const activeTab = ref(props.langs[0] || 'pl');
@@ -189,6 +190,18 @@ const submit = () => {
                                         <div class="ml-4">
                                             <span class="text-[10px] font-black uppercase tracking-widest transition-colors" :class="form.is_required ? 'text-red-500' : 'text-[#0A2C5C]'">Wymagana: {{ form.is_required ? 'Tak' : 'Nie' }}</span>
                                             <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tight">Decyduje czy zaznaczenie zgody jest obowiązkowe</p>
+                                        </div>
+                                    </label>
+                                    <!-- Tylko rejestracja pracownika: zaznaczenie zapisuje do newslettera (GetResponse, lista języka strony) -->
+                                    <label v-if="form.type === 'worker_registration'" class="flex items-center cursor-pointer group ml-1">
+                                        <div class="relative">
+                                            <input type="checkbox" v-model="form.subscribes_newsletter" class="sr-only">
+                                            <div class="w-14 h-8 bg-gray-100 rounded-full transition-colors group-hover:bg-gray-300" :class="{'!bg-[#00AEEF]': form.subscribes_newsletter}"></div>
+                                            <div class="absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform shadow-sm" :class="{'translate-x-6': form.subscribes_newsletter}"></div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <span class="text-[10px] font-black uppercase tracking-widest transition-colors" :class="form.subscribes_newsletter ? 'text-[#00AEEF]' : 'text-[#0A2C5C]'">Zapisuje do newslettera: {{ form.subscribes_newsletter ? 'Tak' : 'Nie' }}</span>
+                                            <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tight">Zaznaczona przy rejestracji pracownika dodaje go do GetResponse (lista języka strony, jak ze stopki)</p>
                                         </div>
                                     </label>
                                 </div>
